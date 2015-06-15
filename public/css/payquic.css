@@ -1,0 +1,102 @@
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+body {
+    font-family: 'Open Sans', 'Source Sans Pro', sans-serif;
+}
+
+
+@media (min-width: 768px) {
+    .container-wrapper {
+        min-width: 678px;
+        max-width: 978px;
+        margin: auto;
+        clear: both;
+        margin-top: 60px;
+        margin-bottom: 30px;
+    }
+}
+
+nav#faq {
+    height: 150px; !important;
+    background: #f5f5f5;
+    border: none;
+}
+
+.header-inner {
+    max-width: 978px;
+    margin: auto;
+    height: 150px;
+    padding: 0px;
+}
+
+.header-logo1 {
+    float: left;
+    margin-right: 15px;
+    padding-right: 15px;
+}
+.header-logo1 {
+    width: 269px;
+    padding-top: 28px;
+}
+
+.left-side .title {
+    color: #444;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.title {
+    margin: 0 0 1.0em 0/*2.100em 0 .900em*/;
+}
+
+ul.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.footer-links > li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 10px 0 0;
+    display: inline;
+}
+
+#main-footer footer p {
+    display: inline;
+    float: right;
+    position: relative;
+    top: -1px;
+    padding: 0;
+    margin: 0;
+    font-size: 1em;
+    color: #939da3;
+}
+#end>div:first-child a {
+    border-right: 1px solid #eff2f4;
+}
+
+#end>div>a, #end>div>span {
+    color: #000000;
+    text-decoration: none;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    margin: 10px 0;
+    padding: 25px 45px 25px 80px;
+    font-size: 14px;
+    line-height: 22px;
+}
+div.email>a>h4{
+    font-weight: 400;
+    font-size: 14px;
+}
+div.email>a>i.fa{
+    color: #ccc;
+}
+
+#main-footer {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}

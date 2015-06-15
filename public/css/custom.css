@@ -1,0 +1,92 @@
+body {
+  min-height: 2000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+
+.navbar-default {
+  background-color: #fff;
+  border-color: #0091ea;
+}
+
+
+.modal-content {
+	border-radius: 0px;
+	max-width: 360px;
+	border: 0;
+	box-shadow: none;
+}
+
+.modal2 {
+	margin-top: 4em;
+	position: absolute;
+	display: none;
+	left: 50%;
+	top: 2em;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: 100%;
+	padding-left: 17px;
+	text-align: center;
+	background: #fff;
+	z-index: 2000;
+	box-shadow: 0 4px 8px 0 rgba(39,46,50,0.2);
+	max-width: 360px;
+}
+
+.modal-dialog {
+	width: inherit!important;
+	margin: 0!important;
+	border: 0;
+}
+
+.modal-header {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+.modal-body {
+	padding-top: 0;
+}
+
+.modal2 .modal-body h3 {
+	margin-top: 0;
+}
+
+.modal2 .modal-body p {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.btn {
+	border-radius: 2px;
+}
+
+.modal2 .modal-body .loginForm div.last {
+	text-align: right;	
+}
+
+#modal-errors {
+    margin-top: 5px;
+}
+
+#modal-errors ul {
+    list-style: disc;
+    margin-left:9px;
+    padding:0;
+    text-align: left;
+}
+
+#modal-errors ul li {
+    font-size: 12px;
+
+}
+
+div#loading {
+    background: url("/img/spinner.gif") top left no-repeat;
+    width: 30%;
+    float: left;
+}

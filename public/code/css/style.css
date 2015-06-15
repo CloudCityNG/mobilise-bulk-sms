@@ -1,0 +1,42 @@
+form .contain:first-child {
+    display: block;
+    clear: right;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+form .contain {
+    margin-top: 10px;
+    display: block;
+    clear: left;
+    padding-bottom: 10px;
+}
+
+form .contain > label {
+    padding-top: 3px;
+}
+
+ul.widget-menu [class*="icon-"] {
+    vertical-align: baseline;
+}
+
+ul.widget-menu [class*="fa"] {
+    vertical-align: baseline;
+    padding-right: 5px;
+}
+
+ul.widget-menu [class*="fa"] {
+    padding-bottom: 5px;
+}
+
+.message .table-message tbody td.cell-status b.done {
+    background: #407721;
+}
+
+.message .table-message tbody .icon-checker {
+    border: 2px solid #407721;
+}
+
+table.table-message tr.task td a {
+    text-decoration: none;
+    color: #777;
+}
