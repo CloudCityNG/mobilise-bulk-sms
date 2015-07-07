@@ -3,6 +3,8 @@
 
 use App\Lib\Services\Text\CharacterCounter;
 use App\Models\Sms\SmsCredit;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SmsCreditRepository {
 
@@ -19,7 +21,7 @@ class SmsCreditRepository {
 
     public static function getSmsBill($recipients, $message)
     {
-        //process the recipients
+        //set delimiters
         $delimiters = "/(,)+/";
 
         //split the numbers according to delimiters and put in an array
@@ -27,6 +29,9 @@ class SmsCreditRepository {
 
         //replace + with null/empty
         $numbers = preg_replace("/(\+)+/", "",$numbers);
+
+        //strip spaces and + out of the number array
+        $numbers = array_map('trim', $numbers);
 
         //replace numbers that start with 07|08|09 with
         if ( count($numbers) > 0 )
@@ -46,15 +51,21 @@ class SmsCreditRepository {
         //foreach recipients, make the appropriate addition
         foreach ( $numbers as $number )
         {
-            if ( strlen($number) == 13 )
+            if ( strlen(trim($number)) == 13 )
             {
                 $total_units = $total_units + $unit_local ;
-            } else {
+            } elseif( strlen(trim($number)) > 13 ) {
                 $total_units = $total_units + $unit_intl;
             }
         }
 
         return $total_units;
+    }
+
+
+    public static function billUser($units)
+    {
+        return DB::table('sms_credit')->where('user_id', Auth::user()->id)->decrement('available_credit', $units);
     }
 
 } 

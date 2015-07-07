@@ -112,7 +112,7 @@ class SmsInfobip extends Sms {
             $messages,
         ];
 
-        return "JSON=".json_encode($authentication);
+        return json_encode($authentication);
     }
 
 

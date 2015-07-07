@@ -52,9 +52,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Models\Sms\SmsHistory', 'user_id', 'id');
     }
 
-    public function smsCredit()
+    public function smscredit()
     {
-        return $this->hasOne('App\Models\Sms\SmsCredit', 'user_id', 'id');
+        return $this->hasOne('App\Models\Sms\SmsCredit');
     }
 
     public function smscreditusage()
@@ -65,6 +65,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function draftsms()
     {
         return $this->hasMany('App\Models\Sms\SmsDraft');
+    }
+
+
+    public function smscontact()
+    {
+        return $this->hasMany('App\Models\Contact');
     }
 
 }

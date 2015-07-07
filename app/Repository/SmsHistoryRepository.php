@@ -86,7 +86,7 @@ class SmsHistoryRepository {
 
     public function sentSms()
     {
-        return SmsHistory::where('user_id', Auth::user()->id)->with('smshistoryrecipient')->get();
+        return SmsHistory::where('user_id', Auth::user()->id)->with('smshistoryrecipient')->orderBy('created_at', 'descending')->get();
     }
 
 

@@ -23,7 +23,7 @@
 
         <ul class="widget widget-menu unstyled">
                     <li>
-                        <li><a href="#"><i class="fa fa-send-o"></i> Address Book</a></li>
+                        <li><a href="{{url('address-book')}}"><i class="fa fa-send-o"></i> Address Book</a></li>
                         <li><a href="#"><i class="fa fa-floppy-o"></i> Number Context </a></li>
                     </li>
                 </ul>

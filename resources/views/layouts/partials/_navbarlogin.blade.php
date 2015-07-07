@@ -12,12 +12,11 @@
 				<div class="nav-collapse collapse navbar-inverse-collapse">
 
 					<ul class="nav pull-right">
-
-						<li><a href="#">
-							Sign Up
-						</a></li>
-
-
+                        @if(empty($currentUser))
+						<li><a href="{{url('user/register')}}">Register</a></li>
+						@else
+						<li><a href="{{url('user/login')}}">Log-in</a></li>
+						@endif
 
 						<li><a href="#">
 							Forgot your password?

@@ -1,13 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use App\Commands\CreateNewUserCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\NewUserRegistrationRequest;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller {
+class AddressBookController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -16,7 +14,7 @@ class RegisterController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('addressbook.index')->withSidebarNoShow('true');
 	}
 
 	/**
@@ -26,22 +24,17 @@ class RegisterController extends Controller {
 	 */
 	public function create()
 	{
-		return view('user.register');
+		//
 	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-	public function store(NewUserRegistrationRequest $request)
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
-        //validate
-        $d = $request->only('username', 'email', 'password');
-        $this->dispatch( new CreateNewUserCommand($d['username'], $d['email'], $d['password']) );
-        flash()->overlay('User Account created.', 'New User Registration');
-        return redirect()->route('user/dashboard');
+		//
 	}
 
 	/**

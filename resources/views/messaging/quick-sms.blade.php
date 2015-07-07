@@ -55,7 +55,7 @@ $(document).ready(function(){
 
         if ( true )
         {
-            $(this).val ( $(this).val().replace(/[^\d(, )]/g,'') );
+            $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
 
             $val = $(this).val().trim();
 

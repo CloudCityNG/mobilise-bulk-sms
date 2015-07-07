@@ -15,7 +15,7 @@ return [
 	|
 	*/
 
-	'driver' => 'smtp',
+	'driver' => 'mandrill',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'Shegun.babs@gmail.com', 'name' => 'Mobilise Bulk SMS'],
 
 	/*
 	|--------------------------------------------------------------------------

@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\Commands\QuickSms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
 use App\Lib\Sms\SmsInfobip;
+use App\Repository\SmsCreditRepository;
 use App\Repository\SmsHistoryRepository;
 use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsHistoryRecipient;
@@ -32,31 +34,41 @@ class MessagingController extends Controller {
 
     public function postQuickSms(SendSmsRequest $request)
     {
-        //send sms
+
+        //gather data
         $data = $request->only('sender', 'recipients', 'message', 'schedule', 'flash');
 
-        $s = (new SmsInfobip())->setSender( $data['sender'] )
-            ->setRecipients( $data['recipients'] )
-            ->setMessage( $data['message'] )
-            ->flash( $data['flash'] )
-            ->setSchedule( $data['schedule'] )
-            ->send();
-            ;
+        $this->dispatch(
+            new QuickSms(Auth::user(), $data['sender'], $data['recipients'], $data['message'], $data['schedule'], $data['flash'])
+        );
 
-        //save sms
-        $smsHistory = SmsHistory::store( $data['sender'], $data['message'], $data['schedule'], 1);
-        $smsHistoryRow = Auth::user()->smshistory()->save( $smsHistory );
-
-        //save response
-        $s = json_decode($s, true);
-        $recipients = [];
-
-        foreach ( $s['results'] as $result ):
-            $recipients[] = SmsHistoryRecipient::store($result['status'], $result['messageid'], $result['destination']);
-        endforeach;
-
-        $s = SmsHistory::find($smsHistoryRow->id);
-        $s->smsHistoryRecipient()->saveMany($recipients);
+//        //calculate bill
+//        $total_units = SmsCreditRepository::getSmsBill($data['recipients'], $data['message']);
+//        //deduct bill
+//        SmsCreditRepository::billUser($total_units);
+//
+//        //send sms
+//        $s = (new SmsInfobip())->setSender( $data['sender'] )
+//            ->setRecipients( $data['recipients'] )
+//            ->setMessage( $data['message'] )
+//            ->flash( $data['flash'] )
+//            ->setSchedule( $data['schedule'] )
+//            ->send();
+//
+//        //save sms
+//        $smsHistory = SmsHistory::store( $data['sender'], $data['message'], $data['schedule'], 1);
+//        $smsHistoryRow = Auth::user()->smshistory()->save( $smsHistory );
+//
+//        //process response and save to DB
+//        $s = json_decode($s, true);
+//        $recipients = [];
+//
+//        foreach ( $s['results'] as $result ):
+//            $recipients[] = SmsHistoryRecipient::store($result['status'], $result['messageid'], $result['destination']);
+//        endforeach;
+//
+//        $s = SmsHistory::find($smsHistoryRow->id);
+//        $s->smsHistoryRecipient()->saveMany($recipients);
 
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');

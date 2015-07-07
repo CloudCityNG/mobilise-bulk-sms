@@ -22,10 +22,15 @@
     <body>
         @include('layouts.partials._navbar')
         <div class="wrapper">
+            @yield('modal')
             <div class="container">
                 <div class="row">
+                @if(empty($sidebar_no_show))
                     @include('layouts.partials._sidebar')
                     <div class="span9">
+                @else
+                    <div class="span12">
+                @endif
                         <div class="content">
                             @yield('content')
                         </div>

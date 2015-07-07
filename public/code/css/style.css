@@ -1,3 +1,7 @@
+html body div.wrapper div.module-body {
+    min-height: 430px;
+}
+
 form .contain:first-child {
     display: block;
     clear: right;
@@ -39,4 +43,8 @@ ul.widget-menu [class*="fa"] {
 table.table-message tr.task td a {
     text-decoration: none;
     color: #777;
+}
+
+div.tab-content {
+    min-height: 400px;
 }

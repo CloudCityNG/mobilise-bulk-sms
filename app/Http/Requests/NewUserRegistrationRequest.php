@@ -22,7 +22,7 @@ class NewUserRegistrationRequest extends Request {
 	public function rules()
 	{
 		return [
-			'username'              => 'required|alpha_dash|unique:users,username',
+			'username'              => 'required|min:6|alpha_dash|unique:users,username',
             'email'                 => 'required|email|unique:users,email',
             'password'              => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',

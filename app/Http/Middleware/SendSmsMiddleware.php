@@ -19,10 +19,10 @@ class SendSmsMiddleware {
 	public function handle($request, Closure $next)
 	{
         //check user credit
-        $user_credit = $request->user()->smscredit->first()->available_credit;
-
+        $user_credit = $request->user()->smscredit->available_credit;
+        //dd($user_credit);
         //if NO CREDIT at all handle
-        if ( $user_credit == self::NO_CREDIT )
+        if ( $user_credit <= self::NO_CREDIT )
         {
             //@TODO set a sms/home route
             flash()->info(self::NO_CREDIT_TEXT);

@@ -12,7 +12,9 @@
 */
 
 use App\Commands\CreateNewUserCommand;
+use App\Commands\NewContactCommand;
 use App\Lib\Log\Logger;
+use App\Lib\Mailer\UserMailer;
 use App\Lib\Mobilise\UrlConnector;
 use App\Lib\Sms\SmsHttp;
 use App\Lib\Sms\SmsInfobip;
@@ -20,6 +22,7 @@ use App\Models\Sms\SmsCredit;
 use App\Models\Sms\SmsCreditUsage;
 use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsHistoryRecipient;
+use App\Repository\ContactRepository;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Sms\SentSmsHistory as sentsmshistory;
@@ -34,6 +37,8 @@ use GuzzleHttp\Client;
 Route::group(
     ['prefix' => 'user'], function () {
 
+        Route::get('register', 'RegisterController@create');
+        Route::post('register', 'RegisterController@store');
         Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
         Route::post('login', 'SessionsController@store');
         Route::get('logout', 'SessionsController@destroy');
@@ -64,6 +69,9 @@ Route::group(
         Route::post('draft-sms', 'MessagingController@postDraftSms');
     }
 );
+
+Route::get('address-book', 'AddressBookController@index');
+Route::post('address-book/new', 'AjaxController@newContact');
 
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
@@ -108,11 +116,12 @@ Route::controllers([
 ]);
 
 Route::get('test2', function () {
+    dd(Auth::user());
+    return view('emails.user.new_user_register',['username'=>'Ruth']);
 
-    echo \App\Lib\Services\Text\CharacterCounter::countPage('jakie jambad
-    ssssqqwqw')->pages;
-
-    //dd (Auth::user()->smsCredit()->available_credit);
+    $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);
+    $request = $request->only('gsm','gsm2','email','firstname','lastname','street','city','region','postcode','birthdate');
+    Bus::dispatch(new NewContactCommand($request, Auth::user()));
 
     return;
 
