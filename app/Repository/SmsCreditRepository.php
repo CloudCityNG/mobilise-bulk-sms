@@ -51,14 +51,14 @@ class SmsCreditRepository {
         //foreach recipients, make the appropriate addition
         foreach ( $numbers as $number )
         {
-            if ( strlen(trim($number)) == 13 )
+
+            if ( substr($number, 0, 3) == '234' )
             {
-                $total_units = $total_units + $unit_local ;
-            } elseif( strlen(trim($number)) > 13 ) {
+                $total_units = $total_units + $unit_local;
+            } else {
                 $total_units = $total_units + $unit_intl;
             }
         }
-
         return $total_units;
     }
 

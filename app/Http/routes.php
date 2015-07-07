@@ -116,7 +116,9 @@ Route::controllers([
 ]);
 
 Route::get('test2', function () {
-    dd(Auth::user());
+
+    return substr("2348188697770", 0, 3) == '234' ? 'something':'nothing' ;
+
     return view('emails.user.new_user_register',['username'=>'Ruth']);
 
     $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);
