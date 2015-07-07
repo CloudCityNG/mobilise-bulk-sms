@@ -119,7 +119,7 @@ class SmsInfobip extends Sms {
     public function send()
     {
         //for testing purpose only
-        return '{"results": [ {"status":"-22","messageid":"","destination":"000000000000"}, {"status":"0","messageid":"155060816184838810","destination":"2348099450165"} ]}';
+        //return '{"results": [ {"status":"-22","messageid":"","destination":"000000000000"}, {"status":"0","messageid":"155060816184838810","destination":"2348099450165"} ]}';
         $out = $this->_prepare();
         return $this->sendRequest(self::api_url, $out);
     }
