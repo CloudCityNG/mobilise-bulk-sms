@@ -1,7 +1,7 @@
 <?php namespace App\Lib\Mailer;
 
+use App\User;
 use Illuminate\Support\Facades\Crypt;
-use User;
 
 class UserMailer extends Mailer {
 
