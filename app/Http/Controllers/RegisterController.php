@@ -40,8 +40,9 @@ class RegisterController extends Controller {
         //validate
         $d = $request->only('username', 'email', 'password');
         $this->dispatch( new CreateNewUserCommand($d['username'], $d['email'], $d['password']) );
+
         flash()->overlay('User Account created.', 'New User Registration');
-        return redirect()->route('user/dashboard');
+        return redirect()->to('user/dashboard');
 	}
 
 	/**
