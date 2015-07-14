@@ -73,4 +73,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Models\Contact');
     }
 
+
+    public function group()
+    {
+        return $this->hasMany('App\Models\Group');
+    }
+
 }

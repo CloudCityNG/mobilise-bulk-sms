@@ -45,4 +45,9 @@ class HomeController extends Controller {
         return view('home.dashboard');
     }
 
+
+    public function front()
+    {
+        return view('home.front')->withSidebarNoShow(true);
+    }
 }

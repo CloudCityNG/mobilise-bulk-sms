@@ -3,19 +3,19 @@
 @section('content')
 
 <div class="module">
-    <div class="module-head"><h3>Quick SMS</h3></div>
+    <div class="module-head"><h3>Addressbook</h3></div>
         <div class="module-body clearfix">
 
                 <ul class="nav nav-tabs" id="myTab">
-                  <li class="active"><a href="#home">Home</a></li>
-                  <li><a href="#profile">Manage Contacts</a></li>
-                  <li><a href="#messages">Import Contacts</a></li>
-                  <li><a href="#settings">Manage Groups</a></li>
+                  <li class="active"><a href="#home" data-target="home">Home</a></li>
+                  <li><a href="#manageContacts" data-target="manageContacts">Manage Contacts</a></li>
+                  <li><a href="#importContacts">Import Contacts</a></li>
+                  <li><a href="#manageGroups">Manage Groups</a></li>
                 </ul>
 
                 <div class="tab-content clearfix">
                   <div class="tab-pane active" id="home" data-toggle="tab">home content here</div>
-                  <div class="tab-pane" id="profile" data-toggle="tab">
+                  <div class="tab-pane" id="manageContacts" data-toggle="tab">
 
                     <div class="alert-message"></div>
 
@@ -66,8 +66,31 @@
 
 
                   </div>
-                  <div class="tab-pane" id="messages" data-toggle="tab">messages content here</div>
-                  <div class="tab-pane" id="settings" data-toggle="tab">settings content here</div>
+                  <div class="tab-pane" id="importContacts" data-toggle="tab">messages content here</div>
+
+                  <!-- Group stuffs here -->
+                  <div class="tab-pane" id="manageGroups" data-toggle="tab">
+                    <div class="well form-inline">
+                        <a href="#groupModal" role="button" class="btn btn-small btn-primary" data-toggle="modal" id="newgroup">New Group</a>
+                    </div>
+                    <div class="span6">
+                        <table id="groupTable" class="table table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Group Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                @foreach( $data as $d )
+                                <tr>
+                                    <td>{{$d->group_name}}</td>
+                                    <td>{{$d->id}}</td>
+                                </tr>
+                                @endforeach
+                            </thead>
+                        </table>
+                        <?php echo $data->render(); ?>
+                    </div>
+                  </div>
                 </div>
 
         </div>
@@ -79,15 +102,29 @@
 @parent
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link type="text/css" href="/css/bootstrap/bootstrap-datepicker.min.css" rel="stylesheet">
+<link type="text/css" href="/css/datatables/jquery.dataTables.min.css" rel="stylesheet">
 @stop
 
 @section('foot')
 @parent
+<script src="/js/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="/js/bootstrap/bootstrap-datepicker.js"></script>
 <script>
 $(document).ready(function(){
+    //databale for groups
+
+    $('#contacts-table').dataTable();
+
+    $('#groupTable_length select').addClass('span1');
+
     $('button#newContactSubmit').click(function(){
+        //disable submit button
         $('form#newContact').submit();
+    });
+    $('button#newGroupSubmit').click(function(){
+        //diisable submit button
+        $('form#newGroup').submit();
+
     });
 
     $.ajaxSetup({
@@ -96,9 +133,22 @@ $(document).ready(function(){
         }
     });
 
+
+    $('form#newGroup').on('submit', function(event){
+        event.preventDefault();
+        alert($('form#newGroup').serialize());
+        var jqXHR = $.get("address-book/new-group", $('form#newGroup').serialize());
+        jqXHR.done(function(data){
+            alert('pass ' + data);
+        });
+        jqXHR.fail(function(data){
+            alert('fail '+data);
+        });
+        getGroup();
+    });
+
     $('form#newContact').on("submit", function(event){
         event.preventDefault();
-        alert('submitted');
         var jqxhr = $.post("address-book/new", $('#newContact').serialize());
 
         jqxhr.done(function(data){
@@ -147,6 +197,14 @@ $(document).ready(function(){
 
 
 });
+//function to refresh group table
+function getGroup()
+{
+    var jqXHR = $.get('address-book/get-group');
+    jqXHR.done(function(data){
+        console.log(data)
+    });
+}
 
 //reset the modal form
 function resetForm(formID){
@@ -183,6 +241,18 @@ $('input#birthdate').datepicker({
     orientation: "top auto"
 });
 
+
+// Javascript to enable link to tab
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+}
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+
 </script>
 @stop
 
@@ -190,7 +260,43 @@ $('input#birthdate').datepicker({
 @section('modal')
 <!-- Button to trigger modal -->
 
-<!-- Modal -->
+<!-- Contact Modal -->
+<div id="groupModal" class="modal hide fade clearfix" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">New Group</h3>
+  </div>
+  <div class="modal-body">
+    <form id="newGroup" class="form-horizontal">
+    <div class="errors" style="display:none;">
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h4>Form Errors!</h4>
+          <ul id="error-ul"></ul>
+        </div>
+    </div>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <div class="control-group">
+        <label class="control-label" for="GSM">Group Name*</label>
+        <div class="controls">
+          <input type="text" name="group_name" id="group_name" placeholder="Group Name">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="email">Group Description</label>
+        <div class="controls">
+          <input type="text" name="group_description" id="group_description" placeholder="Group Description">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="newGroupSubmit" class="btn btn-primary">Save</button>
+  </div>
+</div>
+
+<!-- Contact Modal -->
 <div id="contactModal" class="modal hide fade clearfix" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

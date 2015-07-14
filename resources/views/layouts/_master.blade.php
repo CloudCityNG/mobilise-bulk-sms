@@ -21,7 +21,11 @@
     </head>
     <body>
         @include('layouts.partials._navbar')
+
         <div class="wrapper">
+
+            @yield('carousel')
+
             @yield('modal')
             <div class="container">
                 <div class="row">
@@ -48,9 +52,10 @@
         <script src="/code/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="/code/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
         <script src="/code/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/global.js" type="text/javascript"></script>
         <script src="/code/scripts/flot/jquery.flot.js" type="text/javascript"></script>
         <script src="/code/scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
-        <script src="/code/scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
+
         <script>$('#flash-overlay-modal').modal();</script>
         @show
         <script src="/code/scripts/common.js" type="text/javascript"></script>

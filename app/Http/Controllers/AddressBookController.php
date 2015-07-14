@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Repository\GroupRepository;
 use Illuminate\Http\Request;
 
 class AddressBookController extends Controller {
@@ -14,8 +15,16 @@ class AddressBookController extends Controller {
 	 */
 	public function index()
 	{
-		return view('addressbook.index')->withSidebarNoShow('true');
+		return view('addressbook.index')
+            ->with('data', GroupRepository::getGroup())
+            ;
 	}
+
+
+    public function start()
+    {
+        return view('addressbook.start');
+    }
 
 	/**
 	 * Show the form for creating a new resource.

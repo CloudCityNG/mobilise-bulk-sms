@@ -1,0 +1,80 @@
+/*@media (min-width: 768px) {*/
+    /*.uk-container {*/
+        /*min-width: 678px;*/
+        /*max-width: 978px;*/
+    /*}*/
+/*}*/
+
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('../fonts/proximanova-light-webfont.eot');
+    src: url('../fonts/proximanova-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/proximanova-light-webfont.woff') format('woff'),
+    url('../fonts/proximanova-light-webfont.ttf') format('truetype'),
+    url('../fonts/proximanova-light-webfont.svg#ProximaNovaLight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('../fonts/proximanova-reg-webfont.eot');
+    src: url('../fonts/proximanova-reg-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/proximanova-reg-webfont.woff') format('woff'),
+    url('../fonts/proximanova-reg-webfont.ttf') format('truetype'),
+    url('../fonts/proximanova-reg-webfont.svg#ProximaNovaReg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+body, h1, h2, h3, h4, h5, h6,
+.uk-navbar-nav > li > a { font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+
+html {
+    overflow-y: scroll;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-size: 14px;
+}
+
+.hero {
+    padding: 30px;
+    background: rgba(42, 58, 67, 0.7);
+    border-radius: 4px;
+}
+
+.hero h1.large-text, .hero p.small-text  {
+    color: white;
+}
+
+.uk-slidenav-next:before,
+.uk-slidenav-previous:before {
+    color: black;
+}
+
+div.uk-panel h3.box-head {
+    color: #324781;
+    font-weight: 700;
+}
+
+.theme {
+    color: #324781;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.border {
+    border: 1px solid #000;
+}
+
+.footer .uk-panel-header .uk-panel-title {
+    color: #fff;
+}

@@ -70,12 +70,17 @@ Route::group(
     }
 );
 
-Route::get('address-book', 'AddressBookController@index');
-Route::post('address-book/new', 'AjaxController@newContact');
+
+Route::get('address-book', 'AddressBookController@start');
+//Route::get('address-book', 'AddressBookController@index');
+//Route::post('address-book/new', 'AjaxController@newContact');
+//Route::get('address-book/new-group', 'AjaxController@newGroup');
+//Route::get('address-book/get-group', 'AjaxController@getGroup');
 
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
+Route::get('front', ['as' => 'front', 'uses' => 'HomeController@front']);
 
 
 
@@ -85,6 +90,8 @@ Route::get('faq/{faq}/show', ['uses' => 'FaqController@show_']);
 
 
 Route::get('/q', 'WelcomeController@index');
+
+
 
 //Route::get('home', ['as'=>'home', 'uses' => 'HomeController@index']);
 
@@ -116,10 +123,7 @@ Route::controllers([
 ]);
 
 Route::get('test2', function () {
-
-    return substr("2348188697770", 0, 3) == '234' ? 'something':'nothing' ;
-
-    return view('emails.user.new_user_register',['username'=>'Ruth']);
+    return view('test.index');
 
     $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);
     $request = $request->only('gsm','gsm2','email','firstname','lastname','street','city','region','postcode','birthdate');

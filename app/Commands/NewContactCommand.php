@@ -43,7 +43,7 @@ class NewContactCommand extends Command implements SelfHandling, ShouldBeQueued 
 	{
 		$contact = Contact::store($this->inputs);
         $this->user->smscontact()->save($contact);
-        //event--newContactWasCreated.
+        //@TODO event--newContactWasCreated.
 	}
 
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model {
 
-	protected $table = 'sms_contacts';
+	protected $table = 'contacts';
     protected $guarded = ['id','user_id'];
 
 
