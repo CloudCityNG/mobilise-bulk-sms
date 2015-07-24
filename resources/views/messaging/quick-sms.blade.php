@@ -1,171 +1,91 @@
-@extends('layouts._master')
+@extends('layouts.frontend.master')
 
-@section('foot')
+@section('head')
 @parent
-<script src="/js/jquery/jquery.textareaCounter.plugin.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-    var form = $('form#quick-sms')
-
-    $('button#draft').click(function(){
-        form.prop('action', '/messaging/draft-sms');
-        form.submit();
-    });
-
-    $('button#submit_').click(function(){
-        form.prop('action', '/messaging/quick-sms');
-        form.submit();
-    });
-
-    $('div.radios input:radio').click(function(){
-
-        if ( $('#alpha_radio').prop("checked") ){
-
-            $('#alpha_input').prop('disabled', false);
-            $('#numeric_input').prop('disabled', true);
-
-        } else if ( $('#numeric_radio').prop("checked") ) {
-
-            $('#alpha_input').prop('disabled', true);
-            $('#numeric_input').prop('disabled', false);
-        }
-
-    });
-
-    //$('input:radio#alpha_radio').trigger("click");
-    $('input:radio#alpha_radio').prop('checked', true);
-    $('input:radio#alpha_radio').trigger("click");
-
-
-    var limitCounter = {
-        'maxCharacterSize':320,
-        'originalStyle':'originalDisplayInfo',
-        'warningStyle':'warningDisplayInfo',
-        'warningNumber':40,
-        'displayFormat':'#left characters remaining'
-    };
-    $('#message_box').textareaCount(limitCounter);
-
-
-    var $globalLength=0, recipientsCopy;
-
-    $('#recipients').on('keyup', function(event){
-
-        if ( true )
-        {
-            $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
-
-            $val = $(this).val().trim();
-
-            //split textarea input with comma
-            $arrayNumbers = $val.split(',');
-
-            if ( $arrayNumbers.length > 50 ) {
-                $(this).val ( recipientsCopy );
-                return;
-            }
-
-            //internal length
-            $length = 0;
-
-            $.each($arrayNumbers, function(index, value){
-
-                if ( value ){
-                    $length++;
-                }
-
-            });
-
-            recipientsCopy = $(this).val();
-            $globalLength = $length;
-            $('#no_of_recipients').html($length + '/50');
-        }
-    });
-});
-
-</script>
+<link rel="stylesheet" href="/assets/uikit/css/components/datepicker.min.css">
 @stop
 
 @section('content')
+<?php
+$senderid_tooltip = '11 alphanumeric characters or 14 numeric characters';
+$recipients_tooltip = 'Not more than 50 recipients separated with commas';
+$message_tooltip = '';
+$schedule_tooltip = 'Choose a later date and time for successful delivery of your message';
+?>
+<div class="uk-panel all-contacts">
+    <div class="uk-panel-badge uk-badge"></div>
+    <h3 class="uk-panel-title">Quick SMS</h3>
 
-    <div class="module">
-
-        <div class="module-head"><h3>Quick SMS</h3></div>
-
-        <div class="module-body">
-            @include('flash::message')
-            @include('layouts/partials/_errors')
-
-            {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'form-horizontal row-fluid', 'id'=>'quick-sms', 'method'=>'post']) !!}
-
-                <div class="control-group">
-
-                    {!! Form::label('sender', 'Sender', ['class'=>'control-label']) !!}
-
-                    <div class="controls radios">
-                        <div class="contain">
-                            <label class="radio span3">
-                                {!! Form::radio('sender_', 'alpha', true, ['id'=>'alpha_radio']) !!} Alphanumeric
-                            </label>
-                                {!! Form::text('sender', Input::old('alpha_input'), ['class'=>'span5','placeholder'=>'Alphanumeric','id'=>'alpha_input']) !!}
-
-                        </div>
-
-                        <div class="contain">
-                            <label class="radio span3">
-                                {!! Form::radio('sender_', 'alpha', false, ['id'=>'numeric_radio']) !!} Numeric
-                            </label>
-                                {!! Form::text('sender', Input::old('numeric_input'), ['class'=>'span5','placeholder'=>'Numeric','id'=>'numeric_input']) !!}
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="control-group">
-                    <label class="control-label" for="basicinput">Recipients</label>
-                    <div class="controls">
-                        {!! Form::textarea('recipients', Input::old('recipients'), ['rows'=>5,'class'=>'span8','id'=>'recipients']) !!}
-                        <div>
-                            <span class="help-inline">
-                                <span id="no_of_recipients" class="label label-info">0/50</span>
-                                <span class="label label-info">Contacts</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="control-group">
-                    <label class="control-label" for="basicinput">Message</label>
-                    <div class="controls">
-                        {!! Form::textarea('message', Input::old('message'), ['rows'=>5,'class'=>'span8','id'=>'message_box']) !!}
-                    </div>
-                </div>
-
-
-                <div class="control-group">
-                    <label class="control-label">&nbsp;</label>
-                    <div class="controls">
-                        <label class="checkbox">
-                            {!! Form::checkbox('flash', 1) !!} Send as Flash Message
-                        </label>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="controls">
-                        <button type="submit" id="submit_" class="btn btn-primary">Send SMS</button>
-                        <button type="button" id="draft" class="btn">Save as Draft</button>
-                    </div>
-                </div>
-            {!! Form::close() !!}
+    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'uk-form uk-form-horizontal', 'id'=>'quick-sms']) !!}
+    <div class="uk-form-row uk-margin">
+        {!! Form::label('sender', 'Sender ID', ['class'=>'uk-form-label']) !!}
+        <div class="uk-form-controls">
+            {!! Form::text('sender', Input::old('senderid'), ['placeholder'=>'Sender ID']) !!}
+            <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$senderid_tooltip}}"></a>
         </div>
-
     </div>
 
+    <hr class="uk-grid-divider">
+
+    <div class="uk-form-row uk-margin">
+        {!! Form::label('recipients', 'Recipients', ['class'=>'uk-form-label']) !!}
+        <div class="uk-form-controls">
+            {!! Form::textarea('recipients', Input::old('recipients'), ['placeholder'=>'Recipients','rows'=>4,'cols'=>55]) !!}
+            <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$recipients_tooltip}}"></a>
+        </div>
+    </div>
+
+    <hr class="uk-grid-divider">
+
+    <div class="uk-form-row uk-margin">
+        {!! Form::label('message', 'Message', ['class'=>'uk-form-label']) !!}
+        <div class="uk-form-controls">
+            {!! Form::textarea('message', Input::old('message'), ['placeholder'=>'Message','rows'=>4,'cols'=>55]) !!}
+        </div>
+    </div>
+
+    <hr class="uk-grid-divider">
+
+    <div class="uk-form-row">
+        {!! Form::label('schedule', 'Schedule', ['class'=>'uk-form-label']) !!}
+        <div class="uk-form-controls">
+            <?php $now = date('Y-m-d', time()); ?>
+            {!! Form::text('schedule', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}
+            {!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small']) !!}
+            <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
+        </div>
+    </div>
+
+    <hr class="uk-grid-divider">
+    
+    <div class="uk-form-row">
+        <span class="uk-form-label"></span>
+
+        <div class="uk-form-controls uk-form-controls-text">
+            {!! Form::checkbox('flash', 1, false, ['id'=>'flash']) !!}
+            <label for="flash"> Send as flash</label>
+        </div>
+    </div>
+
+    <hr class="uk-grid-divider">
+
+    <div class="uk-form-row">
+        <div class="uk-form-controls">
+            {!! Form::button('Send', ['type'=>'submit','class'=>'uk-button uk-button-primary']) !!}
+            {!! Form::button('Save as Draft', ['type'=>'button','class'=>'uk-button']) !!}
+        </div>
+    </div>
+
+    {!! Form::close() !!}
+</div>
 @stop
 
+@section('foot')
+@parent
+<script src="/assets/uikit/js/components/tooltip.min.js"></script>
+<script src="/assets/uikit/js/components/datepicker.min.js"></script>
+<script src="/assets/uikit/js/components/autocomplete.min.js"></script>
+<script src="/assets/uikit/js/components/timepicker.min.js"></script>
+
+
+@stop

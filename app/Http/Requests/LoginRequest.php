@@ -27,4 +27,14 @@ class LoginRequest extends Request {
 		];
 	}
 
+    public function messages()
+    {
+        return [
+            'email.required'    => 'Email/Password Invalid',
+            'email.email'       => 'Email/Password Invalid',
+            'password.required' => 'Email/Password Invalid',
+            'password.min'      => 'Email/Password Invalid',
+        ];
+    }
+
 }

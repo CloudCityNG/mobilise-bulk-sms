@@ -1,78 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>New user Registration</title>
-	<link type="text/css" href="/code/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="/code/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link type="text/css" href="/code/css/theme.css" rel="stylesheet">
-	<link type="text/css" href="/code/images/icons/css/font-awesome.css" rel="stylesheet">
-	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
-</head>
-<body>
-    @include('layouts.partials._navbarlogin')
+<html lang="en-gb" dir="ltr" class="uk-height-1-1">
 
-    @include('flash::message')
+    <head>
+        <meta charset="utf-8">
+        <title>User Login</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <style type="text/css">
+        .uk-alert ul {
+            padding-left:15px;
+        }
+        .uk-alert ul li {
+            text-align:left;
+        }
+        </style>
+        <script src="/js/jquery/jquery-latest.js"></script>
+        <script src="/assets/uikit/js/uikit.min.js"></script>
+    </head>
 
-	<div class="wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="module module-login span4 offset4">
-				    {!! Form::open(['url'=>'user/register', 'method'=>'post', 'class'=>'form-vertical', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
-						<div class="module-head">
-							<h3>New User Registeration</h3>
-						</div>
-						<div class="module-body">
-							<div class="control-group">
-								<div class="controls row-fluid">
-								{!! Form::text('username', Input::old('username'), ['class'=>'span12','placeholder'=>'Username','required']) !!}
-								</div>
-							</div>
-							<div class="control-group">
-                                <div class="controls row-fluid">
-                                {!! Form::email('email', Input::old('email'), ['class'=>'span12 email','placeholder'=>'Email','required']) !!}
-                                </div>
-                            </div>
-							<div class="control-group">
-								<div class="controls row-fluid">
-								{!! Form::password('password', ['class'=>'span12 password','placeholder'=>'Password','required']) !!}
-								</div>
-							</div>
-							<div class="control-group">
-                                <div class="controls row-fluid">
-                                {!! Form::password('password_confirmation', ['class'=>'span12 password','placeholder'=>'Password Again','required']) !!}
-                                </div>
-                            </div>
-						</div>
+    <body class="uk-height-1-1">
 
-						@include('layouts.partials._errors', ['error_header'=>"Form Error(s)"])
+        <div class="uk-vertical-align uk-text-center uk-height-1-1">
+            <div class="uk-vertical-align-middle" style="width: 450px;">
 
-						<div class="module-foot">
-							<div class="control-group">
-								<div class="controls clearfix">
-									<button type="submit" class="btn btn-primary">Register Me</button>
-								</div>
-							</div>
-						</div>
-					{!! Form::close() !!}
-				</div>
-			</div>
-		</div>
-	</div><!--/.wrapper-->
+                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
+                @include('flash::message')
+                @include('layouts.frontend.partials.errors')
 
-	<div class="footer">
-		<div class="container">
-			<b class="copyright">&copy; <?php echo date("Y", time());?> Mobilise - Bulk-SMS </b>All rights reserved.
-		</div>
-	</div>
-	<script src="/code/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="/code/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-	<script src="/code/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script>$('#flash-overlay-modal').modal();</script>
-	<script>
-	$(document).ready(function(){
+                <div class="uk-vertical-align-middle" style="width:350px;">
+                    {!! Form::open(['url'=>'user/register', 'method'=>'post', 'class'=>'uk-panel uk-panel-box uk-form', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
+                        <div class="uk-form-row">
+                            {!! Form::text('username', Input::old('username'), ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Username','required']) !!}
+                        </div>
+                        <div class="uk-form-row">
+                            {!! Form::email('email', Input::old('email'), ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Email','required']) !!}
+                        </div>
+                        <div class="uk-form-row">
+                            {!! Form::password('password', ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Password','required']) !!}
+                        </div>
+                        <div class="uk-form-row">
+                            {!! Form::password('password_confirmation', ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Password Again','required']) !!}
+                        </div>
 
-	});
-	</script>
-</body>
+                        <div class="uk-form-row">
+                            <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Register</button>
+                        </div>
+                        <div class="uk-form-row uk-text-small">
+                            <label class="uk-float-left">
+                                <a class="uk-float-left uk-link uk-link-muted" href="{{url('user/login')}}">Log In</a>
+                            </label>
+                            <a class="uk-float-right uk-link uk-link-muted" href="{{url('user/support')}}">Support</a>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+</html>

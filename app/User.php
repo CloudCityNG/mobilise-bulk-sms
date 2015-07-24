@@ -68,13 +68,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
 
-    public function smscontact()
+    public function contacts()
     {
         return $this->hasMany('App\Models\Contact');
     }
 
 
-    public function group()
+    public function groups()
     {
         return $this->hasMany('App\Models\Group');
     }

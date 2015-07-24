@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class NewContact extends Request {
+class NewContactRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -23,20 +23,11 @@ class NewContact extends Request {
 	{
 		return [
 			'gsm'       => 'required|max:16|min:10|unique:sms_contacts,gsm',
-			'gsm2'      => 'max:16|min:10|unique:sms_contacts,gsm2',
 			'email'     => 'email|min:5',
 			'firstname' => 'string|min:1|max:20',
 			'lastname'  => 'string|min:1|max:20',
-			'street'    => 'max:100',
-			'city'      => 'string|max:25',
-			'region'    => 'string|max:50',
-			'postcode'  => 'numeric',
 			'birthdate' => 'date_format:"Y/m/d"',
-			'company'   => 'string|max:100',
-			'url'       => 'url',
-			'country'   => 'max:100',
-			'data1'     => 'max:250',
-			'data2'     => 'max:250',
+            //'custom'    => ''
 		];
 	}
 

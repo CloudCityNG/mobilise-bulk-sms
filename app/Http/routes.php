@@ -18,6 +18,7 @@ use App\Lib\Mailer\UserMailer;
 use App\Lib\Mobilise\UrlConnector;
 use App\Lib\Sms\SmsHttp;
 use App\Lib\Sms\SmsInfobip;
+use App\Models\Contact;
 use App\Models\Sms\SmsCredit;
 use App\Models\Sms\SmsCreditUsage;
 use App\Models\Sms\SmsHistory;
@@ -30,6 +31,7 @@ use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 
@@ -43,7 +45,10 @@ Route::group(
         Route::post('login', 'SessionsController@store');
         Route::get('logout', 'SessionsController@destroy');
 
-        Route::get('dashboard', 'HomeController@dashboard');
+        Route::get('dashboard', 'UserController@dashboard');
+        Route::get('change-password', 'UserController@changePassword');
+        Route::post('change-password', 'UserController@postChangePassword');
+        Route::get('account-setting', 'UserController@accountSetting');
 
     }
 );
@@ -72,21 +77,29 @@ Route::group(
 
 
 Route::get('address-book', 'AddressBookController@start');
+Route::get('address-book/groups', 'AddressBookController@groups');
+Route::get('address-book/new-contact', 'AddressBookController@newContact');
+Route::get('address-book/new-contact', 'AddressBookController@getNewContact');
+
+//ajax calls
+Route::get('address-book/ajax/contacts', 'AjaxController@returnContactsRaw');
+
 //Route::get('address-book', 'AddressBookController@index');
 //Route::post('address-book/new', 'AjaxController@newContact');
-//Route::get('address-book/new-group', 'AjaxController@newGroup');
+Route::get('address-book/new-group', 'AjaxController@newGroup');
 //Route::get('address-book/get-group', 'AjaxController@getGroup');
 
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
-Route::get('home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
-Route::get('front', ['as' => 'front', 'uses' => 'HomeController@front']);
+//Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
+//Route::get('home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
+//Route::get('front', ['as' => 'front', 'uses' => 'HomeController@front']);
 
 
 
 Route::resource('faq', 'faqController');
 Route::get('faq/{faq}/hide', ['uses' => 'FaqController@hide']);
 Route::get('faq/{faq}/show', ['uses' => 'FaqController@show_']);
+
 
 
 Route::get('/q', 'WelcomeController@index');
@@ -122,7 +135,10 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('test2', function () {
+Route::get('frontend', function(){
+    dd(Contact::find(26)->groups);
+});
+Route::get('/', function () {
     return view('test.index');
 
     $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);

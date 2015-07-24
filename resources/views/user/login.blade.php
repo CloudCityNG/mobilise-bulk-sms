@@ -1,71 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>User Login</title>
-	<link type="text/css" href="/code/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="/code/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link type="text/css" href="/code/css/theme.css" rel="stylesheet">
-	<link type="text/css" href="/code/images/icons/css/font-awesome.css" rel="stylesheet">
-	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
-</head>
-<body>
-    @include('layouts.partials._navbarlogin')
+<html lang="en-gb" dir="ltr" class="uk-height-1-1">
 
-    @include('flash::message')
+    <head>
+        <meta charset="utf-8">
+        <title>User Login</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <style type="text/css">
+        .uk-alert ul {
+            padding-left:15px;
+        }
+        </style>
 
-	<div class="wrapper">
-		<div class="container">
-			<div class="row">
-				<div class="module module-login span4 offset4">
-				    {!! Form::open(['url'=>'user/login', 'method'=>'post', 'class'=>'form-vertical', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
-						<div class="module-head">
-							<h3>Sign In</h3>
-						</div>
-						<div class="module-body">
-							<div class="control-group">
-								<div class="controls row-fluid">
-								{!! Form::email('email', Input::old('email'), ['class'=>'span12 email','placeholder'=>'email','required']) !!}
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls row-fluid">
-								{!! Form::password('password', ['class'=>'span12 password','placeholder'=>'password','required']) !!}
-								</div>
-							</div>
-						</div>
+    </head>
 
-						@include('layouts.partials._errors', ['error_header'=>"Login Error(s)"])
+    <body class="uk-height-1-1">
 
-						<div class="module-foot">
-							<div class="control-group">
-								<div class="controls clearfix">
-									<button type="submit" class="btn btn-primary pull-right">Login</button>
-									<label class="checkbox">
-									    {!! Form::checkbox('rememberMe', 1, true) !!} Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
-					{!! Form::close() !!}
-				</div>
-			</div>
-		</div>
-	</div><!--/.wrapper-->
+        <div class="uk-vertical-align uk-text-center uk-height-1-1">
+            <div class="uk-vertical-align-middle" style="width: 250px;">
 
-	<div class="footer">
-		<div class="container">
-			<b class="copyright">&copy; <?php echo date("Y", time());?> Mobilise - Bulk-SMS </b>All rights reserved.
-		</div>
-	</div>
-	<script src="/code/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="/code/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-	<script src="/code/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script>$('#flash-overlay-modal').modal();</script>
-	<script>
-	$(document).ready(function(){
+                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
+                @include('flash::message')
+                @include('layouts.frontend.partials.errors')
 
-	});
-	</script>
-</body>
+                {!! Form::open(['url'=>'user/login', 'method'=>'post', 'class'=>'uk-panel uk-panel-box uk-form', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
+                    <div class="uk-form-row">
+                        {!! Form::email('email', Input::old('email'), ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Email','required']) !!}
+                    </div>
+                    <div class="uk-form-row">
+                        {!! Form::password('password', ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Password','required']) !!}
+                    </div>
+
+                    <div class="uk-form-row uk-text-small">
+                        <label class="uk-float-left">
+                            {!! Form::checkbox('rememberMe', 1, true) !!} Remember Me
+                        </label>
+                    </div>
+
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Login</button>
+                    </div>
+                    <div class="uk-form-row uk-text-small">
+                        <label class="uk-float-left">
+                            <a class="uk-float-left uk-link uk-link-muted" href="{{url('user/register')}}">Register</a>
+                        </label>
+                        <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot Password?</a>
+                    </div>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+        @section('foot')
+        <script src="/js/jquery/jquery-latest.js"></script>
+        <script src="/assets/uikit/js/uikit.min.js"></script>
+        @show
+    </body>
+
+</html>

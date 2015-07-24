@@ -14,7 +14,7 @@ class SessionsController extends Controller {
 
     function __construct()
     {
-        $this->middleware('guest', ['only'=>['store']]);
+        $this->middleware('guest', ['only'=>['store','create']]);
     }
 
 
@@ -54,7 +54,8 @@ class SessionsController extends Controller {
             return redirect()->intended('user/dashboard');
         }
 
-        flash()->overlay('Email/Password invalid', "Login Error");
+        //flash()->overlay('Email/Password invalid', "Login Error");
+        flash()->error('Email/Password invalid');
         return redirect()->back()->withInput(Input::except('password'))
             //->withErrors(['email'=>'Email and/or password invalid'])
             ;

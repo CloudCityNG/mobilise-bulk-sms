@@ -1,19 +1,25 @@
 <?php namespace App\Http\Controllers;
 
+use App\Commands\NewContactCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\NewContactRequest;
+use App\Models\Contact;
+use App\Models\Group;
 use App\Repository\GroupRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddressBookController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
 	{
 		return view('addressbook.index')
             ->with('data', GroupRepository::getGroup())
@@ -23,71 +29,35 @@ class AddressBookController extends Controller {
 
     public function start()
     {
-        return view('addressbook.start');
+        //$all = Contact::where('user_id', Auth::user()->id)->get();
+        $all = Auth::user()->contacts()->get();
+        return view('addressbook.start', ['data'=>$all]);
     }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    public function groups()
+    {
+        $groups = Group::where('user_id', Auth::user()->id)->with('contacts')->get();
+        return view('addressbook.groups', ['data'=>$groups]);
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+    public function newContact()
+    {
+        return view('addressbook.new-contact');
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    //get request for ajax create new contact
+    public function getNewContact(NewContactRequest $request)
+    {
+        if ($request->ajax())
+        {
+            $r = $request->only('gsm','email','firstname','lastname','birthdate','custom');
+            $this->dispatch(new NewContactCommand($r, Auth::user()));
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
+            $all = Auth::user()->contacts()->get();
+            $out = view('ajax.contacts', ['data'=>$all])->render();
+            return response()->json(['success'=>true, 'html'=> $out]);
+        }
+    }
 }

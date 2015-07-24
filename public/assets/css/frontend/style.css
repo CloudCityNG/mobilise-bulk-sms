@@ -1,0 +1,100 @@
+.tm-navbar {
+    padding: 15px 0;
+}
+
+#loginForm .uk-alert {
+
+}
+#loginForm .uk-alert ul {
+    margin-top: 2px;
+}
+
+div#content .uk-panel:first-child {
+
+}
+
+img.round {
+    border: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.uk-modal-footer, .uk-modal-header {
+    padding:10px;
+}
+
+.uk-title {
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 300;
+    text-transform: none;
+}
+
+.uk-lead {
+    color: #222;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+
+.spinner {
+    position: absolute;
+    left: 48%;
+    top: 20%;
+    height: 60px;
+    width: 60px;
+    margin: 0px auto;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite linear;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border-left: 10px solid rgba(8,69,148,0.15);
+    border-right: 10px solid rgba(8,69,148,0.15);
+    border-bottom: 10px solid rgba(8,69,148,0.15);
+    border-top: 10px solid rgba(12,58,118,0.8);
+    border-radius: 100%;
+    z-index: 9000;
+    animation: shadowspin .6s linear infinite;
+    -webkit-animation: shadowspin .6s linear infinite;
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes shadowspin {
+    0% {  transform:rotate(0deg);
+        box-shadow:inset 0px 0px 15px rgb(50, 71, 129); }
+    55% { box-shadow:inset 0px 0px 35px rgba(70, 112, 184, 0.50); }
+
+    100% { transform:rotate(360deg);
+        box-shadow:inset 0px 0px 15px rgb(50, 71, 129); }
+}
+@-moz-keyframes shadowspin {
+    0% { -moz-transform:rotate(0deg);
+        box-shadow:inset 0px 0px 15px rgb(50, 71, 129); }
+
+    55% { box-shadow:inset 0px 0px 35px rgba(70, 112, 184, 0.50); }
+
+    100% {
+        -moz-transform:rotate(360deg);box-shadow:inset 0px 0px 15px rgb(50, 71, 129); }
+}
+@-webkit-keyframes shadowspin {
+    0% {-webkit-transform:rotate(0deg);
+        box-shadow:inset 0px 0px 25px rgb(50, 71, 129); }
+
+    55% { box-shadow:inset 0px 0px 5px rgba(70, 112, 184, 0.50); }
+
+    100% {-webkit-transform:rotate(360deg);
+        box-shadow:inset 0px 0px 25px rgb(50, 71, 129); }
+}

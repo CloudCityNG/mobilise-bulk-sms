@@ -2,6 +2,7 @@
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository {
 
@@ -21,6 +22,15 @@ class UserRepository {
     public function createSMSAccount($user)
     {
 
+    }
+
+
+    public function changePassword($email,$currentPassword, $newPassword)
+    {
+        $user = Auth::user();
+        $user->password = $newPassword;
+        $user->save();
+        return $user;
     }
 
 } 

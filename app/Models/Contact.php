@@ -14,6 +14,11 @@ class Contact extends Model {
         return $this->belongsTo('App\User');
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany('App\Models\Group', 'contact_group');
+    }
+
 
     public static function store(Array $input)
     {

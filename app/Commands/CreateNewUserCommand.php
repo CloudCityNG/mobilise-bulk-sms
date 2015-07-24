@@ -49,6 +49,7 @@ class CreateNewUserCommand extends Command implements SelfHandling, ShouldBeQueu
      *
      * @param UserRepository $userRepository
      * @param SmsCreditRepository $creditRepository
+     * @param UserMailer $mailer
      * @return void
      */
 	public function handle(UserRepository $userRepository, SmsCreditRepository $creditRepository, UserMailer $mailer)

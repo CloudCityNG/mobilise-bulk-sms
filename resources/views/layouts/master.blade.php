@@ -6,16 +6,18 @@
         <title>Frontpage layout example - UIkit documentation</title>
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        @section('head')
         <link rel="stylesheet" href="/assets/uikit/css/uikit.docs.min.css">
         <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
         <link rel="stylesheet" href="/assets/uikit/css/components/slider.gradient.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
-        <script src="/js/jquery/jquery-latest.js"></script>
-        <script src="/assets/uikit/js/uikit.min.js"></script>
-        <script src="/assets/uikit/js/components/slider.min.js"></script>
+        @show
+
     </head>
 
     <body>
+    @section('modal')
+    @show
 
         <div class="main-div uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
@@ -23,10 +25,10 @@
                 <a class="uk-navbar-brand uk-hidden-small" href="layouts_frontpage.html">Brand</a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
-                        <a href="#">Home</a>
+                        <a href="">Home</a>
                     </li>
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">SMS Messaging <i class="uk-icon-caret-down"></i></a>
+                        <a href="">SMS Messaging <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 <li><a href="#">Buk SMS</a></li>
@@ -47,7 +49,7 @@
 
                     </li>
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">Solutions <i class="uk-icon-caret-down"></i></a>
+                        <a href="">Solutions <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 <li><a href="#">ShortCodes</a></li>
@@ -61,7 +63,7 @@
                         </div>
                     </li>
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">Pricing & Coverage <i class="uk-icon-caret-down"></i></a>
+                        <a href="">Pricing & Coverage <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 <li class="uk-nav-header">Local Pricing</li>
@@ -75,7 +77,7 @@
                         </div>
                     </li>
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">API <i class="uk-icon-caret-down"></i></a>
+                        <a href="">API <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 <li><a href="#">REST</a></li>
@@ -88,7 +90,7 @@
                         </div>
                     </li>
                     <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">Downloads & Resources <i class="uk-icon-caret-down"></i></a>
+                        <a href="">Downloads & Resources <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 <li><a href="#">Blog</a></li>
@@ -100,8 +102,8 @@
                 </ul>
                 <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
                     <div class="uk-button-group">
-                        <a class="uk-button uk-button-danger" href="#">Login >></a>
-                        <button class="uk-button uk-button-primary">Register for free</button>
+                        <a class="uk-button uk-button-danger" href="{{url('user/login')}}">Login >></a>
+                        <a class="uk-button uk-button-primary" href="{{url('user/register')}}">Register for free</a>
                     </div>
                 </div>
                 <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
@@ -204,7 +206,7 @@
             <div class="uk-grid" data-uk-grid-margin>
 
                 <div class="uk-width-medium-1-2">
-                    <img width="660" height="400" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjYwcHgiIGhlaWdodD0iNDAwcHgiIHZpZXdCb3g9IjAgMCA2NjAgNDAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2NjAgNDAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IGZpbGw9IiNGNUY1RjUiIHdpZHRoPSI2NjAiIGhlaWdodD0iNDAwIi8+DQo8ZyBvcGFjaXR5PSIwLjciPg0KCTxwYXRoIGZpbGw9IiNEOEQ4RDgiIGQ9Ik0yNTguMTg0LDE0My41djExM2gxNDMuNjMydi0xMTNIMjU4LjE4NHogTTM5MC4yNDQsMjQ0LjI0N0gyNzAuNDM3di04OC40OTRoMTE5LjgwOEwzOTAuMjQ0LDI0NC4yNDcNCgkJTDM5MC4yNDQsMjQ0LjI0N3oiLz4NCgk8cG9seWdvbiBmaWxsPSIjRDhEOEQ4IiBwb2ludHM9IjI3Ni44ODEsMjM0LjcxNyAzMDEuNTcyLDIwOC43NjQgMzEwLjgyNCwyMTIuNzY4IDM0MC4wMTYsMTgxLjY4OCAzNTEuNTA1LDE5NS40MzQgDQoJCTM1Ni42ODksMTkyLjMwMyAzODQuNzQ2LDIzNC43MTcgCSIvPg0KCTxjaXJjbGUgZmlsbD0iI0Q4RDhEOCIgY3g9IjMwNS40MDUiIGN5PSIxNzguMjU3IiByPSIxMC43ODciLz4NCjwvZz4NCjwvc3ZnPg0K" alt="">
+                    <img width="660" height="400" src="/images/context.png" alt="">
                 </div>
 
                 <div class="uk-width-medium-1-2">
@@ -336,9 +338,9 @@
                                                 <div class="uk-panel uk-panel-header">
                                                     <h3 class="uk-panel-title bold white">SMS</h3>
                                                     <ul class="uk-list">
-                                                        <li>link 1</li>
-                                                        <li>link 2</li>
-                                                        <li>link 3</li>
+                                                        <li><a href="#">Bulk SMS</a></li>
+                                                        <li>SMS Ideas</li>
+                                                        <li>SMS in Industries</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -347,9 +349,9 @@
                                                 <div class="uk-panel uk-panel-header">
                                                     <h3 class="uk-panel-title bold white">Resources</h3>
                                                     <ul class="uk-list">
-                                                        <li>link 1</li>
-                                                        <li>link 2</li>
-                                                        <li>link 3</li>
+                                                        <li>Sender ID guide</li>
+                                                        <li>Product Help</li>
+                                                        <li>Blog</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -358,9 +360,8 @@
                                                 <div class="uk-panel uk-panel-header">
                                                     <h3 class="uk-panel-title bold white">API</h3>
                                                     <ul class="uk-list">
-                                                        <li>link 1</li>
-                                                        <li>link 2</li>
-                                                        <li>link 3</li>
+                                                        <li>SMS API</li>
+                                                        <li>Example Scripts</li>
                                                     </ul>
                                                 </div>
                                                 </div>
@@ -369,9 +370,9 @@
                                                 <div class="uk-panel uk-panel-header">
                                                     <h3 class="uk-panel-title bold white">Pricing & Coverage</h3>
                                                     <ul class="uk-list">
-                                                        <li>link 1</li>
-                                                        <li>link 2</li>
-                                                        <li>link 3</li>
+                                                        <li><a href="#">Message Pricing</a></li>
+                                                        <li><a href="#">ShortCode Costs</a></li>
+                                                        <li><a href="#">Number Context Costs</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -421,6 +422,10 @@
                 </ul>
             </div>
         </div>
-
+    @section('foot')
+    <script src="/js/jquery/jquery-latest.js"></script>
+    <script src="/assets/uikit/js/uikit.min.js"></script>
+    <script src="/assets/uikit/js/components/slider.min.js"></script>
+    @show
     </body>
 </html>
