@@ -36,12 +36,7 @@
 @stop
 
 @section('modal')
-<div id="loading" style="position:absolute;left:50%;z-index:99000;border:1px solid black;background:#eee;display:none;">
-    <div class="" style="padding:10px;">
-        <p>Loading...</p>
-    </div>
-</div>
-<div id="main-loader" class="spinner" style="display:none;"></div>
+
 @include('modals.edit-contact-modal')
 @include('modals.send-sms-modal')
 @include('modals.new-contact-modal')

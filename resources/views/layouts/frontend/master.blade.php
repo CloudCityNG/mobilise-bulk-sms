@@ -16,7 +16,12 @@
     </head>
 
     <body>
-
+    <div id="loading" style="position:absolute;left:50%;z-index:99000;border:1px solid black;background:#eee;display:none;">
+        <div class="" style="padding:10px;">
+            <p>Loading...</p>
+        </div>
+    </div>
+    <div id="main-loader" class="spinner" style="display:none;"></div>
     @include('layouts.frontend.partials.nav')
     @yield('modal')
     <div class="main-div uk-container uk-container-center uk-margin-top uk-margin-large-bottom">

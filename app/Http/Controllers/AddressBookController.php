@@ -1,10 +1,12 @@
 <?php namespace App\Http\Controllers;
 
 use App\Commands\NewContactCommand;
+use App\Commands\NewGroup;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\NewContactRequest;
+use App\Http\Requests\NewGroupRequest;
 use App\Models\Contact;
 use App\Models\Group;
 use App\Repository\GroupRepository;
@@ -57,6 +59,20 @@ class AddressBookController extends Controller {
 
             $all = Auth::user()->contacts()->get();
             $out = view('ajax.contacts', ['data'=>$all])->render();
+            return response()->json(['success'=>true, 'html'=> $out]);
+        }
+    }
+
+    //get request for ajax create new group
+    public function getNewGroup(NewGroupRequest $request)
+    {
+        if ($request->ajax())
+        {
+            $inputs = $request->only('group_name', 'group_description');
+            $this->dispatch(new NewGroup($inputs,Auth::user()));
+
+            $all = Auth::user()->groups()->with('contacts')->get();
+            $out = view('ajax.groups', ['data'=>$all])->render();
             return response()->json(['success'=>true, 'html'=> $out]);
         }
     }

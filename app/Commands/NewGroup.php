@@ -42,7 +42,7 @@ class NewGroup extends Command implements SelfHandling, ShouldBeQueued {
 	public function handle()
 	{
 		$group = Group::store($this->inputs);
-        $this->user->group()->save($group);
+        $this->user->groups()->save($group);
         //@TODO event->newGroupWasCreated
 	}
 

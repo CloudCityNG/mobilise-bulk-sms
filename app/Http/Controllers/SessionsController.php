@@ -105,7 +105,7 @@ class SessionsController extends Controller {
 		Auth::logout();
         View::share('currentUser', null);
         flash()->overlay("You have been logged out successfully");
-        return redirect()->route('login_path');
+        return redirect()->to('/user/login');
 	}
 
 }

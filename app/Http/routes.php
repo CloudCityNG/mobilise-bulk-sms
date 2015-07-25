@@ -78,15 +78,16 @@ Route::group(
 
 Route::get('address-book', 'AddressBookController@start');
 Route::get('address-book/groups', 'AddressBookController@groups');
-Route::get('address-book/new-contact', 'AddressBookController@newContact');
+//Route::get('address-book/new-contact', 'AddressBookController@newContact');
 Route::get('address-book/new-contact', 'AddressBookController@getNewContact');
+Route::get('address-book/new-group', 'AddressBookController@getNewGroup');
 
 //ajax calls
 Route::get('address-book/ajax/contacts', 'AjaxController@returnContactsRaw');
 
 //Route::get('address-book', 'AddressBookController@index');
 //Route::post('address-book/new', 'AjaxController@newContact');
-Route::get('address-book/new-group', 'AjaxController@newGroup');
+//Route::get('address-book/new-group', 'AjaxController@newGroup');
 //Route::get('address-book/get-group', 'AjaxController@getGroup');
 
 
@@ -136,7 +137,7 @@ Route::controllers([
 ]);
 
 Route::get('frontend', function(){
-    dd(Contact::find(26)->groups);
+    dd(Auth::user()->groups()->with('contacts')->get());
 });
 Route::get('/', function () {
     return view('test.index');
