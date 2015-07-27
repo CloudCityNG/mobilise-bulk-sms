@@ -45,6 +45,11 @@ function resetForm($formID){
     $($formID)[0].reset();
 }
 
+function emptyErrorContainer($el)
+{
+    $($el).empty();
+}
+
 function processAjaxError(dataError, errorParentContainer, errorMainContainer){//'.errors', '.errors #error-ul'
 
     $(errorMainContainer).empty();//'.errors #error-ul'

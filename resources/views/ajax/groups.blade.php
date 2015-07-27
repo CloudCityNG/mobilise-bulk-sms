@@ -3,7 +3,7 @@
     <tbody>
         <tr>
             <th>Group name</th>
-            <th>Group Count</th>
+            <th>Contact Count</th>
             <th>&nbsp;</th>
         </tr>
         @foreach($data as $group)

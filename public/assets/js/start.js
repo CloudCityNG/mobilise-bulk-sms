@@ -20,9 +20,11 @@ registerCloseModal('#newGroupCancel', newGroup);
 
         jqXHR.done(function(data){
             alert_("Contact Added.");
+            $('#table-container').html(data.html);
             modalCloser(newModal);
             resetForm('form.newContactForm');
-            $('#table-container').html(data.html);
+            emptyErrorContainer('.errors');
+
         });
         jqXHR.fail(function(data){
 
@@ -34,9 +36,8 @@ registerCloseModal('#newGroupCancel', newGroup);
                 var error = $.parseJSON(data.responseText);
 
                 processAjaxError(error, '.errors', '.errors #error-ul');
-//            $('.errors #error-ul').empty();
-//            $('.errors').show();
-            }
+                //emptyErrorContainer('.errors');
+        }
             if (data.status === 500){
                 alert_("Unknown error. Please try later");
             }

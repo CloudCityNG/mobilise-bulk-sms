@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Queue;
 
 
 Route::group(
@@ -140,8 +141,14 @@ Route::get('frontend', function(){
     dd(Auth::user()->groups()->with('contacts')->get());
 });
 Route::get('/', function () {
-    return view('test.index');
+    //return view('test.index');
 
+    $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08099450169','email'=>'test@gmail.com','firstname'=>'Queue test','birthdate'=>'']);
+    $inputs = $request->only('gsm','email','firstname','birthdate');
+    $date = Carbon::now()->addMinutes(1);
+    Queue::later($date, new NewContactCommand($inputs, Auth::user()));
+
+    return;
     $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);
     $request = $request->only('gsm','gsm2','email','firstname','lastname','street','city','region','postcode','birthdate');
     Bus::dispatch(new NewContactCommand($request, Auth::user()));

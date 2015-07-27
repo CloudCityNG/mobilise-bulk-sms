@@ -19,10 +19,12 @@ $(function() {
 
         //process the success result.
         jqXHR.done(function(data){
+            $('.table-container').html(data.html);
             alert_("Group Added.");
             modalCloser(newGroup);
             resetForm('form.newGroupForm');
-            $('.table-container').html(data.html);
+            emptyErrorContainer('.errors');
+
         });
 
         //process the failure/error message.
