@@ -141,7 +141,7 @@ Route::get('frontend', function(){
     dd(Auth::user()->groups()->with('contacts')->get());
 });
 Route::get('/', function () {
-    //return view('test.index');
+    return view('test.index');
 
     $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08099450169','email'=>'test@gmail.com','firstname'=>'Queue test','birthdate'=>'']);
     $inputs = $request->only('gsm','email','firstname','birthdate');
