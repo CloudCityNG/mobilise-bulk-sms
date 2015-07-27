@@ -11,7 +11,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Support\Facades\Auth;
 
-class CreateNewUserCommand extends Command implements SelfHandling, ShouldBeQueued {
+class CreateNewUserCommand extends Command implements SelfHandling {
 
 	use InteractsWithQueue, SerializesModels;
 
