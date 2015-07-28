@@ -34,6 +34,7 @@ class NewUserRegistrationRequest extends Request {
         return [
             'username.alpha_dash'   => 'Username must be alphanumeric with dashes and underscores',
             'username.unique'       => 'Username exists already, Please use another',
+            'email.unique'       => 'Email address is taken, Please use another',
         ];
     }
 
