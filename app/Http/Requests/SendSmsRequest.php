@@ -23,10 +23,11 @@ class SendSmsRequest extends Request {
 	public function rules()
 	{
 		return [
-			'sender' => 'required|max:11',
+			'sender' => 'required|max:16',
             'recipients' => 'required',
             'message' => 'required',
-            'schedule' => 'date',
+            'schedule_date' => 'required|date',
+            'schedule_time' => 'required|date',
 		];
 	}
 

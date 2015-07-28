@@ -21,13 +21,12 @@ class DraftSmsRequest extends Request {
 	 */
 	public function rules()
 	{
-        $now = date('Y-m-d H:i:s', time());
 		return [
-            'sender'        => 'required|alpha',
-
+            'sender'        => 'required',
 			'recipients'    => 'required|string|min:11',
-            'message'       => 'string|min:1',
-            'schedule'      => "after:$now",
+            'message'       => 'required|string|min:1',
+            'schedule_date' => "date_format:Y-m-d",
+            'schedule_time' => "required_with:schedule_date",
             'flash'         => 'between:0,1',
 		];
 	}

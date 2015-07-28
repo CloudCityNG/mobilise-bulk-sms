@@ -16,6 +16,8 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-panel-badge uk-badge"></div>
     <h3 class="uk-panel-title">Quick SMS</h3>
 
+    @include('layouts.frontend.partials.errors', ['error_header'=>'Your form contains some errors'])
+
     {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'uk-form uk-form-horizontal', 'id'=>'quick-sms']) !!}
     <div class="uk-form-row uk-margin">
         {!! Form::label('sender', 'Sender ID', ['class'=>'uk-form-label']) !!}
@@ -47,10 +49,10 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <hr class="uk-grid-divider">
 
     <div class="uk-form-row">
-        {!! Form::label('schedule', 'Schedule', ['class'=>'uk-form-label']) !!}
+        {!! Form::label('schedule_date', 'Schedule', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
             <?php $now = date('Y-m-d', time()); ?>
-            {!! Form::text('schedule', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}
+            {!! Form::text('schedule_date', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}
             {!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small']) !!}
             <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
         </div>
@@ -71,8 +73,8 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 
     <div class="uk-form-row">
         <div class="uk-form-controls">
-            {!! Form::button('Send', ['type'=>'submit','class'=>'uk-button uk-button-primary']) !!}
-            {!! Form::button('Save as Draft', ['type'=>'button','class'=>'uk-button']) !!}
+            {!! Form::button('Send', ['type'=>'submit','class'=>'uk-button uk-button-primary','id'=>'submit_']) !!}
+            {!! Form::button('Save as Draft', ['type'=>'button','class'=>'uk-button','id'=>'draft']) !!}
         </div>
     </div>
 
@@ -87,5 +89,26 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 <script src="/assets/uikit/js/components/autocomplete.min.js"></script>
 <script src="/assets/uikit/js/components/timepicker.min.js"></script>
 
+<script>
+$(function(){
+    var form = $('form#quick-sms')
+
+        $('button#draft').click(function(){
+
+            form.prop('action', '/messaging/draft-sms');
+
+            if ( ! $('form#flash').is(":checked") ){
+                form.append('<input type="hidden" name="flash" value="0"/>');
+            }
+
+            form.submit();
+        });
+
+        $('button#submit_').click(function(){
+            form.prop('action', '/messaging/quick-sms');
+            form.submit();
+        });
+});
+</script>
 
 @stop

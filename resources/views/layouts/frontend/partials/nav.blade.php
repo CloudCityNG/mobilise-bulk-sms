@@ -17,7 +17,7 @@
                 <a href="">{{ucfirst($currentUser->username)}} <i class="uk-icon-caret-down"></i></a>
                 <div class="uk-dropdown uk-dropdown-navbar">
                     <ul class="uk-nav uk-nav-navbar">
-                        <li><a href="#">Buk SMS</a></li>
+                        <li><a href="#">{{$currentUser->smscredit->available_credit}} Credit</a></li>
                         <li class="uk-nav-header">My Account</li>
                         <li><a href="{{url('user/change-password')}}">Change Password</a>
                         <li><a href="{{url('user/account-setting')}}">Account Setting</a>

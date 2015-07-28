@@ -117,6 +117,7 @@
                 </ul>
             </li>
             {{--<li><a href="../showcase/index.html">Showcase</a></li>--}}
+            <li><a href="{{url('user/logout')}}">Logout</a></li>
         </ul>
     </div>
 </div>

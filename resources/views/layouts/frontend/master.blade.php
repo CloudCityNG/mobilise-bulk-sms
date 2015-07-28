@@ -28,14 +28,13 @@
 
         <div class="uk-grid" data-uk-grid-margin>
 
-            @include('flash::message')
-
             <div class="uk-width-medium-1-4" id="sidebar">
             <!--sidebar-->
             @include('layouts.frontend.partials.sidebar')
             </div>
 
             <div class="uk-width-medium-3-4" id="content">
+                @include('flash::message')
             <!--content-->
                 @yield('content')
 

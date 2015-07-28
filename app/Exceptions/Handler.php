@@ -2,6 +2,8 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\Facades\Input;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
@@ -40,6 +42,10 @@ class Handler extends ExceptionHandler {
         //register a notfoundhttpexception to show a 404 error page
         if ( $e instanceof NotFoundHttpException ) :
             return response(view('errors.404'), 404);
+        endif;
+
+        if ( $e instanceof TokenMismatchException ) :
+            return redirect()->back()->withInput(Input::all())->withErrors(['form-request'=>'Form has expired. Please refresh and try again']);
         endif;
 
 		if ($this->isHttpException($e))

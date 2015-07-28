@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
+use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Sms\SmsInfobip;
 use App\Repository\SmsCreditRepository;
 use App\Repository\SmsHistoryRepository;
@@ -13,6 +14,7 @@ use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsHistoryRecipient;
 use App\Repository\SmsDraftRepository;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,40 +37,12 @@ class MessagingController extends Controller {
     public function postQuickSms(SendSmsRequest $request)
     {
 
-        //gather data
-        $data = $request->only('sender', 'recipients', 'message', 'schedule', 'flash');
+        //gather data || take schedule_date n schedule_time
+        $data = $request->only('sender', 'recipients', 'message', 'flash');
 
         $this->dispatch(
             new QuickSms(Auth::user(), $data['sender'], $data['recipients'], $data['message'], $data['schedule'], $data['flash'])
         );
-
-//        //calculate bill
-//        $total_units = SmsCreditRepository::getSmsBill($data['recipients'], $data['message']);
-//        //deduct bill
-//        SmsCreditRepository::billUser($total_units);
-//
-//        //send sms
-//        $s = (new SmsInfobip())->setSender( $data['sender'] )
-//            ->setRecipients( $data['recipients'] )
-//            ->setMessage( $data['message'] )
-//            ->flash( $data['flash'] )
-//            ->setSchedule( $data['schedule'] )
-//            ->send();
-//
-//        //save sms
-//        $smsHistory = SmsHistory::store( $data['sender'], $data['message'], $data['schedule'], 1);
-//        $smsHistoryRow = Auth::user()->smshistory()->save( $smsHistory );
-//
-//        //process response and save to DB
-//        $s = json_decode($s, true);
-//        $recipients = [];
-//
-//        foreach ( $s['results'] as $result ):
-//            $recipients[] = SmsHistoryRecipient::store($result['status'], $result['messageid'], $result['destination']);
-//        endforeach;
-//
-//        $s = SmsHistory::find($smsHistoryRow->id);
-//        $s->smsHistoryRecipient()->saveMany($recipients);
 
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');
@@ -127,10 +101,12 @@ class MessagingController extends Controller {
     }
 
 
-    public function postDraftSms(DraftSmsRequest $draftSmsRequest, SmsDraftRepository $draftRepository)
+    public function postDraftSms(DraftSmsRequest $draftSmsRequest, ProcessDate $processDate)
     {
-        $draftRepository->save( $draftSmsRequest->only('sender','recipients','message','flash','schedule') );
+        $datetime = $processDate->processDateTime($draftSmsRequest->get('schedule_date'), $draftSmsRequest->get('schedule_time'));
+        $this->dispatchFrom('App\Commands\NewDraftSmsCommand', $draftSmsRequest, ['schedule'=>$datetime]);
         flash()->success("Message saved as draft successfully");
         return redirect()->route('quick_sms');
     }
+
 }
