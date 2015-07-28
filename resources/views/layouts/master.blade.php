@@ -402,23 +402,34 @@
             <div class="uk-offcanvas-bar">
                 <ul class="uk-nav uk-nav-offcanvas">
                     <li class="uk-active">
-                        <a href="layouts_frontpage.html">Frontpage</a>
+                        <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="layouts_portfolio.html">Portfolio</a>
+                        <a href="#">SMS Messaging</a>
                     </li>
                     <li>
-                        <a href="layouts_blog.html">Blog</a>
+                        <a href="#">Solutions</a>
                     </li>
                     <li>
-                        <a href="layouts_documentation.html">Documentation</a>
+                        <a href="#">Pricing &nbsp; Coverage</a>
                     </li>
                     <li>
-                        <a href="layouts_contact.html">Contact</a>
+                        <a href="#">API</a>
                     </li>
                     <li>
-                        <a href="layouts_login.html">Login</a>
+                        <a href="#">Downloads &nbsp; Resources</a>
                     </li>
+
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="{{url('user/login')}}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{url('user/register')}}">Register</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
