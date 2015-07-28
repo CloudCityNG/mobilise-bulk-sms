@@ -1,50 +1,63 @@
-@extends('app')
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr" class="uk-height-1-1">
 
-@section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Reset Password</div>
-				<div class="panel-body">
-					@if (session('status'))
-						<div class="alert alert-success">
-							{{ session('status') }}
-						</div>
-					@endif
+    <head>
+        <meta charset="utf-8">
+        <title>User Login</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <style type="text/css">
+        .uk-alert ul {
+            padding-left:15px;
+        }
+        .uk-alert ul li {
+            text-align:left;
+        }
+        </style>
+        <script src="/js/jquery/jquery-latest.js"></script>
+        <script src="/assets/uikit/js/uikit.min.js"></script>
+    </head>
 
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+    <body class="uk-height-1-1">
 
-					<form class="form-horizontal" role="form" method="POST" action="/password/email">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <div class="uk-vertical-align uk-text-center uk-height-1-1">
+            <div class="uk-vertical-align-middle" style="width: 450px;">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
+                <h2>Reset Password</h2>
+                @include('flash::message')
+                @if (session('status'))
+                    <div class="uk-alert uk-alert-success" data-uk-alert>
+                        <a href="" class="uk-alert-close uk-close"></a>
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @include('layouts.frontend.partials.errors')
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Send Password Reset Link
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+                <div class="uk-vertical-align-middle" style="width:350px;">
+                    {!! Form::open(['url'=>'/password/email', 'method'=>'post', 'class'=>'uk-panel uk-panel-box uk-form', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
+
+                        <div class="uk-form-row">
+                            {!! Form::email('email', Input::old('email'), ['class'=>'uk-width-1-1 uk-form-large','placeholder'=>'Email Address','required']) !!}
+                        </div>
+
+                        <div class="uk-form-row">
+                            <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large">Send Password Reset Link</button>
+                        </div>
+                        <div class="uk-form-row uk-text-small">
+                            <label class="uk-float-left">
+                                <a class="uk-float-left uk-link uk-link-muted" href="{{url('user/login')}}">Log In</a>
+                            </label>
+                            <a class="uk-float-right uk-link uk-link-muted" href="{{url('user/register')}}">Register</a>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+
+</html>

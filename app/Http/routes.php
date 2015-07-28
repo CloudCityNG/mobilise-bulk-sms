@@ -11,31 +11,12 @@
 |
 */
 
-use App\Commands\CreateNewUserCommand;
-use App\Commands\NewContactCommand;
-use App\Lib\Log\Logger;
-use App\Lib\Mailer\UserMailer;
-use App\Lib\Mobilise\UrlConnector;
-use App\Lib\Sms\SmsHttp;
-use App\Lib\Sms\SmsInfobip;
-use App\Models\Contact;
-use App\Models\Sms\SmsCredit;
-use App\Models\Sms\SmsCreditUsage;
-use App\Models\Sms\SmsHistory;
-use App\Models\Sms\SmsHistoryRecipient;
-use App\Repository\ContactRepository;
-use App\User;
-use Carbon\Carbon;
-use App\Models\Sms\SentSmsHistory as sentsmshistory;
-use GuzzleHttp\Cookie\CookieJar;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Queue;
 
+
+Route::get('/', function () {
+    return view('test.index');
+});
 
 Route::group(
     ['prefix' => 'user'], function () {
@@ -137,86 +118,10 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('frontend', function(){
-    dd(Auth::user()->groups()->with('contacts')->get());
-});
-Route::get('/', function () {
-    return view('test.index');
-
-    $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08099450169','email'=>'test@gmail.com','firstname'=>'Queue test','birthdate'=>'']);
-    $inputs = $request->only('gsm','email','firstname','birthdate');
-    $date = Carbon::now()->addMinutes(1);
-    Queue::later($date, new NewContactCommand($inputs, Auth::user()));
-
-    return;
-    $request = \Illuminate\Http\Request::create('/', 'POST', ['gsm'=>'08038154606','email'=>'test@gmail.com','firstname'=>'','lastname'=>'','street'=>'','city'=>'','region'=>'','postcode'=>'','birthdate'=>'']);
-    $request = $request->only('gsm','gsm2','email','firstname','lastname','street','city','region','postcode','birthdate');
-    Bus::dispatch(new NewContactCommand($request, Auth::user()));
-
-    return;
-
-    //process response
-    $result = '{"results": [ {"status":"0","messageid":"185060816184839591","destination":"2348188697770"}, {"status":"0","messageid":"155060816184838810","destination":"2348099450165"} ]}';
-    $response = json_decode($result, true);
-
-    $recipients = [];
-
-    foreach ($response['results'] as $result) :
-        $recipients[] = SmsHistoryRecipient::store($result['status'], $result['messageid'], $result['destination']);
-    endforeach;
-
-    $s = SmsHistory::find($d->id);
-    $s->smsHistoryRecipients()->saveMany($recipients);
-
-
-    return;
-
-
-});
-
-Route::get('test', function () {
-    $urls = [
-        'phone_backup' => 'http://support.easyphonebackup.com',
-        'sms_backup' => 'http://support.easysmsbackup.com',
-        'malert' => 'http://support.mobicontent.mobiliseafrica.com',
-        'mhealth' => 'http://support.eazeehealth.com',
-        'mbusiness' => 'http://support.mobibizness.mobiliseafrica.com',
-        'mlearning' => 'http://support.mobimlearn.mobiliseafrica.com',
-    ];
-
-    //check url
-    $c = new UrlConnector();
-    $logger_filename = storage_path('logs/mobilise-' . date('Y-m-d') . '.log');
-    $l = new Logger($logger_filename);
-
-    foreach ($urls as $url_name => $url_address) {
-        $c->get($url_address);
-        $s = $c->get_return_info();
-        $log_string = "url --->" . $s['url'] . "\t" . "http_code --->" . $s['http_code'] . "\t" . "IP --->" . $s['primary_ip'];
-
-        //log
-        $l->AddRow($log_string);
-    }
-    $l->Commit();
-});
-
-//Route::get('/test', function() {
-//
-//
-//    dd( (new \App\Repository\SmsDraftRepository())->paginate(5) );
-////    return SmsCreditUsage::create([
-////        'user_id'=>2,
-////        'sms_history_id'=>8,
-////        'used_units' => 5,
-////        'comment' => 'sms debit'
-////    ]);
-////    dd( Auth::user()->sentsms()->with('user')->latest()->paginate(3) );
-////    $sms = new SmsHttp();
-////    $sms = $sms->setSender('segun')
-////        ->setRecipients('08188697770,08099450165')
-////        ->setMessage('here is my message')
-////        //->scheduleMessage(Carbon::now()->addSeconds(20)->timestamp)
-////        ->send();
-////    dd($sms);
-//
+//Route::get('frontend', function(){
+//    dd(Auth::user()->groups()->with('contacts')->get());
 //});
+
+Route::get('test/email', function(){
+    return view('auth.reset2',['token'=>'TestUser']);
+});

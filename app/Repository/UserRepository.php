@@ -28,7 +28,7 @@ class UserRepository {
     public function changePassword($email,$currentPassword, $newPassword)
     {
         $user = Auth::user();
-        $user->password = $newPassword;
+        $user->password = bcrypt($newPassword);
         $user->save();
         return $user;
     }

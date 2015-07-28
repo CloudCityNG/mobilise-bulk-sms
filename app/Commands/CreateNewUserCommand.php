@@ -41,7 +41,7 @@ class CreateNewUserCommand extends Command implements SelfHandling {
 	{
         $this->username = $username;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = bcrypt($password);
     }
 
     /**

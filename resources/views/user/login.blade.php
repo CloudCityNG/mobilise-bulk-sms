@@ -46,7 +46,7 @@
                         <label class="uk-float-left">
                             <a class="uk-float-left uk-link uk-link-muted" href="{{url('user/register')}}">Register</a>
                         </label>
-                        <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot Password?</a>
+                        <a class="uk-float-right uk-link uk-link-muted" href="{{url('password/email')}}">Forgot Password?</a>
                     </div>
                 {!! Form::close() !!}
 
