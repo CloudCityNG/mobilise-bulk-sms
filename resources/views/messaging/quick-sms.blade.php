@@ -22,7 +22,7 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row uk-margin">
         {!! Form::label('sender', 'Sender ID', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
-            {!! Form::text('sender', Input::old('senderid'), ['placeholder'=>'Sender ID']) !!}
+            {!! Form::text('sender', Input::old('senderid'), ['placeholder'=>'Sender ID','required']) !!}
             <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$senderid_tooltip}}"></a>
         </div>
     </div>
@@ -32,8 +32,10 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row uk-margin">
         {!! Form::label('recipients', 'Recipients', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
-            {!! Form::textarea('recipients', Input::old('recipients'), ['placeholder'=>'Recipients','rows'=>4,'cols'=>55]) !!}
+            {!! Form::textarea('recipients', Input::old('recipients'), ['placeholder'=>'Recipients','rows'=>4,'cols'=>55,'required']) !!}
+
             <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$recipients_tooltip}}"></a>
+            <p id="noOfRecipients"></p>
         </div>
     </div>
 
@@ -42,13 +44,15 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row uk-margin">
         {!! Form::label('message', 'Message', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
-            {!! Form::textarea('message', Input::old('message'), ['placeholder'=>'Message','rows'=>4,'cols'=>55]) !!}
-        </div>
+            {!! Form::textarea('message', Input::old('message'), ['placeholder'=>'Message','rows'=>4,'cols'=>55,'required']) !!}
+            <p><span id="characterCount"></span> Characters. 160characters = 1page</p>
+        </div
     </div>
 
     <hr class="uk-grid-divider">
+    <a href="#" class="uk-button uk-button-mini" data-uk-toggle="{target:'#schedule-control'}">Schedule</a>
 
-    <div class="uk-form-row">
+    <div class="uk-form-row uk-hidden" id="schedule-control">
         {!! Form::label('schedule_date', 'Schedule', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
             <?php $now = date('Y-m-d', time()); ?>
@@ -73,7 +77,7 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 
     <div class="uk-form-row">
         <div class="uk-form-controls">
-            {!! Form::button('Send', ['type'=>'submit','class'=>'uk-button uk-button-primary','id'=>'submit_']) !!}
+            {!! Form::button('Send', ['type'=>'button','class'=>'uk-button uk-button-primary','id'=>'submit_']) !!}
             {!! Form::button('Save as Draft', ['type'=>'button','class'=>'uk-button','id'=>'draft']) !!}
         </div>
     </div>
@@ -88,26 +92,79 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 <script src="/assets/uikit/js/components/datepicker.min.js"></script>
 <script src="/assets/uikit/js/components/autocomplete.min.js"></script>
 <script src="/assets/uikit/js/components/timepicker.min.js"></script>
-
+<script src="/assets/js/jquery.simplyCountable.js"></script>
 <script>
 $(function(){
-    var form = $('form#quick-sms')
 
-        $('button#draft').click(function(){
+$('#message').simplyCountable({
+    counter: '#characterCount',
+    countType: 'characters',
+    maxCount: 320,
+    countDirection: 'up',
+    strictMax: true
+});
 
-            form.prop('action', '/messaging/draft-sms');
+$('#recipients').on('keyup', function(event){
 
-            if ( ! $('form#flash').is(":checked") ){
-                form.append('<input type="hidden" name="flash" value="0"/>');
+    if ( true )
+    {
+        $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
+
+        $val = $(this).val().trim();
+
+        //split textarea input with comma
+        $arrayNumbers = $val.split(',');
+
+        if ( $arrayNumbers.length > 50 ) {
+            $(this).val ( recipientsCopy );
+            return;
+        }
+
+        //internal length
+        $length = 0;
+
+        $.each($arrayNumbers, function(index, value){
+
+            if ( value ){
+                $length++;
             }
 
-            form.submit();
         });
 
-        $('button#submit_').click(function(){
-            form.prop('action', '/messaging/quick-sms');
-            form.submit();
-        });
+        recipientsCopy = $(this).val();
+        $globalLength = $length;
+        $('#noOfRecipients').html($length + '/50');
+    }
+});
+
+
+var form = $('form#quick-sms')
+
+$('button#draft').click(function(){
+
+    form.prop('action', '/messaging/draft-sms');
+
+    if ( $('#flash').is(":checked") === false ){
+        form.append('<input name="flash" type="hidden" value="0"/>');
+    }
+
+    form.submit();
+});
+
+$('button#submit_').click(function(){
+
+    form.prop('action', '/messaging/quick-sms');
+
+    if ( $('#flash').is(":checked") === false ){
+
+        form.append('<input name="flash" type="hidden" value="0"/>');
+    }
+
+    form.submit();
+});
+
+
+
 });
 </script>
 

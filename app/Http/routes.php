@@ -11,6 +11,7 @@
 |
 */
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -122,6 +123,20 @@ Route::controllers([
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test/email', function(){
-    return view('auth.reset2',['token'=>'TestUser']);
+Route::get('test/date', function(){
+
+    $pt = 'Y-m-d H:i:s';
+    $tz = 'Africa/Lagos';
+    $datetime = "2015-07-29 03:08:00";
+
+    //check if supplied date is less than scheduled date
+    $dt = Carbon::createFromFormat($pt, $datetime, $tz);
+    $now = Carbon::now($tz);
+
+    if ( $now->diffInSeconds($dt) > 0 ) {
+        echo 'valid';
+    }
+
+    echo $now->diffInSeconds($dt, false);
+
 });

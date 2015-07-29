@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class QuickSms extends Command implements SelfHandling, ShouldBeQueued {
+class QuickSms extends Command implements SelfHandling {
 
 	use InteractsWithQueue, SerializesModels;
     /**
@@ -51,7 +51,7 @@ class QuickSms extends Command implements SelfHandling, ShouldBeQueued {
      * @param $flash
      * @return \App\Commands\QuickSms
      */
-	public function __construct(User $user, $sender, $recipients, $message, $schedule, $flash)
+	public function __construct($user, $sender, $recipients, $message, $schedule, $flash)
 	{
 		//
         $this->sender = $sender;
@@ -102,6 +102,9 @@ class QuickSms extends Command implements SelfHandling, ShouldBeQueued {
 
         $s = $history->find($sms_history_row->id);
         $s->smsHistoryRecipient()->saveMany($recipients);
+
+        //record credit usage
+        $repository->recordCreditUsage($sms_history_row->id, $total_units);
 
 	}
 

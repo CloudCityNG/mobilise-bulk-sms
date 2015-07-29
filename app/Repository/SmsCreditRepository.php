@@ -59,6 +59,7 @@ class SmsCreditRepository {
                 $total_units = $total_units + $unit_intl;
             }
         }
+        //dd($total_units);
         return $total_units;
     }
 
@@ -66,6 +67,17 @@ class SmsCreditRepository {
     public static function billUser($units)
     {
         return DB::table('sms_credit')->where('user_id', Auth::user()->id)->decrement('available_credit', $units);
+    }
+
+
+    public static function recordCreditUsage($sms_history_id, $units, $comment="Sms Debit")
+    {
+        return DB::table('sms_credit_usage_history')->insert([
+            'user_id'=>Auth::user()->id,
+            'sms_history_id'=>$sms_history_id,
+            'used_units'=>$units,
+            'comment'=>$comment
+        ]);
     }
 
 } 

@@ -34,15 +34,11 @@ class MessagingController extends Controller {
     }
 
 
-    public function postQuickSms(SendSmsRequest $request)
+    public function postQuickSms(SendSmsRequest $request, ProcessDate $processDate)
     {
-
-        //gather data || take schedule_date n schedule_time
-        $data = $request->only('sender', 'recipients', 'message', 'flash');
-
-        $this->dispatch(
-            new QuickSms(Auth::user(), $data['sender'], $data['recipients'], $data['message'], $data['schedule'], $data['flash'])
-        );
+        //dd($request->all());
+        $datetime = $processDate->processDateTime($request->get('schedule_date'), $request->get('schedule_time'));
+        $this->dispatchFrom('App\Commands\QuickSms', $request, ['schedule'=>$datetime, 'user'=>Auth::user()]);
 
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');
