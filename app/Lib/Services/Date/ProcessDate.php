@@ -11,6 +11,7 @@ class ProcessDate {
     {
         $format = null;
         $datetime = null;
+        $tz = 'Africa/Lagos';
 
         if ( empty($date) )
             return null;
@@ -23,7 +24,7 @@ class ProcessDate {
         $format = "Y-m-d H:i A";
         $datetime = "$date $time";
 
-        $dt = Carbon::createFromFormat($format, $datetime);
+        $dt = Carbon::createFromFormat($format, $datetime, $tz);
         return $dt->toDateTimeString();
     }
 } 

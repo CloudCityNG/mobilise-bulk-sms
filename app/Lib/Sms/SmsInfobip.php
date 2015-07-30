@@ -147,7 +147,7 @@ class SmsInfobip extends Sms {
      */
     private function sendRequest($uri, $fields, $method=null)
     {
-        $ch = \curl_init();
+        $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $uri);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json','Accept:*/*']);

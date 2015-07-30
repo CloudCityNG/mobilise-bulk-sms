@@ -128,6 +128,13 @@ Route::controllers([
 
 Route::get('test', function(){
 
-    dd();
+    $tz = 'Africa/Lagos';
+    $date = '2015-07-30';
+    $time = '02:15 PM';
+    $format = "Y-m-d H:i A";
+    $datetime = "$date $time";
+
+    $dt = Carbon::createFromFormat($format, $datetime, $tz);
+    return $dt->toDateTimeString();
 
 });
