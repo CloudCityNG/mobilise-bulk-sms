@@ -8,9 +8,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class NewGroup extends Command implements SelfHandling, ShouldBeQueued {
+class NewGroup extends Command implements SelfHandling {
 
-	use InteractsWithQueue, SerializesModels;
+	//use InteractsWithQueue, SerializesModels;
     /**
      * @var array
      */

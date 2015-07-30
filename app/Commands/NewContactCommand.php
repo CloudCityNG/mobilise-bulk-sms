@@ -8,9 +8,9 @@ use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class NewContactCommand extends Command implements SelfHandling, ShouldBeQueued {
+class NewContactCommand extends Command implements SelfHandling {
 
-    use InteractsWithQueue, SerializesModels;
+    //use InteractsWithQueue, SerializesModels;
     /**
      * @var array
      */

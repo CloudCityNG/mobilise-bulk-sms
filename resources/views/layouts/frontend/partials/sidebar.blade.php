@@ -24,7 +24,8 @@
             </ul>
         </li>
 
-        <li><a href="#">Item</a></li>
+        <li><a href="{{url('messaging/sent-sms')}}">Sent Messages</a></li>
+        <li><a href="#">Draft Messages</a></li>
 
         <li class="uk-nav-header">Header</li>
         <li class="uk-parent">

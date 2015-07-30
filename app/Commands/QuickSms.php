@@ -14,7 +14,7 @@ use Illuminate\Contracts\Queue\ShouldBeQueued;
 
 class QuickSms extends Command implements SelfHandling {
 
-	use InteractsWithQueue, SerializesModels;
+	//use InteractsWithQueue, SerializesModels;
     /**
      * @var
      */

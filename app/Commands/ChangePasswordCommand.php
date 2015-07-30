@@ -8,9 +8,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class ChangePasswordCommand extends Command implements SelfHandling, ShouldBeQueued {
+class ChangePasswordCommand extends Command implements SelfHandling {
 
-	use InteractsWithQueue, SerializesModels;
     /**
      * @var
      */

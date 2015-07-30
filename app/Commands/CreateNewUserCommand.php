@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateNewUserCommand extends Command implements SelfHandling {
 
-	use InteractsWithQueue, SerializesModels;
-
     /**
      * @var
      */
