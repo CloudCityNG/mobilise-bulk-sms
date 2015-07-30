@@ -52,7 +52,7 @@ class DlrController extends Controller {
                     'status'        => $status,
                     'gsmerrorcode'  => $gsmerrorcode,
                 ]);
-            
+
         }
     }
 
