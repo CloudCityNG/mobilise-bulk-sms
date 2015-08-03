@@ -54,10 +54,14 @@ Route::group(
         Route::get('sent-sms', 'MessagingController@sentSms');
         Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
 
-        Route::get('saved-sms', 'MessagingController@savedSms');
-        Route::get('draft-sms', 'MessagingController@savedSms');
+        /**
+         * Both are the same
+         */
+        Route::get('saved-sms', 'MessagingController@savedSms');                    //View a Saved SMS
+        Route::get('draft-sms', 'MessagingController@savedSms');                    //View a Draft SMS
+        Route::post('draft-sms', 'MessagingController@postDraftSms');               //Save a draft SMS
+        Route::get('draft-sms/{id?}/del', 'MessagingController@delDraftSMS');       //Save a draft SMS
 
-        Route::post('draft-sms', 'MessagingController@postDraftSms');
     }
 );
 
@@ -130,15 +134,13 @@ Route::controllers([
 
 Route::get('test', function(){
 
-    return Carbon::now('Africa/Casablanca');
-
-//    $tz = 'Africa/Lagos';
-//    $date = '2015-07-30';
-//    $time = '03:00 PM';
-//    $format = "Y-m-d H:i A";
-//    $datetime = "$date $time";
-//
-//    $dt = Carbon::createFromFormat($format, $datetime, $tz);
-//    return $dt->toDateTimeString();
+    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
+    dd(
+        (new \App\Lib\Sms\SmsInfobip())
+            ->setSender($request->get('sender'))
+            ->setRecipients($request->get('recipients'))
+            ->setMessage($request->get('message'))
+            ->setSchedule($request->get('schedule'))
+    );
 
 });

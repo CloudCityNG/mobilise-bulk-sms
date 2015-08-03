@@ -8,7 +8,7 @@
     <p class="uk-lead">All Draft SMS</p>
 
 
-
+    @if( $data->count() )
     <div id="table-container">
 
         <table class="uk-table uk-table-hover uk-table-condensed">
@@ -37,8 +37,8 @@
                             <button class="uk-button"><i class="uk-icon-wrench"></i></button>
                             <div class="uk-dropdown uk-dropdown-small">
                                 <ul class="uk-nav uk-nav-dropdown">
-                                    <li><a href="" data-send-id="{{$record->id}}" id="send">Send</a></li>
-                                    <li><a href="" data-delete-id="{{$record->id}}" id="delete">Delete</a></li>
+                                    <li><a href="#" data-send-id="{{$record->id}}" id="send">Send</a></li>
+                                    <li><a href="#" data-delete-id="{{$record->id}}" id="delete">Delete</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,6 +49,9 @@
         </table>
         {!! (new Landish\Pagination\UIKit($data))->render() !!}
     </div>
+    @else
+    <div class="uk-alert">No Draft Messages yet.</div>
+    @endif
 </div>
 @stop
 
@@ -60,8 +63,45 @@
  $('#table-container').on('click', 'a#delete', function(e){
     e.preventDefault();
     var $this = $(this);
-    $this.closest('tr').remove();
-    //alert_("I was clicked");
+    var id = $this.attr('data-delete-id');
+
+    var jqXHR = $.get('/messaging/draft-sms/' + id + '/del');
+
+    jqXHR.done( function(data){
+
+        //$this.closest('tr').remove();
+        $this.closest('tr').slideUp("slow", function(){
+            $(this).remove();
+        });
+        alert_("Done");
+
+    } );
+
+    jqXHR.fail( function(data){
+
+        if (data.status === 404)
+        {
+            alert_("Server error: Not found")
+        }
+        else if (data.status === 401)
+        {
+            $(location).prop('pathname', 'user/login');
+        }
+        else if (data.status === 422)
+        {
+            alert("Delete failed");
+        }
+
+        if (data.status === 500){
+            alert_("Unknown error. Please try later");
+        }
+
+    } );
+
+
+
+
+    //alert_($this.prop("data-delete-id"));
  });
 </script>
 @stop

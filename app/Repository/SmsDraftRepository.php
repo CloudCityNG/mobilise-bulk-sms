@@ -15,10 +15,17 @@ class SmsDraftRepository {
         );
     }
 
+
     public function paginate($per_page=self::DEFAULT_PAGINATE_SIZE)
     {
         return Auth::user()->draftsms()
             ->latest()
             ->paginate($per_page);
+    }
+
+
+    public function del($id)
+    {
+        return Auth::user()->draftsms()->where('id',$id)->delete();
     }
 } 

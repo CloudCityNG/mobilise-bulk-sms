@@ -13,12 +13,14 @@ $message_tooltip = '';
 $schedule_tooltip = 'Choose a later date and time for successful delivery of your message';
 ?>
 <div class="uk-panel all-contacts">
+
     <div class="uk-panel-badge uk-badge"></div>
-    <h3 class="uk-panel-title">Quick SMS</h3>
+    <h1 class="uk-panel-title uk-title">Quick SMS</h1>
+    <p class="uk-lead">Send SMS with less than or 50 recipients</p>
 
     @include('layouts.frontend.partials.errors', ['error_header'=>'Your form contains some errors'])
 
-    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'uk-form uk-form-horizontal', 'id'=>'quick-sms']) !!}
+    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'uk-form uk-form-horizontal uk-margin-large-top', 'id'=>'quick-sms']) !!}
     <div class="uk-form-row uk-margin">
         {!! Form::label('sender', 'Sender ID', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">

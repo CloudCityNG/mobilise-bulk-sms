@@ -38,6 +38,18 @@ class MessagingController extends Controller {
     {
         //dd($request->all());
         $datetime = $processDate->processDateTime($request->get('schedule_date'), $request->get('schedule_time'));
+
+
+        dd(
+            (new SmsInfobip())
+                ->setSender($request->get('sender'))
+                ->setRecipients($request->get('recipients'))
+                ->setMessage($request->get('message'))
+                ->setSchedule($datetime)
+        );
+        return;
+
+
         $this->dispatchFrom('App\Commands\QuickSms', $request, ['schedule'=>$datetime, 'user'=>Auth::user()]);
 
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
@@ -76,6 +88,7 @@ class MessagingController extends Controller {
         return view('messaging.sent-sms', ['data'=>$data]);
     }
 
+
     public function sentSmsId($id=null, SmsHistoryRepository $repository)
     {
         if (is_null($id)):
@@ -103,6 +116,20 @@ class MessagingController extends Controller {
         $this->dispatchFrom('App\Commands\NewDraftSmsCommand', $draftSmsRequest, ['schedule'=>$datetime]);
         flash()->success("Message saved as draft successfully");
         return redirect()->route('quick_sms');
+    }
+
+
+    public function delDraftSMS($id, Request $request, SmsDraftRepository $repository)
+    {
+        if ( $request->ajax() )
+        {
+            //$this->validate($request, ['id'=>'required|numeric']);
+            if ( $repository->del($id) )
+                return response()->json(['success'=>true]);
+            else
+                return response()->json(['error'=>true], 422);
+        }
+
     }
 
 }

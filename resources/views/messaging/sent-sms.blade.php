@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="uk-panel {{Request::segment(2)}}">
-    <div class="uk-panel-badge uk-badge">Its sales time hurry!</div>
+    <div class="uk-panel-badge uk-badge"></div>
     <h1 class="uk-panel-title uk-title">Sent SMS</h1>
     <p class="uk-lead">All sent SMS</p>
 
 
-
+    @if( $data->count() )
     <div class="table-container">
 
         <table class="uk-table uk-table-hover uk-table-condensed">
@@ -50,8 +50,9 @@
         {!! (new Landish\Pagination\UIKit($data))->render() !!}
 
     </div>
-
-
+    @else
+    <div class="uk-alert">No Sent Messages yet.</div>
+    @endif
 </div>
 
 @stop
