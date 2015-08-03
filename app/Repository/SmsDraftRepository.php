@@ -18,7 +18,6 @@ class SmsDraftRepository {
     public function paginate($per_page=self::DEFAULT_PAGINATE_SIZE)
     {
         return Auth::user()->draftsms()
-            ->with('user')
             ->latest()
             ->paginate($per_page);
     }

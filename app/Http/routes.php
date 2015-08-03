@@ -12,6 +12,7 @@
 */
 
 use App\Commands\NewContactCommand;
+use App\Lib\Services\Date\ProcessDate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +55,7 @@ Route::group(
         Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
 
         Route::get('saved-sms', 'MessagingController@savedSms');
+        Route::get('draft-sms', 'MessagingController@savedSms');
 
         Route::post('draft-sms', 'MessagingController@postDraftSms');
     }
@@ -128,13 +130,15 @@ Route::controllers([
 
 Route::get('test', function(){
 
-    $tz = 'Africa/Lagos';
-    $date = '2015-07-30';
-    $time = '02:15 PM';
-    $format = "Y-m-d H:i A";
-    $datetime = "$date $time";
+    return Carbon::now('Africa/Casablanca');
 
-    $dt = Carbon::createFromFormat($format, $datetime, $tz);
-    return $dt->toDateTimeString();
+//    $tz = 'Africa/Lagos';
+//    $date = '2015-07-30';
+//    $time = '03:00 PM';
+//    $format = "Y-m-d H:i A";
+//    $datetime = "$date $time";
+//
+//    $dt = Carbon::createFromFormat($format, $datetime, $tz);
+//    return $dt->toDateTimeString();
 
 });

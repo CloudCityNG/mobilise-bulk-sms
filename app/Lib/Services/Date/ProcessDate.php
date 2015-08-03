@@ -7,11 +7,10 @@ use Carbon\Carbon;
 class ProcessDate {
 
 
-    public static function processDateTime($date=null, $time=null)
+    public static function processDateTime($date=null, $time=null, $tz = 'Africa/Lagos')
     {
         $format = null;
         $datetime = null;
-        $tz = 'Africa/Lagos';
 
         if ( empty($date) )
             return null;
