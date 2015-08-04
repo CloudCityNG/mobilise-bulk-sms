@@ -1,7 +1,7 @@
 <nav class="tm-navbar uk-navbar uk-navbar-attached">
     <div class="uk-container uk-container-center">
 
-        <a class="uk-navbar-brand uk-hidden-small" href="#"><img class="uk-margin uk-margin-remove" src="/images/logos/quic-sms.png" width="100" title="Quic-SMS" alt="Quic-SMS"></a>
+        <a class="uk-navbar-brand uk-hidden-small" href="/"><img class="uk-margin uk-margin-remove" src="/images/logos/quic-sms.png" width="100" title="Quic-SMS" alt="Quic-SMS"></a>
 
         <ul class="uk-navbar-nav uk-hidden-small">
             <li><a href="#">Address Book</a></li>

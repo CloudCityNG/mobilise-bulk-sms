@@ -13,6 +13,7 @@
 
 use App\Commands\NewContactCommand;
 use App\Lib\Services\Date\ProcessDate;
+use App\Models\Sms\SmsHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,6 +53,7 @@ Route::group(
         Route::post('file2sms', 'MessagingController@postFile2sms');
 
         Route::get('sent-sms', 'MessagingController@sentSms');
+        Route::get('sent-sms/{id?}/del', 'MessagingController@delSentSms');
         Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
 
         /**
@@ -132,15 +134,22 @@ Route::controllers([
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(){
+Route::get('test', function(\App\Repository\SmsHistoryRecipientRepository $repository){
 
-    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
-    dd(
-        (new \App\Lib\Sms\SmsInfobip())
-            ->setSender($request->get('sender'))
-            ->setRecipients($request->get('recipients'))
-            ->setMessage($request->get('message'))
-            ->setSchedule($request->get('schedule'))
-    );
+    $id = 4;
+    if ( Auth::user()->smshistory()->where('id', $id)->count() )
+    {
+        //delete corresponding row from sms_history_recipients
+        SmsHistory::find($id)->smsHistoryRecipient()->delete();
+        return Auth::user()->smshistory()->where('id', $id)->delete();
+    }
+//    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
+//    dd(
+//        (new \App\Lib\Sms\SmsInfobip())
+//            ->setSender($request->get('sender'))
+//            ->setRecipients($request->get('recipients'))
+//            ->setMessage($request->get('message'))
+//            ->setSchedule($request->get('schedule'))
+//    );
 
 });

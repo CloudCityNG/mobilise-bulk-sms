@@ -12,7 +12,7 @@ $recipients_tooltip = 'Not more than 50 recipients separated with commas';
 $message_tooltip = '';
 $schedule_tooltip = 'Choose a later date and time for successful delivery of your message';
 ?>
-<div class="uk-panel all-contacts">
+<div class="uk-panel {{Request::segment(2)}}">
 
     <div class="uk-panel-badge uk-badge"></div>
     <h1 class="uk-panel-title uk-title">Quick SMS</h1>

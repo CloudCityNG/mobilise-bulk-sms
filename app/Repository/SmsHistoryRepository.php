@@ -9,7 +9,7 @@ class SmsHistoryRepository {
 
     const UNIT_LOCAL = 1;
     const UNIT_INTL = 15;
-    const DEFAULT_PAGINATE_SIZE = 6;
+    const DEFAULT_PAGINATE_SIZE = 10;
 
 
 
@@ -83,10 +83,25 @@ class SmsHistoryRepository {
     }
 
 
+    public function del($id)
+    {
+        if ( Auth::user()->smshistory()->where('id', $id)->count() )
+        {
+            //delete corresponding row from sms_history_recipients
+            SmsHistory::find($id)->smsHistoryRecipient()->delete();
+            return Auth::user()->smshistory()->where('id', $id)->delete();
+        }
+        return false;
+    }
 
+
+    /**
+     * Get a record of all sent SMS with SMSHistory model record
+     * @return mixed
+     */
     public function sentSms()
     {
-        return Auth::user()->smshistory()->with('smshistoryrecipient')->orderBy('created_at', 'descending')->paginate(5);
+        return Auth::user()->smshistory()->with('smshistoryrecipient')->orderBy('created_at', 'descending')->paginate(self::DEFAULT_PAGINATE_SIZE);
         //return SmsHistory::where('user_id', Auth::user()->id)->with('smshistoryrecipient')->orderBy('created_at', 'descending')->get();
     }
 

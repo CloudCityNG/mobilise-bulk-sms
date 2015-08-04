@@ -7,7 +7,7 @@
             <a href="#">Messaging</a>
             <ul class="uk-nav-sub">
                 <li><a href="{{url('messaging/quick-sms')}}">Quick SMS</a></li>
-                <li><a href="#">Bulk SMS</a>
+                <li><a href="{{url('messaging/bulk-sms')}}">Bulk SMS</a>
                 <li><a href="#">File 2 SMS</a>
                     <ul>
                         <li><a href="#">Excel 2 SMS</a></li>

@@ -46,7 +46,7 @@ class MessagingController extends Controller {
 
     public function bulkSms()
     {
-
+        return view('messaging.bulk-sms');
     }
 
 
@@ -71,8 +71,19 @@ class MessagingController extends Controller {
     public function sentSms(SmsHistoryRepository $repository)
     {
         $data = $repository->sentSms();
-        //dd($data);
         return view('messaging.sent-sms', ['data'=>$data]);
+    }
+
+
+    public function delSentSms($id, Request $request, SmsHistoryRepository $repository)
+    {
+        if ( $request->ajax() )
+        {
+            if ( $repository->del($id) )
+                return response()->json(['success'=>true]);
+            else
+                return response()->json(['error'=>true], 422);
+        }
     }
 
 
@@ -82,9 +93,7 @@ class MessagingController extends Controller {
             flash()->error('An unexpected error has occurred.');
             return redirect()->back();
         endif;
-
         $data = $repository->sentSmsId($id);
-        //dd($repository->sentSmsId($id));
         return view('messaging.sent-sms-id', ['data'=>$data]);
 
     }

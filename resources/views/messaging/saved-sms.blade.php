@@ -98,10 +98,6 @@
 
     } );
 
-
-
-
-    //alert_($this.prop("data-delete-id"));
  });
 </script>
 @stop

@@ -104,7 +104,7 @@ class QuickSms extends Command implements SelfHandling {
         $s->smsHistoryRecipient()->saveMany($recipients);
 
         //record credit usage
-        $repository->recordCreditUsage($sms_history_row->id, $total_units);
+        //$repository->recordCreditUsage($sms_history_row->id, $total_units);
 
 	}
 
