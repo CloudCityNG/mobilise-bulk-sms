@@ -24,7 +24,7 @@ class MessagingController extends Controller {
     function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('smscreditcheck', ['only' => ['postQuickSms']]);
+        $this->middleware('smscreditcheck', ['only' => ['postQuickSms','postQuickModalSms']]);
     }
 
 

@@ -76,7 +76,7 @@
 var smsModal = UIkit.modal('#send-sms-modal');
 registerCloseModal('#sendSmsModalCancel', smsModal);
 
-//Click the send button
+//Click the send dropdown
 $('#table-container').on('click', 'a#send', function(e){
 
     e.preventDefault();
@@ -138,7 +138,7 @@ $('#table-container').on('click', 'a#send', function(e){
 
  });
 
-//Send the SMS
+//Click the send button || Send the SMS
  $('body').on('click', '#sendSmsModalButton', function(e){
 
     e.preventDefault();
@@ -146,7 +146,7 @@ $('#table-container').on('click', 'a#send', function(e){
 
     jqXHR.done( function(data){
 
-        alert_("Done.");
+        console.log(data);
     } );
 
     jqXHR.fail( function(data){
@@ -159,7 +159,7 @@ $('#table-container').on('click', 'a#send', function(e){
         if (data.status === 422){
 
             var error = $.parseJSON(data.responseText);
-
+            console.log(error);
             processAjaxError(error, '.errors', '.errors #error-ul');
             //emptyErrorContainer('.errors');
         }
