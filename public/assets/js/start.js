@@ -44,38 +44,6 @@ registerCloseModal('#newGroupCancel', newGroup);
         });
     })
 
-//$('#newContactSave').bind("click", function(e){
-//    e.preventDefault();
-//    $('#loading').show();
-//
-//    var jqXHR = $.get("address-book/new-contact", $('form.newContactForm').serialize())
-//    jqXHR.done(function(data){
-//        alert_("Contact Added.");
-//        modalCloser(newModal);
-//        resetForm('form.newContactForm');
-//        $('#table-container').html(data.html);
-//        $('#loading').hide();
-//    });
-//    jqXHR.fail(function(data){
-//        $('#loading').hide();
-//
-//        if (data.status === 401 ){//user not authenticated.
-//            $(location).prop('pathname', 'user/login');
-//        }
-//        if (data.status === 422){
-//
-//            var error = $.parseJSON(data.responseText);
-//
-//            processAjaxError(error, '.errors', '.errors #error-ul');
-////            $('.errors #error-ul').empty();
-////            $('.errors').show();
-//        }
-//        if (data.status === 500){
-//            alert_("Unknown error. Please try later");
-//        }
-//    });
-//
-//});
     $('#table-container').on('click', 'a#send', function(e){
 
         e.preventDefault();
@@ -95,22 +63,48 @@ registerCloseModal('#newGroupCancel', newGroup);
     })
 
     $('#table-container').on('click', 'a#edit', function(e){
-
         e.preventDefault();
         var $this = $(this)
-        //get form values
-        var $el = $this.closest('td').prev()[0]
-        var gsm = $($el).html()
-        var $id = $this.prop('class');
-        $id = $id.split("-")
+        var $id = $this.attr('data-id-edit');
+        //fetch values over ajax
+        var jqXHR = $.get('address-book/contact/'+ $id + '/get');
 
-        console.log( $id[1] )
+        //get form values
+        jqXHR.done( function(data){
+
+            var values = data.values;
+            //firstname
+            $('#firstname').val()
+            //lastname
+            //email
+            //gsm
+            //birthdate
+            console.log(values[0].gsm);
+        });
+
+        jqXHR.fail( function(data){
+            handleError(data.status);
+        });
     });
 
 
-$('table a#delete').bind('click', function(e){
-    e.preventDefault();
-    alert_( $(this).prop('class') );
-});
+    $('#table-container').on('click', 'a#delete', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $id = $this.attr('data-id-delete');
+
+        var jqXHR = $.get('address-book/contact/'+ $id +'/del');
+
+        jqXHR.done( function(){
+            $this.closest('tr').slideUp("slow", function(){
+                $(this).remove();
+            });
+        } );
+
+        jqXHR.fail( function(data){
+            handleError(data.status);
+        } );
+
+    });
 
 });

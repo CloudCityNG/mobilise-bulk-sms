@@ -1,7 +1,12 @@
 @extends('layouts.frontend.master')
 
-@section('content')
+@section('head')
+@parent
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+<link rel="stylesheet" href="/assets/uikit/css/components/datepicker.min.css">
+@stop
 
+@section('content')
 <div class="uk-panel {{Request::segment(2)}}">
     <div class="uk-panel-badge uk-badge">Its sales time hurry!</div>
     <h1 class="uk-panel-title uk-title">Draft SMS</h1>
@@ -55,49 +60,115 @@
 </div>
 @stop
 
+@section('modal')
+@include('modals.send-sms-modal')
+@stop
+
 @section('foot')
 @parent
 <script src="/assets/uikit/js/components/notify.min.js"></script>
+<script src="/assets/uikit/js/components/datepicker.min.js"></script>
+<script src="/assets/uikit/js/components/timepicker.min.js"></script>
+<script src="/assets/uikit/js/components/autocomplete.min.js"></script>
 <script src="/assets/js/global.js"></script>
 <script>
+
+var smsModal = UIkit.modal('#send-sms-modal');
+registerCloseModal('#sendSmsModalCancel', smsModal);
+
+//Click the send button
+$('#table-container').on('click', 'a#send', function(e){
+
+    e.preventDefault();
+    //hide any previous errors
+    $('.errors').hide();
+    var $this = $(this);
+    var $id = $this.attr('data-send-id');
+
+    //request for the sms details
+    var jqXHR = $.get('/messaging/draft-sms/' + $id + '/get');
+    jqXHR.done(function(data){
+
+        //reset the form first
+        resetForm('form.modal-send-sms');
+
+        //set the form values from the request
+        var $formValues = data.out[0]
+        $('#recipients').val($formValues.recipients);
+        $('#sender').val($formValues.sender);
+        $('#message').val($formValues.message);
+
+        if ( $formValues.schedule ) {
+            var $schedule = $formValues.schedule;
+            $schedule = $schedule.split(" ");
+            $('#schedule_date').val($schedule[0]);
+            $('#schedule_time').val($schedule[1]);
+        }
+        //popup the modal
+        smsModal.show();
+    });
+
+    jqXHR.fail(function(data){
+        handleError(data.status)
+    });
+});
+
+//click the delete button
  $('#table-container').on('click', 'a#delete', function(e){
     e.preventDefault();
     var $this = $(this);
-    var id = $this.attr('data-delete-id');
+    var $id = $this.attr('data-delete-id');
 
-    var jqXHR = $.get('/messaging/draft-sms/' + id + '/del');
+    UIkit.modal.confirm("Are you sure you want to delete?", function(){
+
+        var jqXHR = $.get('/messaging/draft-sms/' + $id + '/del');
+
+            jqXHR.done( function(data){
+                //$this.closest('tr').remove();
+                $this.closest('tr').slideUp("slow", function(){
+                    $(this).remove();
+                });
+                alert_("Done");
+            });
+
+            jqXHR.fail( function(data){
+                handleError(data.status);
+            } );
+    });
+
+ });
+
+//Send the SMS
+ $('body').on('click', '#sendSmsModalButton', function(e){
+
+    e.preventDefault();
+    var jqXHR = $.post('/messaging/quick-sms/draftSend', $('form.modal-send-sms').serialize());
 
     jqXHR.done( function(data){
 
-        //$this.closest('tr').remove();
-        $this.closest('tr').slideUp("slow", function(){
-            $(this).remove();
-        });
-        alert_("Done");
-
+        alert_("Done.");
     } );
 
     jqXHR.fail( function(data){
 
-        if (data.status === 404)
-        {
-            alert_("Server error: Not found")
-        }
-        else if (data.status === 401)
-        {
+        //emptyErrorContainer('.errors');
+        //close modal
+        if (data.status === 401 ){//user not authenticated.
             $(location).prop('pathname', 'user/login');
         }
-        else if (data.status === 422)
-        {
-            alert("Delete failed");
-        }
+        if (data.status === 422){
 
+            var error = $.parseJSON(data.responseText);
+
+            processAjaxError(error, '.errors', '.errors #error-ul');
+            //emptyErrorContainer('.errors');
+        }
         if (data.status === 500){
             alert_("Unknown error. Please try later");
         }
-
-    } );
+    });
 
  });
+
 </script>
 @stop

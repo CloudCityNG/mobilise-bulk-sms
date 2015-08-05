@@ -69,14 +69,48 @@ function processAjaxError(dataError, errorParentContainer, errorMainContainer){/
                     "<li>" + element + "</li>"
                 );
             });
-            //                } else {
-            //                //else its just one error returned for the associated index. show it
-            //                    $('.errors #error-ul').append(
-            //                        "<li>" + el + "</li>"
-            //                    );
-            //
-            //                }
         });
     });
 
+}
+
+function handleError(status)
+{
+    if ( status === 404 ) {
+        alert_("Server error: Not found");
+        return;
+    }
+    else if ( status === 401 ) {
+        $(location).prop('pathname', 'user/login');
+        return;
+    }
+    else if ( status === 422 ) {
+        alert_("Operation failed");
+        return;
+    }
+
+    if ( status === 500 ){
+        alert_("Unknown error. Please try later");
+        return;
+    }
+}
+
+function handleDeleteError(status)
+{
+    if ( status === 404 ) {
+        alert_("Server error: Not found");
+        return;
+    }
+    else if ( status === 401 ) {
+        $(location).prop('pathname', 'user/login');
+        return;
+    }
+    else if ( status === 422 ) {
+        alert_("Operation failed");
+        return;
+    }
+    if ( status === 500 ){
+        alert_("Unknown error. Please try later");
+        return;
+    }
 }

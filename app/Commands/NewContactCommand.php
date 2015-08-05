@@ -29,9 +29,8 @@ class NewContactCommand extends Command implements SelfHandling {
      */
 	public function __construct(Array $inputs, $user)
 	{
-
-        $this->inputs = $inputs;
         $this->user = $user;
+        $this->inputs = $this->trimArray($inputs);
     }
 
 	/**
@@ -41,9 +40,23 @@ class NewContactCommand extends Command implements SelfHandling {
 	 */
 	public function handle()
 	{
+        $this->inputs = array_map('trim', $this->inputs);
 		$contact = Contact::store($this->inputs);
         $this->user->contacts()->save($contact);
         //@TODO event--newContactWasCreated.
 	}
+
+
+    public function trimArray($input)
+    {
+        $out = [];
+        foreach ( $input as $key => $value )
+        {
+            if ( !isset($value) || !empty($value) ):
+                $out[$key] = $value;
+            endif;
+        }
+        return $out;
+    }
 
 }

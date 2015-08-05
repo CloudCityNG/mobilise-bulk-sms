@@ -17,9 +17,9 @@
                     <a href=""><i class="uk-icon-sort-down"></i> </a>
                     <div class="uk-dropdown">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="" class="" id="send">Send SMS</a></li>
-                            <li><a href="" class="edit-{{$contact->id}}" id="edit">Edit</a></li>
-                            <li><a href="" class="delete-{{$contact->id}}" id="delete">Delete</a></li>
+                            <li><a href="" class="" id="send" data-id-send="{{$contact->id}}">Send SMS</a></li>
+                            <li><a href="" class="edit-{{$contact->id}}" id="edit" data-id-edit="{{$contact->id}}">Edit</a></li>
+                            <li><a href="" class="delete-{{$contact->id}}" id="delete" data-id-delete="{{$contact->id}}">Delete</a></li>
                         </ul>
                     </div>
                 </div>

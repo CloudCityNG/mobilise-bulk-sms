@@ -45,6 +45,7 @@ Route::group(
 
         Route::get('quick-sms', ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
         Route::post('quick-sms', 'MessagingController@postQuickSms');
+        Route::post('quick-sms/draftSend', 'MessagingController@postQuickModalSms');
 
         Route::get('bulk-sms', 'MessagingController@bulkSms');
         Route::post('bulk-sms', 'MessagingController@postBulkSms');
@@ -62,7 +63,8 @@ Route::group(
         Route::get('saved-sms', 'MessagingController@savedSms');                    //View a Saved SMS
         Route::get('draft-sms', 'MessagingController@savedSms');                    //View a Draft SMS
         Route::post('draft-sms', 'MessagingController@postDraftSms');               //Save a draft SMS
-        Route::get('draft-sms/{id?}/del', 'MessagingController@delDraftSMS');       //Save a draft SMS
+        Route::get('draft-sms/{id}/del', 'MessagingController@delDraftSMS');        //delete a draft SMS (ajax)
+        Route::get('draft-sms/{id}/get', 'MessagingController@getDraftSMS');        //get draft SMS details (ajax)
 
     }
 );
@@ -73,8 +75,12 @@ Route::post('dlr-collector', 'DlrController@collector');
 Route::get('address-book', 'AddressBookController@start');
 Route::get('address-book/groups', 'AddressBookController@groups');
 //Route::get('address-book/new-contact', 'AddressBookController@newContact');
-Route::get('address-book/new-contact', 'AddressBookController@getNewContact');
-Route::get('address-book/new-group', 'AddressBookController@getNewGroup');
+Route::get('address-book/new-contact', 'AddressBookController@getNewContact');      //
+Route::get('address-book/new-group', 'AddressBookController@getNewGroup');          //
+Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');    //
+Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');    //
+
+
 
 //ajax calls
 Route::get('address-book/ajax/contacts', 'AjaxController@returnContactsRaw');
@@ -134,15 +140,16 @@ Route::controllers([
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\App\Repository\SmsHistoryRecipientRepository $repository){
+Route::get('test', function(\App\Repository\ContactRepository $repository){
 
     $id = 4;
-    if ( Auth::user()->smshistory()->where('id', $id)->count() )
+
+    $out = $repository->get($id);
+    if ( $out->count() )
     {
-        //delete corresponding row from sms_history_recipients
-        SmsHistory::find($id)->smsHistoryRecipient()->delete();
-        return Auth::user()->smshistory()->where('id', $id)->delete();
+        return $out->get();
     }
+
 //    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
 //    dd(
 //        (new \App\Lib\Sms\SmsInfobip())

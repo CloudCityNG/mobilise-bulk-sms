@@ -44,6 +44,17 @@ class MessagingController extends Controller {
     }
 
 
+    public function postQuickModalSms(SendSmsRequest $request, ProcessDate $processDate)
+    {
+        //dd($request->all());
+        if ($request->ajax()){
+            $datetime = $processDate->processDateTime($request->get('schedule_date'), $request->get('schedule_time'));
+            $this->dispatchFrom('App\Commands\QuickSms', $request, ['schedule'=>$datetime, 'user'=>Auth::user(),'flash'=>0]);
+            return response()->json(['success'=>true]);
+        }
+    }
+
+
     public function bulkSms()
     {
         return view('messaging.bulk-sms');
@@ -119,13 +130,23 @@ class MessagingController extends Controller {
     {
         if ( $request->ajax() )
         {
-            //$this->validate($request, ['id'=>'required|numeric']);
             if ( $repository->del($id) )
                 return response()->json(['success'=>true]);
             else
                 return response()->json(['error'=>true], 422);
         }
+    }
 
+
+    public function getDraftSMS($id, Request $request, SmsDraftRepository $repository)
+    {
+        if ( $request->ajax() )
+        {   $out = $repository->get($id);
+            if ($out->count())
+                return response()->json(['success'=>true, 'out'=>$out->get()]);
+            else
+                return response()->json(['error'=>true], 422);
+        }
     }
 
 }

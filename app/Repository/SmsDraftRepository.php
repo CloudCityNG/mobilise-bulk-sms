@@ -24,6 +24,12 @@ class SmsDraftRepository {
     }
 
 
+    public function get($id)
+    {
+        return Auth::user()->draftsms()->where('id',$id);
+    }
+
+
     public function del($id)
     {
         return Auth::user()->draftsms()->where('id',$id)->delete();
