@@ -59,7 +59,7 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
         <div class="uk-form-controls">
             <?php $now = date('Y-m-d', time()); ?>
             {!! Form::text('schedule_date', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}
-            {!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small']) !!}
+            {!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small', 'id'=>'schedule_time']) !!}
             <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
         </div>
     </div>

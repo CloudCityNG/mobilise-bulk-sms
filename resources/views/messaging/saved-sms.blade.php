@@ -146,7 +146,10 @@ $('#table-container').on('click', 'a#send', function(e){
 
     jqXHR.done( function(data){
 
-        console.log(data);
+        //close modal
+        smsModal.hide();
+        alert_("Message Sent.");
+
     } );
 
     jqXHR.fail( function(data){

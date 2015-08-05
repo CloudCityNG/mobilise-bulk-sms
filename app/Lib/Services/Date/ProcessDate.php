@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class ProcessDate {
 
 
-    public static function processDateTime($date=null, $time=null, $tz = 'Africa/Lagos')
+    public static function processDateTime($date=null, $time=null)
     {
         $format = null;
         $datetime = null;
@@ -23,7 +23,7 @@ class ProcessDate {
         $format = "Y-m-d H:i A";
         $datetime = "$date $time";
 
-        $dt = Carbon::createFromFormat($format, $datetime, $tz);
+        $dt = Carbon::createFromFormat($format, $datetime);
         return $dt->toDateTimeString();
     }
 } 
