@@ -56,6 +56,8 @@ Route::group(
         Route::get('sent-sms', 'MessagingController@sentSms');
         Route::get('sent-sms/{id?}/del', 'MessagingController@delSentSms');
         Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
+        Route::get('sent-sms/{id}/dlr', 'MessagingController@getDlr');
+
 
         /**
          * Both are the same
@@ -140,15 +142,13 @@ Route::controllers([
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\App\Repository\ContactRepository $repository){
+Route::get('test', function(\App\Repository\SmsHistoryRepository $repository){
 
-    $id = 4;
+    $id = 20;
+    $data = $repository->getDlr($id);
+    $out = view('ajax.dlr', ['data'=>$data])->render();
+    return response()->json(['success'=>true, 'html'=> $out]);
 
-    $out = $repository->get($id);
-    if ( $out->count() )
-    {
-        return $out->get();
-    }
 
 //    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
 //    dd(

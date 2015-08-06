@@ -24,4 +24,10 @@ class SmsHistoryRecipientRepository {
         return $this->smsHistory->find($id)->smsHistoryRecipient()->get();
     }
 
+
+    public function getDlr($id)
+    {
+
+    }
+
 } 

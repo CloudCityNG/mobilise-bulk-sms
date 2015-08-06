@@ -55,48 +55,76 @@
 </div>
 @stop
 
+@section('modal')
+@include('modals.sent-sms-dlr')
+@stop
+
 @section('foot')
 @parent
 <script src="/assets/uikit/js/components/notify.min.js"></script>
 <script src="/assets/js/global.js"></script>
 <script>
+
+//set DLR table display modal
+var dlrModal = UIkit.modal('#sent-sms-dlr-modal');
+
+//register modal closer
+registerCloseModal('#SentSmsDlrModalButton', dlrModal);
+
+//check delivery report
+$('#table-container').on('click', 'a#dlr', function(e){
+    e.preventDefault();
+    var $this = $(this);
+    var $id = $this.attr('data-recipients-id');
+
+    var jqXHR = $.get('/messaging/sent-sms/'+ $id + '/dlr');
+
+    jqXHR.done( function(data){
+        //grab the data
+        var $out = data.html
+        //empty the modal content
+        $('#sent-sms-dlr-modal .content').empty();
+
+        //feed it to the modal
+        $('#sent-sms-dlr-modal .content').html( $out );
+
+        //display the modal
+        dlrModal.show()
+    });
+
+    jqXHR.fail (function(data){
+        handleError(data.status);
+    })
+
+});
+
+//resend
+
+
+//delete
  $('#table-container').on('click', 'a#delete', function(e){
     e.preventDefault();
     var $this = $(this);
     var id = $this.attr('data-delete-id');
 
-    var jqXHR = $.get('/messaging/sent-sms/' + id + '/del');
+    UIkit.modal.confirm("Are you sure you want to delete?", function(){
 
-    jqXHR.done( function(data){
+        var jqXHR = $.get('/messaging/sent-sms/' + id + '/del');
 
-        //$this.closest('tr').remove();
-        $this.closest('tr').slideUp("slow", function(){
-            $(this).remove();
+        jqXHR.done( function(data){
+
+            //$this.closest('tr').remove();
+            $this.closest('tr').slideUp("slow", function(){
+                $(this).remove();
+            });
+            alert_("Done");
+
+        } );
+
+        jqXHR.fail( function(data){
+            handleError(data.status);
         });
-        alert_("Done");
-
-    } );
-
-    jqXHR.fail( function(data){
-
-        if (data.status === 404)
-        {
-            alert_("Server error: Not found")
-        }
-        else if (data.status === 401)
-        {
-            $(location).prop('pathname', 'user/login');
-        }
-        else if (data.status === 422)
-        {
-            alert("Delete failed");
-        }
-
-        if (data.status === 500){
-            alert_("Unknown error. Please try later");
-        }
-
-    } );
+    });
  });
 </script>
 @stop

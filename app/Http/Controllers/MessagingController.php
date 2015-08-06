@@ -106,7 +106,16 @@ class MessagingController extends Controller {
         endif;
         $data = $repository->sentSmsId($id);
         return view('messaging.sent-sms-id', ['data'=>$data]);
+    }
 
+
+    public function getDlr($id, Request $request, SmsHistoryRepository $repository)
+    {
+        if ($request->ajax()){
+            $data = $repository->getDlr($id);
+            $out = view('ajax.dlr', ['data'=>$data])->render();
+            return response()->json(['success'=>true, 'html'=> $out]);
+        }
     }
 
 
