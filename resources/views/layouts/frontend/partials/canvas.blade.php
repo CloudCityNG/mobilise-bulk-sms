@@ -16,6 +16,8 @@
                     <li><a href="#">Groups</a></li>
                 </ul>
             </li>
+            <li><a href="{{url('messaging/sent-sms')}}">Sent Messages</a></li>
+            <li><a href="{{url('messaging/saved-sms')}}">Draft Messages</a></li>
             {{--<li class="uk-parent"><a href="#"><i class="uk-icon-th-large"></i> Layout</a>--}}
                 {{--<ul class="uk-nav-sub">--}}
                     {{--<li><a href="#">Grid</a></li>--}}
@@ -109,6 +111,7 @@
             <li class="uk-nav-divider"></li>
             <li class="uk-parent uk-active"><a href="#"><i class="uk-icon-bars"></i> {{ucfirst($currentUser->username)}}</a>
                 <ul class="uk-nav-sub">
+                    <li><a href="#">{{$currentUser->smscredit->available_credit}} Credit</a></li>
                     <li><a href="#">Change Password</a></li>
                     <li><a href="#">Account Setting</a></li>
                     <li><a href="#">Account Preference</a></li>
