@@ -57,6 +57,7 @@ Route::group(
         Route::get('sent-sms/{id?}/del', 'MessagingController@delSentSms');
         Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
         Route::get('sent-sms/{id}/dlr', 'MessagingController@getDlr');
+        Route::get('sent-sms/{id}/get', 'MessagingController@getSentSms');
 
 
         /**
@@ -145,9 +146,7 @@ Route::controllers([
 Route::get('test', function(\App\Repository\SmsHistoryRepository $repository){
 
     $id = 20;
-    $data = $repository->getDlr($id);
-    $out = view('ajax.dlr', ['data'=>$data])->render();
-    return response()->json(['success'=>true, 'html'=> $out]);
+    dd($repository->getSentSms($id)->get());
 
 
 //    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);

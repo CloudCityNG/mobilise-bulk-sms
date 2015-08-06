@@ -78,11 +78,15 @@ class SmsHistoryRepository {
                 $total_units = $total_units + $unit_intl;
             }
         }
-
         return $total_units;
     }
 
 
+    /**
+     * Delete a (sms_history) row
+     * @param $id
+     * @return bool
+     */
     public function del($id)
     {
         if ( Auth::user()->smshistory()->where('id', $id)->count() )
@@ -96,7 +100,7 @@ class SmsHistoryRepository {
 
 
     /**
-     * Get a record of all sent SMS with SMSHistory model record
+     * Get a paginated record of all sent SMS with SMSHistory model record
      * @return mixed
      */
     public function sentSms()
@@ -106,10 +110,23 @@ class SmsHistoryRepository {
     }
 
 
+    /**
+     * Get Delivery report for sms_history record via smshistoryrecipient
+     * @param $id
+     * @return mixed
+     */
     public function getDlr($id)
     {
         return Auth::User()->smshistory()->where('id',$id)->with('smshistoryrecipient')->get();
     }
+
+
+    public function getSentSms($id)
+    {
+        return Auth::User()->smshistory()->where('id',$id)->with('smshistoryrecipient');
+    }
+
+
 
 
     public function sentSmsId($id)

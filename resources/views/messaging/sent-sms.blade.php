@@ -57,6 +57,7 @@
 
 @section('modal')
 @include('modals.sent-sms-dlr')
+@include('modals.send-sms-modal')
 @stop
 
 @section('foot')
@@ -67,9 +68,11 @@
 
 //set DLR table display modal
 var dlrModal = UIkit.modal('#sent-sms-dlr-modal');
+var smsModal = UIkit.modal('#send-sms-modal');
 
 //register modal closer
 registerCloseModal('#SentSmsDlrModalButton', dlrModal);
+registerCloseModal('#sendSmsModalCancel', smsModal);
 
 //check delivery report
 $('#table-container').on('click', 'a#dlr', function(e){
@@ -99,6 +102,46 @@ $('#table-container').on('click', 'a#dlr', function(e){
 });
 
 //resend
+$('body').on('click', 'a#resend', function(e){
+    e.preventDefault();
+        //hide any previous errors
+        $('.errors').hide();
+        var $this = $(this);
+        var $id = $this.attr('data-resend-id');
+
+        //request for the sms details
+        var jqXHR = $.get('/messaging/sent-sms/' + $id + '/get');
+        jqXHR.done(function(data){
+            //reset the form first
+            resetForm('form.modal-send-sms');
+
+            //set the form values from the request
+            var $formValues = data.out[0]
+            //var recipients = $formValues.smshistoryrecipient;
+            var recipients = [];
+            $.each($formValues.smshistoryrecipient, function(index, value){
+                //console.log(value.destination)
+                recipients.push(value.destination)
+            })
+
+            $('#recipients').val(recipients.join());
+            $('#sender').val($formValues.sender);
+            $('#message').val($formValues.message);
+
+            if ( $formValues.schedule ) {
+                var $schedule = $formValues.schedule;
+                $schedule = $schedule.split(" ");
+                $('#schedule_date').val($schedule[0]);
+                $('#schedule_time').val($schedule[1]);
+            }
+            //popup the modal
+            smsModal.show();
+        });
+
+        jqXHR.fail(function(data){
+            handleError(data.status)
+        });
+});
 
 
 //delete
