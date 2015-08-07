@@ -63,111 +63,157 @@
 @section('foot')
 @parent
 <script src="/assets/uikit/js/components/notify.min.js"></script>
+<script src="/assets/uikit/js/components/datepicker.min.js"></script>
+<script src="/assets/uikit/js/components/timepicker.min.js"></script>
+<script src="/assets/uikit/js/components/autocomplete.min.js"></script>
 <script src="/assets/js/global.js"></script>
+<script src="/assets/js/jquery.simplyCountable.js"></script>
 <script>
+$(function(){
+     $('#message').simplyCountable({
+         counter: '#characterCount',
+         countType: 'characters',
+         maxCount: 320,
+         countDirection: 'up',
+         strictMax: true
+     });
+    //set DLR table display modal
+    var dlrModal = UIkit.modal('#sent-sms-dlr-modal');
+    var smsModal = UIkit.modal('#send-sms-modal');
 
-//set DLR table display modal
-var dlrModal = UIkit.modal('#sent-sms-dlr-modal');
-var smsModal = UIkit.modal('#send-sms-modal');
+    //register modal closer
+    registerCloseModal('#SentSmsDlrModalButton', dlrModal);
+    registerCloseModal('#sendSmsModalCancel', smsModal);
 
-//register modal closer
-registerCloseModal('#SentSmsDlrModalButton', dlrModal);
-registerCloseModal('#sendSmsModalCancel', smsModal);
-
-//check delivery report
-$('#table-container').on('click', 'a#dlr', function(e){
-    e.preventDefault();
-    var $this = $(this);
-    var $id = $this.attr('data-recipients-id');
-
-    var jqXHR = $.get('/messaging/sent-sms/'+ $id + '/dlr');
-
-    jqXHR.done( function(data){
-        //grab the data
-        var $out = data.html
-        //empty the modal content
-        $('#sent-sms-dlr-modal .content').empty();
-
-        //feed it to the modal
-        $('#sent-sms-dlr-modal .content').html( $out );
-
-        //display the modal
-        dlrModal.show()
-    });
-
-    jqXHR.fail (function(data){
-        handleError(data.status);
-    })
-
-});
-
-//resend
-$('body').on('click', 'a#resend', function(e){
-    e.preventDefault();
-        //hide any previous errors
-        $('.errors').hide();
+    //check delivery report
+    $('#table-container').on('click', 'a#dlr', function(e){
+        e.preventDefault();
         var $this = $(this);
-        var $id = $this.attr('data-resend-id');
+        var $id = $this.attr('data-recipients-id');
 
-        //request for the sms details
-        var jqXHR = $.get('/messaging/sent-sms/' + $id + '/get');
-        jqXHR.done(function(data){
-            //reset the form first
-            resetForm('form.modal-send-sms');
-
-            //set the form values from the request
-            var $formValues = data.out[0]
-            //var recipients = $formValues.smshistoryrecipient;
-            var recipients = [];
-            $.each($formValues.smshistoryrecipient, function(index, value){
-                //console.log(value.destination)
-                recipients.push(value.destination)
-            })
-
-            $('#recipients').val(recipients.join());
-            $('#sender').val($formValues.sender);
-            $('#message').val($formValues.message);
-
-            if ( $formValues.schedule ) {
-                var $schedule = $formValues.schedule;
-                $schedule = $schedule.split(" ");
-                $('#schedule_date').val($schedule[0]);
-                $('#schedule_time').val($schedule[1]);
-            }
-            //popup the modal
-            smsModal.show();
-        });
-
-        jqXHR.fail(function(data){
-            handleError(data.status)
-        });
-});
-
-
-//delete
- $('#table-container').on('click', 'a#delete', function(e){
-    e.preventDefault();
-    var $this = $(this);
-    var id = $this.attr('data-delete-id');
-
-    UIkit.modal.confirm("Are you sure you want to delete?", function(){
-
-        var jqXHR = $.get('/messaging/sent-sms/' + id + '/del');
+        var jqXHR = $.get('/messaging/sent-sms/'+ $id + '/dlr');
 
         jqXHR.done( function(data){
+            //grab the data
+            var $out = data.html
+            //empty the modal content
+            $('#sent-sms-dlr-modal .content').empty();
 
-            //$this.closest('tr').remove();
-            $this.closest('tr').slideUp("slow", function(){
-                $(this).remove();
-            });
-            alert_("Done");
+            //feed it to the modal
+            $('#sent-sms-dlr-modal .content').html( $out );
 
+            //display the modal
+            dlrModal.show()
+        });
+
+        jqXHR.fail (function(data){
+            handleError(data.status);
+        })
+
+    });
+
+
+    //Click the send button || Send the SMS
+     $('body').on('click', '#sendSmsModalButton', function(e){
+
+        e.preventDefault();
+        var jqXHR = $.post('/messaging/quick-sms/draftSend', $('form.modal-send-sms').serialize());
+
+        jqXHR.done( function(data){
+            //close modal
+            smsModal.hide();
+            alert_("Message Sent.");
         } );
 
         jqXHR.fail( function(data){
-            handleError(data.status);
+            //emptyErrorContainer('.errors');
+            //close modal
+            if (data.status === 401 ){//user not authenticated.
+                $(location).prop('pathname', 'user/login');
+                return false;
+            }
+            if (data.status === 422){
+                var error = $.parseJSON(data.responseText);
+                console.log(error);
+                processAjaxError(error, '.errors', '.errors #error-ul');
+            }
+            if (data.status === 500){
+                alert_("Unknown error. Please try later");
+                return false;
+            }
         });
+     });
+
+
+
+    //resend
+    $('body').on('click', 'a#resend', function(e){
+        e.preventDefault();
+            //hide any previous errors
+            $('.errors').hide();
+            var $this = $(this);
+            var $id = $this.attr('data-resend-id');
+
+            //request for the sms details
+            var jqXHR = $.get('/messaging/sent-sms/' + $id + '/get');
+            jqXHR.done(function(data){
+                //reset the form first
+                resetForm('form.modal-send-sms');
+
+                //set the form values from the request
+                var $formValues = data.out[0]
+                //var recipients = $formValues.smshistoryrecipient;
+                var recipients = [];
+                $.each($formValues.smshistoryrecipient, function(index, value){
+                    //console.log(value.destination)
+                    recipients.push(value.destination)
+                })
+
+                $('#recipients').val(recipients.join());
+                $('#sender').val($formValues.sender);
+                $('#message').val($formValues.message);
+
+                if ( $formValues.schedule ) {
+                    var $schedule = $formValues.schedule;
+                    $schedule = $schedule.split(" ");
+                    $('#schedule_date').val($schedule[0]);
+                    $('#schedule_time').val($schedule[1]);
+                }
+                //popup the modal
+                smsModal.show();
+            });
+
+            jqXHR.fail(function(data){
+                handleError(data.status)
+            });
     });
+
+
+    //delete
+     $('#table-container').on('click', 'a#delete', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var id = $this.attr('data-delete-id');
+
+        UIkit.modal.confirm("Are you sure you want to delete?", function(){
+
+            var jqXHR = $.get('/messaging/sent-sms/' + id + '/del');
+
+            jqXHR.done( function(data){
+
+                //$this.closest('tr').remove();
+                $this.closest('tr').slideUp("slow", function(){
+                    $(this).remove();
+                });
+                alert_("Done");
+
+            } );
+
+            jqXHR.fail( function(data){
+                handleError(data.status);
+            });
+        });
+     });
  });
 </script>
 @stop

@@ -48,6 +48,7 @@ Route::group(
         Route::post('quick-sms/draftSend', 'MessagingController@postQuickModalSms');
 
         Route::get('bulk-sms', 'MessagingController@bulkSms');
+        Route::post('bulk-sms/fileupload', 'MessagingController@postFileUpload');
         Route::post('bulk-sms', 'MessagingController@postBulkSms');
 
         Route::get('file2sms', 'MessagingController@file2sms');
@@ -143,10 +144,9 @@ Route::controllers([
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\App\Repository\SmsHistoryRepository $repository){
+Route::get('test', function(\App\Repository\GroupRepository $repository){
 
-    $id = 20;
-    dd($repository->getSentSms($id)->get());
+    dd($repository->getAllGroups());
 
 
 //    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);

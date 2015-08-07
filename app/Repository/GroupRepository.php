@@ -3,6 +3,7 @@ namespace App\Repository;
 
 
 use App\Models\Group;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GroupRepository {
@@ -12,5 +13,11 @@ class GroupRepository {
     {
         $data = DB::table('groups')->select('id', 'group_name')->paginate(4);
         return $data;
+    }
+
+
+    public function getAllGroups()
+    {
+        return Auth::user()->groups()->get();
     }
 } 

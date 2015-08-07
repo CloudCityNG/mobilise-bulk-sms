@@ -8,6 +8,8 @@ use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
 use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Sms\SmsInfobip;
+use App\Repository\ContactRepository;
+use App\Repository\GroupRepository;
 use App\Repository\SmsCreditRepository;
 use App\Repository\SmsHistoryRepository;
 use App\Models\Sms\SmsHistory;
@@ -78,15 +80,23 @@ class MessagingController extends Controller
 
     /**
      * Bulk-SMS form
+     * @param GroupRepository $groupRepository
+     * @param ContactRepository $contactRepository
      * @return \Illuminate\View\View
      */
-    public function bulkSms()
+    public function bulkSms(GroupRepository $groupRepository, ContactRepository $contactRepository)
     {
-        return view('messaging.bulk-sms');
+        return view('messaging.bulk-sms',['groups'=>$groupRepository->getAllGroups(),'contacts'=>$contactRepository->getAllUserContacts()]);
     }
 
 
     public function postBulkSms()
+    {
+
+    }
+
+
+    public function postFileUpload(Request $request)
     {
 
     }

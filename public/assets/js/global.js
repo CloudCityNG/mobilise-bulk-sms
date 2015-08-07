@@ -71,27 +71,27 @@ function processAjaxError(dataError, errorParentContainer, errorMainContainer){/
             });
         });
     });
-
+    return false;
 }
 
 function handleError(status)
 {
     if ( status === 404 ) {
         alert_("Server error: Not found");
-        return;
+        return false;
     }
     else if ( status === 401 ) {
         $(location).prop('pathname', 'user/login');
-        return;
+        return false;
     }
     else if ( status === 422 ) {
         alert_("Operation failed");
-        return;
+        return false;
     }
 
     if ( status === 500 ){
         alert_("Unknown error. Please try later");
-        return;
+        return false;
     }
 }
 
@@ -99,18 +99,18 @@ function handleDeleteError(status)
 {
     if ( status === 404 ) {
         alert_("Server error: Not found");
-        return;
+        return false;
     }
     else if ( status === 401 ) {
         $(location).prop('pathname', 'user/login');
-        return;
+        return false;
     }
     else if ( status === 422 ) {
         alert_("Operation failed");
-        return;
+        return false;
     }
     if ( status === 500 ){
         alert_("Unknown error. Please try later");
-        return;
+        return false;
     }
 }

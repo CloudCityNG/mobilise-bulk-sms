@@ -71,107 +71,118 @@
 <script src="/assets/uikit/js/components/timepicker.min.js"></script>
 <script src="/assets/uikit/js/components/autocomplete.min.js"></script>
 <script src="/assets/js/global.js"></script>
+<script src="/assets/js/jquery.simplyCountable.js"></script>
 <script>
 
-var smsModal = UIkit.modal('#send-sms-modal');
-registerCloseModal('#sendSmsModalCancel', smsModal);
+$(function(){
+     $('#message').simplyCountable({
+         counter: '#characterCount',
+         countType: 'characters',
+         maxCount: 320,
+         countDirection: 'up',
+         strictMax: true
+     });
 
-//Click the send dropdown
-$('#table-container').on('click', 'a#send', function(e){
+    var smsModal = UIkit.modal('#send-sms-modal');
+    registerCloseModal('#sendSmsModalCancel', smsModal);
 
-    e.preventDefault();
-    //hide any previous errors
-    $('.errors').hide();
-    var $this = $(this);
-    var $id = $this.attr('data-send-id');
+    //Click the send dropdown
+    $('#table-container').on('click', 'a#send', function(e){
 
-    //request for the sms details
-    var jqXHR = $.get('/messaging/draft-sms/' + $id + '/get');
-    jqXHR.done(function(data){
+        e.preventDefault();
+        //hide any previous errors
+        $('.errors').hide();
+        var $this = $(this);
+        var $id = $this.attr('data-send-id');
 
-        //reset the form first
-        resetForm('form.modal-send-sms');
+        //request for the sms details
+        var jqXHR = $.get('/messaging/draft-sms/' + $id + '/get');
+        jqXHR.done(function(data){
 
-        //set the form values from the request
-        var $formValues = data.out[0]
-        $('#recipients').val($formValues.recipients);
-        $('#sender').val($formValues.sender);
-        $('#message').val($formValues.message);
+            //reset the form first
+            resetForm('form.modal-send-sms');
 
-        if ( $formValues.schedule ) {
-            var $schedule = $formValues.schedule;
-            $schedule = $schedule.split(" ");
-            $('#schedule_date').val($schedule[0]);
-            $('#schedule_time').val($schedule[1]);
-        }
-        //popup the modal
-        smsModal.show();
+            //set the form values from the request
+            var $formValues = data.out[0]
+            $('#recipients').val($formValues.recipients);
+            $('#sender').val($formValues.sender);
+            $('#message').val($formValues.message);
+
+            if ( $formValues.schedule ) {
+                var $schedule = $formValues.schedule;
+                $schedule = $schedule.split(" ");
+                $('#schedule_date').val($schedule[0]);
+                $('#schedule_time').val($schedule[1]);
+            }
+            //popup the modal
+            smsModal.show();
+        });
+
+        jqXHR.fail(function(data){
+            handleError(data.status)
+        });
     });
 
-    jqXHR.fail(function(data){
-        handleError(data.status)
-    });
-});
+    //click the delete button
+     $('#table-container').on('click', 'a#delete', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $id = $this.attr('data-delete-id');
 
-//click the delete button
- $('#table-container').on('click', 'a#delete', function(e){
-    e.preventDefault();
-    var $this = $(this);
-    var $id = $this.attr('data-delete-id');
+        UIkit.modal.confirm("Are you sure you want to delete?", function(){
 
-    UIkit.modal.confirm("Are you sure you want to delete?", function(){
+            var jqXHR = $.get('/messaging/draft-sms/' + $id + '/del');
 
-        var jqXHR = $.get('/messaging/draft-sms/' + $id + '/del');
-
-            jqXHR.done( function(data){
-                //$this.closest('tr').remove();
-                $this.closest('tr').slideUp("slow", function(){
-                    $(this).remove();
+                jqXHR.done( function(data){
+                    //$this.closest('tr').remove();
+                    $this.closest('tr').slideUp("slow", function(){
+                        $(this).remove();
+                    });
+                    alert_("Done");
                 });
-                alert_("Done");
-            });
 
-            jqXHR.fail( function(data){
-                handleError(data.status);
-            } );
-    });
+                jqXHR.fail( function(data){
+                    handleError(data.status);
+                } );
+        });
 
- });
+     });
 
-//Click the send button || Send the SMS
- $('body').on('click', '#sendSmsModalButton', function(e){
+    //Click the send button || Send the SMS
+     $('body').on('click', '#sendSmsModalButton', function(e){
 
-    e.preventDefault();
-    var jqXHR = $.post('/messaging/quick-sms/draftSend', $('form.modal-send-sms').serialize());
+        e.preventDefault();
+        var jqXHR = $.post('/messaging/quick-sms/draftSend', $('form.modal-send-sms').serialize());
 
-    jqXHR.done( function(data){
+        jqXHR.done( function(data){
 
-        //close modal
-        smsModal.hide();
-        alert_("Message Sent.");
+            //close modal
+            smsModal.hide();
+            alert_("Message Sent.");
 
-    } );
+        } );
 
-    jqXHR.fail( function(data){
+        jqXHR.fail( function(data){
 
-        //emptyErrorContainer('.errors');
-        //close modal
-        if (data.status === 401 ){//user not authenticated.
-            $(location).prop('pathname', 'user/login');
-        }
-        if (data.status === 422){
-
-            var error = $.parseJSON(data.responseText);
-            console.log(error);
-            processAjaxError(error, '.errors', '.errors #error-ul');
             //emptyErrorContainer('.errors');
-        }
-        if (data.status === 500){
-            alert_("Unknown error. Please try later");
-        }
-    });
+            //close modal
+            if (data.status === 401 ){//user not authenticated.
+                $(location).prop('pathname', 'user/login');
+            }
+            if (data.status === 422){
 
- });
+                var error = $.parseJSON(data.responseText);
+                console.log(error);
+                processAjaxError(error, '.errors', '.errors #error-ul');
+                //emptyErrorContainer('.errors');
+            }
+            if (data.status === 500){
+                alert_("Unknown error. Please try later");
+            }
+        });
 
+     });
+
+})
 </script>
 @stop

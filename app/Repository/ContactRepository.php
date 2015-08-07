@@ -25,4 +25,10 @@ class ContactRepository {
         return Auth::user()->contacts()->where('id',$id);
     }
 
+
+    public function getAllUserContacts()
+    {
+        return Auth::user()->contacts()->get();
+    }
+
 } 

@@ -31,6 +31,7 @@
                 {!! Form::label('message', 'Message', ['class'=>'uk-form-label']) !!}
                 <div class="uk-form-controls">
                     {!! Form::textarea('message', Input::old('message'), ['placeholder'=>'Message']) !!}
+                    <p><span id="characterCount"></span> Characters. 160characters = 1page</p>
                 </div>
             </div>
             {!! Form::close() !!}
@@ -40,3 +41,4 @@
         </div>
     </div>
 </div>
+
