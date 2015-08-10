@@ -1,4 +1,4 @@
-<div class="uk-panel uk-panel-box uk-hidden-small" data-uk-sticky>
+<div class="uk-panel uk-panel-box uk-hidden-small uk-margin-large-top" data-uk-sticky>
     <h3 class="uk-panel-title">Control Panel</h3>
     <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav>
         <li class="uk-active"><a href="{{url('user/dashboard')}}">Dashboard</a></li>

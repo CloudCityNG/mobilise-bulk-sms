@@ -27,9 +27,12 @@ function alert_sticky(msg){
 //register modal closer
 function registerCloseModal($el, $modalEl){
     $($el).bind("click", function(e){
+        e.preventDefault();
         if ($modalEl.isActive()) {
+            $($el).attr('data-id',0);
             $modalEl.hide();
         }
+        return;
     });
 }
 

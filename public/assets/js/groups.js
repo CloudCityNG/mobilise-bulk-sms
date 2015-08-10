@@ -3,7 +3,7 @@ $(function() {
     //set SMS modal
     var newGroup = UIkit.modal('#new-group-modal');                             //new group modal
     var showGroupContacts = UIkit.modal('#show-group-contacts-modal');          //show group contacts modal
-    var addContact;
+    var addContact = UIkit.modal('#new-contact-modal');
     var uploadContacts;
 
     //form class or id
@@ -11,7 +11,22 @@ $(function() {
     //register modal closers when cancel button is clicked
     registerCloseModal('#newGroupCancel', newGroup);
     registerCloseModal('#showGroupContactsOkButton', showGroupContacts);
+    registerCloseModal('#newContactCancel', addContact);
 
+    $('body').on('click', 'a#add', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $id = $this.attr('data-add-id');
+
+        //set the modal data-id to $id
+        $('#new-contact-modal').attr('data-id', $id);
+        //pop the modal up
+        addContact.show();
+    });
+
+    /**
+     * View group contacts
+     */
     $('body').on('click', 'a#view', function(e){
         e.preventDefault();
         var $this = $(this);
@@ -34,7 +49,7 @@ $(function() {
             showGroupContacts.show();
         });
         jqXHR.fail(function(data){
-            handleError(data.status)
+            handleError(data.status);
         });
     });
 

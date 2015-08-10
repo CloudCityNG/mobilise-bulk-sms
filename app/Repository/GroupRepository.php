@@ -6,7 +6,8 @@ use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class GroupRepository {
+class GroupRepository
+{
 
 
     /**
@@ -21,12 +22,31 @@ class GroupRepository {
     }
 
 
+    public function createUserAndAddToGroup($id, Array $inputs = null)
+    {
+        if (Auth::user()->groups()->where('id', $id)->count()) {
+            $r = Contact::store($inputs);
+            Group::find($id)->contacts()->save($r);
+        }
+    }
+
     /**
+     * Get logged-in user groups with contacts
+     * @return mixed
+     */
+    public static function getUserGroupsWithContacts()
+    {
+        return Auth::user()->groups()->with('contacts')->get();
+    }
+
+
+    /**
+     * Get the logged in user group_$id contacts.
      * @param $id
      */
     public static function userGroupContacts($id)
     {
-        if ( Auth::user()->groups()->where('id', $id)->count() ) {
+        if (Auth::user()->groups()->where('id', $id)->count()) {
             return Group::find($id)->contacts()->get();
         }
         return false;
@@ -34,6 +54,7 @@ class GroupRepository {
 
 
     /**
+     * Get all existing groups
      * @return mixed
      */
     public static function getGroup()
@@ -44,6 +65,7 @@ class GroupRepository {
 
 
     /**
+     * Get all logged in-user groups
      * @return mixed
      */
     public function getAllGroups()  //should be getAllUserGroups
@@ -59,8 +81,8 @@ class GroupRepository {
     public function del($id)
     {
         //check if the record exists
-        $q = Auth::user()->groups()->where('id',$id);
-        if ( $q->count() ) {
+        $q = Auth::user()->groups()->where('id', $id);
+        if ($q->count()) {
             //delete corresponding contacts
             $this->contactRepository->del($id);
         }

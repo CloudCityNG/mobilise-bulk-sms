@@ -35,6 +35,13 @@
 
             <div class="uk-width-medium-3-4" id="content">
                 @include('flash::message')
+                <div class="uk-block-muted uk-clearfix" style="padding:5px;">
+                    <span style="font-weight: bold">Balance: {{$currentUser->smscredit->available_credit}}</span>
+                    <span class="uk-float-right">
+                        <a href="{{url('user/credit-purchase')}}" class="uk-button uk-button-success uk-button-small">
+                        <i class="uk-icon-money"></i> Buy Credit</a>
+                    </span>
+                </div>
             <!--content-->
                 @yield('content')
 

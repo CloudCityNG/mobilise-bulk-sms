@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::group(
     ['prefix' => 'user'], function () {
 
+        Route::get('credit-purchase', 'PurchaseController@creditPurchase');
+
         Route::get('register', 'RegisterController@create');
         Route::post('register', 'RegisterController@store');
         Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
@@ -85,6 +87,7 @@ Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');
 Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');                //
 Route::get('address-book/group/{id}/del', 'AddressBookController@delGroup');                    //
 Route::get('address-book/group/{id}/view-contacts', 'AddressBookController@viewContacts');      //
+Route::get('address-book/group/{id}/add-contact', 'AddressBookController@addContact');          //
 
 
 
@@ -153,7 +156,7 @@ Route::post('test', function(\Illuminate\Http\Request $request){
 
 Route::get('test', function(\Illuminate\Http\Request $request, \App\Repository\GroupRepository $repository){
 
-    dd( $repository->userGroupContacts(5) );
+    dd( $repository->createUserAndAddToGroup(5) );
 
 
 

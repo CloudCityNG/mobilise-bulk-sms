@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request
 @section('modal')
 @include('modals.new-group-modal')
 @include('modals.show-group-contacts-modal')
+@include('modals.new-contact-modal')
 @stop
 
 @section('content')

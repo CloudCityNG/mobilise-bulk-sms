@@ -1,4 +1,4 @@
-<div id="new-contact-modal" class="uk-modal">
+<div id="new-contact-modal" class="uk-modal" data-id="">
     <div class="uk-modal-dialog">
 
         <div class="uk-modal-header">New Contact</div>

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class AddressBookController extends Controller {
 
 
+    //@TODO Clean up controller. No model should be called directly
     function __construct()
     {
         $this->middleware('auth');
@@ -62,6 +63,18 @@ class AddressBookController extends Controller {
             if ( $out === false )
                 return response()->json(['error'=>true], 422);
             return response()->json(['success'=>true, 'out'=>$out]);
+        }
+    }
+
+
+    public function addContact($id, NewContactRequest $request, GroupRepository $repository)
+    {
+        if ($request->ajax()) {
+            $r = $request->only('gsm','email','firstname','lastname','birthdate','custom');
+            $repository->createUserAndAddToGroup($id, $r);
+
+            $out = view('ajax.groups', ['data'=>$repository->getUserGroupsWithContacts()])->render();
+            return response()->json(['success'=>true, 'html'=> $out]);
         }
     }
 
