@@ -79,10 +79,12 @@ Route::post('dlr-collector', 'DlrController@collector');
 Route::get('address-book', 'AddressBookController@start');
 Route::get('address-book/groups', 'AddressBookController@groups');
 //Route::get('address-book/new-contact', 'AddressBookController@newContact');
-Route::get('address-book/new-contact', 'AddressBookController@getNewContact');      //
-Route::get('address-book/new-group', 'AddressBookController@getNewGroup');          //
-Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');    //
-Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');    //
+Route::get('address-book/new-contact', 'AddressBookController@getNewContact');                  //
+Route::get('address-book/new-group', 'AddressBookController@getNewGroup');                      //
+Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');                //
+Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');                //
+Route::get('address-book/group/{id}/del', 'AddressBookController@delGroup');                    //
+Route::get('address-book/group/{id}/view-contacts', 'AddressBookController@viewContacts');      //
 
 
 
@@ -140,13 +142,20 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
+
+Route::post('test', function(\Illuminate\Http\Request $request){
+
+    dd(public_path(''));
+});
 //Route::get('frontend', function(){
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\App\Repository\GroupRepository $repository){
+Route::get('test', function(\Illuminate\Http\Request $request, \App\Repository\GroupRepository $repository){
 
-    dd($repository->getAllGroups());
+    dd( $repository->userGroupContacts(5) );
+
+
 
 
 //    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);

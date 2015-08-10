@@ -9,16 +9,21 @@
         @foreach($data as $group)
         <tr>
             <td>{{$group->group_name}}</td>
-            <td>{{$group->contacts->count()}}</td>
-            <td class="uk-clearfix contacts-dropdown" style="position: relative">
-                <div data-uk-dropdown="{mode:'click'}">
-                    <a href=""><i class="uk-icon-sort-down"></i> </a>
-                    <div class="uk-dropdown">
-                        <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="" class="" id="view" data-id="{{$group->id}}">View Contacts</a></li>
-                            <li><a href="" class="" id="add" data-id="{{$group->id}}">Add Contact</a></li>
-                            <li><a href="" class="" id="upload" data-id="{{$group->id}}">Upload Contacts</a></li>
-                        </ul>
+            <td id="count" data-count="{{$group->contacts->count()}}">{{$group->contacts->count()}}</td>
+            <td>
+                <div class="uk-button-group">
+                    <button class="uk-button">Actions</button>
+                    <div data-uk-dropdown="{mode:'click'}">
+                        <a href="" class="uk-button"><i class="uk-icon-caret-down"></i></a>
+                        <div class="uk-dropdown uk-dropdown-small">
+                            <ul class="uk-nav uk-nav-dropdown">
+                                <li><a href="#" class="" id="view" data-view-id="{{$group->id}}">View Contacts</a></li>
+                                <li><a href="#" class="" id="add" data-add-id="{{$group->id}}">Add Contact</a></li>
+                                <li><a href="#" class="" id="upload" data-upload-id="{{$group->id}}">Upload Contacts</a></li>
+                                <li><a href="#" class="" id="delete" data-delete-id="{{$group->id}}">Delete Group</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </td>

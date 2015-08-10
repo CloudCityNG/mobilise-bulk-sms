@@ -4,8 +4,11 @@ use App\Commands\QuickSms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\BulkSmsFileUploadRequest;
+use App\Http\Requests\BulkSmsRequest;
 use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
+use App\Lib\Filesystem\CsvReader;
 use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Sms\SmsInfobip;
 use App\Repository\ContactRepository;
@@ -86,19 +89,30 @@ class MessagingController extends Controller
      */
     public function bulkSms(GroupRepository $groupRepository, ContactRepository $contactRepository)
     {
-        return view('messaging.bulk-sms',['groups'=>$groupRepository->getAllGroups(),'contacts'=>$contactRepository->getAllUserContacts()]);
+        return view('messaging.bulk-sms', ['groups' => $groupRepository->getAllGroups(), 'contacts' => $contactRepository->getAllUserContacts()]);
     }
 
 
-    public function postBulkSms()
+    public function postBulkSms(BulkSmsRequest $request)
     {
-
+        dd($request->all());
+        //get contacts gsm in group
+        //get contacts gsm
     }
 
 
-    public function postFileUpload(Request $request)
+    public function postFileUpload(BulkSmsFileUploadRequest $request, CsvReader $reader)
     {
+        //dd($request->file('files'));
+        //validate the file
+        //$path = storage_path('uploads/bulk-sms');
+        $files = $request->file('files');
+        foreach ($files as $file):
+            if ($file->isValid())
+                return response()->json(['success' => true, 'out' => $reader->readTxt($file)]);
+        endforeach;
 
+        return response()->json(['error' => true], 422);
     }
 
 

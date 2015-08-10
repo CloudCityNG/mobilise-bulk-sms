@@ -206,7 +206,6 @@ $(function(){
                     $(this).remove();
                 });
                 alert_("Done");
-
             } );
 
             jqXHR.fail( function(data){

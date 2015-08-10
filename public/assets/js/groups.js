@@ -1,12 +1,42 @@
 $(function() {
 
     //set SMS modal
-    var newGroup = UIkit.modal('#new-group-modal');
+    var newGroup = UIkit.modal('#new-group-modal');                             //new group modal
+    var showGroupContacts = UIkit.modal('#show-group-contacts-modal');          //show group contacts modal
+    var addContact;
+    var uploadContacts;
 
     //form class or id
 
     //register modal closers when cancel button is clicked
     registerCloseModal('#newGroupCancel', newGroup);
+    registerCloseModal('#showGroupContactsOkButton', showGroupContacts);
+
+    $('body').on('click', 'a#view', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $id = $this.attr('data-view-id');
+        var $count = $this.closest('tr').find('td#count').attr('data-count');
+
+        if ( $count == 0 ) {
+            alert_("No contact yet");
+            return false;
+        }
+
+        var jqXHR = $.get("/address-book/group/"+ $id + '/view-contacts');
+
+        jqXHR.done(function(data){
+            //get data from response
+            var res = data.out;
+            //put data in DOM
+            $('#show-group-contacts-modal #result-container').html( res );
+            //pop up modal
+            showGroupContacts.show();
+        });
+        jqXHR.fail(function(data){
+            handleError(data.status)
+        });
+    });
 
     //method to save new group
     $('body').on('click', '#newGroupSave', function(e){
@@ -41,6 +71,27 @@ $(function() {
             if (data.status === 500){
                 alert_("Unknown error. Please try later");
             }
+        });
+    });
+
+    //delete group
+    $('body').on('click', 'a#delete', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $id = $this.attr('data-delete-id');
+
+        UIkit.modal.confirm("Are you sure you want to delete?", function(){
+            //send ajax to delete group and corresponding contacts
+            var jqXHR = $.get('/address-book/group/'+ $id +'/del');
+
+            jqXHR.done(function(data){
+                $this.closest('tr').slideUp("slow", function(){
+                    $(this).remove();
+                });
+            });
+            jqXHR.fail( function(data){
+                handleError(data.status);
+            } );
         });
     });
 

@@ -44,6 +44,28 @@ class AddressBookController extends Controller {
     }
 
 
+    public function delGroup($id, Request $request, GroupRepository $repository)
+    {
+        if ($request->ajax()){
+            if ($repository->del($id))
+                return response()->json(['success'=>true]);
+            else
+                return response()->json(['error'=>true], 422);
+        }
+    }
+
+
+    public function viewContacts($id, Request $request, GroupRepository $repository)
+    {
+        if ( $request->ajax() ) {
+            $out = view('ajax.group-contacts', ['data'=>$repository->userGroupContacts($id)])->render();
+            if ( $out === false )
+                return response()->json(['error'=>true], 422);
+            return response()->json(['success'=>true, 'out'=>$out]);
+        }
+    }
+
+
     public function newContact()
     {
         return view('addressbook.new-contact');
