@@ -16,62 +16,36 @@
             <th>Price per Unit</th>
             <th></th>
         </tr>
+        @foreach($data as $row)
         <tr>
-            <td class="uk-table-middle">100 - 4,999</td>
-            <td class="uk-table-middle">₦1.90</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
+            <td class="uk-table-middle">{{$row->lower_range}} - {{$row->upper_range}}</td>
+            <td class="uk-table-middle">₦{{$row->unit_price}}</td>
+            <?php $row_id = Illuminate\Support\Facades\Crypt::encrypt($row->id) ?>
+            <td class="uk-table-middle"></td>
         </tr>
-        <tr>
-            <td class="uk-table-middle">5,000 - 9,999</td>
-            <td class="uk-table-middle">₦1.80</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
-        <tr>
-            <td class="uk-table-middle">10,000 - 49,999</td>
-            <td class="uk-table-middle">₦1.70</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
-        <tr>
-            <td class="uk-table-middle">50,000 - 99,999</td>
-            <td class="uk-table-middle">₦1.60</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
-        <tr>
-            <td class="uk-table-middle">100,000 - 499,999</td>
-            <td class="uk-table-middle">₦1.50</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
-        <tr>
-            <td class="uk-table-middle">500,000 - 999,999</td>
-            <td class="uk-table-middle">₦1.40</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
-        <tr>
-            <td class="uk-table-middle">1,000,000 - 5,000,000</td>
-            <td class="uk-table-middle">₦1.30</td>
-            <td class="uk-table-middle"><a class="uk-button uk-button-success" href="#">Buy It!</a></td>
-        </tr>
+        @endforeach
+
 
     </table>
 
     <hr class="uk-grid-divider">
-
-    <form class="uk-form uk-form-horizontal" id="custom-buy">
+    @include('layouts.frontend.partials.errors')
+    {!! Form::open(['url'=>'user/credit-purchase', 'class'=>'uk-form uk-form-horizontal', 'id'=>'custom-buy']) !!}
         <div class="uk-form-row">
-            {!! Form::label('amount', 'Credit Amount', ['class'=>'uk-form-label']) !!}
+            {!! Form::label('sms_quantity', 'SMS Quantity', ['class'=>'uk-form-label']) !!}
             <div class="uk-form-controls">
-                {!! Form::text('amount', Input::old('amount'), ['placeholder'=>'Credit Amount']) !!}
-                {!! Form::button('Buy It!', ['type'=>'button','class'=>'uk-button uk-button-primary','id'=>'submit_']) !!}
+                {!! Form::text('sms_quantity', Input::old('sms_quantity'), ['placeholder'=>'SMS Quantity','maxlength'=>7]) !!}
+                {!! Form::button('Buy It!', ['type'=>'submit','class'=>'uk-button uk-button-primary','id'=>'submit_']) !!}
             </div>
         </div>
         <div class="uk-form-row">
 
             <div class="uk-form-controls">
-                <div><span class="units">0</span> Units</div>
+                <div><span class="units">0</span> ₦</div>
             </div>
         </div>
 
-    </form>
+    {!! Form::close() !!}
 
 </div>
 
@@ -86,38 +60,40 @@ $(function(){
 
     var $units = $('span.units');
 
-    $('form#custom-buy').on('keyup keydown focus', 'input#amount', function(e){
+    $('form#custom-buy').on('keyup keydown focus onblur click', 'input#sms_quantity', function(e){
 
         var $this = $(this);
-        var $amount =  $this.val();
+        var $amount =  ( $this.val() != "" ) ? $this.val() : 0 ;
 
         switch ( true ){
-
-            case ( $amount > 0 && $amount < 4999):
+            case ( $amount < 0 ):
+                $units.html( parseFloat( $amount * 0 ).toFixed(2))
+                break;
+            case ( $amount >= 0 && $amount <= 4999):
                 $units.html( parseFloat( $amount * 1.90 ).toFixed(2))
                 break;
-            case ( $amount > 5000 && $amount < 9999):
+            case ( $amount >= 5000 && $amount <= 9999):
                 $units.html( parseFloat( $amount * 1.80 ).toFixed(2))
                 break;
-            case ( $amount > 10000 && $amount < 49999):
+            case ( $amount >= 10000 && $amount <= 49999):
                 $units.html( parseFloat( $amount * 1.70 ).toFixed(2))
                 break;
-            case ( $amount > 50000 && $amount < 99999):
+            case ( $amount >= 50000 && $amount <= 99999):
                 $units.html( parseFloat( $amount * 1.60 ).toFixed(2))
                 break;
-            case ( $amount > 100000 && $amount < 499999):
+            case ( $amount >= 100000 && $amount <= 499999):
                 $units.html( parseFloat( $amount * 1.50 ).toFixed(2))
                 break;
-            case ( $amount > 500000 && $amount < 999999):
+            case ( $amount >= 500000 && $amount <= 999999):
                 $units.html( parseFloat( $amount * 1.40 ).toFixed(2))
                 break;
-            case ( $amount > 1000000 && $amount < 5000000):
-                $units.html( parseFloat( $amount * 1.40 ).toFixed(2))
+            case ( $amount >= 1000000 ):
+                $units.html( parseFloat( $amount * 1.30 ).toFixed(2))
                 break;
-
-
         }
     });
+
+    $('input#sms_quantity').trigger("click");
 });
 </script>
 @stop

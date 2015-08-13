@@ -23,9 +23,19 @@ Route::get('/', function () {
 });
 
 Route::group(
+    ['prefix' => 'admin'], function() {
+
+        Route::get('set-pricing', 'PricingController@pricing');
+        Route::post('set-pricing', 'PricingController@postPricing');
+    }
+);
+
+Route::group(
     ['prefix' => 'user'], function () {
 
+        Route::post('credit-purchase', 'PurchaseController@postCreditPurchase');
         Route::get('credit-purchase', 'PurchaseController@creditPurchase');
+
 
         Route::get('register', 'RegisterController@create');
         Route::post('register', 'RegisterController@store');
@@ -154,9 +164,13 @@ Route::post('test', function(\Illuminate\Http\Request $request){
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\Illuminate\Http\Request $request, \App\Repository\GroupRepository $repository){
+Route::get('test', function(\Illuminate\Http\Request $request){
 
-    dd( $repository->createUserAndAddToGroup(5) );
+    dd( (new DateTime("now"))->format('Y-m-d H:i:s') );
+
+    return strtotime('2015-08-11 10:50:00');
+
+    return ProcessDate::dateDifference('2015-08-11 10:50:00', '2015-08-11 10:30:00');
 
 
 

@@ -77,6 +77,22 @@ function processAjaxError(dataError, errorParentContainer, errorMainContainer){/
     return false;
 }
 
+function processError(response)
+{
+    if (response.status === 404){
+        alert_("Server error: Not found")
+    } else if (response.status === 401) {
+        $(location).prop('pathname', 'user/login');
+    } else if (response.status === 422) {
+        var error = $.parseJSON(response.responseText);
+
+        processAjaxError(error, '.errors', '.errors #error-ul');
+    }
+    if (response.status === 500){
+        alert_("Unknown error. Please try later");
+    }
+}
+
 function handleError(status)
 {
     if ( status === 404 ) {
@@ -89,6 +105,7 @@ function handleError(status)
     }
     else if ( status === 422 ) {
         alert_("Operation failed");
+
         return false;
     }
 
