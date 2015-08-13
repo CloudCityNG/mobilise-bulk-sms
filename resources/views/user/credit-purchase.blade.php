@@ -41,7 +41,7 @@
         <div class="uk-form-row">
 
             <div class="uk-form-controls">
-                <div><span class="units">0</span> ₦</div>
+                <div>₦<span class="units">0</span></div>
             </div>
         </div>
 

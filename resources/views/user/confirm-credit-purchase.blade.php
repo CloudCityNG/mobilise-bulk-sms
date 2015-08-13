@@ -17,7 +17,7 @@
 
                 <div class="uk-badge uk-badge-notification">₦{{$unit_price}}</div> whose total cost is
 
-                <div class="uk-badge uk-badge-notification">₦{{money_format($total_cost,2)}}</div>
+                <div class="uk-badge uk-badge-notification">₦{{number_format($total_cost,2)}}</div>
         </p>
         <br/>
         <br/>
