@@ -62,20 +62,15 @@ class SmsInfobip extends Sms {
         if ( empty($datetime) ){
             return $this;
         }
-        $pt = 'Y-m-d H:i:s';
-        $tz = 'Africa/Lagos';
-        //check if supplied date is less than now date
-        $dt = Carbon::createFromFormat($pt, $datetime, $tz);
-        $now = Carbon::now($tz);
-
-        if ( $now->diffInSeconds($dt) > 10 ) {
-            $datetime1 = date_create($datetime);
-            $datetime2 = date_create( date($pt, time()) );
-            $interval = date_diff($datetime1, $datetime2);
+        $now = (new \DateTime());
+        $schedule = (new \DateTime($datetime));
+        if ( $schedule->getTimestamp() <= $now->getTimestamp() )
+            return $this;
+        if ( $schedule->getTimestamp() > $now->getTimestamp() ){
+            $interval = $now->diff($schedule);
             $this->schedule = $interval->format('%a'.'d'.'%h'.'h'.'%i'.'m');
             return $this;
         }
-
         return $this;
     }
 

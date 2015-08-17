@@ -11,7 +11,7 @@ class ScheduleValidator extends Validator {
         $now = (new \DateTime())->getTimestamp();
         $schedule = (new \DateTime($value))->getTimestamp();
 
-        if ( $schedule < $now )
+        if ( $schedule <= $now )
             return false;
         if ( $schedule > $now )
             return true;

@@ -105,7 +105,7 @@ $(function(){
 $("#schedule").kendoDateTimePicker({
     value: new Date(),
     min: new Date(),
-    format: "yyyy-MM-dd hh:mm tt"
+    format: "yyyy-MM-dd HH:mm"
 });
 
     var $scheduleDiv = $('#schedule-div');
