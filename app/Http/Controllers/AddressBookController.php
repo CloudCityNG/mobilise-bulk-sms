@@ -31,9 +31,9 @@ class AddressBookController extends Controller {
 	}
 
 
-    public function start()
+    public function start(ContactRepository $repository)
     {
-        $all = Auth::user()->contacts()->get();
+        $all = $repository->getAllContactsNotInGroup();
         return view('addressbook.start', ['data'=>$all]);
     }
 
@@ -67,12 +67,11 @@ class AddressBookController extends Controller {
     }
 
 
-    public function addContact($id, NewContactRequest $request, GroupRepository $repository)
+    public function _newContact($group_id, NewContactRequest $request, GroupRepository $repository)
     {
         if ($request->ajax()) {
             $r = $request->only('gsm','email','firstname','lastname','birthdate','custom');
-            $repository->createUserAndAddToGroup($id, $r);
-
+            $repository->createUserAndAddToGroup($group_id, $r);
             $out = view('ajax.groups', ['data'=>$repository->getUserGroupsWithContacts()])->render();
             return response()->json(['success'=>true, 'html'=> $out]);
         }
@@ -133,7 +132,7 @@ class AddressBookController extends Controller {
             $out = $repository->get($id);
             if ( $out->count() )
             {
-                return response()->json(['success'=>true, 'values' => $out->get()]);
+                return response()->json(['success'=>true, 'values' => $out]);
             }
             return response()->json(['error'=>true], 422);
         }

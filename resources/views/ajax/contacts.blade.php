@@ -7,6 +7,7 @@
             <th>Mobile number</th>
             <th>&nbsp;</th>
         </tr>
+
         @foreach($data as $contact)
         <tr id="{{$contact->id}}" class="row">
             <td id="firstname">{{$contact->firstname}}</td>
@@ -17,14 +18,15 @@
                     <a href=""><i class="uk-icon-sort-down"></i> </a>
                     <div class="uk-dropdown">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="" class="" id="send" data-id-send="{{$contact->id}}">Send SMS</a></li>
-                            <li><a href="" class="edit-{{$contact->id}}" id="edit" data-id-edit="{{$contact->id}}">Edit</a></li>
-                            <li><a href="" class="delete-{{$contact->id}}" id="delete" data-id-delete="{{$contact->id}}">Delete</a></li>
+                            <li><a href="" class="" id="send" data-send-id="{{$contact->id}}" data-send-msisdn="{{$contact->gsm}}">Send SMS</a></li>
+                            <li><a href="" class="edit-{{$contact->id}}" id="edit" data-edit-id="{{$contact->id}}">Edit</a></li>
+                            <li><a href="" class="delete-{{$contact->id}}" id="delete" data-delete-id="{{$contact->id}}">Delete</a></li>
                         </ul>
                     </div>
                 </div>
             </td>
         </tr>
         @endforeach
+
     </tbody>
 </table>

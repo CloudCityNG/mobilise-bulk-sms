@@ -97,7 +97,7 @@ Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');
 Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');                //
 Route::get('address-book/group/{id}/del', 'AddressBookController@delGroup');                    //
 Route::get('address-book/group/{id}/view-contacts', 'AddressBookController@viewContacts');      //
-Route::get('address-book/group/{id}/add-contact', 'AddressBookController@addContact');          //
+Route::get('address-book/group/{group_id}/new-contact', 'AddressBookController@_newContact');          //
 
 
 
@@ -166,11 +166,18 @@ Route::post('test', function(\Illuminate\Http\Request $request){
 
 Route::get('test', function(\Illuminate\Http\Request $request){
 
-    dd( (new DateTime("now"))->format('Y-m-d H:i:s') );
+    echo strtotime( (new \DateTime('2015-07-22 02:30 PM'))->format('Y-m-d H:i:s') );
 
-    return strtotime('2015-08-11 10:50:00');
+    return;
 
-    return ProcessDate::dateDifference('2015-08-11 10:50:00', '2015-08-11 10:30:00');
+    dd(\App\Repository\ContactRepository::get(56));
+
+    return;
+
+    $c = Auth::user()->contacts()->find(56);
+    $c->groups()->attach(5);
+
+
 
 
 

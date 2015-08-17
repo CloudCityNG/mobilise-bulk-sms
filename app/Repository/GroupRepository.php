@@ -2,6 +2,7 @@
 namespace App\Repository;
 
 
+use App\Models\Contact;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -22,13 +23,11 @@ class GroupRepository
     }
 
 
-    public function createUserAndAddToGroup($id, Array $inputs = null)
+    public static function createUserAndAddToGroup($group_id, Array $inputs = null)
     {
-        if (Auth::user()->groups()->where('id', $id)->count()) {
-            $r = Contact::store($inputs);
-            Group::find($id)->contacts()->save($r);
-        }
-    }
+        $c = Auth::user()->contacts()->save( new Contact($inputs) );
+        $c->groups()->attach($group_id);
+}
 
     /**
      * Get logged-in user groups with contacts

@@ -3,6 +3,8 @@
 @section('head')
 @parent
 <link rel="stylesheet" href="/assets/uikit/css/components/datepicker.min.css">
+<link rel="stylesheet" href="/assets/kendoui/styles/kendo.common.min.css">
+<link rel="stylesheet" href="/assets/kendoui/styles/kendo.default.min.css">
 @stop
 
 @section('content')
@@ -52,15 +54,18 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     </div>
 
     <hr class="uk-grid-divider">
-    <a href="#" class="uk-button uk-button-mini" data-uk-toggle="{target:'#schedule-control'}">Schedule</a>
 
-    <div class="uk-form-row uk-hidden" id="schedule-control">
-        {!! Form::label('schedule_date', 'Schedule', ['class'=>'uk-form-label']) !!}
+    <div class="uk-form-row" id="schedule-control">
+
         <div class="uk-form-controls">
-            <?php $now = date('Y-m-d', time()); ?>
-            {!! Form::text('schedule_date', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}
-            {!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small', 'id'=>'schedule_time']) !!}
-            <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
+            {!! Form::checkbox('schedule_control', 1, false, ['id'=>'schedule_control']) !!} Schedule to send later
+            <div class="uk-margin-top" id="schedule-div" style="display:none;">
+                {!! Form::text('schedule', Input::old('schedule'), ['placeholder'=>'YYYY-MM-DD HH:MM AM/PM','id'=>'schedule',]) !!}
+
+                {{--{!! Form::text('schedule_date', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}--}}
+                {{--{!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small', 'id'=>'schedule_time']) !!}--}}
+                <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
+            </div>
         </div>
     </div>
 
@@ -90,13 +95,44 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 
 @section('foot')
 @parent
+<script src="/assets/kendoui/js/kendo.all.min.js"></script>
 <script src="/assets/uikit/js/components/tooltip.min.js"></script>
-<script src="/assets/uikit/js/components/datepicker.min.js"></script>
-<script src="/assets/uikit/js/components/autocomplete.min.js"></script>
-<script src="/assets/uikit/js/components/timepicker.min.js"></script>
+<script src="/assets/uikit/js/components/notify.min.js"></script>
 <script src="/assets/js/jquery.simplyCountable.js"></script>
 <script>
 $(function(){
+
+$("#schedule").kendoDateTimePicker({
+    value: new Date(),
+    min: new Date(),
+    format: "yyyy-MM-dd hh:mm tt"
+});
+
+    var $scheduleDiv = $('#schedule-div');
+    var $scheduleInput = $('input#schedule');
+
+    if( $('#schedule_control').prop("checked") ) {
+        $scheduleDiv.fadeIn("slow").show();
+        $scheduleInput.prop('disabled', false);
+    } else {
+        $scheduleDiv.fadeOut("slow").hide();
+        $scheduleInput.prop('disabled', true);
+    }
+
+$('#schedule_control').on('change', function(){
+
+    var $this = $(this);
+    var $scheduleDiv = $('#schedule-div');
+    var $scheduleInput = $('input#schedule');
+
+    if( $this.prop("checked") ) {
+        $scheduleDiv.fadeIn("slow").show();
+        $scheduleInput.prop('disabled', false);
+    } else {
+        $scheduleDiv.fadeOut("slow").hide();
+        $scheduleInput.prop('disabled', true);
+    }
+});
 
 $('#message').simplyCountable({
     counter: '#characterCount',
@@ -106,66 +142,52 @@ $('#message').simplyCountable({
     strictMax: true
 });
 
+
+
+
 $('#recipients').on('keyup', function(event){
 
     if ( true )
     {
         $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
-
         $val = $(this).val().trim();
-
         //split textarea input with comma
         $arrayNumbers = $val.split(',');
-
         if ( $arrayNumbers.length > 50 ) {
             $(this).val ( recipientsCopy );
             return;
         }
-
         //internal length
         $length = 0;
-
         $.each($arrayNumbers, function(index, value){
-
             if ( value ){
                 $length++;
             }
-
         });
-
         recipientsCopy = $(this).val();
         $globalLength = $length;
         $('#noOfRecipients').html($length + '/50');
     }
 });
 
+    var form = $('form#quick-sms')
 
-var form = $('form#quick-sms')
+    $('button#draft').click(function(){
+        form.prop('action', '/messaging/draft-sms');
+        if ( $('#flash').is(":checked") === false ){
+            form.append('<input name="flash" type="hidden" value="0"/>');
+        }
+        form.submit();
+    });
 
-$('button#draft').click(function(){
-
-    form.prop('action', '/messaging/draft-sms');
-
-    if ( $('#flash').is(":checked") === false ){
-        form.append('<input name="flash" type="hidden" value="0"/>');
-    }
-
-    form.submit();
-});
-
-$('button#submit_').click(function(){
-
-    form.prop('action', '/messaging/quick-sms');
-
-    if ( $('#flash').is(":checked") === false ){
-
-        form.append('<input name="flash" type="hidden" value="0"/>');
-    }
-
-    form.submit();
-});
-
-
+    $('button#submit_').click(function(){
+        form.prop('action', '/messaging/quick-sms');
+        //if flash is not check, append an empty value before submit
+        if ( $('#flash').is(":checked") === false ){
+            form.append('<input name="flash" type="hidden" value="0"/>');
+        }
+        form.submit();
+    });
 
 });
 </script>

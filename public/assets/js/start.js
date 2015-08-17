@@ -48,9 +48,9 @@ registerCloseModal('#newGroupCancel', newGroup);
 
         e.preventDefault();
         var modalDiv = $('#send-sms-modal');
-        var modalMsisdn = $('#send-sms-modal #msisdn');
+        var modalMsisdn = $('#send-sms-modal #recipients');
         //search fro mobile number
-        var $mobile = $(this).parent().parent().parent().parent().parent().prev().html();
+        var $mobile = $(this).attr('data-send-msisdn');
 
         //set it on form
         modalMsisdn.val($mobile);
@@ -60,26 +60,27 @@ registerCloseModal('#newGroupCancel', newGroup);
         } else {
             smsModal.show();
         }
-    })
+    });
 
     $('#table-container').on('click', 'a#edit', function(e){
         e.preventDefault();
         var $this = $(this)
-        var $id = $this.attr('data-id-edit');
+        var $id = $this.attr('data-edit-id');
         //fetch values over ajax
-        var jqXHR = $.get('address-book/contact/'+ $id + '/get');
+        var jqXHR = $.get('/address-book/contact/'+ $id + '/get');
 
         //get form values
         jqXHR.done( function(data){
 
             var values = data.values;
             //firstname
-            $('#firstname').val()
-            //lastname
-            //email
-            //gsm
-            //birthdate
-            console.log(values[0].gsm);
+            $('#firstname').val(values.firstname);
+            $('#lastname').val(values.lastname);
+            $('#email').val(values.email);
+            $('#gsm').val(values.gsm);
+
+            //open modal
+            editModal.show();
         });
 
         jqXHR.fail( function(data){
@@ -93,17 +94,20 @@ registerCloseModal('#newGroupCancel', newGroup);
         var $this = $(this);
         var $id = $this.attr('data-id-delete');
 
-        var jqXHR = $.get('address-book/contact/'+ $id +'/del');
+        UIkit.modal.confirm("Are you sure you want to delete?", function() {
 
-        jqXHR.done( function(){
-            $this.closest('tr').slideUp("slow", function(){
-                $(this).remove();
+            var jqXHR = $.get('address-book/contact/' + $id + '/del');
+
+            jqXHR.done(function () {
+                $this.closest('tr').slideUp("slow", function () {
+                    $(this).remove();
+                });
             });
-        } );
 
-        jqXHR.fail( function(data){
-            handleError(data.status);
-        } );
+            jqXHR.fail(function (data) {
+                handleError(data.status);
+            });
+        });
 
     });
 

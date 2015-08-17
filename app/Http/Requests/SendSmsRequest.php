@@ -22,12 +22,12 @@ class SendSmsRequest extends Request {
 	 */
 	public function rules()
 	{
+        $now = date('Y-m-d H:i A', time());
 		return [
-			'sender'        => 'required|max:16',
+			'sender'        => 'required|max:14',
             'recipients'    => 'required',
-            'message'       => 'required',
-            'schedule_date' => 'date|date_format:Y-m-d',
-            'schedule_time' => 'required_with:schedule_date',
+            'message'       => 'required|min:1',
+            'schedule'      => "schedule",
             'flash'         => 'between:0,1',
 		];
 	}
@@ -35,9 +35,10 @@ class SendSmsRequest extends Request {
     public function messages()
     {
         return [
-            'sender.required' => 'The Sender Id field cannot be empty',
-            'recipients.required' => 'The Recipient field is required',
-            'message.required' => 'The Message cannot be empty',
+            'sender.required'       => 'The Sender Id field cannot be empty',
+            'recipients.required'   => 'The Recipient field is required',
+            'message.required'      => 'The Message cannot be empty',
+            'schedule.schedule'     => 'The Schedule date is not valid'
         ];
     }
 }

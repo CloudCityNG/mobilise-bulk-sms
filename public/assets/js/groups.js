@@ -13,6 +13,38 @@ $(function() {
     registerCloseModal('#showGroupContactsOkButton', showGroupContacts);
     registerCloseModal('#newContactCancel', addContact);
 
+    $('body').on('click', '#newContactSave', function(e){
+        e.preventDefault();
+        var $this = $(this);
+        var $group_id = $('#new-contact-modal').attr('data-id')
+
+        var jqXHR = $.get('/address-book/group/'+ $group_id +'/new-contact', $('form.newContactForm').serialize())
+
+        jqXHR.done(function(data){
+            alert_("Contact Added.");
+            $('#table-container').html(data.html);
+            modalCloser(addContact);
+            resetForm('form.newContactForm');
+            emptyErrorContainer('.errors');
+        });
+        jqXHR.fail(function(data){
+
+            if (data.status === 401 ){//user not authenticated.
+                $(location).prop('pathname', 'user/login');
+            }
+            if (data.status === 422){
+
+                var error = $.parseJSON(data.responseText);
+
+                processAjaxError(error, '.errors', '.errors #error-ul');
+                //emptyErrorContainer('.errors');
+            }
+            if (data.status === 500){
+                alert_("Unknown error. Please try later");
+            }
+        });
+    })
+
     $('body').on('click', 'a#add', function(e){
         e.preventDefault();
         var $this = $(this);

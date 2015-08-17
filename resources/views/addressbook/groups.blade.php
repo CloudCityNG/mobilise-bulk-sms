@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Request
     </div>
 
 
-    <div class="table-container">
+    <div id="table-container">
 
         @include('ajax.groups')
 
