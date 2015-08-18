@@ -35,6 +35,7 @@ class MessagingController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('smscreditcheck', ['only' => ['postQuickSms', 'postQuickModalSms']]);
+        $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
     }
 
 
@@ -91,7 +92,7 @@ class MessagingController extends Controller
      */
     public function bulkSms(GroupRepository $groupRepository, ContactRepository $contactRepository)
     {
-        return view('messaging.bulk-sms', ['groups' => $groupRepository->getAllGroups(), 'contacts' => $contactRepository->getAllUserContacts()]);
+        return view('messaging.bulk-sms', ['groups' => $groupRepository->getAllGroups(), 'contacts' => $contactRepository->getAllContactsNotInGroup()]);
     }
 
 

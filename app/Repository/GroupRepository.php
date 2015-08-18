@@ -25,9 +25,9 @@ class GroupRepository
 
     public static function createUserAndAddToGroup($group_id, Array $inputs = null)
     {
-        $c = Auth::user()->contacts()->save( new Contact($inputs) );
+        $c = Auth::user()->contacts()->save(new Contact($inputs));
         $c->groups()->attach($group_id);
-}
+    }
 
     /**
      * Get logged-in user groups with contacts
@@ -40,15 +40,22 @@ class GroupRepository
 
 
     /**
-     * Get the logged in user group_$id contacts.
+     * Get the logged in user group_id contacts.
      * @param $id
      */
     public static function userGroupContacts($id)
     {
+        return Auth::user()->groups()->find($id)->contacts()->get();
         if (Auth::user()->groups()->where('id', $id)->count()) {
             return Group::find($id)->contacts()->get();
         }
         return false;
+    }
+
+
+    public static function userGroupContactsMany(Array $ids)
+    {
+        return Auth::user()->groups()->find($ids)->contacts()->get();
     }
 
 

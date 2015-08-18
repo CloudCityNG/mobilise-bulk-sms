@@ -2,7 +2,6 @@
 
 @section('head')
 @parent
-<link rel="stylesheet" href="/assets/uikit/css/components/datepicker.min.css">
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.common.min.css">
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.default.min.css">
 @stop
@@ -26,7 +25,7 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row uk-margin">
         {!! Form::label('sender', 'Sender ID', ['class'=>'uk-form-label']) !!}
         <div class="uk-form-controls">
-            {!! Form::text('sender', Input::old('senderid'), ['placeholder'=>'Sender ID','required']) !!}
+            {!! Form::text('sender', Input::old('sender'), ['placeholder'=>'Sender ID','required']) !!}
             <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$senderid_tooltip}}"></a>
         </div>
     </div>
@@ -58,12 +57,9 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row" id="schedule-control">
 
         <div class="uk-form-controls">
-            {!! Form::checkbox('schedule_control', 1, false, ['id'=>'schedule_control']) !!} Schedule to send later
+            <label for="schedule_control">{!! Form::checkbox('schedule_control', 1, false, ['id'=>'schedule_control']) !!} Schedule to send later</label>
             <div class="uk-margin-top" id="schedule-div" style="display:none;">
                 {!! Form::text('schedule', Input::old('schedule'), ['placeholder'=>'YYYY-MM-DD HH:MM AM/PM','id'=>'schedule',]) !!}
-
-                {{--{!! Form::text('schedule_date', Input::old('schedule_date'), ['placeholder'=>'Date','data-uk-datepicker'=>"{format:'YYYY-MM-DD',minDate:'$now'}",'class'=>'uk-form-width-small']) !!}--}}
-                {{--{!! Form::text('schedule_time', Input::old('schedule_time'), ['placeholder'=>'Time','data-uk-timepicker'=>"{format:'12h'}",'class'=>'uk-form-width-small', 'id'=>'schedule_time']) !!}--}}
                 <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
             </div>
         </div>
@@ -102,35 +98,31 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 <script>
 $(function(){
 
+
+if ( $('#schedule_control').prop("checked") === true ) {
+    showElement('#schedule-div');
+} else if ( $('#schedule_control').prop("checked") === false ) {
+    hideElement('#schedule-div');
+}
+
+
 $("#schedule").kendoDateTimePicker({
     value: new Date(),
     min: new Date(),
     format: "yyyy-MM-dd HH:mm"
 });
 
-    var $scheduleDiv = $('#schedule-div');
-    var $scheduleInput = $('input#schedule');
-
-    if( $('#schedule_control').prop("checked") ) {
-        $scheduleDiv.fadeIn("slow").show();
-        $scheduleInput.prop('disabled', false);
-    } else {
-        $scheduleDiv.fadeOut("slow").hide();
-        $scheduleInput.prop('disabled', true);
-    }
 
 $('#schedule_control').on('change', function(){
 
     var $this = $(this);
-    var $scheduleDiv = $('#schedule-div');
-    var $scheduleInput = $('input#schedule');
 
     if( $this.prop("checked") ) {
-        $scheduleDiv.fadeIn("slow").show();
-        $scheduleInput.prop('disabled', false);
+        showElement('#schedule-div');
+        enableInput('#schedule');
     } else {
-        $scheduleDiv.fadeOut("slow").hide();
-        $scheduleInput.prop('disabled', true);
+        hideElement('#schedule-div');
+        disableInput('#schedule');
     }
 });
 

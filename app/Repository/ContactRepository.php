@@ -24,7 +24,12 @@ class ContactRepository {
     public static function get($id)
     {
         return Auth::user()->contacts()->find($id);
-        return Auth::user()->contacts()->where('id',$id);
+    }
+
+
+    public static function getMany($ids = [])
+    {
+        return Auth::user()->contacts()->find($ids);
     }
 
 

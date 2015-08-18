@@ -13,6 +13,7 @@
 
 use App\Commands\NewContactCommand;
 use App\Lib\Services\Date\ProcessDate;
+use App\Models\Group;
 use App\Models\Sms\SmsHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -166,12 +167,12 @@ Route::post('test', function(\Illuminate\Http\Request $request){
 
 Route::get('test', function(\Illuminate\Http\Request $request){
 
-    echo strtotime( (new \DateTime('2015-07-22 02:30 PM'))->format('Y-m-d H:i:s') );
-
-    return;
-
-    dd(\App\Repository\ContactRepository::get(56));
-
+    $result = Auth::user()->groups()->find([3,4])->contacts()->get();
+    foreach ($result as $res):
+        echo $res->gsm;
+    endforeach;
+    //$result = Group::find(3)->contacts()->get();
+    dd($result);
     return;
 
     $c = Auth::user()->contacts()->find(56);
