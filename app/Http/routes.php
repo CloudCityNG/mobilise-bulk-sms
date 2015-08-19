@@ -60,7 +60,7 @@ Route::group(
         Route::post('quick-sms', 'MessagingController@postQuickSms');
         Route::post('quick-sms/draftSend', 'MessagingController@postQuickModalSms');
 
-        Route::get('bulk-sms', 'MessagingController@bulkSms');
+        Route::get('bulk-sms', ['as'=>'bulk_sms', 'uses'=>'MessagingController@bulkSms']);
         Route::post('bulk-sms/fileupload', 'MessagingController@postFileUpload');
         Route::post('bulk-sms', 'MessagingController@postBulkSms');
 

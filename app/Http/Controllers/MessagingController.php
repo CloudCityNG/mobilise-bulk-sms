@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Commands\BulkSmsCommand;
 use App\Commands\QuickSms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,7 @@ class MessagingController extends Controller
      */
     public function postQuickSms(SendSmsRequest $request, ProcessDate $processDate)
     {
-        $this->dispatchFrom('App\Commands\QuickSms', $request, ['user' => Auth::user()]);
+        $this->dispatchFrom(QuickSms::class, $request, ['user' => Auth::user()]);
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');
     }
@@ -94,8 +95,10 @@ class MessagingController extends Controller
 
     public function postBulkSms(BulkSmsRequest $request)
     {
-        dd($request->all());
-
+        //dd($request->all());
+        $this->dispatchFrom(BulkSmsCommand::class, $request, ['user' => Auth::user()]);
+        flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
+        return redirect()->route('bulk_sms');
     }
 
 

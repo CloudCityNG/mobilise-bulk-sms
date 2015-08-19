@@ -61,9 +61,6 @@ class BulkSmsCommand extends Command implements SelfHandling, ShouldBeQueued {
         $this->message = $message;
         $this->schedule = $schedule_new;
         $this->flash = $flash_new;
-
-        if ( !$this->flash )
-            $this->flash = 0;
     }
 
     /**
