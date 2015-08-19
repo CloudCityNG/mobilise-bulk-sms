@@ -22,9 +22,9 @@ class BulkSmsRequest extends Request {
 	public function rules()
 	{
 		return [
-			'contacts'      => 'numeric',
-			'groups'        => 'numeric',
-            'recipients'    => 'required_without:groups,contacts',
+			'contacts'      => '',
+			'groups'        => '',
+            'recipients'    => 'required_without_all:groups,contacts',
             'sender'        => 'required',
             'message'       => 'required',
             'schedule'      => 'date_format:"Y-m-d H:i"|schedule',

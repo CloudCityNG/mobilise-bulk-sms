@@ -44,20 +44,23 @@ class BulkSmsCommand extends Command implements SelfHandling, ShouldBeQueued {
      *
      * @param $user
      * @param $sender
-     * @param $recipients
+     * @param $recipients_new
      * @param $message
-     * @param $schedule
-     * @param $flash
+     * @param $schedule_new
+     * @param $flash_new
+     * @internal param $schedule
+     * @internal param $flash
+     * @internal param $recipients
      * @return \App\Commands\BulkSmsCommand
      */
-	public function __construct($user, $sender, $recipients, $message, $schedule, $flash)
+	public function __construct($user, $sender, $recipients_new, $message, $schedule_new, $flash_new)
 	{
         $this->user = $user;
         $this->sender = $sender;
-        $this->recipients = $recipients;
+        $this->recipients = $recipients_new;
         $this->message = $message;
-        $this->schedule = $schedule;
-        $this->flash = $flash;
+        $this->schedule = $schedule_new;
+        $this->flash = $flash_new;
 
         if ( !$this->flash )
             $this->flash = 0;

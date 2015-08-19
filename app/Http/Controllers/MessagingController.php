@@ -57,11 +57,7 @@ class MessagingController extends Controller
      */
     public function postQuickSms(SendSmsRequest $request, ProcessDate $processDate)
     {
-        $others = ['user' => Auth::user()];
-        if ( !$request->get('schedule') )
-            $others['schedule'] = null;
-
-        $this->dispatchFrom('App\Commands\QuickSms', $request, $others);
+        $this->dispatchFrom('App\Commands\QuickSms', $request, ['user' => Auth::user()]);
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');
     }
@@ -77,8 +73,8 @@ class MessagingController extends Controller
     {
         //dd($request->all());
         if ($request->ajax()) {
-            $datetime = $processDate->processDateTime($request->get('schedule_date'), $request->get('schedule_time'));
-            $this->dispatchFrom('App\Commands\QuickSms', $request, ['schedule' => $datetime, 'user' => Auth::user(), 'flash' => 0]);
+
+            $this->dispatchFrom('App\Commands\QuickSms', $request, ['user' => Auth::user(), 'flash' => 0]);
             return response()->json(['success' => true]);
         }
     }
@@ -99,8 +95,7 @@ class MessagingController extends Controller
     public function postBulkSms(BulkSmsRequest $request)
     {
         dd($request->all());
-        //get contacts gsm in group
-        //get contacts gsm
+
     }
 
 

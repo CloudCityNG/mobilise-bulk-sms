@@ -146,19 +146,25 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 
 $(function(){
 
-
-if ( $('#schedule_control').prop("checked") === true ) {
-    showElement('#schedule-div');
-} else if ( $('#schedule_control').prop("checked") === false ) {
-    hideElement('#schedule-div');
-}
-
-
 $("#schedule").kendoDateTimePicker({
     value: new Date(),
     min: new Date(),
     format: "yyyy-MM-dd HH:mm"
 });
+
+var datetimepicker = $("#schedule").data("kendoDateTimePicker");
+
+
+if ( $('#schedule_control').prop("checked") === true ) {
+    showElement('#schedule-div');
+    datetimepicker.enable(true);
+} else if ( $('#schedule_control').prop("checked") === false ) {
+    hideElement('#schedule-div');
+    datetimepicker.enable(false);
+}
+
+
+
 
 
 $('#schedule_control').on('change', function(){
@@ -167,10 +173,10 @@ $('#schedule_control').on('change', function(){
 
     if( $this.prop("checked") ) {
         showElement('#schedule-div');
-        enableInput('#schedule');
+        datetimepicker.enable(true);
     } else {
         hideElement('#schedule-div');
-        disableInput('#schedule');
+        datetimepicker.enable(false);
     }
 });
 

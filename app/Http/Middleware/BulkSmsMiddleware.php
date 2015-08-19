@@ -72,7 +72,7 @@ class BulkSmsMiddleware
         $recipients = $recipients . $request->get('recipients');
         //dd($recipients);
         $total_units = SmsCreditRepository::getSmsBill($recipients, $message);
-        dd($total_units);
+        //dd($total_units);
 
         if ($user_credit < $total_units) {
             if ($request->ajax()) {
@@ -82,6 +82,20 @@ class BulkSmsMiddleware
             return redirect()->back()->withInput();
         }
 
+        //create a new form request to hold all the recipients
+        $request->merge(['recipients_new' => $recipients]);
+
+        //create an empty 'flash' form request if none exists
+        if ( empty( $request->get('flash') ) )
+            $request->merge(['flash_new' => 0]);
+        else
+            $request->merge(['flash_new' => $request->get('flash')]);
+
+        //create an empty 'schedule' form request if none exists
+        if ( empty( $request->get('schedule') ) )
+            $request->merge(['schedule'=>null]);
+        else
+            $request->merge(['schedule_new' => $request->get('schedule')]);
 
         return $next($request);
     }
