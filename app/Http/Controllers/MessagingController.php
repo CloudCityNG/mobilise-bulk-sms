@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use App\Commands\BulkSmsCommand;
 use App\Commands\QuickSms;
@@ -11,16 +12,10 @@ use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
 use App\Lib\Filesystem\CsvReader;
 use App\Lib\Services\Date\ProcessDate;
-use App\Lib\Sms\SmsInfobip;
 use App\Repository\ContactRepository;
 use App\Repository\GroupRepository;
-use App\Repository\SmsCreditRepository;
 use App\Repository\SmsHistoryRepository;
-use App\Models\Sms\SmsHistory;
-use App\Models\Sms\SmsHistoryRecipient;
 use App\Repository\SmsDraftRepository;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,9 +99,6 @@ class MessagingController extends Controller
 
     public function postFileUpload(BulkSmsFileUploadRequest $request, CsvReader $reader)
     {
-        //dd($request->file('files'));
-        //validate the file
-        //$path = storage_path('uploads/bulk-sms');
         $files = $request->file('files');
         foreach ($files as $file):
             if ($file->isValid())
@@ -119,13 +111,35 @@ class MessagingController extends Controller
 
     public function file2sms()
     {
-
+        return view('messaging.file-to-sms');
     }
 
 
     public function postFile2sms()
     {
 
+    }
+
+
+    public function postFileUpload2(BulkSmsFileUploadRequest $request, CsvReader $reader)
+    {
+        //validate the file
+        $files = $request->file('files');
+        foreach ( $files as $file ):
+            if ( $file->isValid() ):
+                $out = $reader->csv_to_array($file);
+
+//                foreach ( $out as $line ):
+//                    if ( $line['sender'] );
+//                endforeach;
+                unset($out[0]);
+
+                return response()->json(['success'=>true, 'out'=>$out]);
+            endif;
+        endforeach;
+        //upload the file
+        //read the file
+        //send back contents of the file
     }
 
 
@@ -225,8 +239,7 @@ class MessagingController extends Controller
      */
     public function postDraftSms(DraftSmsRequest $draftSmsRequest, ProcessDate $processDate)
     {
-        $datetime = $processDate->processDateTime($draftSmsRequest->get('schedule_date'), $draftSmsRequest->get('schedule_time'));
-        $this->dispatchFrom('App\Commands\NewDraftSmsCommand', $draftSmsRequest, ['schedule' => $datetime]);
+        $this->dispatchFrom('App\Commands\NewDraftSmsCommand', $draftSmsRequest);
         flash()->success("Message saved as draft successfully");
         return redirect()->route('quick_sms');
     }

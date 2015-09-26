@@ -12,7 +12,33 @@ registerCloseModal('#editContactCancel', editModal);
 registerCloseModal('#newContactCancel', newModal);
 registerCloseModal('#newGroupCancel', newGroup);
 
-//method to save new contact
+    var newContactModalErrorContainer = '#new-contact-modal .errors';
+    var editContactModalErrorContainer = '#edit-contact-modal .errors';
+    var sendSmsModalErrorContainer = '#send-sms-modal .errors';
+    var newGroupModalErrorContainer = '#new-group-modal .errors';
+
+    //method to save edited contact
+    $('body').on('click', '#editContactSave', function(e){
+        e.preventDefault();
+        var $id = $('#edit-contact-modal').attr('data-id');
+
+        var jqXHR = $.get("address-book/contact/" + $id + "/edit", $('form.modal-edit-contact').serialize());
+
+        jqXHR.done(function(data){
+            alert_("Contact Edited");
+            $('#table-container').html(data.html);
+            modalCloser(editModal);
+            resetForm('form.modal-edit-contact');
+            hideChildError(editContactModalErrorContainer);
+        });
+
+        jqXHR.fail(function(response){
+            hideChildError(editContactModalErrorContainer);
+            processFormError(response, editContactModalErrorContainer);
+        });
+    });
+
+    //method to save new contact
     $('body').on('click', '#newContactSave', function(e){
         e.preventDefault();
 
@@ -23,29 +49,16 @@ registerCloseModal('#newGroupCancel', newGroup);
             $('#table-container').html(data.html);
             modalCloser(newModal);
             resetForm('form.newContactForm');
-            emptyErrorContainer('.errors');
-
+            hideChildError(newContactModalErrorContainer);
         });
-        jqXHR.fail(function(data){
+        jqXHR.fail(function(response){
 
-            if (data.status === 401 ){//user not authenticated.
-                $(location).prop('pathname', 'user/login');
-            }
-            if (data.status === 422){
-
-                var error = $.parseJSON(data.responseText);
-
-                processAjaxError(error, '.errors', '.errors #error-ul');
-                //emptyErrorContainer('.errors');
-        }
-            if (data.status === 500){
-                alert_("Unknown error. Please try later");
-            }
+            processFormError(response, newContactModalErrorContainer);
         });
     })
 
+    //method to send sms modal with msisdn
     $('#table-container').on('click', 'a#send', function(e){
-
         e.preventDefault();
         var modalDiv = $('#send-sms-modal');
         var modalMsisdn = $('#send-sms-modal #recipients');
@@ -62,15 +75,20 @@ registerCloseModal('#newGroupCancel', newGroup);
         }
     });
 
+    //method to bring out edit modal with data
     $('#table-container').on('click', 'a#edit', function(e){
         e.preventDefault();
-        var $this = $(this)
+
+        var $this = $(this);
         var $id = $this.attr('data-edit-id');
+        $('#edit-contact-modal').attr('data-id', $id);
         //fetch values over ajax
         var jqXHR = $.get('/address-book/contact/'+ $id + '/get');
 
         //get form values
         jqXHR.done( function(data){
+            //hide existing form errors
+            hideChildError(editContactModalErrorContainer);
 
             var values = data.values;
             //firstname
@@ -88,11 +106,11 @@ registerCloseModal('#newGroupCancel', newGroup);
         });
     });
 
-
+//method to delete
     $('#table-container').on('click', 'a#delete', function(e){
         e.preventDefault();
         var $this = $(this);
-        var $id = $this.attr('data-id-delete');
+        var $id = $this.attr('data-delete-id');
 
         UIkit.modal.confirm("Are you sure you want to delete?", function() {
 

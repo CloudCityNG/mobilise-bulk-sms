@@ -1,6 +1,8 @@
 <div id="send-sms-modal" class="uk-modal">
     <div class="uk-modal-dialog">
         <div class="uk-modal-header">Send SMS</div>
+
+        <div class="uk-overflow-container">
             {!! Form::open(['url'=>'', 'class'=>'uk-form uk-form-horizontal modal-send-sms']) !!}
             <div class="errors" style="display:none;">
                 <div class="uk-alert uk-alert-danger" data-uk-alert>
@@ -34,6 +36,7 @@
                     <p><span id="characterCount"></span> Characters. 160characters = 1page</p>
                 </div>
             </div>
+        </div>
             {!! Form::close() !!}
         <div class="uk-modal-footer uk-text-right">
             <button type="button" class="uk-button uk-button-small" id="sendSmsModalCancel">Cancel</button>

@@ -1,7 +1,9 @@
-<div id="new-contact-modal" class="uk-modal" data-id="">
+<div id="new-contact-modal" class="uk-modal">
     <div class="uk-modal-dialog">
 
         <div class="uk-modal-header">New Contact</div>
+
+        <div class="uk-overflow-container">
             {!! Form::open(['url'=>'', 'class'=>'uk-form uk-form-horizontal newContactForm']) !!}
             <div class="errors" style="display:none;">
                 <div class="uk-alert uk-alert-danger" data-uk-alert>
@@ -45,7 +47,7 @@
                     {!! Form::textarea('custom', Input::old('custom'), ['placeholder'=>'Custom','rows'=>4,'cols'=>20]) !!}
                 </div>
             </div>
-
+        </div>
             {!! Form::close() !!}
         <div class="uk-modal-footer uk-text-right">
             <button type="button" class="uk-button uk-button-small" id="newContactCancel">Cancel</button>

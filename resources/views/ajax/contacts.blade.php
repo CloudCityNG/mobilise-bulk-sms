@@ -15,11 +15,12 @@
             <td id="gsm">{{$contact->gsm}}</td>
             <td class="uk-clearfix contacts-dropdown" style="position: relative">
                 <div data-uk-dropdown="{mode:'click'}">
-                    <a href=""><i class="uk-icon-sort-down"></i> </a>
+                    <a href="" class="uk-button"><i class="uk-icon-sort-down"></i> </a>
                     <div class="uk-dropdown">
                         <ul class="uk-nav uk-nav-dropdown">
                             <li><a href="" class="" id="send" data-send-id="{{$contact->id}}" data-send-msisdn="{{$contact->gsm}}">Send SMS</a></li>
                             <li><a href="" class="edit-{{$contact->id}}" id="edit" data-edit-id="{{$contact->id}}">Edit</a></li>
+                            <li><a href="" id="add" data-add-id="{{$contact->id}}">Add to group</a></li>
                             <li><a href="" class="delete-{{$contact->id}}" id="delete" data-delete-id="{{$contact->id}}">Delete</a></li>
                         </ul>
                     </div>

@@ -93,7 +93,7 @@ class BulkSmsMiddleware
 
         //create an empty 'schedule' form request if none exists
         if ( empty( $request->get('schedule') ) )
-            $request->merge(['schedule'=>null]);
+            $request->merge(['schedule_new'=>null]);
         else
             $request->merge(['schedule_new' => $request->get('schedule')]);
 

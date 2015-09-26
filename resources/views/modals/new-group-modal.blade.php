@@ -2,6 +2,8 @@
     <div class="uk-modal-dialog">
 
         <div class="uk-modal-header">New Contact</div>
+
+        <div class="uk-overflow-container">
             {!! Form::open(['url'=>'', 'class'=>'uk-form uk-form-horizontal newGroupForm']) !!}
             <div class="errors" style="display:none;">
                 <div class="uk-alert uk-alert-danger" data-uk-alert>
@@ -21,7 +23,7 @@
                     {!! Form::text('group_description', Input::old('group_description'), ['placeholder'=>'Group Description']) !!}
                 </div>
             </div>
-
+        </div>
             {!! Form::close() !!}
         <div class="uk-modal-footer uk-text-right">
             <button type="button" class="uk-button uk-button-small" id="newGroupCancel">Cancel</button>

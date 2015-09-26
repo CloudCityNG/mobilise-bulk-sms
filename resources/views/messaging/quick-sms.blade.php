@@ -13,6 +13,9 @@ $recipients_tooltip = 'Not more than 50 recipients separated with commas';
 $message_tooltip = '';
 $schedule_tooltip = 'Choose a later date and time for successful delivery of your message';
 ?>
+
+
+
 <div class="uk-panel {{Request::segment(2)}}">
 
     <div class="uk-panel-badge uk-badge"></div>
@@ -98,19 +101,20 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
 <script>
 $(function(){
 
-
-if ( $('#schedule_control').prop("checked") === true ) {
-    showElement('#schedule-div');
-} else if ( $('#schedule_control').prop("checked") === false ) {
-    hideElement('#schedule-div');
-}
-
-
 $("#schedule").kendoDateTimePicker({
     value: new Date(),
     min: new Date(),
     format: "yyyy-MM-dd HH:mm"
 });
+var datetimepicker = $("#schedule").data("kendoDateTimePicker");
+
+if ( $('#schedule_control').prop("checked") === true ) {
+    showElement('#schedule-div');
+    datetimepicker.enable(true);
+} else if ( $('#schedule_control').prop("checked") === false ) {
+    hideElement('#schedule-div');
+    datetimepicker.enable(false);
+}
 
 
 $('#schedule_control').on('change', function(){
@@ -119,10 +123,10 @@ $('#schedule_control').on('change', function(){
 
     if( $this.prop("checked") ) {
         showElement('#schedule-div');
-        enableInput('#schedule');
+        datetimepicker.enable(true);
     } else {
         hideElement('#schedule-div');
-        disableInput('#schedule');
+        datetimepicker.enable(false);
     }
 });
 
@@ -166,18 +170,11 @@ $('#recipients').on('keyup', function(event){
 
     $('button#draft').click(function(){
         form.prop('action', '/messaging/draft-sms');
-        if ( $('#flash').is(":checked") === false ){
-            form.append('<input name="flash" type="hidden" value="0"/>');
-        }
         form.submit();
     });
 
     $('button#submit_').click(function(){
         form.prop('action', '/messaging/quick-sms');
-        //if flash is not check, append an empty value before submit
-        if ( $('#flash').is(":checked") === false ){
-            form.append('<input name="flash" type="hidden" value="0"/>');
-        }
         form.submit();
     });
 

@@ -74,6 +74,8 @@ return [
 	"url"                  => "The :attribute format is invalid.",
 	"timezone"             => "The :attribute must be a valid zone.",
 
+    "schedule"              => "The :attribute is not valid",
+
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines
@@ -102,6 +104,8 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+        'schedule'      => 'Scheduled Date & Time'
+    ],
 
 ];

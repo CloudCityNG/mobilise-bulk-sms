@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['username', 'email', 'password'];
+	protected $fillable = ['username', 'email', 'password', 'social_auth', 'social_auth_type'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -31,16 +31,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
-
-
-    /**
-     * @param $password
-     */
-//    public function setPasswordAttribute($password)
-//    {
-//        $this->attributes['password'] = Hash::make($password);
-//    }
-
 
 
     /**

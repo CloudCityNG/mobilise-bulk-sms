@@ -12,6 +12,53 @@
         .uk-alert ul {
             padding-left:15px;
         }
+        .social-connect {
+            display: table;
+            text-decoration: none;
+            color: #666;
+            height: 24px;
+            line-height: 26px;
+            border-bottom: 1px solid #c8d4db;
+            margin-bottom: 10px;
+            position: relative;
+            width: 100%;
+            background-color: #E6EBED;
+            border-radius: 4px;
+        }
+        .social-connect .google-plus {
+            background-color: #DF4932;
+            display: table-cell;
+            left: 0;
+            top: 0;
+            width: 14px;
+            padding: 10px 20px 10px 21px;
+            color: #fff;
+            width: 50px;
+        }
+        .social-connect .facebook {
+            background-color: #4965A0;
+            display: table-cell;
+            left: 0;
+            top: 0;
+            width: 14px;
+            padding: 10px 20px 10px 21px;
+            color: #fff;
+            width: 50px;
+        }
+        .social-connect .social-button-text {
+            background-color: #E6EBED;
+            text-align: center;
+            color: #70838c;
+            width: 100%;
+            display: table-cell;
+            padding: 10px 10px;
+        }
+        a.social-connect:hover {
+            text-decoration: none;
+        }
+        a.social-connect:hover .social-button-text{
+            background: #EEF3F5;
+        }
         </style>
 
     </head>
@@ -19,9 +66,9 @@
     <body class="uk-height-1-1">
 
         <div class="uk-vertical-align uk-text-center uk-height-1-1">
-            <div class="uk-vertical-align-middle" style="width: 250px;">
+            <div class="uk-vertical-align-middle" style="width: 350px;">
 
-                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
+                <img class="uk-margin-bottom" width="140" height="120" src="{{url('http://lara.app/images/logos/quic-sms.png')}}" alt="">
                 @include('flash::message')
                 @include('layouts.frontend.partials.errors')
 
@@ -47,6 +94,16 @@
                             <a class="uk-float-left uk-link uk-link-muted" href="{{url('user/register')}}">Register</a>
                         </label>
                         <a class="uk-float-right uk-link uk-link-muted" href="{{url('password/email')}}">Forgot Password?</a>
+                    </div>
+                    <div class="uk-form-row">
+                        <a href="/Oauth/Authenticate/google" class="social-connect">
+                            <span class="google-plus"><i class="uk-icon-google-plus uk-icon-small"></i></span>
+                            <span class="social-button-text">Connect with Google</span>
+                        </a>
+                        <a href="/Oauth/Authenticate/facebook" class="social-connect">
+                            <span class="facebook"><i class="uk-icon-facebook-official uk-icon-small"></i></span>
+                            <span class="social-button-text">Connect with Facebook</span>
+                        </a>
                     </div>
                 {!! Form::close() !!}
 

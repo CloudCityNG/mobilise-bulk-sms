@@ -71,6 +71,15 @@ function emptyErrorContainer($el) {
     $($el).empty();
 }
 
+/**
+ * Empty hide the child error container
+ * @param $el
+ */
+function hideChildError(parentContainer) {
+    var parent = parentContainer;
+    $(parent).hide();
+}
+
 
 /**
  * Simulate a kind of event on an element
@@ -135,8 +144,25 @@ function processAjaxError(dataError, errorParentContainer, errorMainContainer) {
             });
         });
     });
-    return false;
+    //return false;
 }
+
+
+function processError2(response, errorParentContainer) {
+    if (response.status === 404) {
+        alert_("Server error: Not found")
+    } else if (response.status === 401) {
+        $(location).prop('pathname', 'user/login');
+    } else if (response.status === 422) {
+        var error = $.parseJSON(response.responseText);
+
+        processAjaxError(error, errorParentContainer, errorParentContainer + ' ul#error-ul');
+    }
+    if (response.status === 500) {
+        alert_("Unknown error. Please try later");
+    }
+}
+
 
 function processError(response) {
     if (response.status === 404) {
@@ -164,7 +190,6 @@ function handleError(status) {
     }
     else if (status === 422) {
         alert_("Operation failed");
-
         return false;
     }
 
@@ -174,21 +199,28 @@ function handleError(status) {
     }
 }
 
-function handleDeleteError(status) {
-    if (status === 404) {
+// '#new-contact-modal div.error'
+// '#new-contact-modal div.error ul#error-ul'
+
+function processFormError(response, parentContainer)
+{
+    if ( response.status === 404 )
+    {
         alert_("Server error: Not found");
-        return false;
     }
-    else if (status === 401) {
+    else if ( response.status === 401 )
+    {
         $(location).prop('pathname', 'user/login');
-        return false;
     }
-    else if (status === 422) {
-        alert_("Operation failed");
-        return false;
+    else if ( response.status === 422 )
+    {
+        var error = $.parseJSON(response.responseText);
+        var parent = parentContainer;
+        var child = parent + ' ul#error-ul';
+        processAjaxError(error, parent, child);
     }
-    if (status === 500) {
+    if ( response.status === 500 )
+    {
         alert_("Unknown error. Please try later");
-        return false;
     }
 }

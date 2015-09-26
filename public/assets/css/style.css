@@ -78,3 +78,7 @@ div.uk-panel h3.box-head {
 .footer .uk-panel-header .uk-panel-title {
     color: #fff;
 }
+
+#file-preview .uk-modal-dialog {
+    width:373px;
+}

@@ -24,7 +24,8 @@ class VerifyCsrfMiddleware extends VerifyCsrfToken {
         $routes = [
             'dlr-collector',
             'test',
-            'messaging/bulk-sms/fileupload'
+            'messaging/bulk-sms/fileupload',
+            'messaging/file2sms/fileupload',
         ];
 
         foreach ($routes as $route)

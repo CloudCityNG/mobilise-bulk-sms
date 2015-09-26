@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
+        'Laravel\Socialite\SocialiteServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -199,6 +200,7 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'HTML'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

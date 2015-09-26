@@ -4,7 +4,15 @@ use App\Http\Requests\Request;
 
 class DraftSmsRequest extends Request {
 
-	/**
+
+    function __construct(\Illuminate\Http\Request $requests)
+    {
+        empty($requests->get('schedule')) ? $requests->merge(['schedule'=>null]) : null ;
+        empty($requests->get('flash')) ? $requests->merge(['flash'=>0]) : null ;
+    }
+
+
+    /**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
@@ -25,10 +33,10 @@ class DraftSmsRequest extends Request {
             'sender'        => 'required',
 			'recipients'    => 'required|string|min:11',
             'message'       => 'required|string|min:1',
-            'schedule_date' => "date_format:Y-m-d",
-            'schedule_time' => "required_with:schedule_date",
+            'schedule'      => 'date_format:"Y-m-d H:i"|schedule',
             'flash'         => 'between:0,1',
 		];
 	}
+
 
 }

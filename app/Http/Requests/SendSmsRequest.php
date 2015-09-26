@@ -37,7 +37,7 @@ class SendSmsRequest extends Request {
             'sender.required'       => 'The Sender Id field cannot be empty',
             'recipients.required'   => 'The Recipient field is required',
             'message.required'      => 'The Message cannot be empty',
-            'schedule.schedule'     => 'The Schedule date is not valid',
+            'schedule.schedule'     => 'The Scheduled date is not valid',
             'schedule.date_format'  => 'The Schedule does not match the format YYYY-MM-DD HH:MM'
         ];
     }

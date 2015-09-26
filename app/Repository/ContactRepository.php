@@ -44,4 +44,15 @@ class ContactRepository {
         return DB::select('SELECT * FROM contacts WHERE id NOT IN (SELECT contact_id FROM contact_group) AND user_id = ?', [Auth::user()->id]);
     }
 
+
+    /**
+     * Edit contact details
+     * @param $id
+     * @param $inputs
+     */
+    public static function editContact($id, $inputs)
+    {
+        return Auth::user()->contacts()->where('id', $id)->update($inputs);
+    }
+
 } 

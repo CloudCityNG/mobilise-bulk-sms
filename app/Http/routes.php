@@ -15,8 +15,11 @@ use App\Commands\NewContactCommand;
 use App\Lib\Services\Date\ProcessDate;
 use App\Models\Group;
 use App\Models\Sms\SmsHistory;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
@@ -31,6 +34,10 @@ Route::group(
     }
 );
 
+Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
+//Route::get('Oauth/Callback', 'SessionsController@handleProviderCallback');
+
+
 Route::group(
     ['prefix' => 'user'], function () {
 
@@ -40,8 +47,13 @@ Route::group(
 
         Route::get('register', 'RegisterController@create');
         Route::post('register', 'RegisterController@store');
+
+
+
         Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
         Route::post('login', 'SessionsController@store');
+
+
         Route::get('logout', 'SessionsController@destroy');
 
         Route::get('dashboard', 'UserController@dashboard');
@@ -66,6 +78,7 @@ Route::group(
 
         Route::get('file2sms', 'MessagingController@file2sms');
         Route::post('file2sms', 'MessagingController@postFile2sms');
+        Route::post('file2sms/fileupload', 'MessagingController@postFileUpload2');
 
         Route::get('sent-sms', 'MessagingController@sentSms');
         Route::get('sent-sms/{id?}/del', 'MessagingController@delSentSms');
@@ -96,6 +109,7 @@ Route::get('address-book/new-contact', 'AddressBookController@getNewContact');  
 Route::get('address-book/new-group', 'AddressBookController@getNewGroup');                      //
 Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');                //
 Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');                //
+Route::get('address-book/contact/{id}/edit', 'AddressBookController@postContactEdit');                //
 Route::get('address-book/group/{id}/del', 'AddressBookController@delGroup');                    //
 Route::get('address-book/group/{id}/view-contacts', 'AddressBookController@viewContacts');      //
 Route::get('address-book/group/{group_id}/new-contact', 'AddressBookController@_newContact');          //
@@ -157,22 +171,31 @@ Route::controllers([
 ]);
 
 
-Route::post('test', function(\Illuminate\Http\Request $request){
+Route::get('messaging/test2', function(\Illuminate\Http\Request $request){
 
-    dd(public_path(''));
+    function randStrGen($len){
+        $result = "";
+        $chars = 'abcdefghijklmnopqrstuvwxyz$_?!-0123456789';
+        $charArray = str_split($chars);
+        for($i = 0; $i < $len; $i++){
+            $randItem = array_rand($charArray);
+            $result .= "".$charArray[$randItem];
+        }
+        return $result;
+    }
+
+// Usage example
+    $randstr = randStrGen(20);
+    echo $randstr;
 });
 //Route::get('frontend', function(){
 //    dd(Auth::user()->groups()->with('contacts')->get());
 //});
 
-Route::get('test', function(\Illuminate\Http\Request $request){
+Route::get('test', function(\Illuminate\Http\Request $request, \App\Lib\Filesystem\CsvReader $reader){
 
-    $result = Auth::user()->groups()->find([3,4])->contacts()->get();
-    foreach ($result as $res):
-        echo $res->gsm;
-    endforeach;
-    //$result = Group::find(3)->contacts()->get();
-    dd($result);
+    $out = $reader->csv_to_array( storage_path('uploads/bulk-sms/file2sms.csv') );
+    dd($out);
     return;
 
     $c = Auth::user()->contacts()->find(56);

@@ -12,7 +12,7 @@ class SmsCreditRepository {
     const UNIT_INTL = 15;
 
 
-    public function createNewAccount($user)
+    public static function createNewAccount($user)
     {
         if ( empty($user->smscredit->available_credit) )
             return $user->smscredit()->save( new SmsCredit() );

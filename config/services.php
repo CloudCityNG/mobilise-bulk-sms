@@ -34,4 +34,14 @@ return [
 		'secret' => '',
 	],
 
+    'facebook' => [
+        'client_id'     => '924192280986187',
+        'client_secret' => '2906cbdbe5c384466776ff675684eef3',
+        'redirect'      => 'http://lara.app/Oauth/Authenticate'
+    ],
+
+    'google' => [
+
+    ],
+
 ];

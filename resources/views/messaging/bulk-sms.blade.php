@@ -13,7 +13,18 @@ $recipients_tooltip = 'Up to 500 recipients separated with commas';
 $message_tooltip = '';
 $schedule_tooltip = 'Choose a later date and time for successful delivery of your message';
 ?>
+
 @section('content')
+
+<!-- This is the modal -->
+<div id="file-preview" class="uk-modal">
+    <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+        <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
+        <img src="/images/csv-txt-contacts.png" alt="File upload sample" width="373" height="331">
+    </div>
+</div>
+
+
 <div class="uk-panel {{Request::segment(2)}}">
     <div class="uk-panel-badge uk-badge"></div>
     <h1 class="uk-panel-title uk-title">Bulk SMS</h1>
@@ -62,6 +73,7 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
             <div id="progressbar" class="uk-progress uk-hidden">
                 <div class="uk-progress-bar" style="width: 0%;"></div>
             </div>
+            <a href="#file-preview" class="uk-button" data-uk-modal>File Sample</a>
         </div>
     </div>
 

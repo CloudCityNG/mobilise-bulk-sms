@@ -1,7 +1,14 @@
 <div id="edit-contact-modal" class="uk-modal">
     <div class="uk-modal-dialog">
         <div class="uk-modal-header">Edit Contact</div>
+
+        <div class="uk-overflow-container">
             {!! Form::open(['url'=>'', 'class'=>'uk-form uk-form-horizontal modal-edit-contact']) !!}
+            <div class="errors" style="display:none;">
+                <div class="uk-alert uk-alert-danger" data-uk-alert>
+                    <ul id="error-ul"></ul>
+                </div>
+            </div>
             <div class="uk-form-row">
                 {!! Form::label('firstname', 'Firstname', ['class'=>'uk-form-label']) !!}
                 <div class="uk-form-controls">
@@ -32,6 +39,7 @@
                     {!! Form::text('birthdate', Input::old('birthdate'), ['placeholder'=>'Birthdate','data-uk-datepicker'=>"{format:'DD-MM-YYYY',pos:'auto'}"]) !!}
                 </div>
             </div>
+        </div>
 
             {!! Form::close() !!}
         <div class="uk-modal-footer uk-text-right">
