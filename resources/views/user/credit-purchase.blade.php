@@ -60,7 +60,7 @@ $(function(){
 
     var $units = $('span.units');
 
-    $('form#custom-buy').on('keyup keydown focus onblur click', 'input#sms_quantity', function(e){
+    $('form#custom-buy').on('keyup keydown focus onblur click onfocus', 'input#sms_quantity', function(e){
 
         var $this = $(this);
         var $amount =  ( $this.val() != "" ) ? $this.val() : 0 ;

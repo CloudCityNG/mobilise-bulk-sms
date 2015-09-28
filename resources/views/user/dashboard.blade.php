@@ -27,7 +27,7 @@
             </div>
             <div class="uk-width-medium-1-3">
                 <div class="uk-panel">
-                    <a href="#">
+                    <a href="{{url('user/credit-purchase')}}">
                     <i class="uk-icon-money"></i>
                     <p>Buy SMS Credit</p>
                     </a>

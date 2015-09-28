@@ -119,7 +119,7 @@
                             <p class="uk-text-large small-text">Customers and Clients can now be reached on mobiles, anytime, anywhere, anyday!</p>
                             <p>
                                 <a class="uk-button uk-button-primary uk-button-large" href="#">How it works</a>
-                                <a class="uk-button uk-button-large" href="#">Get started</a>
+                                <a class="uk-button uk-button-large" href="{{url('user/register')}}">Get started</a>
                             </p>
                         </div>
                     </div>

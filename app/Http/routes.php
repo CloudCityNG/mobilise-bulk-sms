@@ -13,6 +13,7 @@
 
 use App\Commands\NewContactCommand;
 use App\Lib\Services\Date\ProcessDate;
+use App\Lib\Services\Text\String;
 use App\Models\Group;
 use App\Models\Sms\SmsHistory;
 use App\User;
@@ -20,6 +21,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Money\Money;
 
 
 Route::get('/', function () {
@@ -172,6 +174,15 @@ Route::controllers([
 
 
 Route::get('messaging/test2', function(\Illuminate\Http\Request $request){
+
+
+    return String::randomString();
+
+    $price = 200;
+    $money = Money::NGN($price * 100);
+    echo $money->getAmount();
+    return;
+
 
     function randStrGen($len){
         $result = "";

@@ -41,7 +41,20 @@ return [
     ],
 
     'google' => [
+        'client_id'     => '279874629350-pbml991ecui8m4j923sno19tia4rlrn2.apps.googleusercontent.com',
+        'client_secret' => 'Ajnd_t9TMZSoz-v-CFOxTVgn',
+        'redirect'      => 'http://lara.app/Oauth/Authenticate',
+    ],
 
+    'paypal' => [
+        'client_id'     => 'AaJv8UrvcrrhD-UNsUdD76xbKDqcZzkYp_OTKPDpff54-_ymlEpggyl6WektvPJoTpZi78mX1DqsAw3F',
+        'client_secret' => 'EMWqs3A3msShREuw2mZ11Qa1z4xhFTuTTjcJtkJHxK_7MJnBxhLlpTWIe4U__bYDcnQkByM6EBULsQIs',
+        'redirect'      => '',
+    ],
+
+    'openexchange' => [
+        'app_id'        => 'ac806cdc83484890b0a9bbcd4327796c',
+        'base_url'      => 'https://openexchangerates.org/api/',
     ],
 
 ];
