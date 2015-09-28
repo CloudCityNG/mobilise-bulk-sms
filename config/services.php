@@ -37,13 +37,13 @@ return [
     'facebook' => [
         'client_id'     => '924192280986187',
         'client_secret' => '2906cbdbe5c384466776ff675684eef3',
-        'redirect'      => 'http://lara.app/Oauth/Authenticate'
+        'redirect'      => 'http://works.quicsms.com/Oauth/Authenticate'
     ],
 
     'google' => [
         'client_id'     => '279874629350-pbml991ecui8m4j923sno19tia4rlrn2.apps.googleusercontent.com',
         'client_secret' => 'Ajnd_t9TMZSoz-v-CFOxTVgn',
-        'redirect'      => 'http://lara.app/Oauth/Authenticate',
+        'redirect'      => 'http://works.quicsms.com/Oauth/Authenticate',
     ],
 
     'paypal' => [
