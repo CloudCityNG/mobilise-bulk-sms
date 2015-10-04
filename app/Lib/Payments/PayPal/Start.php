@@ -7,11 +7,13 @@ use PayPal\Rest\ApiContext;
 
 class Start {
 
-    public static function start(ApiContext $apiContext, OAuthTokenCredential $authTokenCredential)
+
+
+    public function start()
     {
         $payPal = new ApiContext( new OAuthTokenCredential(
-            getenv('PAYPAL_CLIENT_ID'),
-            getenv('PAYPAL_SECRET_ID')
+            'AaJv8UrvcrrhD-UNsUdD76xbKDqcZzkYp_OTKPDpff54-_ymlEpggyl6WektvPJoTpZi78mX1DqsAw3F',
+            'EMWqs3A3msShREuw2mZ11Qa1z4xhFTuTTjcJtkJHxK_7MJnBxhLlpTWIe4U__bYDcnQkByM6EBULsQIs'
         ) );
 
         return $payPal;

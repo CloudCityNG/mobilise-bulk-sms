@@ -4,6 +4,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Input;
+use PayPal\Exception\PayPalConnectionException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
@@ -39,14 +40,23 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+        if ( $e instanceof PayPalConnectionException ) :
+            flash()->overlay("HTTP Connection Error. Please try again later");
+            return redirect()->to('user/credit-purchase');
+            //return response(view('errors.404'), 404);
+        endif;
+
+
         //register a notfoundhttpexception to show a 404 error page
         if ( $e instanceof NotFoundHttpException ) :
             return response(view('errors.404'), 404);
         endif;
 
+
         if ( $e instanceof TokenMismatchException ) :
             return redirect()->back()->withInput(Input::all())->withErrors(['form-request'=>'Form has expired. Please refresh and try again']);
         endif;
+
 
 		if ($this->isHttpException($e))
 		{

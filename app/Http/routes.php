@@ -12,6 +12,7 @@
 */
 
 use App\Commands\NewContactCommand;
+use App\Lib\Payments\PayPal\CheckOut;
 use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Services\Text\String;
 use App\Models\Group;
@@ -29,12 +30,20 @@ Route::get('/', function () {
 });
 
 Route::group(
+    ['prefix' => 'Payments'], function() {
+        Route::get('PayPal', 'PaymentsController@processResponse');
+    }
+);
+
+
+Route::group(
     ['prefix' => 'admin'], function() {
 
         Route::get('set-pricing', 'PricingController@pricing');
         Route::post('set-pricing', 'PricingController@postPricing');
     }
 );
+
 
 Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
 //Route::get('Oauth/Callback', 'SessionsController@handleProviderCallback');
@@ -173,7 +182,28 @@ Route::controllers([
 ]);
 
 
-Route::get('messaging/test2', function(\Illuminate\Http\Request $request){
+Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkOut){
+
+    $payment_info = [
+//        'intent'        => 'sale',
+//        'returnUrl'     => 'http://lara.app/Payments/PayPal/?success=true',
+//        'cancelUrl'     => 'http://lara.app/Payments/PayPal/?success=false',
+//        'description'   => 'sale of bulk sms',
+        'invoiceNumber' => '72215',
+//        'currency'      => 'USD',
+//        'paymentMethod' => 'paypal',
+        'product'       => '5000 units of bulk SMS',
+        'quantity'      => 1,
+        'shipping'      => 2.00,
+        'price'         => 20,
+    ];
+    $payment_info['total'] = (float)$payment_info['price'] + (float)$payment_info['shipping'];
+
+    $payment_info = json_decode( json_encode($payment_info), false );
+
+    return $checkOut->process($payment_info);
+
+    return;
 
 
     return String::randomString();
