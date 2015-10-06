@@ -53,9 +53,7 @@ class AuthenticateUser {
         if ( ! $hasCode ) return $this->getAuthorizationFirst($provider);                   //1st time coming here. no ?$code but there is $provider
 
         if ( $hasCode && ! $provider ):                                                     //2nd time coming has $code but no provider
-            dd($this->getProvider());
             $provider = $this->getProvider();
-
             $user = $this->socialite->driver($provider)->user();
             $isSocialUser = $this->user->getSocialUser($user->getEmail(), $provider);
             $getUserByEmail = $this->user->getUserByEmail($user->getEmail());
