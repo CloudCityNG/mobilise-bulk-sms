@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Commands\CreateNewUserCommand;
+use App\Jobs\CreateNewUserCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 

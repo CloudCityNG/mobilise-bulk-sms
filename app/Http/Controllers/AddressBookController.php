@@ -1,7 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
-use App\Commands\NewContactCommand;
-use App\Commands\NewGroup;
+use App\Jobs\NewContactCommand;
+use App\Jobs\NewGroup;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 

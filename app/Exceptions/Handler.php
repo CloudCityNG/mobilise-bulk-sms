@@ -40,11 +40,11 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
-        if ( $e instanceof PayPalConnectionException ) :
-            flash()->overlay("HTTP Connection Error. Please try again later");
-            return redirect()->to('user/credit-purchase');
-            //return response(view('errors.404'), 404);
-        endif;
+//        if ( $e instanceof PayPalConnectionException ) :
+//            flash()->overlay("HTTP Connection Error. Please try again later");
+//            return redirect()->to('user/credit-purchase');
+//            //return response(view('errors.404'), 404);
+//        endif;
 
 
         //register a notfoundhttpexception to show a 404 error page

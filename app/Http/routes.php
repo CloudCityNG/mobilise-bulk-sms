@@ -11,16 +11,10 @@
 |
 */
 
-use App\Commands\NewContactCommand;
+
 use App\Lib\Payments\PayPal\CheckOut;
-use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Services\Text\String;
-use App\Models\Group;
-use App\Models\Sms\SmsHistory;
-use App\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Money\Money;
 
@@ -52,8 +46,9 @@ Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
 Route::group(
     ['prefix' => 'user'], function () {
 
-        Route::post('credit-purchase', 'PurchaseController@postCreditPurchase');
-        Route::get('credit-purchase', 'PurchaseController@creditPurchase');
+        Route::post('credit-purchase',      'PurchaseController@postCreditPurchase');
+        Route::get('credit-purchase',       'PurchaseController@creditPurchase');
+        Route::get('credit-purchase/start', 'PurchaseController@start');
 
 
         Route::get('register', 'RegisterController@create');
@@ -155,26 +150,26 @@ Route::get('/q', 'WelcomeController@index');
 //Route::get('home', ['as'=>'home', 'uses' => 'HomeController@index']);
 
 
-
-Route::get('register', ['as' => 'register_path', 'uses' => 'RegisterController@create']);
-Route::post('register', ['as' => 'register_path', 'uses' => 'RegisterController@store']);
-
-Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
-Route::post('login', ['as' => 'login_path', 'uses' => 'SessionsController@store']);
-Route::get('logout', ['as' => 'logout_path', 'uses' => 'SessionsController@destroy']);
-
-Route::get('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@create']);
-Route::post('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@store',]);
-Route::get('sms/sent', ['as' => 'sentsms_path', 'uses' => 'SmsController@show']);
-Route::get('sms/resend', ['as' => 'resendsms_path', 'uses' => 'SmsController@edit']);
-Route::get('sms/delete/{id}', ['as' => 'deletesms_path', 'uses' => 'SmsController@destroy']);
-
-Route::get('sms/draft/create', ['as' => 'draftsms_path', 'uses' => 'SmsController@draft_create']);
-Route::get('sms/draft', ['as' => 'alldraft_path', 'uses' => 'SmsController@draft_index']);
-Route::post('sms/draft', ['as' => 'postdraft_path', 'uses' => 'SmsController@postDraft']);
-
-
-Route::get('sms/sent/{id}', 'SmsController@show');
+//
+//Route::get('register', ['as' => 'register_path', 'uses' => 'RegisterController@create']);
+//Route::post('register', ['as' => 'register_path', 'uses' => 'RegisterController@store']);
+//
+//Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
+//Route::post('login', ['as' => 'login_path', 'uses' => 'SessionsController@store']);
+//Route::get('logout', ['as' => 'logout_path', 'uses' => 'SessionsController@destroy']);
+//
+//Route::get('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@create']);
+//Route::post('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@store',]);
+//Route::get('sms/sent', ['as' => 'sentsms_path', 'uses' => 'SmsController@show']);
+//Route::get('sms/resend', ['as' => 'resendsms_path', 'uses' => 'SmsController@edit']);
+//Route::get('sms/delete/{id}', ['as' => 'deletesms_path', 'uses' => 'SmsController@destroy']);
+//
+//Route::get('sms/draft/create', ['as' => 'draftsms_path', 'uses' => 'SmsController@draft_create']);
+//Route::get('sms/draft', ['as' => 'alldraft_path', 'uses' => 'SmsController@draft_index']);
+//Route::post('sms/draft', ['as' => 'postdraft_path', 'uses' => 'SmsController@postDraft']);
+//
+//
+//Route::get('sms/sent/{id}', 'SmsController@show');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -199,7 +194,7 @@ Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkO
     ];
     $payment_info['total'] = (float)$payment_info['price'] + (float)$payment_info['shipping'];
 
-    $payment_info = json_decode( json_encode($payment_info), false );
+    $payment_info = create_object($payment_info);
 
     return $checkOut->process($payment_info);
 

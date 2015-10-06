@@ -137,6 +137,9 @@ return [
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
+        'Illuminate\Broadcasting\BroadcastServiceProvider',
+
+
 
 		/*
 		 * Application Service Providers...
@@ -146,6 +149,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+        'App\Providers\AuthServiceProvider',
 
         'Laracasts\Flash\FlashServiceProvider'
 
@@ -201,6 +205,7 @@ return [
         'HTML'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'Gate'      => Illuminate\Support\Facades\Gate::class,
 
 	],
 

@@ -21,7 +21,7 @@
         </p>
         <br/>
         <br/>
-        <p>Please confirm by clicking <a class="uk-button uk-button-primary" href="#">Continue</a> </p>
+        <p>Please confirm by clicking <a class="uk-button uk-button-primary" href="{{url('user/credit-purchase/start')}}">Continue</a> </p>
         </div>
 
     </div>

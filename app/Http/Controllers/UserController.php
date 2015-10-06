@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
-use App\Commands\ChangePasswordCommand;
+use App\Jobs\ChangePasswordCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -26,8 +27,7 @@ class UserController extends Controller {
     public function changePassword()
     {
         return view('user.change-password')
-            ->with('page_title', 'Change Password')
-            ;
+            ->with('page_title', 'Change Password');
     }
 
 

@@ -116,9 +116,7 @@ class CheckOut {
             die($e);
         }
 
-
-
-        return redirect()->away($link );
+        return redirect()->away($link);
     }
 
 } 

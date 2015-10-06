@@ -1,15 +1,16 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
-use App\Models\Sms\SentSmsHistory;
-use App\Models\Sms\SentSmsHistoryRepository;
+use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsCredit;
 use App\Models\Sms\SmsCreditUsageRepository;
 use App\Repository\SmsDraftRepository;
+use App\Repository\SmsHistoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,11 +55,12 @@ class SmsController extends Controller {
 		return view('sms.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param SendSmsRequest $request
+     * @return Response
+     */
 	public function store(SendSmsRequest $request)
 	{
         $success = false;
@@ -67,7 +69,7 @@ class SmsController extends Controller {
 
         //BILL
         DB::beginTransaction();
-            $units = SentSmsHistoryRepository::getBill($request->get('recipients'), $request->get('message'));
+            $units = SmsHistoryRepository::getBill($request->get('recipients'), $request->get('message'));
 
             SmsCredit::billUserSmsCredit($units, $user_id);
 

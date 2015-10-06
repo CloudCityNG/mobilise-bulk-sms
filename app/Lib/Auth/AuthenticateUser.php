@@ -7,6 +7,7 @@ use App\Repository\SmsCreditRepository;
 use App\Repository\UserRepository;
 use App\User;
 use Illuminate\Contracts\Auth\Guard as Authenticator;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Contracts\Factory as Socialite;
@@ -32,13 +33,18 @@ class AuthenticateUser {
      */
     private $auth;
     private $providers = ['facebook', 'google', 'github'];
+    /**
+     * @var Request
+     */
+    private $request;
 
-    public function __construct(UserRepository $user, Socialite $socialite, Authenticator $auth)
+    public function __construct(UserRepository $user, Socialite $socialite, Authenticator $auth, Request $request)
     {
 
         $this->user = $user;
         $this->socialite = $socialite;
         $this->auth = $auth;
+        $this->request = $request;
     }
 
 
@@ -47,7 +53,9 @@ class AuthenticateUser {
         if ( ! $hasCode ) return $this->getAuthorizationFirst($provider);                   //1st time coming here. no ?$code but there is $provider
 
         if ( $hasCode && ! $provider ):                                                     //2nd time coming has $code but no provider
+            dd($this->getProvider());
             $provider = $this->getProvider();
+
             $user = $this->socialite->driver($provider)->user();
             $isSocialUser = $this->user->getSocialUser($user->getEmail(), $provider);
             $getUserByEmail = $this->user->getUserByEmail($user->getEmail());
@@ -97,19 +105,19 @@ class AuthenticateUser {
 
     private function getProvider()
     {
-        return $value = session('provider');
+        return $value = $this->request->session()->get('provider');
     }
 
 
     private function saveProvider($provider)
     {
-        return session(['provider' => $provider]);
+        return $this->request->session()->put('provider', $provider);
     }
 
 
     private function removeProvider($provider)
     {
-        Session::forget($provider);
+        $this->request->session()->forget('provider');
     }
 
 

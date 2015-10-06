@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Commands\BulkSmsCommand;
-use App\Commands\QuickSms;
+use App\Jobs\BulkSmsCommand;
+use App\Jobs\NewDraftSmsCommand;
+use App\Jobs\QuickSms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -69,8 +70,7 @@ class MessagingController extends Controller
     {
         //dd($request->all());
         if ($request->ajax()) {
-
-            $this->dispatchFrom('App\Commands\QuickSms', $request, ['user' => Auth::user(), 'flash' => 0]);
+            $this->dispatchFrom(QuickSms::class, $request, ['user' => Auth::user(), 'flash' => 0]);
             return response()->json(['success' => true]);
         }
     }
@@ -129,9 +129,6 @@ class MessagingController extends Controller
             if ( $file->isValid() ):
                 $out = $reader->csv_to_array($file);
 
-//                foreach ( $out as $line ):
-//                    if ( $line['sender'] );
-//                endforeach;
                 unset($out[0]);
 
                 return response()->json(['success'=>true, 'out'=>$out]);
@@ -239,7 +236,7 @@ class MessagingController extends Controller
      */
     public function postDraftSms(DraftSmsRequest $draftSmsRequest, ProcessDate $processDate)
     {
-        $this->dispatchFrom('App\Commands\NewDraftSmsCommand', $draftSmsRequest);
+        $this->dispatchFrom(NewDraftSmsCommand::class, $draftSmsRequest);
         flash()->success("Message saved as draft successfully");
         return redirect()->route('quick_sms');
     }

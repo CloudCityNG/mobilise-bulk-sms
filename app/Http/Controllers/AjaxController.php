@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
 
-use App\Commands\NewContactCommand;
+use App\Jobs\NewContactCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -34,7 +35,7 @@ class AjaxController extends Controller {
         if ($request->ajax())
         {
             $inputs = $request->only('group_name', 'group_description');
-            $this->dispatch(new \App\Commands\NewGroup($inputs, Auth::user()));
+            $this->dispatch(new \App\Jobs\NewGroup($inputs, Auth::user()));
             return json_encode(['success'=>true]);
         }
     }

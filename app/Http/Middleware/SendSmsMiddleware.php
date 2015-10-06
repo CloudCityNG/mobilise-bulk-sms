@@ -1,6 +1,6 @@
-<?php namespace App\Http\Middleware;
+<?php
+namespace App\Http\Middleware;
 
-use App\Models\Sms\SentSmsHistoryRepository as smsHistoryRepository;
 use App\Repository\SmsCreditRepository;
 use Closure;
 
@@ -32,7 +32,7 @@ class SendSmsMiddleware
             return redirect()->back()->withInput();
         }
 
-        //calculate TOTAL CREDIT form no of recipeints & sms pages.
+        //calculate TOTAL CREDIT from no of recipients & sms pages.
         $message = $request->get('message');
         $recipients = $request->get('recipients');
         $total_units = SmsCreditRepository::getSmsBill($recipients, $message);
