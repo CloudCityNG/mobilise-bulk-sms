@@ -68,7 +68,7 @@
         <div class="uk-vertical-align uk-text-center uk-height-1-1">
             <div class="uk-vertical-align-middle" style="width: 350px;">
 
-                <img class="uk-margin-bottom" width="140" height="120" src="{{url('http://lara.app/images/logos/quic-sms.png')}}" alt="">
+                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
                 @include('flash::message')
                 @include('layouts.frontend.partials.errors')
 
