@@ -11,11 +11,14 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 
+define('RETURN_URL', env('PAYPAL_RETURN_URL'));
+define('CANCEL_URL', env('PAYPAL_CANCEL_URL'));
+
 class CheckOut {
 
 
-    const returnURL = 'http://lara.app/Payments/PayPal/?success=true';
-    const cancelUrl = 'http://lara.app/Payments/PayPal/?success=false';
+    const returnURL = RETURN_URL;   //'http://lara.app/Payments/PayPal/?success=true';
+    const cancelUrl = CANCEL_URL;   //'http://lara.app/Payments/PayPal/?success=false';
     const intent = 'sale';
     const description = 'Payment for Bulk-SMS Purchase';
     const currency = 'USD';
