@@ -51,7 +51,7 @@ Route::group(
         Route::get('credit-purchase/start', 'PurchaseController@start');
 
 
-        Route::get('register', 'RegisterController@create');
+        Route::get('register',  'RegisterController@create');
         Route::post('register', 'RegisterController@store');
 
 
@@ -62,10 +62,13 @@ Route::group(
 
         Route::get('logout', 'SessionsController@destroy');
 
-        Route::get('dashboard', 'UserController@dashboard');
-        Route::get('change-password', 'UserController@changePassword');
-        Route::post('change-password', 'UserController@postChangePassword');
-        Route::get('account-setting', 'UserController@accountSetting');
+        Route::get('dashboard',         'UserController@dashboard');
+        Route::get('change-password',   'UserController@changePassword');
+        Route::post('change-password',  'UserController@postChangePassword');
+        Route::get('account-setting',   'UserController@accountSetting');
+        Route::get('profile',           'UserController@profile');
+        Route::get('security',          'UserController@security');
+        Route::get('notifications',     'UserController@notifications');
 
     }
 );
@@ -178,6 +181,8 @@ Route::controllers([
 
 
 Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkOut){
+
+    return get_gravatar('shegun.babs@gmail.com');
 
     $payment_info = [
 //        'intent'        => 'sale',

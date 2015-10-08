@@ -3,7 +3,7 @@
 
         <a class="uk-navbar-brand uk-hidden-small" href="/"><img class="uk-margin uk-margin-remove" src="/images/logos/quic-sms.png" width="100" title="Quic-SMS" alt="Quic-SMS"></a>
 
-        <ul class="uk-navbar-nav uk-hidden-small">
+        <ul id="main-nav" class="uk-navbar-nav uk-hidden-small">
             <li><a href="{{url('address-book')}}">Address Book</a></li>
             <li><a href="#">Messaging</a></li>
             <li><a href="#">Manage Account</a></li>
@@ -12,7 +12,7 @@
             <li><a href="#">Help</a></li>
         </ul>
         <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
-            <ul class="uk-navbar-nav uk-hidden-small">
+            <ul class="uk-navbar-nav uk-hidden-small user-logged-in">
             <li class="uk-parent" data-uk-dropdown>
                 <a href="">{{ucfirst($currentUser->username)}} <i class="uk-icon-caret-down"></i></a>
                 <div class="uk-dropdown uk-dropdown-navbar">

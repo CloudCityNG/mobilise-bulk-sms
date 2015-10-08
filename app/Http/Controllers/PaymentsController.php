@@ -9,10 +9,18 @@ use Illuminate\Http\Request;
 class PaymentsController extends Controller {
 
 
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     //send payment
 
 
     //process response
+
+
     public function processResponse(Request $request)
     {
         $success = $request->get('success');

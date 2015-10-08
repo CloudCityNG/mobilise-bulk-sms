@@ -9,7 +9,8 @@ use App\Http\Requests\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
 
     public function __construct()
@@ -18,7 +19,7 @@ class UserController extends Controller {
     }
 
 
-	public function dashboard()
+    public function dashboard()
     {
         return view('user.dashboard');
     }
@@ -26,20 +27,20 @@ class UserController extends Controller {
 
     public function changePassword()
     {
-        return view('user.change-password')
-            ->with('page_title', 'Change Password');
+        $out = ['page_title' => 'Change Password', 'userSidebar' => true];
+        return view('user.change-password', $out);
     }
 
 
     public function postChangePassword(ChangePasswordRequest $request)
     {
         $email = Auth::user()->email;
-        if ( Auth::validate(['email'=>$email,'password'=>$request->get('password')]) ) {
-            $this->dispatchFrom(ChangePasswordCommand::class, $request, ['user_email'=>$email]);
+        if (Auth::validate(['email' => $email, 'password' => $request->get('password')])) {
+            $this->dispatchFrom(ChangePasswordCommand::class, $request, ['user_email' => $email]);
             flash()->overlay('Password Change Successful');
             return redirect()->to('user/dashboard');
         }
-        flash()->overlay('Password Change Unsuccessful','Wrong Password');
+        flash()->overlay('Password Change Unsuccessful', 'Wrong Password');
         return redirect()->back();
     }
 
@@ -47,6 +48,24 @@ class UserController extends Controller {
     public function accountSetting()
     {
         return view('user.account-setting');
+    }
+
+
+    public function profile()
+    {
+        return view('user.profile', ['page_title'=>'User Profile', 'userSidebar'=>true]);
+    }
+
+
+    public function security()
+    {
+
+    }
+
+
+    public function notifications()
+    {
+
     }
 
 }

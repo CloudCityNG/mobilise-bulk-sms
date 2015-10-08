@@ -5,6 +5,9 @@
     /*}*/
 /*}*/
 
+.uk-navbar-nav > li > a[href='#'] {
+    cursor: hand;
+}
 
 @font-face {
     font-family: 'Proxima Nova';
@@ -81,4 +84,42 @@ div.uk-panel h3.box-head {
 
 #file-preview .uk-modal-dialog {
     width:373px;
+}
+
+
+ul#main-nav a,
+ul.user-logged-in a{
+    font-weight: bold;
+    box-shadow: none;
+    box-sizing: none;
+}
+
+ul#main-nav li:hover > a,
+ul.user-logged-in > li:hover > a{
+    border: 0px;
+    padding: 0 16px;
+    margin-top: 0px;
+    margin-bottom: -2px;
+    color: #005580;
+    box-shadow: none;
+    border: none;
+    /*padding: inherit;*/
+}
+
+
+ul.user-logged-in > li.uk-parent:hover > a,
+ul.user-logged-in > li.uk-parent > a {
+    box-shadow: none;
+    border: none;
+}
+
+ul.user-logged-in > li.uk-parent:hover > a {
+    margin: -1px -2px 0 0;
+}
+
+.Box {
+    position: relative;
+    padding: 2rem;
+    border: 2px solid #f1f1f1;
+    border-radius: 3px;
 }

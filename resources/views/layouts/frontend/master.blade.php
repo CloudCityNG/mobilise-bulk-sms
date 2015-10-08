@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{!empty($page_title) ?:'Quic Bulk SMS'}}</title>
+        <title>{{!empty($page_title) ?$page_title:'Quic Bulk SMS'}}</title>
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         @section('head')
@@ -28,14 +28,19 @@
 
         <div class="uk-grid" data-uk-grid-margin>
 
-            <div class="uk-width-medium-1-4" id="sidebar">
+            <div class="uk-width-medium-1-5" id="sidebar">
             <!--sidebar-->
-            @include('layouts.frontend.partials.sidebar')
+            @if ( !empty($userSidebar) )
+                @include('layouts.frontend.partials.settings')
+            @else
+                @include('layouts.frontend.partials.sidebar')
+            @endif
+
             </div>
 
-            <div class="uk-width-medium-3-4" id="content">
+            <div class="uk-width-medium-4-5" id="content">
                 @include('flash::message')
-                <div class="uk-block-muted uk-clearfix" style="padding:5px;">
+                <div class="uk-block-muted uk-clearfix" style="padding:5px;margin-bottom: 11px">
                     <span style="font-weight: bold">Balance: {{$currentUser->smscredit->available_credit}}</span>
                     <span class="uk-float-right">
                         <a href="{{url('user/credit-purchase')}}" class="uk-button uk-button-success uk-button-small">

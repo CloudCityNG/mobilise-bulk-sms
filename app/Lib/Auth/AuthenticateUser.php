@@ -50,6 +50,11 @@ class AuthenticateUser {
 
     public function execute($hasCode, $provider)
     {
+        if ($this->request->has('error_code') && $this->request->has('error_message')):
+            flash()->overlay($this->request->get('error_message'));
+            return redirect()->back();
+        endif;
+
         if ( ! $hasCode ) return $this->getAuthorizationFirst($provider);                   //1st time coming here. no ?$code but there is $provider
 
         if ( $hasCode && ! $provider ):                                                     //2nd time coming has $code but no provider

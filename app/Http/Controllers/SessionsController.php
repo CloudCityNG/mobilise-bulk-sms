@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\LoginRequest;
 use App\Lib\Auth\AuthenticateUser;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\View;
 
 
 class SessionsController extends Controller {
+
+    use ThrottlesLogins;
 
 
     const ERROR_MSG1 = "";

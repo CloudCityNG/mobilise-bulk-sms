@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 class PurchaseController extends Controller {
 
 
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+
     public function creditPurchase()
     {
         return view('user.credit-purchase',['data'=> Pricing::getAllRows()]);
