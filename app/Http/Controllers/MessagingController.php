@@ -54,7 +54,6 @@ class MessagingController extends Controller
      */
     public function postQuickSms(SendSmsRequest $request)
     {
-        dd($request);
         $this->dispatchFrom(QuickSms::class, $request, ['user' => Auth::user()]);
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');
