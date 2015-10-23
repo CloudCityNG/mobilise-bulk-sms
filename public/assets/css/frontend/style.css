@@ -1,3 +1,7 @@
+.uk-navbar-nav>li>a[href='#'] {
+    cursor: hand;
+}
+
 .tm-navbar {
     padding: 15px 0;
 }

@@ -13,12 +13,14 @@
         </ul>
         <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
             <ul class="uk-navbar-nav uk-hidden-small user-logged-in">
-            <li class="uk-parent" data-uk-dropdown>
-                <a href="">{{ucfirst($currentUser->username)}} <i class="uk-icon-caret-down"></i></a>
+            <li class="uk-parent" data-uk-dropdown="{mode:'click'}">
+                <a href="#">{{ucfirst($currentUser->username)}} <i class="uk-icon-caret-down"></i></a>
                 <div class="uk-dropdown uk-dropdown-navbar">
                     <ul class="uk-nav uk-nav-navbar">
                         <li><a href="#">{{$currentUser->smscredit->available_credit}} Credit</a></li>
                         <li class="uk-nav-header">My Account</li>
+
+                        <li><a href="{{url('settings/profile')}}">Settings</a>
                         <li><a href="{{url('user/change-password')}}">Change Password</a>
                         <li><a href="{{url('user/account-setting')}}">Account Setting</a>
                         <li><a href="#">Account Preference</a>

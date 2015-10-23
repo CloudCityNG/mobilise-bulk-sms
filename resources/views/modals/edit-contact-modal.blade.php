@@ -1,6 +1,6 @@
 <div id="edit-contact-modal" class="uk-modal">
     <div class="uk-modal-dialog">
-        <div class="uk-modal-header">Edit Contact</div>
+        <div class="uk-modal-header">Edit Profile</div>
 
         <div class="uk-overflow-container">
             {!! Form::open(['url'=>'', 'class'=>'uk-form uk-form-horizontal modal-edit-contact']) !!}
@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="uk-form-row">
-                {!! Form::label('gsm', 'Gsm', ['class'=>'uk-form-label']) !!}
+                {!! Form::label('gsm', 'GSM*', ['class'=>'uk-form-label']) !!}
                 <div class="uk-form-controls">
-                    {!! Form::text('gsm', Input::old('gsm'), ['placeholder'=>'Gsm']) !!}
+                    {!! Form::text('gsm', Input::old('gsm'), ['placeholder'=>'GSM']) !!}
                 </div>
             </div>
             <div class="uk-form-row">

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/assets/css/style.css">
         <link rel="stylesheet" href="/assets/css/frontend/style.css">
         @show
+
     </head>
 
     <body>
@@ -66,6 +67,7 @@
     <script src="/assets/uikit/js/uikit.min.js"></script>
     <script src="/assets/uikit/js/components/slider.min.js"></script>
     <script src="/assets/uikit/js/components/sticky.js"></script>
+    <script src="/assets/uikit/js/components/notify.min.js"></script>
     <script src="/assets/js/global.js"></script>
     @show
     </body>

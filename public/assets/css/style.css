@@ -4,8 +4,13 @@
         /*max-width: 978px;*/
     /*}*/
 /*}*/
-
-.uk-navbar-nav > li > a[href='#'] {
+@media (min-width: 1220px){
+    .uk-container {
+        max-width: 1000px;
+        padding: 0 35px;
+    }
+}
+ul.uk-navbar-nav > li > a[href='#'] {
     cursor: hand;
 }
 
@@ -122,4 +127,27 @@ ul.user-logged-in > li.uk-parent:hover > a {
     padding: 2rem;
     border: 2px solid #f1f1f1;
     border-radius: 3px;
+}
+
+.uk-modal-header {
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+}
+
+div#edit-profile-modal input#firstname,
+div#edit-profile-modal input#lastname,
+div#edit-profile-modal input#phone,
+div#edit-profile-modal input#address {
+    padding: 20px 10px;
+}
+
+
+ul.parsley-errors-list {
+    margin-top: 8px;
+}
+
+ul.parsley-errors-list > li {
+    color: red;
+    padding-left:5px;
 }

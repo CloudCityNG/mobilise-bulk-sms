@@ -96,7 +96,7 @@ $(function() {
 
         //process the success result.
         jqXHR.done(function(data){
-            $('.table-container').html(data.html);
+            $('#table-container').html(data.html);
             alert_("Group Added.");
             modalCloser(newGroup);
             resetForm('form.newGroupForm');

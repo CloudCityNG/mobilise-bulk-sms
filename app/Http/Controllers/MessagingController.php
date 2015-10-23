@@ -52,8 +52,9 @@ class MessagingController extends Controller
      * @param ProcessDate $processDate
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postQuickSms(SendSmsRequest $request, ProcessDate $processDate)
+    public function postQuickSms(SendSmsRequest $request)
     {
+        dd($request);
         $this->dispatchFrom(QuickSms::class, $request, ['user' => Auth::user()]);
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
         return redirect()->route('quick_sms');

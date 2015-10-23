@@ -1,27 +1,73 @@
 <?php
 
-if (! function_exists('create_object')) {
 
+if (!function_exists('create_object')) {
+
+    /**Create an object from an array
+     * @param array $array
+     * @return Object
+     */
     function create_object(array $array)
     {
-        return json_decode( json_encode($array), false );
+        return json_decode(json_encode($array), false);
     }
 }
 
 
-if (! function_exists('get_gravatar') ) {
+if (!function_exists('get_gravatar')) {
 
-    function get_gravatar( $email, $s = 45, $d = 'identicon', $r = 'g', $img = true, $atts = [] ) {
+    /**Get gravatar for supplied email
+     * @param $email
+     * @param int $s
+     * @param string $d
+     * @param string $r
+     * @param bool $img
+     * @param array $atts
+     * @return string
+     */
+    function get_gravatar($email, $s = 50, $d = 'identicon', $r = 'g', $img = true, $atts = [])
+    {
         $url = 'http://www.gravatar.com/avatar/';
-        $url .= md5( strtolower( trim( $email ) ) );
+        $url .= md5(strtolower(trim($email)));
         $url .= "?s=$s&d=$d&r=$r";
-        if ( $img ) {
-            $url = '<img src="' . $url . '"';
-            foreach ( $atts as $key => $val )
+        if ($img) {
+            $url = '<img class="uk-border-circle" src="' . $url . '"';
+            foreach ($atts as $key => $val)
                 $url .= ' ' . $key . '="' . $val . '"';
             $url .= ' />';
         }
         return $url;
     }
 
+}
+
+
+if (!function_exists('print_value')) {
+
+    /**Print the value of a variable if not empty else print null
+     * @param $value
+     * @return null
+     */
+    function print_value($value)
+    {
+        return !empty($value) ? $value : NULL;
+    }
+
+}
+
+
+if (!function_exists('set_null')) {
+
+    /**Set the value of an array to NULL if it is empty
+     * @param $value
+     * @return null
+     */
+    function set_null($value)
+    {
+        if ( empty($value) ) {
+            return NULL;
+        } else {
+            return $value;
+        }
+    }
 }

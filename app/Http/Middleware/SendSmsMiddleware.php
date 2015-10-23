@@ -37,6 +37,9 @@ class SendSmsMiddleware
         $recipients = $request->get('recipients');
         $total_units = SmsCreditRepository::getSmsBill($recipients, $message);
 
+        /**
+         * Return low credit error if request is normal or AJAX
+         */
         if ($user_credit < $total_units) {
             if ($request->ajax()) {
                 return response()->json(['credit' => [self::NO_CREDIT_TEXT]], 422);
@@ -44,6 +47,14 @@ class SendSmsMiddleware
             flash()->info(self::NO_CREDIT_TEXT);
             return redirect()->back()->withInput();
         }
+
+        /**
+         * Merge missing input into the request
+         */
+        if(!$request->exists('schedule'))
+            $request->merge(['schedule'=>NULL]);
+        if(!$request->exists('flash'))
+            $request->merge(['flash'=>0]);
 
         return $next($request);
     }

@@ -70,40 +70,52 @@ Route::group(
         Route::get('security',          'UserController@security');
         Route::get('notifications',     'UserController@notifications');
 
+        Route::get('profile-get',       'UserController@profileGet');
+        Route::get('profile-edit',      'UserController@profileEdit');
+
     }
 );
+
+Route::group(['prefix'=>'settings'], function(){
+
+    Route::get('profile',       'SettingsController@profile');
+    Route::post('profile',      'SettingsController@postProfile');
+
+    Route::get('security',      'SettingsController@security');
+    Route::get('notifications', 'SettingsController@notifications');
+});
 
 
 Route::group(
     ['prefix' => 'messaging'], function () {
 
-        Route::get('quick-sms', ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
-        Route::post('quick-sms', 'MessagingController@postQuickSms');
-        Route::post('quick-sms/draftSend', 'MessagingController@postQuickModalSms');
+        Route::get('quick-sms',             ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
+        Route::post('quick-sms',            'MessagingController@postQuickSms');
+        Route::post('quick-sms/draftSend',  'MessagingController@postQuickModalSms');
 
-        Route::get('bulk-sms', ['as'=>'bulk_sms', 'uses'=>'MessagingController@bulkSms']);
-        Route::post('bulk-sms/fileupload', 'MessagingController@postFileUpload');
-        Route::post('bulk-sms', 'MessagingController@postBulkSms');
+        Route::get('bulk-sms',              ['as'=>'bulk_sms', 'uses'=>'MessagingController@bulkSms']);
+        Route::post('bulk-sms/fileupload',  'MessagingController@postFileUpload');
+        Route::post('bulk-sms',             'MessagingController@postBulkSms');
 
-        Route::get('file2sms', 'MessagingController@file2sms');
-        Route::post('file2sms', 'MessagingController@postFile2sms');
-        Route::post('file2sms/fileupload', 'MessagingController@postFileUpload2');
+        Route::get('file2sms',              'MessagingController@file2sms');
+        Route::post('file2sms',             'MessagingController@postFile2sms');
+        Route::post('file2sms/fileupload',  'MessagingController@postFileUpload2');
 
-        Route::get('sent-sms', 'MessagingController@sentSms');
-        Route::get('sent-sms/{id?}/del', 'MessagingController@delSentSms');
-        Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
-        Route::get('sent-sms/{id}/dlr', 'MessagingController@getDlr');
-        Route::get('sent-sms/{id}/get', 'MessagingController@getSentSms');
+        Route::get('sent-sms',              'MessagingController@sentSms');
+        Route::get('sent-sms/{id?}/del',    'MessagingController@delSentSms');
+        Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
+        Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
+        Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');
 
 
         /**
          * Both are the same
          */
-        Route::get('saved-sms', 'MessagingController@savedSms');                    //View a Saved SMS
-        Route::get('draft-sms', 'MessagingController@savedSms');                    //View a Draft SMS
-        Route::post('draft-sms', 'MessagingController@postDraftSms');               //Save a draft SMS
-        Route::get('draft-sms/{id}/del', 'MessagingController@delDraftSMS');        //delete a draft SMS (ajax)
-        Route::get('draft-sms/{id}/get', 'MessagingController@getDraftSMS');        //get draft SMS details (ajax)
+        Route::get('saved-sms',             'MessagingController@savedSms');           //View a Saved SMS
+        Route::get('draft-sms',             'MessagingController@savedSms');           //View a Draft SMS
+        Route::post('draft-sms',            'MessagingController@postDraftSms');       //Save a draft SMS
+        Route::get('draft-sms/{id}/del',    'MessagingController@delDraftSMS');        //delete a draft SMS (ajax)
+        Route::get('draft-sms/{id}/get',    'MessagingController@getDraftSMS');        //get draft SMS details (ajax)
 
     }
 );
@@ -111,16 +123,16 @@ Route::group(
 //Route::get('dlr-collector', 'DlrController@collector');
 Route::post('dlr-collector', 'DlrController@collector');
 
-Route::get('address-book', 'AddressBookController@start');
-Route::get('address-book/groups', 'AddressBookController@groups');
+Route::get('address-book',                              'AddressBookController@start');
+Route::get('address-book/groups',                       'AddressBookController@groups');
 //Route::get('address-book/new-contact', 'AddressBookController@newContact');
-Route::get('address-book/new-contact', 'AddressBookController@getNewContact');                  //
-Route::get('address-book/new-group', 'AddressBookController@getNewGroup');                      //
-Route::get('address-book/contact/{id}/del', 'AddressBookController@delContact');                //
-Route::get('address-book/contact/{id}/get', 'AddressBookController@getContact');                //
-Route::get('address-book/contact/{id}/edit', 'AddressBookController@postContactEdit');                //
-Route::get('address-book/group/{id}/del', 'AddressBookController@delGroup');                    //
-Route::get('address-book/group/{id}/view-contacts', 'AddressBookController@viewContacts');      //
+Route::get('address-book/new-contact',                  'AddressBookController@getNewContact');                  //
+Route::get('address-book/new-group',                    'AddressBookController@getNewGroup');                      //
+Route::get('address-book/contact/{id}/del',             'AddressBookController@delContact');                //
+Route::get('address-book/contact/{id}/get',             'AddressBookController@getContact');                //
+Route::get('address-book/contact/{id}/edit',            'AddressBookController@postContactEdit');                //
+Route::get('address-book/group/{id}/del',               'AddressBookController@delGroup');                    //
+Route::get('address-book/group/{id}/view-contacts',     'AddressBookController@viewContacts');      //
 Route::get('address-book/group/{group_id}/new-contact', 'AddressBookController@_newContact');          //
 
 
@@ -180,7 +192,12 @@ Route::controllers([
 ]);
 
 
-Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkOut){
+Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkOut, \App\Repository\UserDetailRepository $repository){
+
+    return $repository->save(['firstname'=>'dbhbhsss']);
+    return;
+
+    dd(Auth::user()->userdetails->first());
 
     return get_gravatar('shegun.babs@gmail.com');
 
