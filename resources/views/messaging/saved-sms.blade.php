@@ -3,6 +3,7 @@
 @section('head')
 @parent
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+<link rel="stylesheet" type="text/css" href="/assets/semanticui/components/dropdown.min.css">
 <link rel="stylesheet" href="/assets/uikit/css/components/datepicker.min.css">
 @stop
 

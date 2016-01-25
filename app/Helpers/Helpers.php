@@ -1,5 +1,16 @@
 <?php
 
+if (!function_exists('mark_active'))
+{
+    function mark_active($urlPath, $thisLink)
+    {
+        if ( $urlPath == $thisLink )
+        {
+            return 'uk-active';
+        }
+    }
+}
+
 
 if (!function_exists('create_object')) {
 

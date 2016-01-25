@@ -7,8 +7,7 @@
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         @section('head')
-        <link rel="stylesheet" href="/assets/uikit/css/uikit.docs.min.css">
-        <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.css">
         <link rel="stylesheet" href="/assets/uikit/css/components/slider.gradient.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
         <link rel="stylesheet" href="/assets/css/frontend/style.css">
@@ -57,7 +56,7 @@
         <hr class="uk-grid-divider">
 
 
-            <p>Here</p>
+            <p>&copy; {{date("Y", time())}}</p>
     </div>
 
         @include('layouts.frontend.partials.canvas')

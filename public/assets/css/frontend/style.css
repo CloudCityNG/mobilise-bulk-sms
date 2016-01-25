@@ -1,9 +1,26 @@
-.uk-navbar-nav>li>a[href='#'] {
+body > .uk-navbar-nav>li>a[href='#'] {
     cursor: hand;
 }
 
+.uk-navbar {
+    background: #fff;
+}
+
+ul#main-nav a,
+ul.user-logged-in a {
+    color: Black;
+    text-shadow: none;
+
+}
+
+ul#main-nav li:hover a {
+    background: none;
+    color: blue;
+}
+
+
 .tm-navbar {
-    padding: 15px 0;
+    padding: 7px 0;
 }
 
 #loginForm .uk-alert {
@@ -101,4 +118,32 @@ img.round {
 
     100% {-webkit-transform:rotate(360deg);
         box-shadow:inset 0px 0px 25px rgb(50, 71, 129); }
+}
+
+ul.user-logged-in > li.uk-parent > div.uk-dropdown:hover {
+    left: 0px;
+}
+
+ul.user-logged-in > li.uk-parent:hover > div.uk-dropdown {
+    left: 0px;
+}
+
+ul.user-logged-in > li.uk-parent div.uk-dropdown:before {
+
+    /*right: 12px;*/
+    left: auto;
+
+    position: absolute;
+    top: -10px;
+    left: 39px;
+    display: inline-block;
+    content: '';
+
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 0;
+    border-right-color: #ccc;
+    border-left-color: #ccc;
+    filter: chroma(color=pink);
 }

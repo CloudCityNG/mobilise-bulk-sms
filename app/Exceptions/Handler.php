@@ -1,10 +1,12 @@
-<?php namespace App\Exceptions;
+<?php
 
+namespace App\Exceptions;
+
+use App\Lib\Mailer\LogEmail;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Input;
-use PayPal\Exception\PayPalConnectionException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
@@ -28,6 +30,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
+        //.(new LogEmail())->genericEmail("EXCEPTION ENCOUNTERED", $e);
 		return parent::report($e);
 	}
 

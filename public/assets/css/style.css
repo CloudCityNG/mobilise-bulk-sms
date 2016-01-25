@@ -10,7 +10,7 @@
         padding: 0 35px;
     }
 }
-ul.uk-navbar-nav > li > a[href='#'] {
+body > ul.uk-navbar-nav > li > a[href='#'] {
     cursor: hand;
 }
 

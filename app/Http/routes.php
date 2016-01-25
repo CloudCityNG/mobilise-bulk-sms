@@ -48,7 +48,9 @@ Route::group(
 
         Route::post('credit-purchase',      'PurchaseController@postCreditPurchase');
         Route::get('credit-purchase',       'PurchaseController@creditPurchase');
+        Route::get('payment-return',       'PurchaseController@paymentReturn');
         Route::get('credit-purchase/start', 'PurchaseController@start');
+
 
 
         Route::get('register',  'RegisterController@create');
@@ -161,45 +163,34 @@ Route::get('faq/{faq}/show', ['uses' => 'FaqController@show_']);
 Route::get('/q', 'WelcomeController@index');
 
 
-
-//Route::get('home', ['as'=>'home', 'uses' => 'HomeController@index']);
-
-
-//
-//Route::get('register', ['as' => 'register_path', 'uses' => 'RegisterController@create']);
-//Route::post('register', ['as' => 'register_path', 'uses' => 'RegisterController@store']);
-//
-//Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
-//Route::post('login', ['as' => 'login_path', 'uses' => 'SessionsController@store']);
-//Route::get('logout', ['as' => 'logout_path', 'uses' => 'SessionsController@destroy']);
-//
-//Route::get('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@create']);
-//Route::post('sms/new', ['as' => 'new_sms_path', 'uses' => 'SmsController@store',]);
-//Route::get('sms/sent', ['as' => 'sentsms_path', 'uses' => 'SmsController@show']);
-//Route::get('sms/resend', ['as' => 'resendsms_path', 'uses' => 'SmsController@edit']);
-//Route::get('sms/delete/{id}', ['as' => 'deletesms_path', 'uses' => 'SmsController@destroy']);
-//
-//Route::get('sms/draft/create', ['as' => 'draftsms_path', 'uses' => 'SmsController@draft_create']);
-//Route::get('sms/draft', ['as' => 'alldraft_path', 'uses' => 'SmsController@draft_index']);
-//Route::post('sms/draft', ['as' => 'postdraft_path', 'uses' => 'SmsController@postDraft']);
-//
-//
-//Route::get('sms/sent/{id}', 'SmsController@show');
-
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
 
 
-Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkOut, \App\Repository\UserDetailRepository $repository){
+Route::get('backend', function(){
+    return view('pages.layouts.master');
+});
 
-    return $repository->save(['firstname'=>'dbhbhsss']);
-    return;
 
-    dd(Auth::user()->userdetails->first());
+Route::get('backend/quic-sms', function(){
+    return view('backend.quic-sms');
+});
 
-    return get_gravatar('shegun.babs@gmail.com');
+
+Route::get('new', function(){
+    return view('layouts.kanda.master');
+});
+
+Route::get('test', function(){
+    return view('kanda.messaging.quicsms');
+    return view('layouts.kanda.frontend');
+});
+
+
+
+Route::get('p', function(\Illuminate\Http\Request $request, CheckOut $checkOut, \App\Repository\UserDetailRepository $repository){
 
     $payment_info = [
 //        'intent'        => 'sale',
@@ -230,47 +221,11 @@ Route::get('test2', function(\Illuminate\Http\Request $request, CheckOut $checkO
     echo $money->getAmount();
     return;
 
-
-    function randStrGen($len){
-        $result = "";
-        $chars = 'abcdefghijklmnopqrstuvwxyz$_?!-0123456789';
-        $charArray = str_split($chars);
-        for($i = 0; $i < $len; $i++){
-            $randItem = array_rand($charArray);
-            $result .= "".$charArray[$randItem];
-        }
-        return $result;
-    }
-
-// Usage example
-    $randstr = randStrGen(20);
-    echo $randstr;
 });
-//Route::get('frontend', function(){
-//    dd(Auth::user()->groups()->with('contacts')->get());
-//});
 
-Route::get('test', function(\Illuminate\Http\Request $request, \App\Lib\Filesystem\CsvReader $reader){
 
-    $out = $reader->csv_to_array( storage_path('uploads/bulk-sms/file2sms.csv') );
-    dd($out);
-    return;
+Route::get('r', function(\Illuminate\Http\Request $request, \App\Lib\Filesystem\CsvReader $reader){
 
     $c = Auth::user()->contacts()->find(56);
     $c->groups()->attach(5);
-
-
-
-
-
-
-//    $request = \Illuminate\Http\Request::create('/', 'POST', ['sender'=>'08099450169','recipients'=>'08033554898','message'=>'Schedule test','schedule'=>'2015-08-03 12:00:00']);
-//    dd(
-//        (new \App\Lib\Sms\SmsInfobip())
-//            ->setSender($request->get('sender'))
-//            ->setRecipients($request->get('recipients'))
-//            ->setMessage($request->get('message'))
-//            ->setSchedule($request->get('schedule'))
-//    );
-
 });

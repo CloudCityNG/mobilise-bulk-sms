@@ -1,0 +1,89 @@
+.border {
+    border: 1px solid black;
+}
+
+
+#quic-main-menu .toc.item {
+    display: none;
+}
+
+/**
+ ** Main menu wrapping
+ **/
+@media only screen and (max-width: 960px) {
+    #quic-main-menu > a.item,
+    #quic-main-menu .quic-label-button{
+        display: none;
+    }
+    #quic-main-menu .toc.item {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .roww {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        max-width: 960px;
+    }
+}
+
+.boxx {
+    position: relative;
+    padding: 2rem;
+    border: 2px solid #f1f1f1;
+    border-radius: 3px;
+}
+
+/*mobile*/
+@media only screen and (max-width: 767px) {
+    .mobile.hidden,
+    .tablet.only,
+    .small.monitor.only,
+    .large.monitor.only {
+        display: none !important;
+    }
+}
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .mobile.only,
+    .tablet.hidden,
+    .small.monitor.only,
+    .large.monitor.only {
+        display: none !important;
+    }
+}
+
+/*small monitor*/
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .mobile.only,
+    .tablet.only,
+    .small.monitor.hidden,
+    .large.monitor.only {
+        display: none !important;
+    }
+}
+
+/*large monitor*/
+@media only screen and (min-width: 1200px) {
+    .mobile.only,
+    .tablet.only,
+    .small.monitor.only,
+    .large.monitor.hidden {
+        display: none !important;
+    }
+}
+
+
+/**
+ ** Large screen container fix
+ **/
+@media only screen and (min-width: 1200px) {
+    .ui.grid.container {
+        width: 960px!important;
+    }
+}

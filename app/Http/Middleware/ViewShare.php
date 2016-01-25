@@ -23,12 +23,11 @@ class ViewShare {
 
     private function sideMenus()
     {
-        $sideMenu = [
+        return [
             'dashboard'     => 'user/dashboard',
             'quick_sms'     => 'messaging/quick-sms',
             'bulk_sms'      => 'messaging/bulk-sms',
         ];
-        return $sideMenu;
         //return json_decode(json_encode($sideMenu), false);
     }
 

@@ -2,6 +2,7 @@
 
 @section('head')
 @parent
+<link rel="stylesheet" type="text/css" href="/assets/semanticui/components/checkbox.min.css">
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.common.min.css">
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.default.min.css">
 @stop
@@ -60,7 +61,10 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
     <div class="uk-form-row" id="schedule-control">
 
         <div class="uk-form-controls">
-            <label for="schedule_control">{!! Form::checkbox('schedule_control', 1, false, ['id'=>'schedule_control']) !!} Schedule to send later</label>
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="schedule_control" id="schedule_control" value="1">
+              <label>Schedule to send later</label>
+            </div>
             <div class="uk-margin-top" id="schedule-div" style="display:none;">
                 {!! Form::text('schedule', Input::old('schedule'), ['placeholder'=>'YYYY-MM-DD HH:MM AM/PM','id'=>'schedule',]) !!}
                 <a href="#" class="uk-icon-justify uk-icon-info-circle uk-vertical-align-middle uk-margin-left" data-uk-tooltip title="{{$schedule_tooltip}}"></a>
@@ -74,8 +78,12 @@ $schedule_tooltip = 'Choose a later date and time for successful delivery of you
         <span class="uk-form-label"></span>
 
         <div class="uk-form-controls uk-form-controls-text">
-            {!! Form::checkbox('flash', 1, false, ['id'=>'flash']) !!}
-            <label for="flash"> Send as flash</label>
+            {{--{!! Form::checkbox('flash', 1, false, ['id'=>'flash']) !!}--}}
+            {{--<label for="flash"> Send as flash</label>--}}
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="flash" id="flash" value="1">
+              <label>Send As Flash?</label>
+            </div>
         </div>
     </div>
 

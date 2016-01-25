@@ -1,0 +1,142 @@
+.navbar {
+    min-height: 30px;
+    margin-bottom: 0px;
+}
+
+
+#header{
+  /*height: 60px;*/
+  width: 100%;
+  background-color: #2d3e50;
+  overflow: hidden;
+}
+
+#starter-head{
+  max-width: 80%;
+  margin: auto;
+  text-align: center;
+  color: #FFF;
+  padding: 5% 0 0;
+}
+
+.startup-title{
+  font-size: 4em;
+}
+
+.startup-description{
+  font-size: 1.5em;
+  margin-bottom: 2em;
+}
+
+.startup-intro-text{
+  color: #ccc;
+  margin-bottom: 2em;
+}
+
+.feature-icon{
+  display: block;
+  margin: 1em auto 0;
+  font-size: 5em;
+}
+
+.feature-title{
+  text-align: center;
+}
+
+.feature-text{
+  color: #666;
+}
+
+.info-button{
+  margin: auto;
+}
+
+.startup-button{
+  text-align: center;
+  margin: 2em auto 1em;
+}
+
+#pricing{
+  background: #2d3e50 url(https://dl.dropboxusercontent.com/u/36017898/photo/wallpaper-1.jpg) no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 3em 0;
+  margin: 2em 0;
+}
+
+.pricing-title{
+  color: #FFF;
+}
+
+.pricing-text{
+  color: #ccc;
+}
+
+#starter-slider{
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+#contact{
+  margin: 2em auto;
+}
+
+#contact blockquote{
+  margin-bottom: 10px;
+}
+
+#contact h6{
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.contact-facebook,
+.contact-twitter,
+.contact-gplus{
+  font-size: 1.5em;
+}
+
+.contact-facebook{
+  color: #3C5A98;
+}
+
+.contact-twitter{
+  color: #55ACEE;
+}
+
+.contact-gplus{
+  color: #D73D32;
+}
+
+#footer{
+  background-color: #f9f9f9;
+  padding: 1em 0;
+}
+
+.footer-text{
+  font-size: 1.2em;
+  margin: 2em auto;
+  color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

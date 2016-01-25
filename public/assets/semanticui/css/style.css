@@ -1,0 +1,54 @@
+@media (min-width: 1200px) {
+    .ui.container {
+        width: 960px;
+        max-width: 1000px!important;
+    }
+}
+
+@media (min-width: 960px) {
+    #quic-sms-form div.inline label{
+        width: 200px;
+        margin-top: 10px;
+        float: left;
+        vertical-align: middle;
+    }
+}
+
+#sidebar i.icon{
+    float: left;
+    margin: 0 0.4em 0 0;
+    color: #4670b8;
+}
+
+#sidebar.ui.vertical.menu .menu .item {
+    font-size: 14px;
+}
+
+#sidebar.ui.vertical.menu .item>.label {
+    padding: .3em .41428571em;
+}
+
+.ui.header .icon:only-child {
+    line-height: .8em;
+}
+
+#after-topnav {
+    max-width: 960px!important;
+}
+
+
+.ui.form input[type=text]#schedule {
+    padding: 0.1em;
+}
+
+.padding {
+    padding: 5px;
+}
+
+.padding-top {
+    padding-top: 15px;
+}
+
+.padding-bottom {
+    padding-bottom: 15px;
+}

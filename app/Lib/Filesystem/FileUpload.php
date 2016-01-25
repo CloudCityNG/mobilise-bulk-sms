@@ -32,6 +32,9 @@ class FileUpload {
         $this->fileInput = $fileInput;
         $this->destination = $destination;
         $this->filename = $filename;
+		
+		if (!is_dir($this->destination))
+			mkdir(realpath($this->destination));
 
         $this->prepareFile();
     }
