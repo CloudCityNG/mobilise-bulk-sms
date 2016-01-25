@@ -35,11 +35,11 @@ class PurchaseController extends Controller {
         $price = $quantity*$unit_price;
 
         $transaction_info = [
-            'checkout_url'   => 'https://oameye.works.payments.payquic.com/checkout/',
-            'return_uri'    => 'http://lara.app/user/payment-return',
+            'checkout_url'   => env('CHECKOUT_URL'),
+            'return_uri'    => env('RETURN_URI'),
             'trxid'         => 'QUICSMS01',
             'price'         => '',
-            'logo_url'      => 'https://s3.eu-central-1.amazonaws.com/storage-001/public/quicsmsnew.gif',
+            'logo_url'      => env('LOGO_URL'),
             'cmd'           => 'checkout',
             'title_name'    => 'QUIC SMS Credit Purchase',
             'bk_color'      => '',
