@@ -14,7 +14,7 @@
         </a>
     </div>
     <a class="item"><i class="mail icon"></i> Messaging</a>
-    <a class="item"><i class="book icon"></i> AddressBook</a>
+    <a class="item" href="{{url('address-book')}}"><i class="book icon"></i> AddressBook</a>
     <a class="item"><i class="announcement icon"></i> Support</a>
 
     <div class="right menu">
@@ -28,7 +28,7 @@
         <div class="item quic-label-button">
             <div class="ui labeled button" tabindex="0">
               <div class="ui basic blue button">
-                <i class="money icon"></i> 200
+                <i class="money icon"></i> {{$currentUser->smscredit->available_credit}}
               </div>
               <a class="ui left pointing blue label" href="{{url('user/credit-purchase')}}">
                 Buy Credits
@@ -37,7 +37,7 @@
         </div>
 
         <div class="ui dropdown item" tabindex="0">
-            <i class="options icon"></i> Username
+            <i class="options icon"></i> {{ucfirst($currentUser->username)}}
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden" tabindex="-1">
                     <div class="item">Settings</div>
@@ -45,7 +45,7 @@
                     <div class="divider"></div>
                     <div class="item">Separated Link</div>
                     <div class="divider"></div>
-                    <div class="item">Logout</div>
+                    <div class="item"><a href="{{url('user/logout')}}">Logout</a></div>
                 </div>
         </div>
     </div>

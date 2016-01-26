@@ -53,7 +53,7 @@
             {{--</div>--}}
         {{--</div>--}}
 
-        <div class="row">
+        <div class="row" style="margin-bottom: 40px;">
 
 
                 <div class="four wide computer six wide tablet sixteen wide mobile column">
@@ -68,6 +68,33 @@
 
 
     </div>
+
+    <div class="ui inverted vertical footer segment" style="padding: 60px 0 60px 0;">
+            <div class="ui container">
+              <div class="ui stackable inverted divided equal height stackable grid">
+                <div class="three wide column">
+                  <h4 class="ui inverted header">About</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">Sitemap</a>
+                    <a href="#" class="item">Contact Us</a>
+                    <a href="#" class="item">Support</a>
+                  </div>
+                </div>
+                <div class="three wide column">
+                  <h4 class="ui inverted header">Services</h4>
+                  <div class="ui inverted link list">
+                    <a href="#" class="item">Bulk SMS</a>
+                    <a href="#" class="item">Airtime Recharge</a>
+                    <a href="#" class="item">FAQ</a>
+                  </div>
+                </div>
+                <div class="seven wide column">
+                  <h4 class="ui inverted header">Footer Header</h4>
+                  <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
 </div>
     @section('foot')
@@ -87,5 +114,7 @@
     });
     </script>
     @show
+
+
 </body>
 </html>

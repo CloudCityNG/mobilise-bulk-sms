@@ -56,7 +56,7 @@
         </div>
         <div class="col-sm-9 no-padding">
           <p>
-            <small>Create a quic-sms account. If you have a quic-sms account, <a href="#">please login here</a></small>
+            <small>Create a quic-sms account. If you have a quic-sms account, <a href="{{route('login_path')}}">please login here</a></small>
           </p>
         </div>
       </div>
