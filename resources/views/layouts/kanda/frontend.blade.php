@@ -100,16 +100,10 @@
     @section('foot')
     <script src="/js/jquery/jquery-latest.js"></script>
     <script src="/assets/semanticui/semantic.min.js"></script>
+    <script src="/kanda/js/kanda.js"></script>
     <script>
     $(document).ready(function(){
-        //initialize dropdwon on navbar
-        $('.row .column .menu .dropdown')
-            .dropdown({
-            transition: 'drop',
-            on: 'hover'
-        });
-        //initialize menu sidebar
-        $('.ui.sidebar').sidebar('attach events', '.toc.item');
+
 
     });
     </script>

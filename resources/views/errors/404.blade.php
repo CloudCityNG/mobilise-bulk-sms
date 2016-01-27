@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-<!-- Mirrored from pages.revox.io/frontend/1.0/html/other/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Nov 2015 13:33:06 GMT -->
 <head>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <meta charset="utf-8"/>
@@ -33,7 +31,7 @@
         <div class="error-container text-center">
           <h1 class="error-number">404</h1>
           <h2 class="semi-bold">Sorry but we couldnt find this page</h2>
-          <p>This page you are looking for does not exsist <a href="#">Report this?</a></p>
+          <p>This page you are looking for does not exist <a href="#">Report this?</a></p>
 
           <div class="error-container-innner text-center">
             <form>

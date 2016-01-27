@@ -20,6 +20,9 @@ use Money\Money;
 
 
 Route::get('/', function () {
+
+    dispatch(new App\Jobs\TestQueueEmail);
+
     return view('test.index');
 });
 
@@ -43,6 +46,10 @@ Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
 //Route::get('Oauth/Callback', 'SessionsController@handleProviderCallback');
 
 
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'admin'], function(){
+
+});
+
 Route::group(
     ['prefix' => 'user'], function () {
 
@@ -50,6 +57,9 @@ Route::group(
         Route::get('credit-purchase',       'PurchaseController@creditPurchase');
         Route::get('payment-return',       'PurchaseController@paymentReturn');
         Route::get('credit-purchase/start', 'PurchaseController@start');
+
+        //user who is not an admin is redirected here
+        //Route::get('not-admin');
 
 
 

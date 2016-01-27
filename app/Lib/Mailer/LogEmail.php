@@ -16,4 +16,13 @@ class LogEmail extends Mailer {
         return $this->sendTo($user, $subject, $view, $data);
     }
 
+
+    public function testEmailQueue($subject, $contents='')
+    {
+        $view = "emails.test.email-queue-test";
+        $data = [];
+        $user = (Object) ['email'=>'shegun.babs+developer@gmail.com'];
+        return $this->sendTo($user, $subject, $view, $data);
+    }
+
 } 

@@ -31,6 +31,7 @@ class Kernel extends HttpKernel {
 		'guest'                 => 'App\Http\Middleware\RedirectIfAuthenticated',
         'smscreditcheck'        => 'App\Http\Middleware\SendSmsMiddleware',
         'bulksms.checkcredit'   => 'App\Http\Middleware\BulkSmsMiddleware',
+        'admin'                 => 'App\Http\Middleware\AdminAuthentication.php',
 
 	];
 

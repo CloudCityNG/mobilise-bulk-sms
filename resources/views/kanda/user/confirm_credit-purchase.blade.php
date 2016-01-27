@@ -29,7 +29,7 @@
 <form action="{{$transaction_info->checkout_url}}" method="post" class="ui form">
 <input type="hidden" name="firstname" value="testuser"/>
     <input type="hidden" name="lastname" value="testuserlastname"/>
-    <input type="hidden" name="return_script" value="{{$transaction_info->return_uri}}"/>
+    <input type="hidden" name="return_script" value="{{$transaction_info->return_script}}"/>
     <input type="hidden" name="country" value="{{$transaction_info->country}}"/>
     <input type="hidden" name="shipping" value="{{$transaction_info->shipping}}"/>
     <input type="hidden" name="currency" value="{{$transaction_info->currency}}"/>
@@ -40,8 +40,8 @@
     <input type="hidden" name="return_uri" value="{{$transaction_info->return_uri}}"/>
     <input type="hidden" name="merchant_key" value="{{$transaction_info->merchant_key}}"/>
     <input type="hidden" name="merchant_id" value="{{$transaction_info->merchant_id}}"/>
-    <input type="hidden" name="rg_color" value="#6077bc"/>
-    <input type="hidden" name="bg_color" value="#f4f6f9"/>
+    <input type="hidden" name="rg_color" value="#ffffff"/>
+    <input type="hidden" name="bg_color" value="#ffffff"/>
     <input type="hidden" name="title_name" value="{{$transaction_info->title_name}}"/>
     <input type="hidden" name="logo_url" value="{{$transaction_info->logo_url}}"/>
     <input type="hidden" name="cmd" value="checkout"/>
@@ -59,22 +59,27 @@
         {{$transaction_info->item}}
       </div>
       <div class="description">
-        <br/>
+        <p>
         You requested to purchase {{$sms_quantity}} units of SMS for ₦{{$total_cost}}
-        <br/>
-        <br/>
+        </p>
+        <p><strong>Transaction Id: {{$transaction_info->txid}}</strong></p>
+        <p><strong>Order Number: {{$transaction_info->order_number}}</strong></p>
       </div>
     </div>
     <div class="extra content">
       <div class="ui two buttons">
         <input class="ui primary button" type="submit" value="Approve"/>
         {{--<div class="ui green button" id="approve">Approve</div>--}}
-        <div class="ui red button" id="decline">Decline</div>
+        <a class="ui red button" id="decline" href="/user/payment-return?action=decline&order={{$transaction_info->order_number}}">Decline</a>
+        {{--<div class="ui red button" id="decline">Decline</div>--}}
       </div>
     </div>
   </div>
 
   </div>
+    txid : {{$transaction_info->txid}}
+    <br/>
+    order number: {{$transaction_info->order_number}}
 
 
 

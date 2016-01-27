@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Lib\Payments\PayPal\CheckOut;
 use App\Models\Pricing;
+use App\Repository\OrderRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
@@ -18,21 +19,21 @@ class PurchaseController extends Controller {
     }
     
 
-    public function creditPurchase()
+    public function creditPurchase(OrderRepository $repository)
     {
         return view('kanda.user.credit-purchase',['data'=> Pricing::getAllRows()]);
         return view('user.credit-purchase',['data'=> Pricing::getAllRows()]);
     }
 
-    public function postCreditPurchase(Request $request)
+    public function postCreditPurchase(Request $request, OrderRepository $orderRepository)
     {
         $this->validate($request, ['sms_quantity'=>'required|numeric|min:100|max:5000000']);
 
         $quantity = (int) $request->get('sms_quantity');
         $q = DB::select('select unit_price from pricing where ? >= lower_range and ? <= upper_range', [$quantity,$quantity]);
         $unit_price = $q[0]->unit_price;
-        $txid_order = 'QUICSMS01'.rand(10000, 99999);
-        $price = $quantity*$unit_price;
+
+        $price = $orderRepository->getPrice($quantity, $unit_price);
 
         $transaction_info = [
             'checkout_url'   => env('CHECKOUT_URL'),
@@ -42,25 +43,31 @@ class PurchaseController extends Controller {
             'logo_url'      => env('LOGO_URL'),
             'cmd'           => 'checkout',
             'title_name'    => 'QUIC SMS Credit Purchase',
-            'bk_color'      => '',
-            'rg_color'      => '',
+            'bk_color'      => '#3B4752',
+            'rg_color'      => '#E2DEEF',
             'merchant_id'   => 'PAYQUICSMS09',
             'merchant_key'  => 'PAY001D1',
             'poid'          => 'QUICSMS01',
-            'txid'          => $txid_order,
-            'item'          => 'QuicSMS Credit Purchase - ₦' . $price ,
-            'price'         => $price * 100,
+            'txid'          => $orderRepository->getTransactionID(),
+            'item'          => $quantity .' QuicSMS Credit Purchase - ₦' . $price ,
+            'price'         => $orderRepository->priceToKobo($price),
             'currency'      => 'NG',
             'shipping'      => 0,
             'country'       => 'NG',
-            'return_script' => ''
+            'return_script' => env('RETURN_SCRIPT'),
+
+            'order_number'  => $orderRepository->genOrderNumber(),
+            'quantity'      => $quantity,
+            'unit_price'    => $unit_price,
 
         ];
+
+        $orderRepository->save($transaction_info);
 
         return view('kanda.user.confirm_credit-purchase', [
             'sms_quantity'      => $quantity,
             'unit_price'        => $unit_price,
-            'total_cost'        => $quantity*$unit_price,
+            'total_cost'        => $price,
             'transaction_info'  => create_object($transaction_info),
         ]);
 
@@ -68,10 +75,19 @@ class PurchaseController extends Controller {
     }
 
 
-    public function paymentReturn(Request $request)
+    public function paymentReturn(Request $request, OrderRepository $repository)
     {
+        if ( $request->get('action') == 'decline' && $repository->checkOrder($request->get('order')) !== NULL )
+        {
+            return 'declined & has order -  User declined from credit purchase page';
+        }
+
         dd($request->all());
     }
+
+
+
+
 
 
 //    public function postCreditPurchaseBackup(Request $request)

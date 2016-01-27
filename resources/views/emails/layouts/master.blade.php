@@ -794,7 +794,7 @@ body.outlook p {
                         <table class="twelve columns">
                           <tr>
                             <td class="six sub-columns">
-                              <img src="{{url('/images/logos/quic-sms.png')}}" width="140" height="50">
+                              <img src="{{env('LOGO_URL')}}" width="140" height="50">
                             </td>
                             <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                               <span class="template-label"></span>

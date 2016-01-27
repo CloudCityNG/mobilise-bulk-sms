@@ -74,7 +74,7 @@ A ServiceBuilder can source information from an array, an PHP include file that 
     use Guzzle\Service\Builder\ServiceBuilder;
 
     // Source service definitions from a JSON file
-    $builder = ServiceBuilder::factory('services.json');
+    $builder = ServiceBuilder::factory('services.json.bak');
 
 Sourcing data from an array
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -88,7 +88,7 @@ accounts for the same service or creating development clients vs. production cli
 
     $services = array(
         'includes' => array(
-            '/path/to/other/services.json',
+            '/path/to/other/services.json.bak',
             '/path/to/other/php_services.php'
         ),
         'services' => array(
@@ -176,7 +176,7 @@ the PHP array syntax, but it's just serialized using JSON.
 .. code-block:: javascript
 
     {
-        "includes": ["/path/to/other/services.json", "/path/to/other/php_services.php"],
+        "includes": ["/path/to/other/services.json.bak", "/path/to/other/php_services.php"],
         "services": {
             "abstract.foo": {
                 "params": {

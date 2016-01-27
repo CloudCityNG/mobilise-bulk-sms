@@ -51,6 +51,7 @@
     <h4 class="ui header">
         <div class="content">SMS Quantity</div>
     </h4>
+    @include('layouts.kanda.partials.errors')
     {!! Form::open(['url'=>'user/credit-purchase', 'class'=>'ui form', 'id'=>'custom-buy']) !!}
 
         <div class="field">

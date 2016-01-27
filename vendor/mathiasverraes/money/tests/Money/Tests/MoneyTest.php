@@ -141,6 +141,14 @@ class MoneyTest extends PHPUnit_Framework_TestCase
             new Money(3, new Currency('EUR')),
             $m->divide(3, Money::ROUND_HALF_ODD)
         );
+        $this->assertEquals(
+            new Money(4, new Currency('EUR')),
+            $m->divide(3.3, Money::ROUND_UP)
+        );
+        $this->assertEquals(
+            new Money(5, new Currency('EUR')),
+            $m->divide(1.8, Money::ROUND_DOWN)
+        );
 
         $this->assertNotSame($m, $m->divide(2));
     }
@@ -152,7 +160,6 @@ class MoneyTest extends PHPUnit_Framework_TestCase
         $m = new Money(10, new Currency('EUR'));
         $m->divide(0);
     }
-
 
     public function testComparison()
     {
@@ -204,7 +211,6 @@ class MoneyTest extends PHPUnit_Framework_TestCase
 
     public function testAllocationOrderIsImportant()
     {
-
         $m = new Money(5, new Currency('EUR'));
         list($part1, $part2) = $m->allocate(array(3, 7));
         $this->assertEquals(new Money(2, new Currency('EUR')), $part1);
@@ -226,6 +232,9 @@ class MoneyTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(Money::EUR(-1)->isPositive());
     }
 
+    /**
+     * @return array
+     */
     public static function provideStrings()
     {
         return array(
@@ -246,6 +255,11 @@ class MoneyTest extends PHPUnit_Framework_TestCase
             array("+1", 100),
             array(".99", 99),
             array("-.99", -99),
+            array("$100", 10000),
+            array("$100.00", 10000),
+            array("$$100.00", 10000),
+            array("$100.00¢", 10000),
+            array("€100", 10000),
         );
     }
 
@@ -255,5 +269,13 @@ class MoneyTest extends PHPUnit_Framework_TestCase
     public function testStringToUnits($string, $units)
     {
         $this->assertEquals($units, Money::stringToUnits($string));
+    }
+    
+    /**
+     * @expectedException \Money\InvalidArgumentException
+     */
+    public function testInvalidStringToUnit()
+    {
+        Money::stringToUnits('This should be an invalid string');
     }
 }
