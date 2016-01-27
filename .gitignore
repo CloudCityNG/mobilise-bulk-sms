@@ -2,5 +2,6 @@
 /storage/logs
 /.idea
 .env
+worker.log
 /vendor/laracasts
 /storage/db_backups
