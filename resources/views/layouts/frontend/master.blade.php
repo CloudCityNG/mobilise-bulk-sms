@@ -39,7 +39,6 @@
             </div>
 
             <div class="uk-width-medium-4-5" id="content">
-                @include('flash::message')
                 <div class="uk-block-muted uk-clearfix" style="padding:5px;margin-bottom: 11px">
                     <span style="font-weight: bold">Balance: {{$currentUser->smscredit->available_credit}}</span>
                     <span class="uk-float-right">
