@@ -135,11 +135,20 @@ class PurchaseController extends Controller {
                 flash()->error("Your transaction was declined. Please try again.", 'Transaction Error');
                 return redirect()->to('user/credit-purchase');
             }
-        } elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
+            else {
+                flash()->error("Invalid Transaction/Order");
+                return redirect()->to('user/credit-purchase');
+            }
+        }
+        elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
         {
             if ( $repository->update($t->transaction_code, $a) )
             {
                 flash()->success("Your payment was successful. Your account has been recharged");
+                return redirect()->to('user/credit-purchase');
+            }
+            else {
+                flash()->error("Invalid Transaction/Order");
                 return redirect()->to('user/credit-purchase');
             }
         }
