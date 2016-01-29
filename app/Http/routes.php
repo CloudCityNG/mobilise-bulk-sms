@@ -21,7 +21,7 @@ use Money\Money;
 
 Route::get('/', function () {
 
-    dispatch(new App\Jobs\TestQueueEmail);
+    //dispatch(new App\Jobs\TestQueueEmail);
 
     return view('test.index');
 });
