@@ -8,6 +8,7 @@
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/css/sweetalert2.css">
         <style type="text/css">
         .uk-alert ul {
             padding-left:15px;
@@ -18,6 +19,8 @@
         </style>
         <script src="/js/jquery/jquery-latest.js"></script>
         <script src="/assets/uikit/js/uikit.min.js"></script>
+        <script src="/js/sweetalert2.min.js"></script>
+        @include('layouts.kanda.partials.flash')
     </head>
 
     <body class="uk-height-1-1">
@@ -27,7 +30,6 @@
 
                 <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
                 <h2>Reset Password</h2>
-                @include('flash::message')
                 @include('layouts.frontend.partials.errors')
 
                 <div class="uk-vertical-align-middle" style="width:350px;">
