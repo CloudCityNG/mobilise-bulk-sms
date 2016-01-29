@@ -53,8 +53,11 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'admin'], f
 Route::group(
     ['prefix' => 'user'], function () {
 
-        Route::post('credit-purchase',      'PurchaseController@postCreditPurchase');
-        Route::get('credit-purchase',       'PurchaseController@creditPurchase');
+        Route::post('credit-purchase',                      'PurchaseController@postCreditPurchase');
+        Route::get('credit-purchase',                       'PurchaseController@creditPurchase');
+        Route::get('credit-purchase/approve/{order_id}/txid/{txid}/poid/{poid}/quantity/{quantity}/unitprice/{unit_price}/price/{price}/item/{item}',    'PurchaseController@approve');
+
+
         Route::get('payment-return',       'PurchaseController@paymentReturn');
         Route::get('credit-purchase/start', 'PurchaseController@start');
 

@@ -27,6 +27,36 @@ class OrderRepository {
     }
 
 
+    public function getOrderInfo($order_id)
+    {
+
+        $transaction_info = [
+//            'checkout_url'   => env('CHECKOUT_URL'),
+//            'return_uri'    => env('RETURN_URI'),
+//            'trxid'         => 'QUICSMS01',
+//            'logo_url'      => env('LOGO_URL'),
+//            'cmd'           => 'checkout',
+//            'title_name'    => 'QUIC SMS Credit Purchase',
+//            'bk_color'      => '#3B4752',
+//            'rg_color'      => '#E2DEEF',
+//            'merchant_id'   => 'PAYQUICSMS09',
+//            'merchant_key'  => 'PAY001D1',
+//            'poid'          => 'QUICSMS01',
+//            'txid'          => $orderRepository->getTransactionID(),
+//            'item'          => $quantity .' QuicSMS Credit Purchase - ₦' . $price ,
+//            'price'         => $orderRepository->priceToKobo($price),
+//            'currency'      => 'NG',
+//            'shipping'      => 0,
+//            'country'       => 'NG',
+//            'return_script' => env('RETURN_SCRIPT'),
+//
+//            'order_number'  => $orderRepository->genOrderNumber(),
+//            'quantity'      => $quantity,
+//            'unit_price'    => $unit_price,
+        ];
+    }
+
+
     public function save(Array $transaction_info)
     {
         $order = new Order();
@@ -50,9 +80,10 @@ class OrderRepository {
     }
 
 
-    public function update($order_id, Array $transaction_info)
+    public function update($tx_id, Array $transaction_info)
     {
-
+        return DB::table('orders')->where('transaction_code', $tx_id)
+            ->update($transaction_info);
     }
 
 

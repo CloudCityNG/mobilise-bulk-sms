@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/semanticui/semantic.min.css">
     <link rel="stylesheet" href="/kanda/css/extra.css">
+    <link rel="stylesheet" href="/css/sweetalert2.css">
     @show
     <!-- Modernizr -->
     <!--[if IE 8]>
@@ -41,6 +42,18 @@
                 @include('layouts.kanda.partials.nav')
             </div>
         </div>
+
+        {{--<div class="ui modal">--}}
+          {{--<div class="header">Header</div>--}}
+          {{--<div class="content">--}}
+            {{--<p></p>--}}
+          {{--</div>--}}
+          {{--<div class="actions">--}}
+            {{--<div class="ui approve button">Approve</div>--}}
+            {{--<div class="ui button">Neutral</div>--}}
+            {{--<div class="ui cancel button">Cancel</div>--}}
+          {{--</div>--}}
+        {{--</div>--}}
 
         {{--<div class="row">--}}
             {{--<div class="column">--}}
@@ -100,14 +113,10 @@
     @section('foot')
     <script src="/js/jquery/jquery-latest.js"></script>
     <script src="/assets/semanticui/semantic.min.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
     <script src="/kanda/js/kanda.js"></script>
-    <script>
-    $(document).ready(function(){
-
-
-    });
-    </script>
     @show
+    @include('layouts.kanda.partials.flash')
 
 
 </body>

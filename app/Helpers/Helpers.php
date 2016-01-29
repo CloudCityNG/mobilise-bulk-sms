@@ -1,5 +1,13 @@
 <?php
 
+use App\Lib\Services\Flash\Notifier;
+
+function flash()
+{
+    return app(Notifier::class);
+}
+
+
 if (!function_exists('mark_active'))
 {
     function mark_active($urlPath, $thisLink)

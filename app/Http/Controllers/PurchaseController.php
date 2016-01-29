@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Lib\Payments\PayPal\CheckOut;
+use App\Lib\Services\Flash\Notifier;
 use App\Models\Pricing;
 use App\Repository\OrderRepository;
 use Illuminate\Http\Request;
@@ -22,11 +23,12 @@ class PurchaseController extends Controller {
     public function creditPurchase(OrderRepository $repository)
     {
         return view('kanda.user.credit-purchase',['data'=> Pricing::getAllRows()]);
-        return view('user.credit-purchase',['data'=> Pricing::getAllRows()]);
+        //return view('user.credit-purchase',['data'=> Pricing::getAllRows()]);
     }
 
     public function postCreditPurchase(Request $request, OrderRepository $orderRepository)
     {
+        //get the price and display porchase/order info
         $this->validate($request, ['sms_quantity'=>'required|numeric|min:100|max:5000000']);
 
         $quantity = (int) $request->get('sms_quantity');
@@ -35,54 +37,111 @@ class PurchaseController extends Controller {
 
         $price = $orderRepository->getPrice($quantity, $unit_price);
 
-        $transaction_info = [
-            'checkout_url'   => env('CHECKOUT_URL'),
-            'return_uri'    => env('RETURN_URI'),
-            'trxid'         => 'QUICSMS01',
-            'price'         => '',
-            'logo_url'      => env('LOGO_URL'),
-            'cmd'           => 'checkout',
+        $order_info = [
             'title_name'    => 'QUIC SMS Credit Purchase',
-            'bk_color'      => '#3B4752',
-            'rg_color'      => '#E2DEEF',
-            'merchant_id'   => 'PAYQUICSMS09',
-            'merchant_key'  => 'PAY001D1',
             'poid'          => 'QUICSMS01',
-            'txid'          => $orderRepository->getTransactionID(),
-            'item'          => $quantity .' QuicSMS Credit Purchase - ₦' . $price ,
-            'price'         => $orderRepository->priceToKobo($price),
-            'currency'      => 'NG',
-            'shipping'      => 0,
-            'country'       => 'NG',
-            'return_script' => env('RETURN_SCRIPT'),
-
             'order_number'  => $orderRepository->genOrderNumber(),
             'quantity'      => $quantity,
             'unit_price'    => $unit_price,
-
+            'price'         => $orderRepository->priceToKobo($price),
+            'item'          => $quantity .' QuicSMS Credit Purchase - N' . $price ,
+            'txid'          => $orderRepository->getTransactionID(),
         ];
 
-        $orderRepository->save($transaction_info);
+        //$orderRepository->save($transaction_info);
 
         return view('kanda.user.confirm_credit-purchase', [
             'sms_quantity'      => $quantity,
             'unit_price'        => $unit_price,
             'total_cost'        => $price,
-            'transaction_info'  => create_object($transaction_info),
+            'transaction_info'  => create_object($order_info),
         ]);
 
 
     }
 
 
+    public function approve(Request $request, OrderRepository $repository, $order_id, $txid, $poid, $quantity, $unit_price, $price, $item)
+    {
+        //save incoming request & redirect to payment portal
+        $checkout_url = env('CHECKOUT_URL');
+        $order = [
+            'return_script'     => env('RETURN_SCRIPT'),
+            'country'           => env('COUNTRY'),
+            'shipping'          => (int) env('SHIPPING'),
+            'currency'          => env('CURRENCY'),
+            'price'             => $price,
+            'item'              => $item,
+            'txid'              => $txid,
+            'poid'              => $poid,
+            'return_uri'        => env('RETURN_URI'),
+            'merchant_key'      => env('MERCHANT_KEY'),
+            'merchant_id'       => env('MERCHANT_ID'),
+            'rg_color'          => env('RG_COLOR'),
+            'bk_color'          => env('BK_COLOR'),
+            'title_name'        => 'QUIC SMS CREDIT PURCHASE',
+            'logo_url'          => env('LOGO_URL'),
+            'cmd'               => env('CMD'),
+            'order_number'      => $order_id,
+            'quantity'          => $quantity,
+            'unit_price'        => $unit_price,
+            'price'             => $price,
+        ];
+        $repository->save($order);
+
+        $post_data = http_build_query($order);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $checkout_url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_POST, count($post_data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $order);
+        $output = curl_exec($ch);
+
+        if($output === false)
+        {
+            echo "Error Number:".curl_errno($ch)."<br>";
+            echo "Error String:".curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        return;
+    }
+
+
     public function paymentReturn(Request $request, OrderRepository $repository)
     {
+        $r = $request->all();
+        $a = array_except($r, ['transaction_code']);
+        $t = create_object($r);
+
         if ( $request->get('action') == 'decline' && $repository->checkOrder($request->get('order')) !== NULL )
         {
             return 'declined & has order -  User declined from credit purchase page';
         }
 
-        dd($request->all());
+        //user click return to merchant site
+        if ( $t->mode == 'card' && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) )
+        {
+            //update order in DB
+            if ($repository->update($t->transaction_code, $a))
+            {
+                //transaction declined
+                flash()->error("Your transaction was declined. Please try again.", 'Transaction Error');
+                return redirect()->to('user/credit-purchase');
+            }
+        } elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
+        {
+            if ( $repository->update($t->transaction_code, $a) )
+            {
+                flash()->success("Your payment was successful. Your account has been recharged");
+                return redirect()->to('user/credit-purchase');
+            }
+        }
+
     }
 
 
