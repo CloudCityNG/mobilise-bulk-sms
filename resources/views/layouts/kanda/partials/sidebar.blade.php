@@ -3,7 +3,7 @@
         <div class="ui input"><input type="text" placeholder="Search..."></div>
     </div>
 
-    <a class="item">
+    <a class="item" href="{{url('user/dashboard')}}">
         <i class="grid layout icon"></i> Dashboard
     </a>
 

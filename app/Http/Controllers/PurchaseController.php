@@ -115,14 +115,16 @@ class PurchaseController extends Controller {
     public function paymentReturn(Request $request, OrderRepository $repository)
     {
         $r = $request->all();
-        $a = array_except($r, ['transaction_code']);
-        $t = create_object($r);
 
-        if ( $request->get('action') == 'decline' && $repository->checkOrder($request->get('order')) !== NULL )
+
+        if ( $request->get('action') == 'decline' && $request->get('order') )
         {
-            return 'declined & has order -  User declined from credit purchase page';
+            flash()->error('You declined the transaction. You can try again', "Transaction declined.");
+            return redirect()->to('user/credit-purchase');
         }
 
+        $a = array_except($r, ['transaction_code']);
+        $t = create_object($r);
         //user click return to merchant site
         if ( $t->mode == 'card' && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) )
         {

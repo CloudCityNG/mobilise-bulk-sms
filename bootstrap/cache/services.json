@@ -23,6 +23,7 @@
         "Illuminate\\Validation\\ValidationServiceProvider",
         "Illuminate\\View\\ViewServiceProvider",
         "Illuminate\\Html\\HtmlServiceProvider",
+        "Laravel\\Socialite\\SocialiteServiceProvider",
         "Illuminate\\Broadcasting\\BroadcastServiceProvider",
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\BusServiceProvider",
@@ -134,6 +135,7 @@
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "html": "Illuminate\\Html\\HtmlServiceProvider",
         "form": "Illuminate\\Html\\HtmlServiceProvider",
+        "Laravel\\Socialite\\Contracts\\Factory": "Laravel\\Socialite\\SocialiteServiceProvider",
         "Illuminate\\Broadcasting\\BroadcastManager": "Illuminate\\Broadcasting\\BroadcastServiceProvider",
         "Illuminate\\Contracts\\Broadcasting\\Factory": "Illuminate\\Broadcasting\\BroadcastServiceProvider",
         "Illuminate\\Contracts\\Broadcasting\\Broadcaster": "Illuminate\\Broadcasting\\BroadcastServiceProvider"
@@ -151,6 +153,7 @@
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
         "Illuminate\\Html\\HtmlServiceProvider": [],
+        "Laravel\\Socialite\\SocialiteServiceProvider": [],
         "Illuminate\\Broadcasting\\BroadcastServiceProvider": []
     }
 }

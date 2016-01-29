@@ -8,6 +8,8 @@
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         <link rel="stylesheet" href="/assets/uikit/css/uikit.gradient.min.css">
         <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/css/sweetalert2.css">
+
         <style type="text/css">
         .uk-alert ul {
             padding-left:15px;
@@ -69,7 +71,6 @@
             <div class="uk-vertical-align-middle" style="width: 350px;">
 
                 <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
-                @include('flash::message')
                 @include('layouts.frontend.partials.errors')
 
                 {!! Form::open(['url'=>'user/login', 'method'=>'post', 'class'=>'uk-panel uk-panel-box uk-form', 'autocomplete'=>'off', 'id'=>'loginForm']) !!}
@@ -112,7 +113,9 @@
         @section('foot')
         <script src="/js/jquery/jquery-latest.js"></script>
         <script src="/assets/uikit/js/uikit.min.js"></script>
+        <script src="/js/sweetalert2.min.js"></script>
         @show
+        @include('layouts.kanda.partials.flash')
     </body>
 
 </html>

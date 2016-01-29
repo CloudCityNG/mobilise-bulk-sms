@@ -3,5 +3,5 @@
 /.idea
 .env
 worker.log
-/vendor/laracasts
+/vendor
 /storage/db_backups

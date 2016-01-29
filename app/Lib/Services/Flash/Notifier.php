@@ -21,14 +21,20 @@ class Notifier {
     }
 
 
-    public function info($message, $header='')
+    public function overlay($message)
+    {
+        $this->info($message);
+        return $this;
+    }
+
+    public function info($message, $header='Notification')
     {
         $this->flash($message, $header, 'info');
         return $this;
     }
 
 
-    public function message($message, $header='')
+    public function message($message, $header='Notification')
     {
         $this->flash($message, $header, 'message');
         return $this;

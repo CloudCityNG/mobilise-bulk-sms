@@ -51,7 +51,7 @@ class AuthenticateUser {
     public function execute($hasCode, $provider)
     {
         if ($this->request->has('error_code') && $this->request->has('error_message')):
-            flash()->overlay($this->request->get('error_message'));
+            flash()->error($this->request->get('error_message'));
             return redirect()->back();
         endif;
 
@@ -64,7 +64,7 @@ class AuthenticateUser {
             $getUserByEmail = $this->user->getUserByEmail($user->getEmail());
             //dd($isSocialUser[0]);
             if (is_null($user->getEmail())):
-                flash()->overlay(self::NO_EMAIL);
+                flash()->info(self::NO_EMAIL);
                 return redirect()->to('user/login');
             endif;
 
@@ -73,13 +73,13 @@ class AuthenticateUser {
                     //social user
                     $this->auth->login($isSocialUser[0]);
                     $this->removeProvider($provider);
-                    flash()->overlay(self::LOGIN_SUCCESSFUL);
+                    flash()->success(self::LOGIN_SUCCESSFUL);
                     return redirect()->intended('user/dashboard');
                     break;
                 case ( (bool) $getUserByEmail->count() ):
                     //user already exist
                     $this->removeProvider($provider);
-                    flash()->overlay(self::USER_EXISTS);
+                    flash()->info(self::USER_EXISTS);
                     return redirect()->to('user/login');
                     break;
                 default:
@@ -87,7 +87,7 @@ class AuthenticateUser {
                     $user = $this->createUser($user, $provider);
                     $this->auth->login($user, true);
                     $this->removeProvider($provider);
-                    flash()->overlay(self::LOGIN_SUCCESSFUL);
+                    flash()->success(self::LOGIN_SUCCESSFUL);
                     return redirect()->intended('user/dashboard');
                 break;
             }
@@ -101,7 +101,7 @@ class AuthenticateUser {
             $this->saveProvider($provider);
             return $this->socialite->driver($provider)->redirect();
         endif;
-        flash()->overlay(self::INVALID_PROVIDER);
+        flash()->error(self::INVALID_PROVIDER);
         return Redirect::to('user/login');
     }
 
