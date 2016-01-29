@@ -11,59 +11,64 @@
         </h2>
 
         <div class="ui three statistics" style="margin-top: 40px;">
-          <div class="statistic">
-            <div class="value">
-              22
+            <div class="ui blue statistic">
+              <div class="value">
+                <i class="mail icon"></i> 15
+              </div>
+              <div class="label">
+                Sent SMS
+              </div>
             </div>
-            <div class="label">
-              Saves
-            </div>
-          </div>
-          <div class="statistic">
+
+          <div class="ui olive statistic">
             <div class="text value">
-              Three<br>
-              Thousand
+              Zero<br>
+              Message(s)
             </div>
             <div class="label">
-              Signups
+              Undelivered
             </div>
           </div>
-          <div class="statistic">
+
+
+          <div class="ui pink statistic">
             <div class="value">
-              <i class="plane icon"></i> 5
+              <i class="user icon"></i> 0
             </div>
             <div class="label">
-              Flights
+              Contacts
             </div>
           </div>
+
         </div>
 
 <div class="ui section divider"></div>
 
         <div class="ui three statistics">
-          <div class="statistic">
+          <div class="orange statistic">
             <div class="value">
-              22
+              {{$currentUser->smscredit->available_credit}}
             </div>
             <div class="label">
-              Saves
+              Credits
             </div>
           </div>
-          <div class="statistic">
+          <div class="ui violet statistic">
             <div class="text value">
               Three<br>
-              Thousand
+              Thousand<br/>
+              Units
             </div>
             <div class="label">
-              Signups
+              Purchased
             </div>
           </div>
-          <div class="statistic">
+          <div class="ui teal statistic">
             <div class="value">
-              <i class="plane icon"></i> 5
+              <i class="save icon"></i> 5
             </div>
             <div class="label">
-              Flights
+              Saved Messages
             </div>
           </div>
         </div>
