@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Jobs\Job;
 use App\Lib\Mailer\LogEmail;
-use App\Lib\Mailer\Mailer;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;

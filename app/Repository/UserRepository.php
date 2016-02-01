@@ -73,4 +73,11 @@ class UserRepository {
     {
         return User::where(['email'=>$email, 'social_auth_type'=>$provider, 'social_auth'=>1])->get();
     }
+
+
+    public static function searchByEmail($email)
+    {
+        $q = '%'.$email.'%';
+        return User::where('email', 'like', $q)->get();
+    }
 }

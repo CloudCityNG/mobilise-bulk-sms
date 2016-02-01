@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{!! !empty($page_title) ? $page_title : "Quic SMS" !!}</title>
+    <title>{!! !empty($page_title) ? $page_title : "Admin Back Office" !!}</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="/assets/semanticui/semantic.min.css">
     <link rel="stylesheet" href="/kanda/css/extra.css">
     <link rel="stylesheet" href="/css/sweetalert2.css">
+    <style type="text/css">
+        .admin-content .ui.tabular.menu+.bottom.attached.segment,
+        .admin-content .ui.attached+.ui.attached.segment:not(.top) {
+        min-height: 400px;
+        }
+    </style>
     @show
     <!-- Modernizr -->
     <!--[if IE 8]>
@@ -26,17 +32,16 @@
 
 <div class="ui vertical inverted sidebar left menu">
   <a class="active item">Home</a>
-  <a class="item">Quic SMS</a>
-  <a class="item">Bulk SMS</a>
-  <a class="item">Contacts</a>
-  <a class="item">Groups/a>
-  <a class="item">Sent Messages</a>
-  <a class="item">Draft Messages</a>
+  <a class="item">Work</a>
+  <a class="item">Company</a>
+  <a class="item">Careers</a>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
 </div>
 
 <div class="pusher">
 
-    <div class="ui grid container">
+    <div class="ui grid container admin">
 
         <div class="row">
             <div class="column">
@@ -71,9 +76,9 @@
 
 
                 <div class="four wide computer six wide tablet sixteen wide mobile column">
-                    @include('layouts.kanda.partials.sidebar')
+                    @include('layouts.kanda.partials.admin-sidebar')
                 </div>
-                <div class="twelve wide computer ten wide tablet sixteen wide mobile column">
+                <div class="twelve wide computer ten wide tablet sixteen wide mobile column admin-content">
                     @yield('content')
                 </div>
 

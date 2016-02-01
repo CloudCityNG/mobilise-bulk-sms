@@ -21,7 +21,9 @@ use Money\Money;
 
 Route::get('/', function () {
 
-    //dispatch(new App\Jobs\TestQueueEmail);
+    $a = "%seg%";
+    $u = App\User::where('email', 'like', $a)->get();
+    dd($u);
 
     return view('test.index');
 });
@@ -33,21 +35,19 @@ Route::group(
 );
 
 
-Route::group(
-    ['prefix' => 'admin'], function() {
-
-        Route::get('set-pricing', 'PricingController@pricing');
-        Route::post('set-pricing', 'PricingController@postPricing');
-    }
-);
-
-
 Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
 //Route::get('Oauth/Callback', 'SessionsController@handleProviderCallback');
 
 
-Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'admin'], function(){
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'auth.admin'], function(){
 
+    Route::get('set-pricing', 'PricingController@pricing');
+    Route::post('set-pricing', 'PricingController@postPricing');
+
+    Route::get('search', 'AdminController@search');
+    Route::post('search', 'AdminController@postSearch');
+
+    Route::get('user/{id}', 'UserController@start');
 });
 
 Route::group(

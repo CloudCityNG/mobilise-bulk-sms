@@ -3,12 +3,11 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Lib\Payments\PayPal\CheckOut;
-use App\Lib\Services\Flash\Notifier;
+use App\Lib\Payments\InterSwitch\CheckOut;
+use App\Lib\Payments\PayPal\CheckOut as PayPalCheckOut;
 use App\Models\Pricing;
 use App\Repository\OrderRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller {
@@ -112,46 +111,48 @@ class PurchaseController extends Controller {
     }
 
 
-    public function paymentReturn(Request $request, OrderRepository $repository)
+    public function paymentReturn(Request $request, CheckOut $checkOut)
     {
         $r = $request->all();
+        return $checkOut->processReturn($r);
 
 
-        if ( $request->get('action') == 'decline' && $request->get('order') )
-        {
-            flash()->error('You declined the transaction. You can try again', "Transaction declined.");
-            return redirect()->to('user/credit-purchase');
-        }
-
-        $a = array_except($r, ['transaction_code']);
-        $t = create_object($r);
-        //user click return to merchant site
-        if ( $t->mode == 'card' && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) )
-        {
-            //update order in DB
-            if ($repository->update($t->transaction_code, $a))
-            {
-                //transaction declined
-                flash()->error("Your transaction was declined. Please try again.", 'Transaction Error');
-                return redirect()->to('user/credit-purchase');
-            }
-            else {
-                flash()->error("Invalid Transaction/Order");
-                return redirect()->to('user/credit-purchase');
-            }
-        }
-        elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
-        {
-            if ( $repository->update($t->transaction_code, $a) )
-            {
-                flash()->success("Your payment was successful. Your account has been recharged");
-                return redirect()->to('user/credit-purchase');
-            }
-            else {
-                flash()->error("Invalid Transaction/Order");
-                return redirect()->to('user/credit-purchase');
-            }
-        }
+//
+//        if ( $request->get('action') == 'decline' && $request->get('order') )
+//        {
+//            flash()->error('You declined the transaction. You can try again', "Transaction declined.");
+//            return redirect()->to('user/credit-purchase');
+//        }
+//
+//        $a = array_except($r, ['transaction_code']);
+//        $t = create_object($r);
+//        //user click return to merchant site
+//        if ( $t->mode == 'card' && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) )
+//        {
+//            //update order in DB
+//            if ($repository->update($t->transaction_code, $a))
+//            {
+//                //transaction declined
+//                flash()->error("Your transaction was declined. Please try again.", 'Transaction Error');
+//                return redirect()->to('user/credit-purchase');
+//            }
+//            else {
+//                flash()->error("Invalid Transaction/Order");
+//                return redirect()->to('user/credit-purchase');
+//            }
+//        }
+//        elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
+//        {
+//            if ( $repository->update($t->transaction_code, $a) )
+//            {
+//                flash()->success("Your payment was successful. Your account has been recharged");
+//                return redirect()->to('user/credit-purchase');
+//            }
+//            else {
+//                flash()->error("Invalid Transaction/Order");
+//                return redirect()->to('user/credit-purchase');
+//            }
+//        }
 
     }
 
@@ -185,7 +186,7 @@ class PurchaseController extends Controller {
 //    }
 
 
-    public function start(Request $request, CheckOut $checkOut)
+    public function start(Request $request, PayPalCheckOut $checkOut)
     {
 //        if ( $request->header('referer') != 'http://lara.app/user/credit-purchase' )
 //            return redirect()->back();

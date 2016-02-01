@@ -1,34 +1,7 @@
 <div class="ui fluid vertical menu" style="margin-bottom: 20px;">
-    {{--<div class="item">--}}
-        {{--<div class="ui input"><input type="text" placeholder="Search..."></div>--}}
-    {{--</div>--}}
 
     <a class="item" href="{{url('user/dashboard')}}">
-        <i class="grid layout icon"></i> Dashboard
-    </a>
-
-    <div class="item">
-        Messaging
-        <div class="menu">
-            <a class="item" href="#">Quic SMS</a>
-            <a class="item" href="#">Bulk SMS</a>
-        </div>
-    </div>
-
-    <div class="item">
-        AddressBook
-        <div class="menu">
-            <a class="item" href="#">Contacts</a>
-            <a class="item" href="#">Groups</a>
-        </div>
-    </div>
-
-    <a class="item">
-        <i class="grid layout icon"></i> Sent Messages
-    </a>
-
-    <a class="item">
-        <i class="grid layout icon"></i> Draft Messages
+        <i class="grid layout icon"></i> Search
     </a>
 
     {{--<div class="item">--}}
