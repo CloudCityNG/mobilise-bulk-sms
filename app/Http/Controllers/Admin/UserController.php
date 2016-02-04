@@ -10,11 +10,13 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    const paginate = 10;
 
     public function start($id)
     {
-        $orders = User::find($id)->order()->get();
-        $transactions = User::find($id)->transaction()->get();
-        return view('kanda.admin.user', ['orders'=>$orders, 'trans'=>$transactions]);
+        $user = User::find($id);
+        $orders = User::find($id)->order()->paginate(self::paginate);
+        $transactions = User::find($id)->transaction()->paginate(self::paginate);
+        return view('kanda.admin.user', ['orders'=>$orders ,'trans'=>$transactions, 'user'=>$user]);
     }
 }

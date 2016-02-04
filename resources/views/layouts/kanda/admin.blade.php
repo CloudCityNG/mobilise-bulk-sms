@@ -39,13 +39,13 @@
   <a class="item">Signup</a>
 </div>
 
-<div class="pusher">
+<div class="pusher admin">
 
     <div class="ui grid container admin">
 
         <div class="row">
             <div class="column">
-                @include('layouts.kanda.partials.nav')
+                @include('layouts.kanda.partials.admin.nav')
             </div>
         </div>
 
@@ -76,7 +76,7 @@
 
 
                 <div class="four wide computer six wide tablet sixteen wide mobile column">
-                    @include('layouts.kanda.partials.admin-sidebar')
+                    @include('layouts.kanda.partials.admin.sidebar')
                 </div>
                 <div class="twelve wide computer ten wide tablet sixteen wide mobile column admin-content">
                     @yield('content')

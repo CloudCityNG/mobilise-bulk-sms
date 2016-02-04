@@ -3,11 +3,13 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Jobs\CreditAccountJob;
 use App\Lib\Payments\InterSwitch\CheckOut;
 use App\Lib\Payments\PayPal\CheckOut as PayPalCheckOut;
 use App\Models\Pricing;
 use App\Repository\OrderRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller {
@@ -114,50 +116,20 @@ class PurchaseController extends Controller {
     public function paymentReturn(Request $request, CheckOut $checkOut)
     {
         $r = $request->all();
-        return $checkOut->processReturn($r);
-
-
-//
-//        if ( $request->get('action') == 'decline' && $request->get('order') )
-//        {
-//            flash()->error('You declined the transaction. You can try again', "Transaction declined.");
-//            return redirect()->to('user/credit-purchase');
-//        }
-//
-//        $a = array_except($r, ['transaction_code']);
-//        $t = create_object($r);
-//        //user click return to merchant site
-//        if ( $t->mode == 'card' && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) )
-//        {
-//            //update order in DB
-//            if ($repository->update($t->transaction_code, $a))
-//            {
-//                //transaction declined
-//                flash()->error("Your transaction was declined. Please try again.", 'Transaction Error');
-//                return redirect()->to('user/credit-purchase');
-//            }
-//            else {
-//                flash()->error("Invalid Transaction/Order");
-//                return redirect()->to('user/credit-purchase');
-//            }
-//        }
-//        elseif ($t->mode == 'card' && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref))
-//        {
-//            if ( $repository->update($t->transaction_code, $a) )
-//            {
-//                flash()->success("Your payment was successful. Your account has been recharged");
-//                return redirect()->to('user/credit-purchase');
-//            }
-//            else {
-//                flash()->error("Invalid Transaction/Order");
-//                return redirect()->to('user/credit-purchase');
-//            }
-//        }
+        //return $checkOut->processReturn($r);
+        if ( $checkOut->processReturn($r) )
+        {
+            //do customer credit job here
+            $this->dispatchFromArray('App\Jobs\CreditAccountJob', [
+                'transaction_code' => $r['transaction_code'],
+                'transaction_ref' => $r['transaction_ref'],
+                'user' => $request->user(),
+            ]);
+            //$this->dispatchFrom(CreditAccountJob::class, $request, ['user'=>$request->user()]);
+        }
+        return redirect()->to('user/credit-purchase');
 
     }
-
-
-
 
 
 

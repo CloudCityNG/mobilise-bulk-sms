@@ -38,9 +38,56 @@ class CheckOut {
     }
 
 
+    public function confirmTransaction($transaction_code, $user_id)
+    {
+        return $this->transactionRepository->checkTransaction($transaction_code, $user_id);
+        //dd($row);
+    }
+
+
+    /**
+     * Confirm a transaction from the gateway
+     * @param array $in
+     * @param $out
+     */
+    public static function verifyTransaction(Array $in, &$out)
+    {
+        $url = "https://oameye.works.payments.payquic.com/checkout/verifytrans.php";
+        $post_data = http_build_query($in);
+
+        //open connection
+        $ch = curl_init();
+
+        //set the url, number of POST vars, POST data
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_POST,count($in));
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$post_data);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        //execute post
+        $result = curl_exec($ch);
+
+        //close connection
+        curl_close($ch);
+
+        // Parse result
+        foreach(explode("\n", $result) as $line) {
+            if ($line=="" || strpos($line,"=") === false ) continue;
+            $key = trim(strtok($line,"="));
+            if ($key!="") {
+                $out[$key] = base64_decode(substr($line,1+strlen($key)));
+            }
+        }
+    }
+
+
     public function processReturn(Array $return)
     {
-        $r = array_map('trim', $return);
+        $r = array_map('trim', $return);//['mode'=>'','status'=>'','transaction_code'=>'','transaction_ref'=>'']
+
+        //check first if all the request coming in exists
 
 
         if (!empty($r['action']) && $r['action'] == 'decline' && !empty($r['order']))
@@ -49,12 +96,14 @@ class CheckOut {
             return redirect()->to(self::purchase_url);
         }
 
-        $a = array_except($r, ['transaction_code']);
+        $a = array_except($r, ['transaction_code']); //['mode'=>'','status'=>'','transaction_ref'=>'']
         $t = create_object($r);
 
         //create transaction
         if( $r['transaction_ref'] )
             $this->transactionRepository->save($r);
+
+        $out = null;
 
         switch(true)
         {
@@ -73,6 +122,9 @@ class CheckOut {
                 //update order
                 if ( $this->orderRepository->update($t->transaction_code, $a) ):
                     flash()->success(self::successful);
+                    $out = true;
+                    //do a job to confirm the transaction.
+                    //the job should then update the balance after successful confirmation.
                 else :
                     flash()->error(self::invalid);
                 endif;
@@ -83,7 +135,8 @@ class CheckOut {
                 break;
         }
 
-        return redirect()->to(self::purchase_url);
+        //return redirect()->to(self::purchase_url);
+        return $out;
     }
 
 } 

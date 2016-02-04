@@ -21,11 +21,8 @@ use Money\Money;
 
 Route::get('/', function () {
 
-    $a = "%seg%";
-    $u = App\User::where('email', 'like', $a)->get();
-    dd($u);
 
-    return view('test.index');
+    return view('emails.layouts.basic');
 });
 
 Route::group(

@@ -10,7 +10,7 @@
     <div class="item">
         Messaging
         <div class="menu">
-            <a class="item" href="#">Quic SMS</a>
+            <a class="item" href="{{$sideMenu->quick_sms}}">Quic SMS</a>
             <a class="item" href="#">Bulk SMS</a>
         </div>
     </div>

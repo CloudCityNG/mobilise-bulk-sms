@@ -56,3 +56,643 @@ PHP  50. GuzzleHttp\HandlerStack::create() /home/vagrant/laravel5/vendor/guzzleh
   Call to undefined function GuzzleHttp\choose_handler()   
                                                            
 
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:50
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:50
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:50
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:50
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 38
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Repository/TransactionRepository.php on line 37
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  29. App\Lib\Payments\InterSwitch\CheckOut->confirmTransaction() /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php:54
+PHP  30. App\Repository\TransactionRepository::checkTransaction() /home/vagrant/laravel5/app/Lib/Payments/InterSwitch/CheckOut.php:43
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+
+PHP Fatal error:  Call to a member function transaction() on null in /home/vagrant/laravel5/app/Jobs/CreditAccountJob.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/laravel5/artisan:0
+PHP   2. Illuminate\Foundation\Console\Kernel->handle() /home/vagrant/laravel5/artisan:36
+PHP   3. Symfony\Component\Console\Application->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php:107
+PHP   4. Symfony\Component\Console\Application->doRun() /home/vagrant/laravel5/vendor/symfony/console/Application.php:120
+PHP   5. Symfony\Component\Console\Application->doRunCommand() /home/vagrant/laravel5/vendor/symfony/console/Application.php:189
+PHP   6. Illuminate\Console\Command->run() /home/vagrant/laravel5/vendor/symfony/console/Application.php:841
+PHP   7. Symfony\Component\Console\Command\Command->run() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:136
+PHP   8. Illuminate\Console\Command->execute() /home/vagrant/laravel5/vendor/symfony/console/Command/Command.php:256
+PHP   9. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Console/Command.php:150
+PHP  10. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  11. Illuminate\Queue\Console\WorkCommand->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  12. Illuminate\Queue\Console\WorkCommand->runWorker() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:71
+PHP  13. Illuminate\Queue\Worker->daemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Console/WorkCommand.php:103
+PHP  14. Illuminate\Queue\Worker->runNextJobForDaemon() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:87
+PHP  15. Illuminate\Queue\Worker->pop() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:111
+PHP  16. Illuminate\Queue\Worker->process() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:159
+PHP  17. Illuminate\Queue\Jobs\DatabaseJob->fire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Worker.php:208
+PHP  18. Illuminate\Queue\Jobs\Job->resolveAndFire() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/DatabaseJob.php:50
+PHP  19. Illuminate\Queue\CallQueuedHandler->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/Jobs/Job.php:129
+PHP  20. Illuminate\Bus\Dispatcher->dispatchNow() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Queue/CallQueuedHandler.php:43
+PHP  21. Illuminate\Pipeline\Pipeline->then() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:204
+PHP  22. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  23. Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:103
+PHP  24. call_user_func:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  25. Illuminate\Bus\Dispatcher->Illuminate\Bus\{closure}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:139
+PHP  26. Illuminate\Container\Container->call() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php:192
+PHP  27. call_user_func_array:{/home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507}() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+PHP  28. App\Jobs\CreditAccountJob->handle() /home/vagrant/laravel5/vendor/laravel/framework/src/Illuminate/Container/Container.php:507
+
+                                                           
+  [Symfony\Component\Debug\Exception\FatalErrorException]  
+  Call to a member function transaction() on null          
+                                                           
+

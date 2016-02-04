@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionRepository {
 
@@ -15,7 +16,7 @@ class TransactionRepository {
                 ->transaction()
                 ->where('transaction_code', $r['transaction_code'])->count() == 1 )
         {
-            return Auth::user()->transaction()->update($r);
+            return Auth::user()->transaction()->where('transaction_code', $r['transaction_code'])->update($r);
         } else {
 
             $t = new Transaction();
@@ -32,12 +33,11 @@ class TransactionRepository {
 
 
 
-    public function checkTransaction($code)
+    public static function checkTransaction($code, $user_id)
     {
-        return Auth::user()
-            ->transaction()
+        return DB::table('transactions')
             ->where('transaction_code', $code)
-            ->first();
+            ->where('user_id', $user_id)->first();
     }
 
 } 

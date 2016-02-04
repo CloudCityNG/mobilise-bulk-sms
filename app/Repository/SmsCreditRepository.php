@@ -2,6 +2,7 @@
 
 
 use App\Lib\Services\Text\CharacterCounter;
+use App\Lib\Sms\CreditUnit;
 use App\Models\Sms\SmsCredit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,11 @@ class SmsCreditRepository {
     const UNIT_INTL = 15;
 
 
+    /**
+     * Create a new sms_credit account
+     * @param $user
+     * @return mixed
+     */
     public static function createNewAccount($user)
     {
         if ( empty($user->smscredit->available_credit) )
@@ -19,8 +25,17 @@ class SmsCreditRepository {
     }
 
 
+    /**
+     * Get a user's SMS Bill from the number of recipients & message length
+     *
+     * @param $recipients
+     * @param $message
+     * @return float
+     */
     public static function getSmsBill($recipients, $message)
     {
+        //@TODO use the gigsey libnumber class to remove invalid phone numbers here
+
         //set delimiters
         $delimiters = "/(,)+/";
 
@@ -64,9 +79,26 @@ class SmsCreditRepository {
     }
 
 
-    public static function billUser($units)
+    /**
+     * Bill a certain unit from the user's credit units
+     * @param $units
+     * @return mixed
+     */
+    public static function billUser($units, $user_id)
     {
-        return DB::table('sms_credit')->where('user_id', Auth::user()->id)->decrement('available_credit', $units);
+        return DB::table('sms_credit')
+            ->where('user_id', Auth::user()->id)
+            ->decrement('available_credit', $units);
+    }
+
+
+    public static function creditUser(CreditUnit $units, $user_id)
+    {
+        //logging of the credit must be done here
+        //every credit must have a log.
+        return DB::table('sms_credit')
+            ->where('user_id', $user_id)
+            ->increment('available_credit', $units->units);
     }
 
 

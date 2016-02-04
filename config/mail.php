@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'Shegun.babs@gmail.com', 'name' => 'Mobilise Bulk SMS'],
+	'from' => ['address' => env('MAIL_FROM_ADDRESS'), 'name' => env('MAIL_FROM_NAME')],
 
 	/*
 	|--------------------------------------------------------------------------

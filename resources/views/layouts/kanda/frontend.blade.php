@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="/assets/semanticui/semantic.min.css">
     <link rel="stylesheet" href="/kanda/css/extra.css">
     <link rel="stylesheet" href="/css/sweetalert2.css">
+    <style type="text/css">
+    /**
+     ** Large screen container fix
+     **/
+    @media only screen and (min-width: 1200px) {
+        .ui.grid.container {
+            width: 960px!important;
+        }
+    }
+    </style>
     @show
     <!-- Modernizr -->
     <!--[if IE 8]>
@@ -34,7 +44,7 @@
   <a class="item">Draft Messages</a>
 </div>
 
-<div class="pusher">
+<div class="pusher front">
 
     <div class="ui grid container">
 

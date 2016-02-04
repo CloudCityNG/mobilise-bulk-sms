@@ -1,7 +1,7 @@
 <div class="ui fluid vertical menu" style="margin-bottom: 20px;">
 
-    <a class="item" href="{{url('user/dashboard')}}">
-        <i class="grid layout icon"></i> Search
+    <a class="item" href="{{url('admin/search')}}">
+        <i class="search icon"></i> Search User
     </a>
 
     {{--<div class="item">--}}
