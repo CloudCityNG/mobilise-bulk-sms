@@ -27,26 +27,7 @@ use Money\Money;
 
 Route::get('/', function (Request $request, checkOut $checkOut) {
 
-    \Debugbar::enable();
-
-    $transaction_code = $request->get('trans_code');
-    $transaction_ref = $request->get('trans_ref');
-    $i = 1;
-    $out = User::find($i)
-        ->transaction();
-    $out2 = $out
-            ->where('transaction_code', $transaction_code)
-            ->count();
-//    $checkOut->verifyTransaction([
-//        'transaction_code'=>$transaction_code,
-//        'transaction_ref'=>$transaction_ref], $out);
-
-
-    dd($out2);
-
-
-    //return \Carbon\Carbon::now();
-    return view('emails.layouts.basic');
+    return redirect()->to('user/login');
 });
 
 Route::group(
