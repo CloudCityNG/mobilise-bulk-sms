@@ -2,9 +2,14 @@ $(document).ready(function(){
 
 window.Quic = window.Quic || {};
 
-    Quic.countCharacters = function(el){
-        var length = $(el).value.length;
-        console.log(length);
+    //show an element
+    Quic.showElement = function(el){
+        $(el).fadeIn('slow').show();
+    }
+
+    //hide an element
+    Quic.hideElement = function(el){
+        $(el).fadeOut('slow').hide();
     }
 
 
@@ -24,58 +29,116 @@ window.Quic = window.Quic || {};
     }
 
 
-    $('.ui.radio.checkbox').checkbox();
 
-    //activate radio buttons and attach appropriate events to them.
-    $('.ui.checkbox').checkbox({
+    $('.ui.radio.checkbox.box1').checkbox({
+        onChecked: function(){},
+        onUnchecked: function(){}
+    });
+
+    $('.ui.radio.checkbox.box2').checkbox({
         onChecked: function(){
-            var $this = $(this);
-            if ($this.val() == 1){
-                //update select to show mobile number as readonly
-                UserDetails.updateInputValue('#sender', UserDetails.phone);
-            }else if ($this.val() == 2){
-                //update input length not to take more than 11
-                UserDetails.clearInputValue('#sender');
-            } else if ($this.val() == 3){
-                //update input length not to take more than 14 numbers
+            $('#sender').prop('maxlength', 11);
+        },
+        onUnchecked: function(){}
+    });
+
+    $('.ui.radio.checkbox.box3').checkbox({
+        onChecked: function(){
+            $('#sender').prop('maxlength', 14);
+        },
+        onUnchecked: function(){}
+    });
+
+
+    /**
+     * RECIPIENTS
+     * @type {number}
+     */
+    var $contactMax = 50;
+        //check recipients and limit to 50 comma separated values
+    $('#recipients').on('keyup blur keydown focus', function(e){
+
+        if ( true )
+        {
+            $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
+            $val = $(this).val().trim();
+
+            //split textarea input with comma
+            $arrayNumbers = $val.split(',');
+            if ( $arrayNumbers.length > 50 ) {
+                $(this).val ( recipientsCopy );
+                return;
+            }
+
+            //internal length
+            $length = 0;
+            $.each($arrayNumbers, function(index, value){
+                if ( value ){
+                    $length++;
+                }
+            });
+            recipientsCopy = $(this).val();
+            $globalLength = $length;
+            $('#noOfRecipients').html($length + '/50');
+        }
+    });
+
+
+    /**
+     * MESSAGE
+     */
+    $('#message').simplyCountable({
+        counter: '#counter',
+        countType: 'characters',
+        maxCount: 320,
+        countDirection: 'up',
+        strictMax: true,
+        pageCountId: '#pages',
+        pageCount1: 160,
+        pageCount2: 320,
+        onCount: function(count, countable, counter){
+            if ( count == 0 ){
+                $('#pages').html('0');
+            }
+            else if ( count > 0 && count <= 160 ){
+                $('#pages').html('1 page');
+            } else if (count > 160 && count <= 320){
+                $('#pages').html('2 pages');
             }
         }
     });
 
 
-    var selectBoxValue = function(value) {
-        return $('#recipients').val(value);
-    }
+    /**
+     * SCHEDULE
+     */
+    $("#schedule").kendoDateTimePicker({
+        value: new Date(),
+        min: new Date(),
+        format: "yyyy-MM-dd HH:mm"
+    });
 
-    var $contactMax = 50;
+    var datetimepicker = $("#schedule").data("kendoDateTimePicker");
+    Quic.hideElement('#schedule-div');
+    datetimepicker.enable(false);
 
-        //check recipients and limit to 50 comma separated values
-    $('#recipients').on('keyup', function(e){
-
-        $val = $(this).val();
-
-        $(this).val ( $(this).val().replace(/[^\d,\s]/g,'') );
-
-        $arrayNumbers = $val.split(',');
-
-        $arrayNumbers = $arrayNumbers.removeSpace();
-        $arrayNumbersLength = $arrayNumbers.length;
-
-        if( $arrayNumbersLength > $contactMax )
-        {
-            $(this).val( recipientsCopy )
-        } else {
-
+    $('.ui.checkbox.scheduleControl').checkbox({
+        onChecked: function(){
+                Quic.showElement('#schedule-div');
+                datetimepicker.enable(true);
+        },
+        onUnchecked: function(){
+            //disable kendoui datetime select
+            Quic.hideElement('#schedule-div');
+            datetimepicker.enable(false);
         }
-
-        recipientsCopy = $(this).val();
-
-        $('#noOfRecipients').html($arrayNumbersLength + " / " + $contactMax.toString());
-
     });
 
-    $('#message').keyup(function(){
-        Quic.countCharacters(this)
-    });
+    /**
+     * DRAFT
+     */
+    $('.ui.checkbox.flash').checkbox();
+
+
 
 });

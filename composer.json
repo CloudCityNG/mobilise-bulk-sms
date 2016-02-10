@@ -11,7 +11,8 @@
         "landish/pagination": "~1.0",
         "laravel/socialite": "~2.0",
         "paypal/rest-api-sdk-php": "~1.5",
-        "mathiasverraes/money": "dev-master"
+        "mathiasverraes/money": "dev-master",
+		"barryvdh/laravel-debugbar": "^2.1"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

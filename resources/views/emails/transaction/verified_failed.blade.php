@@ -1,10 +1,9 @@
 @extends('emails.layouts.basic')
 
-@section('content')
+@section('info')
 
-    <h3>No Transaction code was detected</h3>
+    <h3>Verification failed for the user below</h3>
     <p>User: {{$username}}</p>
-
     <p>Transaction Code: {{$transaction_code}}</p>
 
 @endsection

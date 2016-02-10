@@ -1,6 +1,6 @@
-@extends('email.layouts.basic')
+@extends('emails.layouts.basic')
 
-@section('content')
+@section('info')
 
     <h3>User Account Credited</h3>
     <p>User: {{$username}}</p>

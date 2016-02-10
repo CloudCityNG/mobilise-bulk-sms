@@ -25,7 +25,7 @@ class ViewShare {
     {
         $sideMenus = [
             'dashboard'     => url('user/dashboard'),
-            'quick_sms'     => url('messaging/quick-sms'),
+            'quick_sms'     => url('messaging/quic-sms'),
             'bulk_sms'      => url('messaging/bulk-sms'),
             'contacts',
             'groups',

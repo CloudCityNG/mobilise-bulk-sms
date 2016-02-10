@@ -17,4 +17,17 @@ abstract class Mailer {
                 ->subject($subject);
         });
     }
+
+
+    public function sendNow($user, $subject, $view, $data=[])
+    {
+        Mail::send($view, $data, function($message) use($user,$subject){
+
+            if ( !empty($user->cc) )
+                $message->cc($user->cc);
+
+            $message->to($user->email)
+                ->subject($subject);
+        });
+    }
 }

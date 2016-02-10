@@ -36,6 +36,12 @@ class MessagingController extends Controller
     }
 
 
+    public function quic()
+    {
+        return view('kanda.messaging.quicsms');
+    }
+
+
     /**
      * Quick SMS form
      * @return \Illuminate\View\View
@@ -54,9 +60,10 @@ class MessagingController extends Controller
      */
     public function postQuickSms(SendSmsRequest $request)
     {
-        $this->dispatchFrom(QuickSms::class, $request, ['user' => Auth::user()]);
+//        dd($request->all());
+        $this->dispatchFrom('App\Jobs\QuickSmsJob', $request, ['user_id' => $request->user()->id]);
         flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
-        return redirect()->route('quick_sms');
+        return redirect()->to('messaging/quic-sms');
     }
 
 

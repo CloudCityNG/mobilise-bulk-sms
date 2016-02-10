@@ -4,6 +4,7 @@
 use App\Lib\Services\Text\CharacterCounter;
 use App\Lib\Sms\CreditUnit;
 use App\Models\Sms\SmsCredit;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -82,13 +83,16 @@ class SmsCreditRepository {
     /**
      * Bill a certain unit from the user's credit units
      * @param $units
+     * @param $user_id
      * @return mixed
      */
     public static function billUser($units, $user_id)
     {
         return DB::table('sms_credit')
-            ->where('user_id', Auth::user()->id)
-            ->decrement('available_credit', $units);
+            ->where('user_id', $user_id)
+            ->decrement('available_credit', $units, [
+                'updated_at' => Carbon::now(),
+            ]);
     }
 
 
@@ -98,7 +102,9 @@ class SmsCreditRepository {
         //every credit must have a log.
         return DB::table('sms_credit')
             ->where('user_id', $user_id)
-            ->increment('available_credit', $units->units);
+            ->increment('available_credit', $units->units, [
+                'updated_at' => Carbon::now(),
+            ]);
     }
 
 

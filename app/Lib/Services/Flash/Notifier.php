@@ -21,9 +21,9 @@ class Notifier {
     }
 
 
-    public function overlay($message)
+    public function overlay($message, $header='Notification')
     {
-        $this->info($message);
+        $this->info($message, $header);
         return $this;
     }
 

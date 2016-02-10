@@ -138,6 +138,7 @@ return [
         'Illuminate\Html\HtmlServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
         'Illuminate\Broadcasting\BroadcastServiceProvider',
+        Barryvdh\Debugbar\ServiceProvider::class,
 
 
 
@@ -203,6 +204,7 @@ return [
 //        'Flash'     => 'Laracasts\Flash\Flash',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'Gate'      => Illuminate\Support\Facades\Gate::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
 	],
 

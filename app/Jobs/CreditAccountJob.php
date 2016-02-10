@@ -55,27 +55,21 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
      */
     public function handle(CheckOut $checkOut, SmsCreditRepository $creditRepository, TransactionMailer $mailer)
     {
-//        if ($this->attempts() > 2) {
-//            return;
-//        }
-
         //check if the transaction has been processed already
         $row = $checkOut->confirmTransaction($this->transaction_code, $this->user->id);
 
-        if ( $row === null )
+        if ( $row == null )
         {
             //we can't find the transaction_code
             //send an email
             $mailer->no_transaction_code($this->user, $this->transaction_code);
         }
-
-        if ( $row->verified == 1 )
+        elseif ( $row->verified == 1 )
         {
             //transaction already verified
             $mailer->transaction_already_verified($this->user, $this->transaction_code);
-            return;
         }
-        else
+        elseif ( (int) $row->verified == 0 )
         {
             //confirm the transaction
             $out = null;
@@ -83,14 +77,18 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
                 'transaction_code'=>$this->transaction_code,
                 'transaction_ref'=>$this->transaction_ref], $out);
 
-            if ( !empty($out['verifyid']) && $out['ResponseCode'] == "00" )
+            if ( ctype_alnum($out['verifyid']) && $out['ResponseCode'] == "00" )
             {
                 //transaction successful from extra verification
 
+                //get amount purchased
                 $units = new CreditUnit($this->transaction_code, $this->user->id);
 
                 //update customer balance
                 $creditRepository->creditUser($units, $this->user->id);
+
+                //mark transaction as verified
+                $checkOut->verified($this->transaction_code, $this->user->id);
 
                 //log the credit update
 
@@ -99,12 +97,18 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
                 //send email to admin
                 $mailer->user_account_credited($this->user, $this->transaction_code, $units->units);
             }
-            else
+            elseif ( empty($out['verifyid']) )
             {
                 //transaction was not successful from extra verification
+
+                //mark transaction as verified
+                $checkOut->verified($this->transaction_code, $this->user->id);
+
+                //notify admin a transaction verification failed
+                $mailer->verified_failed($this->user, $this->transaction_code);
             }
 
         }
-
+        return;
     }
 }

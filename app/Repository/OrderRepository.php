@@ -10,6 +10,7 @@ namespace App\Repository;
 
 
 use App\Models\Order;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -80,10 +81,14 @@ class OrderRepository {
     }
 
 
-    public function update($tx_id, Array $transaction_info)
+    public function update($user_id, $tx_id, Array $transaction_info)
     {
-        return DB::table('orders')->where('transaction_code', $tx_id)
+        return User::find($user_id)
+            ->order()
+            ->where('transaction_code', $tx_id)
             ->update($transaction_info);
+//        return DB::table('orders')->where('transaction_code', $tx_id)
+//            ->update($transaction_info);
     }
 
 

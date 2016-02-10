@@ -21,7 +21,7 @@ class SendSmsMiddleware
     {
         //check user credit
         $user_credit = $request->user()->smscredit->available_credit;
-        //dd($user_credit);
+
         //if NO CREDIT at all handle
         if ($user_credit <= self::NO_CREDIT) {
             if ($request->ajax()) {

@@ -109,6 +109,10 @@
           counter.removeClass(options.overClass).addClass(options.safeClass);
           options.onSafeCount(countInt(), countable, counter);
         }
+
+          if (count >= 0 && options.onCount ){
+            options.onCount(countInt(), countable, counter);
+        }
         
       };
       

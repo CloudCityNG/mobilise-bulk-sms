@@ -12,16 +12,40 @@
 */
 
 
-use App\Lib\Payments\PayPal\CheckOut;
+//use App\Lib\Payments\PayPal\CheckOut;
+use App\Lib\Payments\InterSwitch\CheckOut;
 use App\Lib\Services\Text\String;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Money\Money;
 
 
-Route::get('/', function () {
 
 
+Route::get('/', function (Request $request, checkOut $checkOut) {
+
+    \Debugbar::enable();
+
+    $transaction_code = $request->get('trans_code');
+    $transaction_ref = $request->get('trans_ref');
+    $i = 1;
+    $out = User::find($i)
+        ->transaction();
+    $out2 = $out
+            ->where('transaction_code', $transaction_code)
+            ->count();
+//    $checkOut->verifyTransaction([
+//        'transaction_code'=>$transaction_code,
+//        'transaction_ref'=>$transaction_ref], $out);
+
+
+    dd($out2);
+
+
+    //return \Carbon\Carbon::now();
     return view('emails.layouts.basic');
 });
 
@@ -100,6 +124,8 @@ Route::group(['prefix'=>'settings'], function(){
 
 Route::group(
     ['prefix' => 'messaging'], function () {
+
+        Route::get('quic-sms', 'MessagingController@quic');
 
         Route::get('quick-sms',             ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
         Route::post('quick-sms',            'MessagingController@postQuickSms');

@@ -4,7 +4,7 @@
     {{--</div>--}}
 
     <a class="item" href="{{url('user/dashboard')}}">
-        <i class="grid layout icon"></i> Dashboard
+        <i class="dashboard icon"></i> Dashboard
     </a>
 
     <div class="item">
@@ -24,11 +24,11 @@
     </div>
 
     <a class="item">
-        <i class="grid layout icon"></i> Sent Messages
+        <i class="history icon"></i> Sent Messages
     </a>
 
     <a class="item">
-        <i class="grid layout icon"></i> Draft Messages
+        <i class="archive icon orange"></i> Draft Messages
     </a>
 
     {{--<div class="item">--}}

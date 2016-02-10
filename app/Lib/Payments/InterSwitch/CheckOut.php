@@ -38,6 +38,12 @@ class CheckOut {
     }
 
 
+    public function verified($transaction_code, $user_id)
+    {
+        $this->transactionRepository->verified($transaction_code, $user_id);
+    }
+
+
     public function confirmTransaction($transaction_code, $user_id)
     {
         return $this->transactionRepository->checkTransaction($transaction_code, $user_id);
@@ -83,7 +89,7 @@ class CheckOut {
     }
 
 
-    public function processReturn(Array $return)
+    public function processReturn(Array $return, $user_id)
     {
         $r = array_map('trim', $return);//['mode'=>'','status'=>'','transaction_code'=>'','transaction_ref'=>'']
 
@@ -101,7 +107,7 @@ class CheckOut {
 
         //create transaction
         if( $r['transaction_ref'] )
-            $this->transactionRepository->save($r);
+            $this->transactionRepository->save($r, $user_id);
 
         $out = null;
 
@@ -110,7 +116,7 @@ class CheckOut {
             //declined
             case ( $t->mode == self::card && $t->status == 'declined' && !empty($t->transaction_code) && !empty($t->transaction_ref) ):
                 //update order
-                if ( $this->orderRepository->update($t->transaction_code, $a) ):
+                if ( $this->orderRepository->update($user_id, $t->transaction_code, $a) ):
                     flash()->error(self::declined, 'Transaction Error');
                 else:
                     flash()->error(self::invalid);
@@ -120,7 +126,7 @@ class CheckOut {
             //approved
             case ( $t->mode == self::card && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref)):
                 //update order
-                if ( $this->orderRepository->update($t->transaction_code, $a) ):
+                if ( $this->orderRepository->update($user_id, $t->transaction_code, $a) ):
                     flash()->success(self::successful);
                     $out = true;
                     //do a job to confirm the transaction.

@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Jobs;
 
-use App\Jobs\Command;
-
+use App\Jobs\Job;
 use App\Lib\Sms\SmsInfobip;
 use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsHistoryRecipient;
@@ -13,9 +13,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class QuickSms extends Command implements SelfHandling {
-
-	//use InteractsWithQueue, SerializesModels;
+class QuickSmsJob extends Job implements SelfHandling, ShouldQueue
+{
+    use InteractsWithQueue, SerializesModels;
     /**
      * @var
      */
@@ -37,76 +37,67 @@ class QuickSms extends Command implements SelfHandling {
      */
     private $flash;
     /**
-     * @var User
+     * @var
      */
-    private $user;
+    private $user_id;
 
     /**
-     * Create a new command instance.
+     * Create a new job instance.
      *
-     * @param User $user
-     * @param $sender
-     * @param $recipients
-     * @param $message
-     * @param $schedule
-     * @param $flash
-     * @return \App\Jobs\QuickSms
+     * @return void
      */
-	public function __construct($user, $sender, $recipients, $message, $schedule, $flash)
-	{
-		//
+    public function __construct($sender, $recipients, $message, $schedule, $flash, $user_id)
+    {
+        //
         $this->sender = $sender;
         $this->recipients = $recipients;
         $this->message = $message;
         $this->schedule = $schedule;
         $this->flash = $flash;
-        $this->user = $user;
-
-        if (!$this->flash)
-            $this->flash = 0;
+        $this->user_id = $user_id;
     }
 
     /**
-     * Execute the command.
+     * Execute the job.
      *
-     * @param SmsCreditRepository $repository
+     * @param SmsCreditRepository $smsCreditRepository
      * @param SmsInfobip $infobip
      * @param SmsHistory $history
      * @param SmsHistoryRecipient $historyRecipient
      * @return void
      */
-	public function handle(SmsCreditRepository $repository, SmsInfobip $infobip, SmsHistory $history, SmsHistoryRecipient $historyRecipient)
-	{
-		//calculate bill
-        $total_units = $repository->getSmsBill($this->recipients, $this->message);
+    public function handle(SmsCreditRepository $smsCreditRepository, SmsInfobip $infobip, SmsHistory $history, SmsHistoryRecipient $historyRecipient)
+    {
+        //calculate total bill for user
+        $total_units = $smsCreditRepository->getSmsBill($this->recipients, $this->message);
+
         //deduct bill from user account
-        $repository->billUser($total_units);
-        //send SMS
+        $smsCreditRepository->billUser($total_units, $this->user_id);
+
+        //now send sms
         $s = $infobip->setSender($this->sender)
-                    ->setRecipients($this->recipients)
-                    ->setMessage($this->message)
-                    ->flash($this->flash)
-                    ->setSchedule($this->schedule)
-                    ->send();
+            ->setRecipients($this->recipients)
+            ->setMessage($this->message)
+            ->setSchedule($this->schedule)
+            ->flash($this->flash)
+            ->send();
+
         //save the SMS
+        $user = User::find($this->user_id);
         $sms_history = $history->store($this->sender, $this->message, $this->schedule, $total_units, $this->flash);
-        $sms_history_row = $this->user->smshistory()->save( $sms_history );
+        $sms_history_row = $user->smshistory()->save( $sms_history );
 
         //process the response and save to DB
         $s = json_decode($s, true);
         $recipients = [];
 
-        //update the recipient table with
-        foreach ($s['results'] as $result){
+        //update the recipient table with the recipients
+        foreach ( $s['results'] as $result )
+        {
             $recipients[] = $historyRecipient->store($result['status'], $result['messageid'], $result['destination']);
         }
 
         $s = $history->find($sms_history_row->id);
         $s->smsHistoryRecipient()->saveMany($recipients);
-
-        //record credit usage
-        //$repository->recordCreditUsage($sms_history_row->id, $total_units);
-
-	}
-
+    }
 }
