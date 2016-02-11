@@ -28,7 +28,7 @@ class SendSmsMiddleware
                 return response()->json(['credit' => [self::NO_CREDIT_TEXT]], 422);
             }
             //@TODO set a sms/home route
-            flash()->info(self::NO_CREDIT_TEXT);
+            flash()->error(self::NO_CREDIT_TEXT);
             return redirect()->back()->withInput();
         }
 
@@ -44,7 +44,7 @@ class SendSmsMiddleware
             if ($request->ajax()) {
                 return response()->json(['credit' => [self::NO_CREDIT_TEXT]], 422);
             }
-            flash()->info(self::NO_CREDIT_TEXT);
+            flash()->error(self::NO_CREDIT_TEXT);
             return redirect()->back()->withInput();
         }
 

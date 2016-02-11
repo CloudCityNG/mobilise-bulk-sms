@@ -4,11 +4,11 @@
 
 <div class="boxx">
     <h2 class="ui header">
-            <i class="plug icon"></i>
-            <div class="content">
-                Dashboard
-            </div>
-        </h2>
+        <i class="plug icon"></i>
+        <div class="content">
+            Dashboard
+        </div>
+    </h2>
 
         <div class="ui three statistics" style="margin-top: 40px;">
             <div class="ui blue statistic">

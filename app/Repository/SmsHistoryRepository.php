@@ -106,7 +106,6 @@ class SmsHistoryRepository {
     public function sentSms()
     {
         return Auth::user()->smshistory()->with('smshistoryrecipient')->orderBy('created_at', 'descending')->paginate(self::DEFAULT_PAGINATE_SIZE);
-        //return SmsHistory::where('user_id', Auth::user()->id)->with('smshistoryrecipient')->orderBy('created_at', 'descending')->get();
     }
 
 

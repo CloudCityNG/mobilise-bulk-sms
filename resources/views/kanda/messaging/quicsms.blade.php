@@ -36,7 +36,7 @@ padding: 0px;
             {{--</div>--}}
             <div class="field">
               <div class="ui radio checkbox box2">
-                <input type="radio" name="sender_type" id="sender_type2" value="2" tabindex="0" class="hidden">
+                <input type="radio" name="sender_type" id="sender_type2" value="2" tabindex="0" class="hidden" checked="checked">
                 <label>Alphanumeric</label>
               </div>
             </div>

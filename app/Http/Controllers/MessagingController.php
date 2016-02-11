@@ -155,7 +155,7 @@ class MessagingController extends Controller
     public function sentSms(SmsHistoryRepository $repository)
     {
         $data = $repository->sentSms();
-        return view('messaging.sent-sms', ['data' => $data]);
+        return view('kanda.messaging.sent-sms', ['data' => $data]);
     }
 
 

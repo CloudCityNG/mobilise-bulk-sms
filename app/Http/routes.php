@@ -121,6 +121,7 @@ Route::group(
         Route::post('file2sms/fileupload',  'MessagingController@postFileUpload2');
 
         Route::get('sent-sms',              'MessagingController@sentSms');
+
         Route::get('sent-sms/{id?}/del',    'MessagingController@delSentSms');
         Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
         Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
