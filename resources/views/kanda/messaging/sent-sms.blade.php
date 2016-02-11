@@ -16,8 +16,11 @@
             <div class="card">
                 <div class="content">
                     <div class="header">{{$sent->sender}}</div>
-                    <div class="meta">{{$sent->created_at->diffForHumans()}}</div>
-                    <div class="description">{{$sent->message}}</div>
+                    <div class="meta">
+                        <span class="right floated time">{{$sent->created_at->diffForHumans()}}</span>
+                        <span class="category">Sent</span>
+                    </div>
+                    <div class="description">{{echo_($sent->message)}}</div>
                 </div>
                 <div class="extra content">
                     <i class="check icon"></i>
@@ -40,7 +43,7 @@
           <div class="header">Elliot Fu</div>
           <div class="meta">Friend</div>
           <div class="description">
-            Elliot Fu is a film-maker from New York.
+            Dear subscriber, kindly download and install the EasyBackup app from http://apps.easyphonebackup.com onto your device. Login into the app with your phone number and password to restore your backed up contacts. send SUB to 48900 to retrieve your password incase you have forgotten.
           </div>
         </div>
       </div>

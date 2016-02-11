@@ -2,6 +2,16 @@
 
 use App\Lib\Services\Flash\Notifier;
 
+
+function echo_($print, $length=200, $cut_character='...')
+{
+    if ( strlen($print) <= $length )
+        return $print;
+    else
+        return substr($print, 0, $length) . $cut_character;
+}
+
+
 function flash()
 {
     return app(Notifier::class);
