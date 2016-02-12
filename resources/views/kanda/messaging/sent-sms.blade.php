@@ -38,13 +38,12 @@
             @endforeach
         </div>
     @endforeach
-        <div class="ui warning message">
-          <i class="close icon"></i>
-          You do not have any Sent SMS yet.
-        </div>
+
     @else
-
-
+     <div class="ui warning message">
+               <i class="close icon"></i>
+               You do not have any Sent SMS yet.
+             </div>
     @endif
 
 
