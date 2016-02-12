@@ -202,3 +202,10 @@
     cursor: not-allowed;
     background-color: #fff
 }
+
+
+.ui.header.box-header {
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}

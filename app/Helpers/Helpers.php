@@ -3,7 +3,7 @@
 use App\Lib\Services\Flash\Notifier;
 
 
-function echo_($print, $length=200, $cut_character='...')
+function echo_($print, $length=100, $cut_character='...')
 {
     if ( strlen($print) <= $length )
         return $print;
@@ -20,11 +20,14 @@ function flash()
 
 if (!function_exists('mark_active'))
 {
-    function mark_active($urlPath, $thisLink)
+    function mark_active($urlPath, $thisLink, $class=1)
     {
         if ( $urlPath == $thisLink )
         {
-            return 'uk-active';
+            if ( $class )
+                return 'active';
+            else
+                return 'uk-active';
         }
     }
 }

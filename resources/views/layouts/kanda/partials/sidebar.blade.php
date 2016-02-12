@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <a class="item">
+    <a class="item" href="{{url('messaging/sent-sms')}}">
         <i class="history icon"></i> Sent Messages
     </a>
 

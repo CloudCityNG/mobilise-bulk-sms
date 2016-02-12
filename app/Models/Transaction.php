@@ -14,4 +14,10 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order', 'transaction_code', 'transaction_code');
+    }
 }

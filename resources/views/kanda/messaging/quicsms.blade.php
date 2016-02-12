@@ -24,7 +24,7 @@ padding: 0px;
 
     @include('layouts.kanda.partials.errors')
 
-    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'ui form', 'id'=>'quick-sms']) !!}
+    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'ui form', 'id'=>'quick-sms', 'autocomplete'=>'off']) !!}
 
         <div class="inline fields" id="senderTypeGroup">
             <label for="fruit">Select your sender type:</label>

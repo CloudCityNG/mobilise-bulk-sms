@@ -81,7 +81,11 @@
 
 
                 <div class="four wide computer six wide tablet sixteen wide mobile column">
+                @if( !empty($userSidebar) )
+                    @include('layouts.kanda.partials.user-sidebar')
+                @else
                     @include('layouts.kanda.partials.sidebar')
+                @endif
                 </div>
                 <div class="twelve wide computer ten wide tablet sixteen wide mobile column">
                     @yield('content')

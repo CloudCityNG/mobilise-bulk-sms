@@ -13,7 +13,7 @@
             <img src="{{getenv('LOGO_URL')}}" alt="" style="width: 150px"/>
         </a>
     </div>
-    <a class="item"><i class="mail icon"></i> Messaging</a>
+    <a class="item" href="messaging/quic-sms"><i class="mail icon"></i> Messaging</a>
     <a class="item" href="{{url('address-book')}}"><i class="book icon"></i> AddressBook</a>
     <a class="item"><i class="announcement icon"></i> Support</a>
 
@@ -40,12 +40,13 @@
             <i class="options icon"></i> {{ucfirst($currentUser->username)}}
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden" tabindex="-1">
-                    <div class="item">Settings</div>
-                    <div class="item">Something else here</div>
+                    <div class="item"><a href="{{$sideMenu->dashboard}}"> <i class="dashboard icon"></i> Dashboard</a></div>
+                    <div class="item"><a href="{{$sideMenu->account_setting}}"> <i class="settings icon"></i> Settings</a></div>
+                    <div class="item"> <i class="user icon"></i> Profile</div>
                     <div class="divider"></div>
-                    <div class="item">Separated Link</div>
+                    <div class="item"><a href="{{$sideMenu->payments}}"> <i class="payment icon"></i> Payments</a></div>
                     <div class="divider"></div>
-                    <div class="item"><a href="{{url('user/logout')}}">Logout</a></div>
+                    <div class="item"><a href="{{url('user/logout')}}"> <i class="sign out icon"></i> Logout</a></div>
                 </div>
         </div>
     </div>

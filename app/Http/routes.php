@@ -94,6 +94,15 @@ Route::group(
 );
 
 Route::group(['prefix'=>'settings'], function(){
+    Route::get('account',           'SettingsController@account');
+    Route::post('account',           'SettingsController@postAccount');
+    Route::get('other-details',     'SettingsController@other_details');
+    Route::get('notifications',     'SettingsController@notifications');
+    Route::get('orders',            'SettingsController@orders');
+    Route::get('payments',      'SettingsController@payments');
+});
+
+Route::group(['prefix'=>'setting'], function(){
 
     Route::get('profile',       'SettingsController@profile');
     Route::post('profile',      'SettingsController@postProfile');

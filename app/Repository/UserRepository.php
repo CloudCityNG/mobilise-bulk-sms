@@ -80,4 +80,10 @@ class UserRepository {
         $q = '%'.$email.'%';
         return User::where('email', 'like', $q)->get();
     }
+
+
+    public static function update(Array $details)
+    {
+        //check if password exisits
+    }
 }

@@ -15,4 +15,10 @@ class Order extends Model
     }
 
 
+    public function transaction()
+    {
+        return $this->belongsTo('App\Models\Transaction', 'transaction_code', 'transaction_code');
+    }
+
+
 }

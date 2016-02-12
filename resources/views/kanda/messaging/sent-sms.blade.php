@@ -10,6 +10,8 @@
         </div>
     </h2>
 
+    @if( $data->count() )
+
     @foreach($data->chunk(3) as $chunk)
         <div class="ui three cards">
             @foreach($chunk as $sent)
@@ -36,36 +38,15 @@
             @endforeach
         </div>
     @endforeach
+        <div class="ui warning message">
+          <i class="close icon"></i>
+          You do not have any Sent SMS yet.
+        </div>
+    @else
 
-    <div class="ui three cards">
-      <div class="card">
-        <div class="content">
-          <div class="header">Elliot Fu</div>
-          <div class="meta">Friend</div>
-          <div class="description">
-            Dear subscriber, kindly download and install the EasyBackup app from http://apps.easyphonebackup.com onto your device. Login into the app with your phone number and password to restore your backed up contacts. send SUB to 48900 to retrieve your password incase you have forgotten.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <div class="header">Veronika Ossi</div>
-          <div class="meta">Friend</div>
-          <div class="description">
-            Veronika Ossi is a set designer living in New York who enjoys kittens, music, and partying. Veronika Ossi is a set designer living in New York who enjoys kitte.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <div class="header">Jenny Hess</div>
-          <div class="meta">Friend</div>
-          <div class="description">
-            Jenny is a student studying Media Management at the New School
-          </div>
-        </div>
-      </div>
-    </div>
+
+    @endif
+
 
 </div>
 @endsection
