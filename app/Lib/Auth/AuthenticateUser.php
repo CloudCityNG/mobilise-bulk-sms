@@ -62,7 +62,6 @@ class AuthenticateUser {
             $user = $this->socialite->driver($provider)->user();
             $isSocialUser = $this->user->getSocialUser($user->getEmail(), $provider);
             $getUserByEmail = $this->user->getUserByEmail($user->getEmail());
-            dd($user);
             //dd($isSocialUser[0]);
             if (is_null($user->getEmail())):
                 flash()->info(self::NO_EMAIL);
