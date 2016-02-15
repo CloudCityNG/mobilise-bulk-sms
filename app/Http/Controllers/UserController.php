@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $sent_sms = 5;
+        $sent_sms = Auth::user()->smshistory()->count();
         $undelivered_messages = 0;
         $contacts = 0;
         $credit_purchased = 0;

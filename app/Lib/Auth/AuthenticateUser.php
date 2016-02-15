@@ -128,7 +128,14 @@ class AuthenticateUser {
     private function createUser($user, $provider)
     {
         $email = $user->getEmail();
-        $username =  String::replaceChar($user->getName());
+        //for google business accounts, names are not present.
+        //so check name first
+        if ( !empty($user->getName()) ) :
+            $username =  String::replaceChar($user->getName());
+        else:
+            $username = explode("@", $user->getEmail())[0];
+        endif;
+
         $password = bcrypt( String::randomString() );
         $social_auth_type = $provider;
         $social_auth = 1;
