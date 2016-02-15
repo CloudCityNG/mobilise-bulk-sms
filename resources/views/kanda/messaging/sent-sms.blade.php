@@ -10,8 +10,9 @@
         </div>
     </h2>
 
-    @if( $data->count() )
+    @if( $data )
 
+    {!! $data->render() !!}
     @foreach($data->chunk(3) as $chunk)
         <div class="ui three cards">
             @foreach($chunk as $sent)
@@ -41,9 +42,9 @@
 
     @else
      <div class="ui warning message">
-               <i class="close icon"></i>
-               You do not have any Sent SMS yet.
-             </div>
+       <i class="close icon"></i>
+       You do not have any Sent SMS yet.
+     </div>
     @endif
 
 

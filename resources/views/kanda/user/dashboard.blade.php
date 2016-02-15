@@ -13,7 +13,7 @@
         <div class="ui three statistics" style="margin-top: 40px;">
             <div class="ui blue statistic">
               <div class="value">
-                <i class="mail icon"></i> 15
+                <i class="mail icon"></i> {{$sent_sms}}
               </div>
               <div class="label">
                 Sent SMS

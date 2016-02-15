@@ -23,7 +23,21 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('kanda.user.dashboard');
+        $sent_sms = 5;
+        $undelivered_messages = 0;
+        $contacts = 0;
+        $credit_purchased = 0;
+        $credits = 0;
+        $saved_messages = 0;
+        Auth::user()->smshistoryrecipient()->get();
+        return view('kanda.user.dashboard', compact(
+            "sent_sms",
+            "undelivered_messages",
+            "contacts",
+            "credit_purchased",
+            "credits",
+            "saved_messages"
+        ));
     }
 
 

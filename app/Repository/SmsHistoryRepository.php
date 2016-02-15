@@ -9,7 +9,7 @@ class SmsHistoryRepository {
 
     const UNIT_LOCAL = 1;
     const UNIT_INTL = 15;
-    const DEFAULT_PAGINATE_SIZE = 10;
+    const DEFAULT_PAGINATE_SIZE = 3;
 
 
 
