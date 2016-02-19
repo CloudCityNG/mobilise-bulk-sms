@@ -115,7 +115,7 @@ Route::group(['prefix'=>'setting'], function(){
 Route::group(
     ['prefix' => 'messaging'], function () {
 
-        Route::get('quic-sms', 'MessagingController@quic');
+        Route::get('quic-sms',      ['as'=>'quic_sms','uses'=>'MessagingController@quic']);
 
         Route::get('quick-sms',             ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
         Route::post('quick-sms',            'MessagingController@postQuickSms');
@@ -131,7 +131,7 @@ Route::group(
 
         Route::get('sent-sms',              'MessagingController@sentSms');
 
-        Route::get('sent-sms/{id?}/del',    'MessagingController@delSentSms');
+        Route::get('sent-sms/{id}/del',    'MessagingController@delSentSms');
         Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
         Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
         Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');

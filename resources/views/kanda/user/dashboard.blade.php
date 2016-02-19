@@ -22,7 +22,7 @@
 
           <div class="ui olive statistic">
             <div class="text value">
-              Zero<br>
+              {{$undelivered_messages}}<br>
               Message(s)
             </div>
             <div class="label">

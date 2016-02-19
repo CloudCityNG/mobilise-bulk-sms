@@ -22,7 +22,7 @@
      **/
     @media only screen and (min-width: 1200px) {
         .ui.grid.container {
-            width: 960px!important;
+            width: 1000px!important;
         }
     }
     </style>
@@ -39,7 +39,7 @@
   <a class="item">Quic SMS</a>
   <a class="item">Bulk SMS</a>
   <a class="item">Contacts</a>
-  <a class="item">Groups/a>
+  <a class="item">Groups</a>
   <a class="item">Sent Messages</a>
   <a class="item">Draft Messages</a>
 </div>
@@ -80,14 +80,14 @@
         <div class="row" style="margin-bottom: 40px;">
 
 
-                <div class="four wide computer six wide tablet sixteen wide mobile column">
+                <div class="three wide computer four wide tablet hidden mobile column">
                 @if( !empty($userSidebar) )
                     @include('layouts.kanda.partials.user-sidebar')
                 @else
                     @include('layouts.kanda.partials.sidebar')
                 @endif
                 </div>
-                <div class="twelve wide computer ten wide tablet sixteen wide mobile column">
+                <div class="thirteen wide computer twelve wide tablet sixteen wide mobile column">
                     @yield('content')
                 </div>
 

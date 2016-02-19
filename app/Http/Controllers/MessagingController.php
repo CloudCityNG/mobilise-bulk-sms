@@ -245,7 +245,7 @@ class MessagingController extends Controller
     {
         $this->dispatchFrom(NewDraftSmsCommand::class, $draftSmsRequest);
         flash()->success("Message saved as draft successfully");
-        return redirect()->route('quick_sms');
+        return redirect()->route('quic_sms');
     }
 
 

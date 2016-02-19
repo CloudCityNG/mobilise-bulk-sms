@@ -13,32 +13,31 @@
     @if( $data )
 
     {!! $data->render() !!}
-    @foreach($data->chunk(3) as $chunk)
-        <div class="ui three cards">
-            @foreach($chunk as $sent)
-            <div class="card">
-                <div class="content">
-                    <div class="header">{{$sent->sender}}</div>
-                    <div class="meta">
-                        <span class="right floated time">{{$sent->created_at->diffForHumans()}}</span>
-                        <span class="category">Sent</span>
-                    </div>
-                    <div class="description">{{echo_($sent->message)}}</div>
-                </div>
-                <div class="extra content">
-                    <i class="check icon"></i>
-                    <?php $recipients = $sent->smshistoryrecipient->count() ?>
-                    {{$recipients}} {{ $recipients == 1 ? 'Recipient' : 'Recipients'  }}
-                </div>
-                <div class="ui bottom attached button teal">
-                      <i class="add icon"></i>
-                      View
-                </div>
 
-            </div>
-            @endforeach
-        </div>
-    @endforeach
+    <table class="ui single line table">
+      <thead>
+        <tr>
+          <th>Sender</th>
+          <th>Message</th>
+          <th>Sent</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ( $data as $sent )
+        <tr>
+          <td>{{$sent->sender}}</td>
+          <td>{{echo_($sent->message)}}</td>
+          <td>{{$sent->created_at->diffForHumans()}}</td>
+          <td>
+                <a href="{{url("messaging/sent-sms/$sent->id")}}" class="ui icon info" data-content="View Message"> <i class="small unhide icon" ></i> </a>
+                <a href="#" class="ui icon info" data-content="Forward Message"> <i class="small forward mail icon"></i> </a>
+                <a href="#" class="ui icon info" data-content="Delete Message"> <i class="small remove icon red"></i> </a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
 
     @else
      <div class="ui warning message">
@@ -49,4 +48,11 @@
 
 
 </div>
+@endsection
+
+@section('foot')
+@parent
+<script>
+$('.ui.icon.info').popup();
+</script>
 @endsection

@@ -87,7 +87,8 @@ padding: 0px;
           </div>
       </div>
 
-      <button class="ui button" type="submit">Submit</button>
+      <button class="ui button primary" type="submit" id="send">Send</button>
+      <button class="ui button orange" type="button" id="save">Save</button>
     {!! Form::close() !!}
 
 </div>

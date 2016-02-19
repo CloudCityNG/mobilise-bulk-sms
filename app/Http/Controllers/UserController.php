@@ -24,12 +24,12 @@ class UserController extends Controller
     public function dashboard()
     {
         $sent_sms = Auth::user()->smshistory()->count();
-        $undelivered_messages = 0;
+        $undelivered_messages = number_to_word(Auth::user()->smshistoryrecipient()->where('status', '!=', 'SENT')->count());
         $contacts = 0;
         $credit_purchased = 0;
         $credits = 0;
         $saved_messages = 0;
-        Auth::user()->smshistoryrecipient()->get();
+
         return view('kanda.user.dashboard', compact(
             "sent_sms",
             "undelivered_messages",
