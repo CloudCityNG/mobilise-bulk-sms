@@ -190,6 +190,7 @@ class MessagingController extends Controller
 
 
     /**
+     * Show a full sent SMS message
      *
      * @param null $id
      * @param SmsHistoryRepository $repository
@@ -202,7 +203,7 @@ class MessagingController extends Controller
             return redirect()->back();
         endif;
         $data = $repository->sentSmsId($id);
-        return view('messaging.sent-sms-id', ['data' => $data]);
+        return view('kanda.messaging.sent-sms-id', ['data' => $data]);
     }
 
 

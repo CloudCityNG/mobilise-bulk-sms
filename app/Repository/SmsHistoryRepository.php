@@ -130,6 +130,7 @@ class SmsHistoryRepository {
 
     public function sentSmsId($id)
     {
+        return Auth::user()->smshistory()->where('id', $id)->with('smshistoryrecipient')->first();
         return SmsHistory::where('user_id', Auth::user()->id)
             ->where('id', $id)
             ->with('smshistoryrecipient')->get();
