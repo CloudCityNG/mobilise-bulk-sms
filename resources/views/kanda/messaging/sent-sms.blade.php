@@ -27,7 +27,7 @@
         @foreach ( $data as $sent )
         <tr>
           <td>{{$sent->sender}}</td>
-          <td>{{echo_($sent->message)}}</td>
+          <td>{{echo_($sent->message, 60)}}</td>
           <td>{{$sent->created_at->diffForHumans()}}</td>
           <td>
                 <a href="{{url("messaging/sent-sms/$sent->id")}}" class="ui icon info" data-content="View Message"> <i class="small unhide icon" ></i> </a>
