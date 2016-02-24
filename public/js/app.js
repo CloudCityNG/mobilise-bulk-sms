@@ -30,10 +30,6 @@ window.Quic = window.Quic || {};
 
 
 
-    $('.ui.radio.checkbox.box1').checkbox({
-        onChecked: function(){},
-        onUnchecked: function(){}
-    });
 
     $('.ui.radio.checkbox.box2').checkbox({
         onChecked: function(){
@@ -48,6 +44,9 @@ window.Quic = window.Quic || {};
         },
         onUnchecked: function(){}
     });
+
+    $('.ui.radio.checkbox.box2').trigger("click");
+    $('#sender_type2').trigger('click');
 
 
     /**

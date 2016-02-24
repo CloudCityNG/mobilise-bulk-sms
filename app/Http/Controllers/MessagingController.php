@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\BulkSmsCommand;
-use App\Jobs\NewDraftSmsCommand;
+use App\Jobs\NewDraftSmsJob;
 use App\Jobs\QuickSms;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -203,7 +203,16 @@ class MessagingController extends Controller
             return redirect()->back();
         endif;
         $data = $repository->sentSmsId($id);
-        return view('kanda.messaging.sent-sms-id', ['data' => $data]);
+        return view('kanda.messaging.sent-sms-id', compact('data'));
+    }
+
+
+    public function sentSmsForward($id, SmsHistoryRepository $repository)
+    {
+        //fetch record
+        $data = $repository->getSentSms($id);
+        //send record to view
+        return view('kanda.messaging.sent-sms-forward', compact('data'));
     }
 
 
@@ -232,6 +241,7 @@ class MessagingController extends Controller
     public function savedSms(SmsDraftRepository $draftRepository)
     {
         $data = $draftRepository->paginate();
+        return view('kanda.messaging.draft-sms', ['data' => $data]);
         return view('messaging.saved-sms', ['data' => $data]);
     }
 
@@ -244,9 +254,9 @@ class MessagingController extends Controller
      */
     public function postDraftSms(DraftSmsRequest $draftSmsRequest, ProcessDate $processDate)
     {
-        $this->dispatchFrom(NewDraftSmsCommand::class, $draftSmsRequest);
+        $this->dispatchFrom(NewDraftSmsJob::class, $draftSmsRequest);
         flash()->success("Message saved as draft successfully");
-        return redirect()->route('quic_sms');
+        return redirect()->to('user/dashboard');
     }
 
 

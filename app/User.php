@@ -45,6 +45,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
 
+    
     public function smscredit()
     {
         return $this->hasOne('App\Models\Sms\SmsCredit');
@@ -96,6 +97,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function smshistoryrecipient()
     {
         return $this->hasManyThrough('App\Models\Sms\SmsHistoryRecipient', 'App\Models\Sms\SmsHistory');
+    }
+    
+    
+    public function smspurchase()
+    {
+    	return $this->hasMany('App\Models\Sms\SmsPurchase');
     }
 
 }

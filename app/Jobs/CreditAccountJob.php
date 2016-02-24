@@ -12,6 +12,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Sms\SmsPurchase;
+use App\Repository\OrderRepository;
 
 class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
 {
@@ -53,7 +55,7 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
      * @param TransactionMailer $mailer
      * @return void
      */
-    public function handle(CheckOut $checkOut, SmsCreditRepository $creditRepository, TransactionMailer $mailer)
+    public function handle(CheckOut $checkOut, SmsCreditRepository $creditRepository, TransactionMailer $mailer, OrderRepository $orderRepository)
     {
         //check if the transaction has been processed already
         $row = $checkOut->confirmTransaction($this->transaction_code, $this->user->id);
@@ -89,6 +91,10 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
 
                 //mark transaction as verified
                 $checkOut->verified($this->transaction_code, $this->user->id);
+                
+                //log the purchased unit
+                $amount = number_format($orderRepository->getOrderPrice($this->transaction_code)->price/100, 2);
+                SmsPurchase::logPurchase($amount, $units->units, $this->transaction_code, $this->user->id);
 
                 //log the credit update
 

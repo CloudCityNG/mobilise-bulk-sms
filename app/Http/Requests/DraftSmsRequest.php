@@ -7,7 +7,7 @@ class DraftSmsRequest extends Request {
 
     function __construct(\Illuminate\Http\Request $requests)
     {
-        empty($requests->get('schedule')) ? $requests->merge(['schedule'=>null]) : null ;
+        empty($requests->get('schedule')) ? $requests->merge(['schedule'=>null]) : '' ;
         empty($requests->get('flash')) ? $requests->merge(['flash'=>0]) : null ;
     }
 

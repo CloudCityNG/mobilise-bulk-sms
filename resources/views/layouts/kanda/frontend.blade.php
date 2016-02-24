@@ -80,14 +80,14 @@
         <div class="row" style="margin-bottom: 40px;">
 
 
-                <div class="three wide computer four wide tablet hidden mobile column">
+                <div class="three wide computer hidden tablet hidden mobile column">
                 @if( !empty($userSidebar) )
                     @include('layouts.kanda.partials.user-sidebar')
                 @else
                     @include('layouts.kanda.partials.sidebar')
                 @endif
                 </div>
-                <div class="thirteen wide computer twelve wide tablet sixteen wide mobile column">
+                <div class="thirteen wide computer sixteen wide tablet sixteen wide mobile column">
                     @yield('content')
                 </div>
 

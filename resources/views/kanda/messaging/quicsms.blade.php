@@ -16,6 +16,22 @@ padding: 0px;
 <script src="/assets/kendoui/js/kendo.all.min.js"></script>
 <script src="/assets/js/jquery.simplyCountable.js"></script>
 <script src="/js/app.js"></script>
+<script>
+$(function(){
+
+var form = $('form#quick-sms');
+
+$('button#draft').click(function(){
+    form.prop('action', '/messaging/draft-sms');
+    form.submit();
+});
+
+$('button#send').click(function(){
+    form.prop('action', '/messaging/quick-sms');
+    form.submit();
+});
+});
+</script>
 
 @endsection
 
@@ -88,7 +104,7 @@ padding: 0px;
       </div>
 
       <button class="ui button primary" type="submit" id="send">Send</button>
-      <button class="ui button orange" type="button" id="save">Save</button>
+      <button class="ui button orange" type="button" id="draft">Save as Draft</button>
     {!! Form::close() !!}
 
 </div>

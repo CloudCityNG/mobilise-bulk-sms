@@ -21,14 +21,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Money\Money;
+use App\Repository\OrderRepository;
 
 
 
 
-Route::get('/', function (Request $request, checkOut $checkOut) {
-
-    return redirect()->to('user/login');
-});
+Route::get('/', function () { return redirect()->to('user/login'); });
+Route::get('/register', function () { return redirect()->to('user/register'); });
 
 Route::group(
     ['prefix' => 'Payments'], function() {
@@ -131,8 +130,9 @@ Route::group(
 
         Route::get('sent-sms',              'MessagingController@sentSms');
 
-        Route::get('sent-sms/{id}/del',    'MessagingController@delSentSms');
+        Route::get('sent-sms/{id}/del',     'MessagingController@delSentSms');
         Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
+        Route::get('sent-sms/{id}/forward', 'MessagingController@sentSmsForward');
         Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
         Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');
 

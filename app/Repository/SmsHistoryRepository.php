@@ -89,13 +89,20 @@ class SmsHistoryRepository {
      */
     public function del($id)
     {
-        if ( Auth::user()->smshistory()->where('id', $id)->count() )
-        {
-            //delete corresponding row from sms_history_recipients
-            SmsHistory::find($id)->smsHistoryRecipient()->delete();
-            return Auth::user()->smshistory()->where('id', $id)->delete();
-        }
-        return false;
+        //delete smshistoryrecipient
+        Auth::user()->smshistoryrecipient()->where('sms_history_id', $id)->get();
+
+        //delete smshistory
+        Auth::user()->smshistory()->where('id', $id)->delete();
+
+//        Auth::user()->find($id)->smshistoryrecipient()->get();
+//        if ( Auth::user()->smshistory()->where('id', $id)->count() )
+//        {
+//            //delete corresponding row from sms_history_recipients
+//            SmsHistory::find($id)->smsHistoryRecipient()->delete();
+//            return Auth::user()->smshistory()->where('id', $id)->delete();
+//        }
+//        return false;
     }
 
 
@@ -131,9 +138,6 @@ class SmsHistoryRepository {
     public function sentSmsId($id)
     {
         return Auth::user()->smshistory()->where('id', $id)->with('smshistoryrecipient')->first();
-        return SmsHistory::where('user_id', Auth::user()->id)
-            ->where('id', $id)
-            ->with('smshistoryrecipient')->get();
     }
 
 

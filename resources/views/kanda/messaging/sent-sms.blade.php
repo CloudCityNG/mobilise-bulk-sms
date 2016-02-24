@@ -32,7 +32,7 @@
           <td>
                 <a href="{{url("messaging/sent-sms/$sent->id")}}" class="ui icon info" data-content="View Message"> <i class="small unhide icon" ></i> </a>
                 <a href="#" class="ui icon info" data-content="Forward Message"> <i class="small forward mail icon"></i> </a>
-                <a href="#" class="ui icon info" data-content="Delete Message"> <i class="small remove icon red"></i> </a>
+                <a href="#" class="ui icon info" data-content="Delete Message" id="delete_button"> <i class="small remove icon red"></i> </a>
           </td>
         </tr>
         @endforeach
@@ -53,6 +53,13 @@
 @section('foot')
 @parent
 <script>
-$('.ui.icon.info').popup();
+$(function(){
+    $('.ui.icon.info').popup();
+    $('a#delete_button').click(function(e){
+        alert('u clicked me');
+        e.preventDefault();
+    });
+});
+
 </script>
 @endsection

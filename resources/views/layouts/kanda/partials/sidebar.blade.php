@@ -27,7 +27,7 @@
         <i class="history icon"></i> Sent Messages
     </a>
 
-    <a class="item">
+    <a class="item" href="{{$sideMenu->draft_messages}}">
         <i class="archive icon orange"></i> Draft Messages
     </a>
 

@@ -39,7 +39,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="item">
+            <div class="content">
+                <div class="ui buttons">
+                  <a href="{{url("messaging/sent-sms/$data->id/forward")}}" class="ui green button">Forward</a>
+                  <div class="or"></div>
+                  <a href="{{url("messaging/sent-sms/$data->id/delete")}}" class="ui red button" id="delete_button">Delete</a>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </div>
+@endsection
+
+@section('foot')
+@parent
+<script>
+$(function(){
+    $('a#delete_button').click(function(e){
+        alert('u clicked me');
+        e.preventDefault();
+    });
+});
+</script>
 @endsection

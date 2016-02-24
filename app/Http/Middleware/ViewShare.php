@@ -31,7 +31,7 @@ class ViewShare {
             'contacts',
             'groups',
             'sent_messages',
-            'draft_messages',
+            'draft_messages'    => url('messaging/saved-sms'),
 
             //user sidebar
             'account_setting'   => url('settings/account'),

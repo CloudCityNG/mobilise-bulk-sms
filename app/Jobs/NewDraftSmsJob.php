@@ -41,7 +41,6 @@ class NewDraftSmsJob extends Job implements SelfHandling
      */
     public function __construct($sender, $recipients, $message, $flash, $schedule)
     {
-        //
         $this->sender = $sender;
         $this->recipients = $recipients;
         $this->message = $message;
@@ -52,6 +51,7 @@ class NewDraftSmsJob extends Job implements SelfHandling
     /**
      * Execute the job.
      *
+     * @param SmsDraftRepository $repository
      * @return void
      */
     public function handle(SmsDraftRepository $repository)

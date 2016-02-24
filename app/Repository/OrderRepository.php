@@ -60,18 +60,34 @@ class OrderRepository {
 
     public function save(Array $transaction_info)
     {
-        $order = new Order();
-        $order->product_id = $transaction_info['poid'];
-        $order->order_id = $transaction_info['order_number'];
-        $order->quantity = $transaction_info['quantity'];
-        $order->unit_price = $transaction_info['unit_price'];
-        $order->price = $transaction_info['price'];
-        $order->item = $transaction_info['item'];
-        $order->transaction_code = $transaction_info['txid'];
+    	//check if order already exists via its txid.
+    	if ( $this->orderExists($transaction_info['txid']) ):
+    		return;
+    	else:
+	    	$order = new Order();
+	    	$order->product_id = $transaction_info['poid'];
+	    	$order->order_id = $transaction_info['order_number'];
+	    	$order->quantity = $transaction_info['quantity'];
+	    	$order->unit_price = $transaction_info['unit_price'];
+	    	$order->price = $transaction_info['price'];
+	    	$order->item = $transaction_info['item'];
+	    	$order->transaction_code = $transaction_info['txid'];
+	    	
+	    	Auth::user()->order()->save($order);
+    	endif;
 
+    }
 
-        Auth::user()->order()->save($order);
-
+    
+    public function getOrderPrice($txid)
+    {
+    	return DB::table('orders')->where('transaction_code', $txid)->first();
+    }
+    
+    
+    public function orderExists($txid)
+    {
+    	return DB::table('orders')->where('transaction_code', $txid)->count();
     }
 
 
