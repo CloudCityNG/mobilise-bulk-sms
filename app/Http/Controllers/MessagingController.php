@@ -109,8 +109,8 @@ class MessagingController extends Controller
         //dd($request->file('bulkSmsFile'));
         $file = $request->file('bulkSmsFile');
 
-        //if ($file->isValid())
-          //  return response()->json(['success' => true, 'out' => $reader->readCsvNewLine($file)]);
+        if ($file->isValid())
+            return response()->json(['success' => true, 'out' => $reader->readCsvNewLine($file)]);
 
         return response()->json(['error' => true], 422);
     }
