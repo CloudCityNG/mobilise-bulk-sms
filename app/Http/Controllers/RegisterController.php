@@ -45,8 +45,9 @@ class RegisterController extends Controller {
 	public function store(NewUserRegistrationRequest $request)
 	{
         //validate
-        $d = $request->only('username', 'email', 'password');
-        $this->dispatch( new CreateNewUserCommand($d['username'], $d['email'], $d['password']) );
+        //$d = $request->only('username', 'email', 'password');
+        $this->dispatchFrom('App\Jobs\CreateNewUserJob', $request);
+        //$this->dispatch( new CreateNewUserCommand($d['username'], $d['email'], $d['password']) );
 
         flash()->overlay('User Account created.', 'New User Registration');
         return redirect()->to('user/dashboard');

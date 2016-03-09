@@ -27,7 +27,7 @@ use App\Repository\OrderRepository;
 
 
 Route::get('/', function () { return redirect()->to('user/login'); });
-Route::get('/register', function () { return redirect()->to('user/register'); });
+Route::get('/register', 'RegisterController@create');
 
 Route::group(
     ['prefix' => 'Payments'], function() {
