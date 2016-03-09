@@ -62,7 +62,7 @@ class MessagingController extends Controller
     {
 //        dd($request->all());
         $this->dispatchFrom('App\Jobs\QuickSmsJob', $request, ['user_id' => $request->user()->id]);
-        flash()->overlay("Message Sent. Please check sent message for delivery status", "Message Sent");
+        flash()->overlay("Message Sent. Please check sent messages for delivery status", "Message Sent");
         return redirect()->to('messaging/quic-sms');
     }
 

@@ -40,12 +40,12 @@
 
 <div class="ui vertical inverted sidebar left menu">
   <a class="active item">Home</a>
-  <a class="item">Quic SMS</a>
-  <a class="item">Bulk SMS</a>
-  <a class="item">Contacts</a>
-  <a class="item">Groups</a>
-  <a class="item">Sent Messages</a>
-  <a class="item">Draft Messages</a>
+  <a class="item" href="{{$sideMenu->quick_sms}}">Quic SMS</a>
+  <a class="item" href="#">Bulk SMS</a>
+  <a class="item" href="{{$sideMenu->contacts}}">Contacts</a>
+  <a class="item" href="{{$sideMenu->groups}}">Groups</a>
+  <a class="item" href="{{$sideMenu->sent_messages}}">Sent Messages</a>
+  <a class="item" href="{{$sideMenu->draft_messages}}">Draft Messages</a>
 </div>
 
 <div class="pusher front">

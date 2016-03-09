@@ -3,7 +3,7 @@
         {{--<div class="ui input"><input type="text" placeholder="Search..."></div>--}}
     {{--</div>--}}
 
-    <a class="item" href="{{url('user/dashboard')}}">
+    <a class="item" href="{{$sideMenu->dashboard}}">
         <i class="dashboard icon"></i> Dashboard
     </a>
 

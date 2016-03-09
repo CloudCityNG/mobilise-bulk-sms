@@ -44,7 +44,13 @@ class QuickSmsJob extends Job implements SelfHandling, ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param $sender
+     * @param $recipients
+     * @param $message
+     * @param $schedule
+     * @param $flash
+     * @param $user_id
+     * @return \App\Jobs\QuickSmsJob
      */
     public function __construct($sender, $recipients, $message, $schedule, $flash, $user_id)
     {
