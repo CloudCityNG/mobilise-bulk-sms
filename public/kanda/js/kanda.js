@@ -12,8 +12,4 @@ $(document).ready(function() {
     $('.message .close').on('click', function () {
         $(this).closest('.message').transition('fade');
     });
-
-
-    $('.small.modal').modal('show');
-    $('.ui.modal').modal('show');
 });

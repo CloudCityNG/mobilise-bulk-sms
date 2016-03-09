@@ -17,6 +17,20 @@ class UserMailer extends Mailer {
     }
 
 
+    public function password_change(User $user)
+    {
+        $view= 'emails.user.password_change';
+        $subject = 'Password change';
+        $data = ['username'=>$user->username, 'date_and_time'=>$user->updated_at->toCookieString()];
+        return $this->sendTo($user, $subject, $view, $data);
+    }
+
+
+    /**
+     * Welcome Email for a new User.
+     *
+     * @param User $user
+     */
     public function new_user_welcome_email(User $user)
     {
         $view = 'emails.user.new_user_register';

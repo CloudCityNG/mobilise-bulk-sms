@@ -18,12 +18,12 @@
     <div class="item">
         AddressBook
         <div class="menu">
-            <a class="item" href="#">Contacts</a>
-            <a class="item" href="#">Groups</a>
+            <a class="item" href="{{$sideMenu->contacts}}">Contacts</a>
+            <a class="item" href="{{$sideMenu->groups}}">Groups</a>
         </div>
     </div>
 
-    <a class="item" href="{{url('messaging/sent-sms')}}">
+    <a class="item" href="{{$sideMenu->sent_messages}}">
         <i class="history icon"></i> Sent Messages
     </a>
 

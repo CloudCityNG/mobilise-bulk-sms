@@ -2,9 +2,13 @@
 
 <div class="ui fluid vertical menu" style="margin-bottom: 20px;">
 
-    <a class="item {{mark_active($urlPath, $sideMenu->account_setting, 1)}}" href="{{$sideMenu->account_setting}}">
-        <i class="settings icon"></i> Account
+    <a class="item {{mark_active($urlPath, $sideMenu->dashboard, 1)}}" href="{{$sideMenu->dashboard}}">
+        <i class="dashboard icon"></i> Dashboard
     </a>
+
+    <a class="item {{mark_active($urlPath, $sideMenu->account_setting, 1)}}" href="{{$sideMenu->account_setting}}">
+            <i class="settings icon"></i> Account
+        </a>
 
     <a class="item {{mark_active($urlPath, $sideMenu->other_setting, 1)}}" href="{{$sideMenu->other_setting}}">
         <i class="setting icon"></i> Other Details

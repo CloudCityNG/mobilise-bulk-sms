@@ -106,11 +106,11 @@ class MessagingController extends Controller
 
     public function postFileUpload(BulkSmsFileUploadRequest $request, CsvReader $reader)
     {
-        $files = $request->file('files');
-        foreach ($files as $file):
-            if ($file->isValid())
-                return response()->json(['success' => true, 'out' => $reader->readTxt($file)]);
-        endforeach;
+        //dd($request->file('bulkSmsFile'));
+        $file = $request->file('bulkSmsFile');
+
+        //if ($file->isValid())
+          //  return response()->json(['success' => true, 'out' => $reader->readCsvNewLine($file)]);
 
         return response()->json(['error' => true], 422);
     }
@@ -131,7 +131,7 @@ class MessagingController extends Controller
     public function postFileUpload2(BulkSmsFileUploadRequest $request, CsvReader $reader)
     {
         //validate the file
-        $files = $request->file('files');
+        $files = $request->file('bulkSmsFile');
         foreach ( $files as $file ):
             if ( $file->isValid() ):
                 $out = $reader->csv_to_array($file);

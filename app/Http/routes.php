@@ -135,8 +135,6 @@ Route::group(
         Route::get('sent-sms/{id}/forward', 'MessagingController@sentSmsForward');
         Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
         Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');
-
-
         /**
          * Both are the same
          */
@@ -148,9 +146,12 @@ Route::group(
 
     }
 );
-
 //Route::get('dlr-collector', 'DlrController@collector');
 Route::post('dlr-collector', 'DlrController@collector');
+
+Route::get('contact', 'ContactController@index');
+Route::get('contact/index', 'ContactController@index');
+Route::get('contact/all', 'ContactController@index');
 
 Route::get('address-book',                              'AddressBookController@start');
 Route::get('address-book/groups',                       'AddressBookController@groups');
@@ -210,7 +211,17 @@ Route::get('new', function(){
     return view('layouts.kanda.master');
 });
 
-Route::get('test', function(){
+Route::get('test/file', function(){
+
+    $file = storage_path('uploads/bulk-sms/csv-contacts.csv');
+
+    $out = \App\Lib\Filesystem\CsvReader::readCsvNewLine($file);
+
+    dd($out);
+
+
+
+
     return view('kanda.messaging.quicsms');
     return view('layouts.kanda.frontend');
 });

@@ -22,7 +22,7 @@ class BulkSmsFileUploadRequest extends Request {
 	public function rules()
 	{
 		return [
-			'bulkSmsFile'   => 'mimes:csv,txt|size:5000',
+			'bulkSmsFile'   => 'mimes:csv,txt',
 		];
 	}
 

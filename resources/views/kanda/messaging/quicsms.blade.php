@@ -4,6 +4,7 @@
 @parent
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.common.min.css">
 <link rel="stylesheet" href="/assets/kendoui/styles/kendo.default.min.css">
+<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
 <style type="text/css">
 input#schedule{
 padding: 0px;
@@ -13,9 +14,59 @@ padding: 0px;
 
 @section('foot')
 @parent
+<script src="/js/vue.js"></script>
 <script src="/assets/kendoui/js/kendo.all.min.js"></script>
 <script src="/assets/js/jquery.simplyCountable.js"></script>
 <script src="/js/app.js"></script>
+<script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
+
+<script>
+new Vue({
+    el: '#app',
+    data: {
+        message: '',
+        recipients: '',
+        sender: ''
+    }
+});
+</script>
+
+<script>
+$(document).ready(function()
+{
+var $recipients = $('#recipients');
+	var uploadObj = $("#fileuploader").uploadFile
+	({
+
+	    url:"bulk-sms/fileupload",
+        fileName:"bulkSmsFile",
+        maxFileCount:10,
+        onSuccess: function(files, data, xhr, pd)
+        {
+            if ( $recipients.val() != "" )
+            {
+                $recipients.val( $recipients.val() + "," + data.out );
+            }
+            else
+            {
+                $('#recipients').val( data.out );
+            }
+            $recipients.trigger('focus')
+            $('.ajax-file-upload-statusbar').hide();
+        },
+        onError: function(files,status,errMsg,pd)
+        {
+                swal('error', "Unknown error please try again.");
+                $('.ajax-file-upload-statusbar').hide();
+        }
+    });
+
+
+    uploadObj.reset();
+});
+</script>
+
+
 <script>
 $(function(){
 
@@ -36,7 +87,7 @@ $('button#send').click(function(){
 @endsection
 
 @section('content')
-<div class="boxx">
+<div class="boxx" id="app">
 
     @include('layouts.kanda.partials.errors')
 
@@ -67,18 +118,18 @@ $('button#send').click(function(){
 
         <div class="field">
             <label>Sender</label>
-            <input type="text" name="sender" id="sender" placeholder="Sender ID" value="{!! old('sender') !!}">
+            <input type="text" name="sender" id="sender" placeholder="Sender ID" value="{!! old('sender') !!}" v-model="sender">
         </div>
 
         <div class="field">
             <label>Recipients</label>
-            <textarea name="recipients" id="recipients" rows="2" placeholder="Recipients">{!! old('recipients') !!}</textarea>
-            <span id="noOfRecipients">0</span> Recipient(s)
+            <textarea name="recipients" id="recipients" rows="2" placeholder="Recipients" v-model="recipients">{!! old('recipients') !!}</textarea>
+            <span id="noOfRecipients">0</span> Recipient(s) <div id="fileuploader">Upload</div>
         </div>
 
         <div class="field">
             <label>Message</label>
-            <textarea name="message" id="message">{!! old('message') !!}</textarea>
+            <textarea name="message" id="message" v-model="message">{!! old('message') !!}</textarea>
             <span id="counter">0</span> Characters, <span id="pages">0</span>
         </div>
 
@@ -103,7 +154,7 @@ $('button#send').click(function(){
           </div>
       </div>
 
-      <button class="ui button primary" type="submit" id="send">Send</button>
+      <button class="ui button primary" type="submit" id="send" v-show="message && recipients && sender">Send</button>
       <button class="ui button orange" type="button" id="draft">Save as Draft</button>
     {!! Form::close() !!}
 

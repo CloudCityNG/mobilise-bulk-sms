@@ -28,9 +28,9 @@ class ViewShare {
             'dashboard'     => url('user/dashboard'),
             'quick_sms'     => url('messaging/quic-sms'),
             'bulk_sms'      => url('messaging/bulk-sms'),
-            'contacts',
-            'groups',
-            'sent_messages',
+            'contacts'      => url('contact/index'),
+            'groups'        => '#',
+            'sent_messages' => url('messaging/sent-sms'),
             'draft_messages'    => url('messaging/saved-sms'),
 
             //user sidebar
@@ -38,7 +38,7 @@ class ViewShare {
             'other_setting'     => url('settings/other-details'),
             'notifications'     => url('settings/notifications'),
             'orders'            => url('settings/orders'),
-            'payments'      => url('settings/payments'),
+            'payments'          => url('settings/payments'),
 
             //user top dropdown menu
             'settings'  => url('settings/index'),

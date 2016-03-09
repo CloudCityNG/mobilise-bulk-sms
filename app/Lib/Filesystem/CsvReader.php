@@ -6,6 +6,27 @@ class CsvReader
 {
 
 
+    /**
+     * Read a csv|txt file with MSISDN on a separate file.
+     * @param $handle
+     * @return array
+     * @throws \Exception
+     */
+    public static function readCsvNewLine($handle)
+    {
+        if ( !is_file($handle) )
+            Throw new \Exception('File not valid');
+        $out = [];
+        $file = file($handle);
+
+        foreach ($file as $line):
+            $out[] = str_replace(["\r\n", ",", " "], "", $line);
+        endforeach;
+
+        return $out;
+    }
+
+
     public static function readCsv1($fileHandle)
     {
         if (is_file($fileHandle)):

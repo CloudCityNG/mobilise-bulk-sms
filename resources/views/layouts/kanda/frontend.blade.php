@@ -24,6 +24,10 @@
         .ui.grid.container {
             width: 1000px!important;
         }
+        .ui.small.modal {
+            width: 480px;
+            margin: 0 0 0 -245px;
+        }
     }
     </style>
     @show

@@ -25,12 +25,17 @@
         </div>
 
         <div class="field">
-            <label for="password">Password</label>
+            <label for="old_password">Old Password</label>
+            <input type="password" name="old_password" id="old_password" value=""/>
+        </div>
+
+        <div class="field">
+            <label for="password">New Password</label>
             <input type="password" name="password" id="password" value="" />
         </div>
 
         <div class="field">
-            <label for="password_confirmation">Password Confirmation</label>
+            <label for="password_confirmation">New Password Confirmation</label>
             <input type="password" name="password_confirmation" id="password_confirmation" />
         </div>
 
