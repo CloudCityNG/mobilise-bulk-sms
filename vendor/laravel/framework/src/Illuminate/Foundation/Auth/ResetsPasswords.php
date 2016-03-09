@@ -94,6 +94,7 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::PASSWORD_RESET:
+                flash()->success('Password change successful.');
                 return redirect($this->redirectPath())->with('status', trans($response));
 
             default:
