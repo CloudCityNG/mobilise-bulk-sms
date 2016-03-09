@@ -693,9 +693,6 @@ body.outlook p {
   }
 }
 
-  </style>
-  <style>
-
     table.facebook td {
       background: #3b5998;
       border-color: #2d4473;
@@ -773,8 +770,7 @@ body.outlook p {
         padding-right: 10px !important;
       }
     }
-
-	</style>
+</style>
 </head>
 <body>
 	<table class="body">
