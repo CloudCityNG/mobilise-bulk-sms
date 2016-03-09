@@ -133,9 +133,10 @@
     <script src="/js/jquery/jquery-latest.js"></script>
     <script src="/assets/semanticui/semantic.min.js"></script>
     <script src="/js/sweetalert2.min.js"></script>
+    @include('layouts.kanda.partials.flash')
     <script src="/kanda/js/kanda.js"></script>
     @show
-    @include('layouts.kanda.partials.flash')
+
 
 
 </body>
