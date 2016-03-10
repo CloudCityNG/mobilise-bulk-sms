@@ -61,7 +61,7 @@ class MessagingController extends Controller
     public function postQuickSms(SendSmsRequest $request)
     {
 //        dd($request->all());
-        //$this->dispatchFrom('App\Jobs\QuickSmsJob', $request, ['user_id' => $request->user()->id]);
+        $this->dispatchFrom('App\Jobs\QuickSmsJob', $request, ['user_id' => $request->user()->id]);
         flash()->overlay("Message Sent. Please check sent messages for delivery status", "Message Sent");
         return redirect()->back();
     }
