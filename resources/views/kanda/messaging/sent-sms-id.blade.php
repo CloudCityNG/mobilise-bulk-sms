@@ -10,11 +10,20 @@
         </div>
     </h2>
 
+    @if ( is_null($data) )
+
+    <div class="ui warning message">
+
+        You supplied an invalid information. Please try again.
+    </div>
+
+    @else
+
     <div class="ui very relaxed middle aligned divided list">
         <div class="item">
             <div class="content">
                 <a class="header">Sender</a>
-                <div class="description">Here again</div>
+                <div class="description">{{$data->sender}}</div>
             </div>
         </div>
         <div class="item">
@@ -34,7 +43,13 @@
                 <a class="header">Recipients</a>
                 <div class="description">
                     @foreach($data->smshistoryrecipient as $recipient)
-                        {{$recipient->destination}} | {{$recipient->status}}<br/>
+                        {{$recipient->destination}} |
+                        @if($recipient->status == 0)
+                            SENT
+                        @else
+                        {{$recipient->status}}
+                        @endif
+                        <br/>
                     @endforeach
                 </div>
             </div>
@@ -51,6 +66,8 @@
             </div>
         </div>
     </div>
+
+    @endif
 
 </div>
 @endsection
