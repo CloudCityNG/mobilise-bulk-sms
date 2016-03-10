@@ -44,10 +44,10 @@
                 <div class="description">
                     @foreach($data->smshistoryrecipient as $recipient)
                         {{$recipient->destination}} |
-                        @if( (int)$recipient->status === 0)
+                        @if ( $recipient->status == '0' )
                             SENT
                         @else
-                        {{$recipient->status}}
+                            {{$recipient->status}}
                         @endif
                         <br/>
                     @endforeach
