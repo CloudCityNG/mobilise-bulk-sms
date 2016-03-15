@@ -2,6 +2,14 @@
 
 use App\Lib\Services\Flash\Notifier;
 
+if (! function_exists('alpha_case'))
+{
+    function alpha_case($word)
+    {
+        $out = str_replace("_", " ", $word);
+        return ucwords($out);
+    }
+}
 
 if (!function_exists('number_to_word')) {
 

@@ -15,7 +15,7 @@
     </div>
     <a class="item" href="{{$sideMenu->quick_sms}}"><i class="mail icon"></i> Messaging</a>
     <a class="item" href="{{url('address-book')}}"><i class="book icon"></i> AddressBook</a>
-    <a class="item"><i class="announcement icon"></i> Support</a>
+    <a class="item" href="{{$sideMenu->support}}"><i class="announcement icon"></i> Support</a>
 
     <div class="right menu">
     {{--<div class="item">--}}

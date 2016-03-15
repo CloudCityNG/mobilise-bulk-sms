@@ -65,19 +65,12 @@ Route::group(
 
         //user who is not an admin is redirected here
         //Route::get('not-admin');
-
-
-
         Route::get('register',  'RegisterController@create');
         Route::post('register', 'RegisterController@store');
 
-
-
-        Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create']);
-        Route::post('login', 'SessionsController@store');
-
-
-        Route::get('logout', 'SessionsController@destroy');
+        Route::get('login',     ['as' => 'login_path', 'uses' => 'SessionsController@create']);
+        Route::post('login',    'SessionsController@store');
+        Route::get('logout',    'SessionsController@destroy');
 
         Route::get('dashboard',         'UserController@dashboard');
         Route::get('change-password',   'UserController@changePassword');
@@ -100,6 +93,14 @@ Route::group(['prefix'=>'settings'], function(){
     Route::get('notifications',     'SettingsController@notifications');
     Route::get('orders',            'SettingsController@orders');
     Route::get('payments',      'SettingsController@payments');
+});
+
+Route::group(['prefix'=>'app'], function(){
+    Route::get('about-us',          'SupportController@about_us');
+    Route::get('contact-us',        'SupportController@contact_us');
+    Route::get('sitemap',           'SupportController@sitemap');
+    Route::get('customer-support',  'SupportController@customer_support');
+    Route::get('terms',             'SupportController@terms');
 });
 
 Route::group(['prefix'=>'setting'], function(){
@@ -221,12 +222,11 @@ Route::get('new', function(){
 
 Route::get('test/file', function(){
 
+    return view('layouts.material.frontend');
+
     $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
     dd($t);
 
-
-
-    return view('kanda.messaging.quicsms');
     return view('layouts.kanda.frontend');
 });
 
