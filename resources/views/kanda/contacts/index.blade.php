@@ -1,5 +1,15 @@
 @extends('.layouts.kanda.frontend')
 
+@section('head')
+@parent
+<link rel="stylesheet" href="/css/loading.css">
+@endsection
+
+@section('modal')
+@include('modals.loading')
+@endsection
+
+
 @section('content')
 
 <div class="ui contact small modal">
@@ -9,7 +19,7 @@
   </div>
   <div class="content">
     <p>
-        <form class="ui small form" action="">
+        <form class="ui small form" action="" id="newContactForm">
             <div class="field">
                 <label for="firstname">Firstname</label>
                 <input type="text" name="firstname" id="firstname" placeholder="Firstname"/>
@@ -40,7 +50,7 @@
   </div>
   <div class="actions">
     <div class="ui button close">Cancel</div>
-    <div class="ui button primary">OK</div>
+    <div class="ui button primary" id="ok_button">OK</div>
   </div>
 </div>
 
@@ -56,7 +66,7 @@
         <button class="ui right floated button primary" id="newContact" style="margin-bottom: 20px;">New Contact</button>
     </div>
 
-    <div class="ui four cards">
+    <div class="ui four cards" id="contacts-content">
 
         @foreach($data as $contact)
         <div class="card">
@@ -85,13 +95,47 @@
 
 @section('foot')
 @parent
+<script src="/kanda/js/master.js"></script>
 <script>
 $(function(){
 
-    $('.contact.modal').modal({
-        close: ' .actions .close'
-    }).modal('attach events', '#newContact', 'show');
+    $('.contact.modal')
+    .modal({
+        onHide: function(){
+            alert('hidden');
+            $('#newContactForm').trigger("reset")
+        }
+    })
+    .modal('attach events', '.close', 'hide')
+    .modal('attach events', '#newContact', 'show');
 
+
+    $('body').on('click', '#ok_button', function(e){
+        e.preventDefault();
+
+        var jqXHR = $.get("/contact/new-contact", $('form#newContactForm').serialize());
+
+        jqXHR.done(function(data){
+
+            $('#contacts-content').empty();
+            $('#contacts-content').html(data.html);
+            $('#newContactForm').trigger("reset");
+
+            $('.contact.modal').modal('hide');
+            swal('Contact Added');
+            //close modal
+        });
+
+        jqXHR.fail(function(response){
+            console.log(response);
+        });
+    });
+
+    $('#ok_button').click(function(e){
+
+
+
+    });
 });
 </script>
 @endsection

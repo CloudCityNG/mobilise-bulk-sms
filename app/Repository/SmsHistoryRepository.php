@@ -2,14 +2,16 @@
 namespace App\Repository;
 
 
+use App\Models\Dlr;
 use App\Models\Sms\SmsHistory;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class SmsHistoryRepository {
 
     const UNIT_LOCAL = 1;
     const UNIT_INTL = 15;
-    const DEFAULT_PAGINATE_SIZE = 3;
+    const DEFAULT_PAGINATE_SIZE = 15;
 
 
 
@@ -85,24 +87,32 @@ class SmsHistoryRepository {
     /**
      * Delete a (sms_history) row
      * @param $id
+     * @param $user_id
      * @return bool
      */
     public function del($id)
     {
-        //delete smshistoryrecipient
-        Auth::user()->smshistoryrecipient()->where('sms_history_id', $id)->get();
+        $recipient = Auth::user()->smshistoryrecipient()->where('sms_history_id', $id);
+        $recipient_row = $recipient->get();
 
-        //delete smshistory
-        Auth::user()->smshistory()->where('id', $id)->delete();
+        if ( $recipient_row ) {
 
-//        Auth::user()->find($id)->smshistoryrecipient()->get();
-//        if ( Auth::user()->smshistory()->where('id', $id)->count() )
-//        {
-//            //delete corresponding row from sms_history_recipients
-//            SmsHistory::find($id)->smsHistoryRecipient()->delete();
-//            return Auth::user()->smshistory()->where('id', $id)->delete();
-//        }
-//        return false;
+
+            //iterate over the recipients rows
+            foreach ($recipient_row as $row) {
+                //if messageid exists
+                if ($row->messageid) {
+                    //delete row in sms_dlr
+                    Dlr::where('messageid', $row->messageid)->delete();
+                }
+            }
+
+            //delete row in sms_history_recipients
+            $recipient->delete();
+        }
+
+        //delete sms_history row
+        Auth::user()->smshistory->find($id)->delete();
     }
 
 

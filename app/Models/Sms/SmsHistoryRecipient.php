@@ -10,7 +10,7 @@ class SmsHistoryRecipient extends Model {
     protected $guarded = ['id'];
 
 
-    public function smsHistory()
+    public function smshistory()
     {
         return $this->belongsTo('App\Models\Sms\SmsHistory');
     }

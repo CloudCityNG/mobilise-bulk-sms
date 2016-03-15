@@ -13,7 +13,7 @@
             <img src="{{getenv('LOGO_URL')}}" alt="" style="width: 150px"/>
         </a>
     </div>
-    <a class="item" href="messaging/quic-sms"><i class="mail icon"></i> Messaging</a>
+    <a class="item" href="{{$sideMenu->quick_sms}}"><i class="mail icon"></i> Messaging</a>
     <a class="item" href="{{url('address-book')}}"><i class="book icon"></i> AddressBook</a>
     <a class="item"><i class="announcement icon"></i> Support</a>
 
@@ -36,7 +36,8 @@
             </div>
         </div>
 
-        <div class="ui dropdown item" tabindex="0">
+
+        <div class="ui dropdown item">
             <i class="options icon"></i> {{ucfirst($currentUser->username)}}
                 <i class="dropdown icon"></i>
                 <div class="menu transition hidden" tabindex="-1">

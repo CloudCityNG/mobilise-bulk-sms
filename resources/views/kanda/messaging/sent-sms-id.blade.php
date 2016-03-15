@@ -77,8 +77,9 @@
 <script>
 $(function(){
     $('a#delete_button').click(function(e){
-        alert('u clicked me');
-        e.preventDefault();
+        if ( ! confirm("Are you sure you want to delete?") ){
+            e.preventDefault();
+        }
     });
 });
 </script>

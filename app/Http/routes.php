@@ -130,9 +130,9 @@ Route::group(
         Route::post('file2sms/fileupload',  'MessagingController@postFileUpload2');
 
         Route::get('sent-sms',              'MessagingController@sentSms');
-
-        Route::get('sent-sms/{id}/del',     'MessagingController@delSentSms');
         Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
+        Route::get('sent-sms/{id}/del',     'MessagingController@delSentSms');
+        Route::get('sent-sms/{id}/delete',  'MessagingController@deleteSentSms');
         Route::get('sent-sms/{id}/forward', 'MessagingController@sentSmsForward');
         Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
         Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');
@@ -149,6 +149,13 @@ Route::group(
 );
 //Route::get('dlr-collector', 'DlrController@collector');
 Route::post('dlr-collector', 'DlrController@collector');
+
+Route::group(
+    ['prefix' => 'contact'], function() {
+
+        Route::get('new-contact',       'ContactController@newContact');
+    }
+);
 
 Route::get('contact', 'ContactController@index');
 Route::get('contact/index', 'ContactController@index');
@@ -214,12 +221,8 @@ Route::get('new', function(){
 
 Route::get('test/file', function(){
 
-    $file = storage_path('uploads/bulk-sms/csv-contacts.csv');
-
-    $out = \App\Lib\Filesystem\CsvReader::readCsvNewLine($file);
-
-    dd($out);
-
+    $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
+    dd($t);
 
 
 

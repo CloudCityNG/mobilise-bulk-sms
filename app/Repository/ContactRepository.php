@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class ContactRepository {
 
+    const DEFAULT_PAGINATE_SIZE = 15;
+
+
+    public function new_contact($inputs)
+    {
+        return Auth::user()->contacts()->save( new Contact($inputs));
+    }
 
     public function save(Contact $contact)
     {
@@ -41,7 +48,18 @@ class ContactRepository {
 
     public static function getAllContactsNotInGroup()
     {
-        return DB::select('SELECT * FROM contacts WHERE id NOT IN (SELECT contact_id FROM contact_group) AND user_id = ?', [Auth::user()->id]);
+        //return DB::select('SELECT * FROM contacts WHERE id NOT IN (SELECT contact_id FROM contact_group) AND user_id = ?', [Auth::user()->id])
+        $contact_group = DB::table('contact_group')->get(['contact_id']);
+        foreach ($contact_group as $id)
+        {
+            $g[] = $id->contact_id;
+        }
+
+        $row = DB::table('contacts')
+            ->whereNotIn('id', $g)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        return $row;
     }
 
 

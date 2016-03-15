@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="csrf-token" content="{!! csrf_token() !!}" />
+
     @section('head')
     <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -48,6 +50,7 @@
   <a class="item" href="{{$sideMenu->draft_messages}}">Draft Messages</a>
 </div>
 
+@yield('modal')
 <div class="pusher front">
 
     <div class="ui grid container">
@@ -121,8 +124,9 @@
                   </div>
                 </div>
                 <div class="seven wide column">
-                  <h4 class="ui inverted header">Footer Header</h4>
-                  <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                  <h4 class="ui inverted header">Messaging</h4>
+                  <p>Use our simple yet powerful platform to reach millions of subscribers.</p>
+                  <p>Communicate in a better and faster way using Quic-SMS to reach out to Friends, Families, Clients, Customers etc.</p>
                 </div>
               </div>
             </div>

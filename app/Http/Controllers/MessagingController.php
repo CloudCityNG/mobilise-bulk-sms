@@ -181,11 +181,24 @@ class MessagingController extends Controller
     public function delSentSms($id, Request $request, SmsHistoryRepository $repository)
     {
         if ($request->ajax()) {
-            if ($repository->del($id))
+            if ($repository->del($id, Auth::user()->id))
                 return response()->json(['success' => true]);
             else
                 return response()->json(['error' => true], 422);
         }
+    }
+
+
+    public function deleteSentSms($id=null, Request $request, SmsHistoryRepository $repository)
+    {
+        if ( is_null($id) ) :
+            flash()->info("Unknown request, Please try again");
+            return redirect()->back();
+        else :
+            $repository->del($id);
+            flash()->success("Message deleted successfully");
+            return redirect()->to('messaging/sent-sms');
+        endif;
     }
 
 

@@ -15,7 +15,7 @@ class SmsHistory extends Model {
     }
 
 
-    public function smsHistoryRecipient()
+    public function smshistoryrecipient()
     {
         return $this->hasMany('App\Models\Sms\SmsHistoryRecipient');
     }
