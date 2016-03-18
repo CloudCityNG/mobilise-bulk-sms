@@ -13,6 +13,8 @@ class ContactRepository {
 
     public function new_contact($inputs)
     {
+        $inputs = array_map('trim', $inputs);
+        $inputs = array_map('strtolower', $inputs);
         return Auth::user()->contacts()->save( new Contact($inputs));
     }
 
@@ -58,7 +60,9 @@ class ContactRepository {
         $row = DB::table('contacts')
             ->whereNotIn('id', $g)
             ->where('user_id', Auth::user()->id)
+            ->orderBy('firstname')
             ->get();
+            //->paginate(self::DEFAULT_PAGINATE_SIZE);
         return $row;
     }
 

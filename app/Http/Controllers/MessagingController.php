@@ -13,6 +13,7 @@ use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
 use App\Lib\Filesystem\CsvReader;
 use App\Lib\Services\Date\ProcessDate;
+use App\Lib\Sms\DlrHandler;
 use App\Repository\ContactRepository;
 use App\Repository\GroupRepository;
 use App\Repository\SmsHistoryRepository;
@@ -211,12 +212,17 @@ class MessagingController extends Controller
      */
     public function sentSmsId($id = null, SmsHistoryRepository $repository)
     {
-        if (is_null($id)):
-            flash()->error('An unexpected error has occurred.');
-            return redirect()->back();
-        endif;
+        $this->evaluateId($id);
         $data = $repository->sentSmsId($id);
         return view('kanda.messaging.sent-sms-id', compact('data'));
+    }
+
+
+    public function sentSmsIdDlr($id=null, SmsHistoryRepository $repository)
+    {
+        $this->evaluateId($id);
+        $data = $repository->sentSmsId($id);
+        return DlrHandler::downloadDlr($data->smshistoryrecipient);
     }
 
 
@@ -306,6 +312,16 @@ class MessagingController extends Controller
                 return response()->json(['success' => true, 'out' => $out->get()]);
             else
                 return response()->json(['error' => true], 422);
+        }
+    }
+
+
+    private function evaluateId($id)
+    {
+        if ( is_null($id) )
+        {
+            flash()->error('An unexpected error has occurred.');
+            return redirect()->back();
         }
     }
 

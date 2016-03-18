@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewContactRequest;
 use App\Repository\ContactRepository;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class ContactController extends Controller
 
 
 
-    public function newContact(Request $request, ContactRepository $repository)
+    public function newContact(NewContactRequest $request, ContactRepository $repository)
     {
         if ( $request->ajax() )
         {

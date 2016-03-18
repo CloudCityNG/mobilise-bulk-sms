@@ -42,6 +42,8 @@
             <div class="content">
                 <a class="header">Recipients</a>
                 <div class="description">
+                <br/>
+                @if ($data->smshistoryrecipient()->count() < 0)
                     @foreach($data->smshistoryrecipient as $recipient)
                         {{$recipient->destination}} |
                         @if ( $recipient->status == '0' )
@@ -51,6 +53,10 @@
                         @endif
                         <br/>
                     @endforeach
+                @else
+                    <span>{{$data->smshistoryrecipient()->count()}} Recipients</span><br/>
+                    <a class="ui button primary" href="{{url("messaging/sent-sms/$data->id/get-dlr")}}">Download Delivery report</a>
+                @endif
                 </div>
             </div>
         </div>

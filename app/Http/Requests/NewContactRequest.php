@@ -28,6 +28,7 @@ class NewContactRequest extends Request {
             'lastname'  => 'string|min:1|max:20',
             'email'     => 'email',
             'gsm'       => "required|max:16|min:10|unique:contacts,gsm,null,id,user_id,$id",
+            'gsm2'      => 'max:16|unique:contacts,gsm,null,id,user_id,$id|unique:contacts,gsm2,null,id,user_id,$id',
             'birthdate' => 'date_format:"Y/m/d"',
             'custom'    => 'min:1'
         ];

@@ -132,6 +132,7 @@ Route::group(
 
         Route::get('sent-sms',              'MessagingController@sentSms');
         Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
+        Route::get('sent-sms/{id}/get-dlr',     'MessagingController@sentSmsIdDlr');
         Route::get('sent-sms/{id}/del',     'MessagingController@delSentSms');
         Route::get('sent-sms/{id}/delete',  'MessagingController@deleteSentSms');
         Route::get('sent-sms/{id}/forward', 'MessagingController@sentSmsForward');
