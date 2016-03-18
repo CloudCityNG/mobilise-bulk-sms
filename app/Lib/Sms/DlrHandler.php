@@ -17,19 +17,19 @@ class DlrHandler {
 
     public static function downloadDlr(Collection $data)
     {
+        $contents = null;
         //loop through the $data collection
         foreach($data as $row)
         {
             $recipient = $row->destination;
             $status = (new self())->translate_status($row->status);
-$start = <<<ABC
-{$recipient} | {$status}
-ABC;
+
+            $contents .= "$recipient | $status" . "\n\r";
         }
 
         $filename = time() . ".txt";
         $file_path = storage_path("dlr/$filename");
-        $file = file_put_contents($file_path, $start);
+        $file = file_put_contents($file_path, $contents);
         return response()->download( $file_path );
     }
 
@@ -40,7 +40,7 @@ ABC;
 
         switch ($status)
         {
-            case 0:
+            case "0":
                 $out = 'Status Unknown';
                 break;
             case "NOT_SENT":
