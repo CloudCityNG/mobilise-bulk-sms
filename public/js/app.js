@@ -64,7 +64,7 @@ window.Quic = window.Quic || {};
 
             //split textarea input with comma
             $arrayNumbers = $val.split(',');
-            if ( $arrayNumbers.length > 50 ) {
+            if ( $arrayNumbers.length > $contactMax ) {
                 $(this).val ( recipientsCopy );
                 return;
             }
