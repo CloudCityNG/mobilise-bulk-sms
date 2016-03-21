@@ -53,7 +53,7 @@ window.Quic = window.Quic || {};
      * RECIPIENTS
      * @type {number}
      */
-    var $contactMax = 50;
+    var $contactMax = 1000;
         //check recipients and limit to 50 comma separated values
     $('#recipients').on('keyup blur keydown focus', function(e){
 
@@ -78,7 +78,7 @@ window.Quic = window.Quic || {};
             });
             recipientsCopy = $(this).val();
             $globalLength = $length;
-            $('#noOfRecipients').html($length + '/50');
+            $('#noOfRecipients').html($length + '/' + $contactMax);
         }
     });
 
