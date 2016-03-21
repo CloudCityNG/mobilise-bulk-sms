@@ -223,7 +223,7 @@ Route::get('new', function(){
 
 Route::get('test/file', function(){
 
-    return view('layouts.material.frontend');
+    return view('emails.user.password_change', ['username'=>'test', 'date_and_time'=> date('d-m-Y H:i:s', time())]);
 
     $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
     dd($t);
