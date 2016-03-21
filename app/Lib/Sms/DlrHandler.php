@@ -24,7 +24,7 @@ class DlrHandler {
             $recipient = $row->destination;
             $status = (new self())->translate_status($row->status);
 
-            $contents .= "$recipient | $status" . "\n\r";
+            $contents .= "$recipient | $status" . "\n";
         }
 
         $filename = time() . ".txt";
