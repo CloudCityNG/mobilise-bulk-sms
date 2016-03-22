@@ -20,9 +20,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Money\Money;
 use App\Repository\OrderRepository;
 
+
+Route::get('test/email', function(\App\Lib\Mailer\UserMailer $mailer){
+
+    return view('emails.user.account_credited', ['units'=>7888, 'payment_channel'=>'WEB', 'transaction_ref'=>'QUIC4587745']);
+
+    return view('emails.user.password_change', ['username'=>'Admin', 'date_and_time'=> \Carbon\Carbon::now()]);
+
+    return view('emails.user.password_change', ['username'=>'test', 'date_and_time'=> date('d-m-Y H:i:s', time())]);
+
+    $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
+    dd($t);
+    return view('layouts.kanda.frontend');
+});
 
 
 
@@ -130,14 +142,15 @@ Route::group(
         Route::post('file2sms',             'MessagingController@postFile2sms');
         Route::post('file2sms/fileupload',  'MessagingController@postFileUpload2');
 
-        Route::get('sent-sms',              'MessagingController@sentSms');
-        Route::get('sent-sms/{id}',         'MessagingController@sentSmsId');
+        Route::get('sent-sms',                  'MessagingController@sentSms');
+        Route::get('sent-sms/{id}',             'MessagingController@sentSmsId');
         Route::get('sent-sms/{id}/get-dlr',     'MessagingController@sentSmsIdDlr');
-        Route::get('sent-sms/{id}/del',     'MessagingController@delSentSms');
-        Route::get('sent-sms/{id}/delete',  'MessagingController@deleteSentSms');
-        Route::get('sent-sms/{id}/forward', 'MessagingController@sentSmsForward');
-        Route::get('sent-sms/{id}/dlr',     'MessagingController@getDlr');
-        Route::get('sent-sms/{id}/get',     'MessagingController@getSentSms');
+        Route::get('sent-sms/{id}/get-dlr/view','MessagingController@sentSmsIdDlr');
+        Route::get('sent-sms/{id}/del',         'MessagingController@delSentSms');
+        Route::get('sent-sms/{id}/delete',      'MessagingController@deleteSentSms');
+        Route::get('sent-sms/{id}/forward',     'MessagingController@sentSmsForward');
+        Route::get('sent-sms/{id}/dlr',         'MessagingController@getDlr');
+        Route::get('sent-sms/{id}/get',         'MessagingController@getSentSms');
         /**
          * Both are the same
          */
@@ -220,17 +233,6 @@ Route::get('backend/quic-sms', function(){
 Route::get('new', function(){
     return view('layouts.kanda.master');
 });
-
-Route::get('test/file', function(){
-
-    return view('emails.user.password_change', ['username'=>'test', 'date_and_time'=> date('d-m-Y H:i:s', time())]);
-
-    $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
-    dd($t);
-
-    return view('layouts.kanda.frontend');
-});
-
 
 
 Route::get('p', function(\Illuminate\Http\Request $request, CheckOut $checkOut, \App\Repository\UserDetailRepository $repository){

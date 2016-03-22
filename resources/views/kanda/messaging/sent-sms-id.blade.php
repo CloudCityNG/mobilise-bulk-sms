@@ -42,7 +42,7 @@
             <div class="content">
                 <a class="header">Recipients</a>
                 <div class="description">
-                <br/>
+                    <p>
                 @if ($data->smshistoryrecipient()->count() < 0)
                     @foreach($data->smshistoryrecipient as $recipient)
                         {{$recipient->destination}} |
@@ -56,7 +56,9 @@
                 @else
                     <span>{{$data->smshistoryrecipient()->count()}} Recipients</span><br/>
                     <a class="ui button primary" href="{{url("messaging/sent-sms/$data->id/get-dlr")}}">Download Delivery report</a>
+                    <a class="ui button primary" id="view_dlr" href="{{url("messaging/sent-sms/$data->id/get-dlr/view")}}">View Delivery report</a>
                 @endif
+                    </p>
                 </div>
             </div>
         </div>
@@ -86,6 +88,10 @@ $(function(){
         if ( ! confirm("Are you sure you want to delete?") ){
             e.preventDefault();
         }
+    });
+    $('a#view_dlr').click(function(event) {
+        event.preventDefault();
+        window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
     });
 });
 </script>

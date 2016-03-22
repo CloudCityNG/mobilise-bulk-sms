@@ -13,7 +13,7 @@
             <b>Hello {{ $username }}, your password has just been changed.</b><br><br>
             As at {{$date_and_time}}, we received a request to change your password, and it has been effected. <br><br>
 
-            If you think this was not initiated by you, please send an email to {{env('SUPPORT_EMAIL')}} immediately.
+            If you think this was not initiated by you, please send an email to <i><b>{{env('SUPPORT_EMAIL')}}</b></i> immediately.
         </td>
     </tr>
 

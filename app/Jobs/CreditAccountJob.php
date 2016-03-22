@@ -99,9 +99,10 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
                 //log the credit update
 
                 //send email to user
+                $mailer->user_account_credited($this->user, $this->transaction_ref, $units->units, $amount);
 
                 //send email to admin
-                $mailer->user_account_credited($this->user, $this->transaction_code, $units->units);
+                //$mailer->user_account_credited($this->user, $this->transaction_code, $units->units);
             }
             elseif ( empty($out['verifyid']) )
             {

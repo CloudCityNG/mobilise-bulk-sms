@@ -120,7 +120,7 @@ class PurchaseController extends Controller
         $checkOut->processReturn($r, $request->user()->id);
 
         //do customer credit job here
-        $this->dispatchFromArray('App\Jobs\CreditAccountJob', [
+        $this->dispatchFromArray(CreditAccountJob::class, [
             'transaction_code' => $r['transaction_code'],
             'transaction_ref' => $r['transaction_ref'],
             'user' => $request->user(),

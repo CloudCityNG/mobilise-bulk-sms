@@ -3,6 +3,8 @@
 namespace App\Lib\Mailer;
 
 
+use App\User;
+
 class TransactionMailer extends Mailer {
 
 
@@ -38,14 +40,22 @@ class TransactionMailer extends Mailer {
     }
 
 
-    public function user_account_credited($user, $transaction_code, $units)
+    public function user_account_credited(User $user, $transaction_code, $units, $amount)
     {
-        $view = 'emails.transaction.user_account_credited';
-        $data = ['username'=>$user->username, 'transaction_code'=>$transaction_code, 'units'=>$units];
-        $subject = "User Account Credited";
-        $user = (Object) (['email'=>env('MAIL_FROM_ADDRESS'), 'cc'=>env('MAIL_CC_FROM_ADDRESS')]);
+        $view = "emails.user.account_credited";
+        $data = [
+            'units'=>$units,
+            'username'=>$user->username,
+            'balance'=>$user->smscredit->available_credit,
+            'amount'=>$amount,
+            'payment_channel'=>'WEB',
+            'transaction_code'=>$transaction_code,
 
-        return $this->sendNow($user, $subject, $view, $data);
+        ];
+        $subject = "Your Account has been credited.";
+        $user = (Object) (['email'=>$user->email, 'cc'=>env('SUPPORT_EMAIL')]);
+
+        return $this->sendTo($user, $subject, $view, $data);
     }
 
 

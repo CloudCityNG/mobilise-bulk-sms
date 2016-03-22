@@ -127,6 +127,7 @@ class CheckOut {
             case ( $t->mode == self::card && $t->status == 'approved' && !empty($t->transaction_code) && !empty($t->transaction_ref)):
                 //update order
                 if ( $this->orderRepository->update($user_id, $t->transaction_code, $a) ):
+
                     flash()->success(self::successful);
                     $out = true;
                     //do a job to confirm the transaction.

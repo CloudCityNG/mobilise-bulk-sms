@@ -43,6 +43,12 @@ class DlrHandler {
             case "0":
                 $out = 'Status Unknown';
                 break;
+            case "-1":
+            case "-2":
+            case "-3":
+            case "-5":
+            case "-6":
+
             case "NOT_SENT":
                 $out = 'Not Sent';
                 break;

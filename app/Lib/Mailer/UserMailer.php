@@ -7,7 +7,7 @@ class UserMailer extends Mailer {
 
     public function test()
     {
-        $view = 'emails.welcome';
+        $view = 'emails.user.new_user_register';
         $data = ['firstname'=>'Shegun', 'lastname'=>'Babs', 'username'=>'User'];
         $subject = "First Test email";
         $user = (Object) (['email'=>'shegun.babs@gmail.com']);
