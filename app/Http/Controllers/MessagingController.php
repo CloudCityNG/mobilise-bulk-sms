@@ -229,9 +229,9 @@ class MessagingController extends Controller
     public function sentSmsIdDlrView($id, SmsHistoryRepository $repository)
     {
         $this->evaluateId($id);
-        $data = $repository->sentSmsId($id);
-        dd($data);
-        return view('kanda.messaging.dlr-view', $data);
+        $data = $repository->sentSmsId($id)->smshistoryrecipient;
+        //dd($data->smshistoryrecipient);
+        return view('kanda.messaging.dlr-view', compact('data'));
     }
 
 
