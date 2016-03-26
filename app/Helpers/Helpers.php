@@ -73,7 +73,7 @@ if (!function_exists('number_to_word')) {
         }
 
         if ($number < 0) {
-            return $negative . convert_number_to_words(abs($number));
+            return $negative . number_to_word(abs($number));
         }
 
         $string = $fraction = null;
@@ -99,17 +99,17 @@ if (!function_exists('number_to_word')) {
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds] . ' ' . $dictionary[100];
                 if ($remainder) {
-                    $string .= $conjunction . convert_number_to_words($remainder);
+                    $string .= $conjunction . number_to_word($remainder);
                 }
                 break;
             default:
                 $baseUnit = pow(1000, floor(log($number, 1000)));
                 $numBaseUnits = (int)($number / $baseUnit);
                 $remainder = $number % $baseUnit;
-                $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+                $string = number_to_word($numBaseUnits) . ' ' . $dictionary[$baseUnit];
                 if ($remainder) {
                     $string .= $remainder < 100 ? $conjunction : $separator;
-                    $string .= convert_number_to_words($remainder);
+                    $string .= number_to_word($remainder);
                 }
                 break;
         }
