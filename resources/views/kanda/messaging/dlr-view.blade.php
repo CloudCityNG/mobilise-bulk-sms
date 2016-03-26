@@ -1,0 +1,4 @@
+@foreach($data as $row)
+{
+
+}

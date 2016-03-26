@@ -12,12 +12,13 @@
         <td valign="top" style="padding-bottom:20px; background-color:#ffffff;">
             <b>Your credit purchase was successful.</b><br>
             Please find the information below. <br><br>
-            Your payment for {{$units}} SMS credit has been received.
+
+            Hello <b>{{$username}}</b>, Your payment for {{$units}} SMS credit has been received.
 
             <ul>
                 <li>Credit Unit: {{$units}} Units</li>
-                <li>New Balance: {{$units}} Units</li>
-                <li>Amount Approved: NGN{{$units}}</li>
+                <li>New Balance: {{$balance}} Units</li>
+                <li>Amount Approved: NGN{{$amount}}</li>
                 <li>Payment Channel: {{$payment_channel}}</li>
                 <li>Transaction Reference: {{$transaction_ref}}</li>
             </ul>

@@ -34,13 +34,13 @@ class TransactionMailer extends Mailer {
         $view = 'emails.transaction.transaction_already_verified';
         $data = ['username'=>$user->username, 'transaction_code'=>$transaction_code];
         $subject = "Transaction Code Already Verified";
-        $user = (Object) (['email'=>env('MAIL_FROM_ADDRESS'), 'cc'=>env('MAIL_CC_FROM_ADDRESS')]);
+        $user = (Object) (['email'=>env('MAIL_FROM_ADDRESS'), 'cc'=>env('SUPPORT_EMAIL')]);
 
         return $this->sendNow($user, $subject, $view, $data);
     }
 
 
-    public function user_account_credited(User $user, $transaction_code, $units, $amount)
+    public function user_account_credited(User $user, $transaction_ref, $units, $amount)
     {
         $view = "emails.user.account_credited";
         $data = [
@@ -49,11 +49,11 @@ class TransactionMailer extends Mailer {
             'balance'=>$user->smscredit->available_credit,
             'amount'=>$amount,
             'payment_channel'=>'WEB',
-            'transaction_code'=>$transaction_code,
+            'transaction_ref'=>$transaction_ref,
 
         ];
         $subject = "Your Account has been credited.";
-        $user = (Object) (['email'=>$user->email, 'cc'=>env('SUPPORT_EMAIL')]);
+        $user = (Object) (['email'=>$user->email, 'bcc'=>env('SUPPORT_EMAIL'), 'from'=>env('SALES_EMAIL'), 'from_name'=>'QuicSMS  Sales']);
 
         return $this->sendTo($user, $subject, $view, $data);
     }

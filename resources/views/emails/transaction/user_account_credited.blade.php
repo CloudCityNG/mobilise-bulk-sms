@@ -16,8 +16,8 @@
 
             <ul>
                 <li>Credit Unit: {{$units}} Units</li>
-                <li>New Balance: {{$units}} Units</li>
-                <li>Amount Approved: NGN{{$units}}</li>
+                <li>New Balance: {{$balance}} Units</li>
+                <li>Amount Approved: NGN{{$amount}}</li>
                 <li>Payment Channel: {{$payment_channel}}</li>
                 <li>Transaction Reference: {{$transaction_ref}}</li>
             </ul>

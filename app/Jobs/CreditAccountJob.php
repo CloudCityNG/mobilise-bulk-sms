@@ -64,12 +64,12 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
         {
             //we can't find the transaction_code
             //send an email
-            $mailer->no_transaction_code($this->user, $this->transaction_code);
+            //$mailer->no_transaction_code($this->user, $this->transaction_code);
         }
         elseif ( $row->verified == 1 )
         {
             //transaction already verified
-            $mailer->transaction_already_verified($this->user, $this->transaction_code);
+            //$mailer->transaction_already_verified($this->user, $this->transaction_code);
         }
         elseif ( (int) $row->verified == 0 )
         {
@@ -99,7 +99,7 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
                 //log the credit update
 
                 //send email to user
-                $mailer->user_account_credited($this->user, $this->transaction_ref, $units->units, $amount);
+                $mailer->user_account_credited($this->user->id, $this->transaction_ref, $units->units, $amount);
 
                 //send email to admin
                 //$mailer->user_account_credited($this->user, $this->transaction_code, $units->units);
@@ -112,7 +112,7 @@ class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
                 $checkOut->verified($this->transaction_code, $this->user->id);
 
                 //notify admin a transaction verification failed
-                $mailer->verified_failed($this->user, $this->transaction_code);
+                //$mailer->verified_failed($this->user, $this->transaction_code);
             }
 
         }

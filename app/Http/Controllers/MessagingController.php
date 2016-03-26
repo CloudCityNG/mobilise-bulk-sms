@@ -226,6 +226,15 @@ class MessagingController extends Controller
     }
 
 
+    public function sentSmsIdDlrView($id, SmsHistoryRepository $repository)
+    {
+        $this->evaluateId($id);
+        $data = $repository->sentSmsId($id);
+        dd($data);
+        return view('kanda.messaging.dlr-view', $data);
+    }
+
+
     public function sentSmsForward($id, SmsHistoryRepository $repository)
     {
         //fetch record
@@ -316,12 +325,12 @@ class MessagingController extends Controller
     }
 
 
-    private function evaluateId($id)
+    private function evaluateId($id, $redirectUrl=null)
     {
         if ( is_null($id) )
         {
             flash()->error('An unexpected error has occurred.');
-            return redirect()->back();
+            return $redirectUrl ? redirect()->to($redirectUrl) : redirect()->back();
         }
     }
 

@@ -2,6 +2,7 @@
 namespace App\Lib\Auth;
 
 
+use App\Lib\Mailer\UserMailer;
 use App\Lib\Services\Text\String;
 use App\Repository\SmsCreditRepository;
 use App\Repository\UserRepository;
@@ -37,14 +38,19 @@ class AuthenticateUser {
      * @var Request
      */
     private $request;
+    /**
+     * @var UserMailer
+     */
+    private $mailer;
 
-    public function __construct(UserRepository $user, Socialite $socialite, Authenticator $auth, Request $request)
+    public function __construct(UserRepository $user, Socialite $socialite, Authenticator $auth, Request $request, UserMailer $mailer)
     {
 
         $this->user = $user;
         $this->socialite = $socialite;
         $this->auth = $auth;
         $this->request = $request;
+        $this->mailer = $mailer;
     }
 
 
@@ -85,6 +91,9 @@ class AuthenticateUser {
                 default:
                     //create social user
                     $user = $this->createUser($user, $provider);
+                    //welcome email
+                    $this->mailer->new_user_welcome_email($user);
+                    //log user in
                     $this->auth->login($user, true);
                     $this->removeProvider($provider);
                     flash()->success(self::LOGIN_SUCCESSFUL);

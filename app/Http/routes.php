@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 use App\Repository\OrderRepository;
 
 
-Route::get('test/email', function(\App\Lib\Mailer\UserMailer $mailer){
-
-    return view('emails.user.account_credited', ['units'=>7888, 'payment_channel'=>'WEB', 'transaction_ref'=>'QUIC4587745']);
+Route::get('test/email', function(\App\Lib\Mailer\TransactionMailer $mailer){
 
     return view('emails.user.password_change', ['username'=>'Admin', 'date_and_time'=> \Carbon\Carbon::now()]);
 
@@ -145,7 +143,7 @@ Route::group(
         Route::get('sent-sms',                  'MessagingController@sentSms');
         Route::get('sent-sms/{id}',             'MessagingController@sentSmsId');
         Route::get('sent-sms/{id}/get-dlr',     'MessagingController@sentSmsIdDlr');
-        Route::get('sent-sms/{id}/get-dlr/view','MessagingController@sentSmsIdDlr');
+        Route::get('sent-sms/{id}/get-dlr/view','MessagingController@sentSmsIdDlrView');
         Route::get('sent-sms/{id}/del',         'MessagingController@delSentSms');
         Route::get('sent-sms/{id}/delete',      'MessagingController@deleteSentSms');
         Route::get('sent-sms/{id}/forward',     'MessagingController@sentSmsForward');
