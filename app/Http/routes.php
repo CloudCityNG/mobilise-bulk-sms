@@ -27,15 +27,14 @@ Route::get('login/{id}', function($id){
     return redirect()->to('user/dashboard');
 });
 
-Route::get('test/email', function(\App\Lib\Mailer\TransactionMailer $mailer){
+Route::get('test/dlr', function(\App\Lib\Mailer\TransactionMailer $mailer){
 
-    return view('emails.user.password_change', ['username'=>'Admin', 'date_and_time'=> \Carbon\Carbon::now()]);
+    $dlr = \App\Models\Sms\SmsHistoryRecipient::where('status', 0)->get();
 
-    return view('emails.user.password_change', ['username'=>'test', 'date_and_time'=> date('d-m-Y H:i:s', time())]);
-
-    $t = \App\Repository\ContactRepository::getAllContactsNotInGroup();
-    dd($t);
-    return view('layouts.kanda.frontend');
+    foreach ($dlr as $row):
+        $real_dlr = \App\Models\Dlr::where('messageid', $row->messageid)->first();
+        dd($real_dlr);
+    endforeach;
 });
 
 
