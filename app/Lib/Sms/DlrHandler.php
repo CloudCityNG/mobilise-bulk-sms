@@ -25,6 +25,7 @@ class DlrHandler {
                 $row->donedate = $r->donedate;
                 $row->gsmerrorcode = $r->gsmerrorcode;
                 $row->save();
+                echo $row->id . '------done.' . "\n\r";
             }
 
             //update parent row
