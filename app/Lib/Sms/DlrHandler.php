@@ -1,18 +1,35 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: segun
- * Date: 3/18/2016
- * Time: 2:06 PM
- */
 
 namespace App\Lib\Sms;
 
 
+use App\Models\Dlr;
+use App\Models\Sms\SmsHistoryRecipient;
 use App\Repository\SmsHistoryRepository;
 use Illuminate\Database\Eloquent\Collection;
 
 class DlrHandler {
+
+    public function clean_table()
+    {
+        $zero_rows = SmsHistoryRecipient::where('status', 0)->get();
+
+        foreach( $zero_rows as $row )
+        {
+            //fetch dlr
+            $r = Dlr::where('messageid', $row->messageid)->first();
+            if ($r)
+            {
+                $row->status = $r->status;
+                $row->sentdate = $r->sentdate;
+                $row->donedate = $r->donedate;
+                $row->gsmerrorcode = $r->gsmerrorcode;
+                $row->save();
+            }
+
+            //update parent row
+        }
+    }
 
 
     public static function downloadDlr(Collection $data)

@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 		'App\Console\Commands\Inspire',
         Commands\BackupDb::class,
+        Commands\UpdateDlr::class,
+
 	];
 
 	/**

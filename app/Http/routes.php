@@ -33,13 +33,10 @@ Route::get('test/dlr', function(\App\Lib\Mailer\TransactionMailer $mailer){
 
     foreach ($dlr as $row):
         $real_dlr = \App\Models\Dlr::where('messageid', $row->messageid)->first();
-        if ( $real_dlr )
-        {
-            $new[] = $real_dlr;
-        }
+        $new[] = $real_dlr;
     endforeach;
-    $new = array_filter($new);
-    dd($new);
+
+    dd($real_dlr);
 });
 
 
