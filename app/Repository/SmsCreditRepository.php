@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class SmsCreditRepository {
 
     const UNIT_LOCAL = 1;
-    const UNIT_INTL = 15;
+    const UNIT_INTL = 1;
 
 
     /**

@@ -55,7 +55,7 @@ class DlrHandler {
     {
         $out = null;
 
-        switch ($status)
+        switch (trim($status))
         {
             case "0":
                 $out = 'No response.';
@@ -117,6 +117,9 @@ class DlrHandler {
                 break;
             case "INVALID_MESSAGE_FORMAT":
                 $out = 'Invalid Message Address';
+                break;
+            case "EXPIRED":
+                $out = 'Expired';
                 break;
             default:
                 $out = 'Status Unknown';
