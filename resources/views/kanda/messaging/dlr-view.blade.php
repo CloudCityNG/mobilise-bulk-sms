@@ -11,7 +11,7 @@
     <body>
     @foreach($data as $row)
 
-    <p>{{$row->destination}} | {{$row->status}}</p>
+    <p>{{$row->destination}} |  {{App\Lib\Sms\DlrHandler::translate_status($row->status)}}</p>
 
     @endforeach
     </body>

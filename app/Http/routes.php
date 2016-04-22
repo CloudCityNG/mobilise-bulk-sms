@@ -27,17 +27,6 @@ Route::get('login/{id}', function($id){
     return redirect()->to('user/dashboard');
 });
 
-Route::get('test/dlr', function(\App\Lib\Mailer\TransactionMailer $mailer){
-
-    $dlr = \App\Models\Sms\SmsHistoryRecipient::where('status', 0)->get();
-
-    foreach ($dlr as $row):
-        $real_dlr = \App\Models\Dlr::where('messageid', $row->messageid)->first();
-        $new[] = $real_dlr;
-    endforeach;
-
-    dd($new);
-});
 
 
 

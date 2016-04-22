@@ -41,8 +41,7 @@ class DlrHandler {
         {
             $recipient = $row->destination;
             $status = (new self())->translate_status($row->status);
-
-            $contents .= "$recipient | $status" . "\n";
+            $contents .= "$recipient | self::translate($status)" . "\n";
         }
 
         $filename = time() . ".txt";
@@ -52,20 +51,39 @@ class DlrHandler {
     }
 
 
-    public function translate_status($status)
+    public static function translate_status($status)
     {
         $out = null;
 
         switch ($status)
         {
             case "0":
-                $out = 'Status Unknown';
+                $out = 'No response.';
                 break;
             case "-1":
+                $out = "Error processing request";
+                break;
             case "-2":
+                $out = "Insufficient credit";
+                break;
             case "-3":
-            case "-5":
-            case "-6":
+                $out = "Targeted network not covered";
+                break;
+            case "-13":
+                $out = "Number not recognized";
+                break;
+            case "-26":
+                $out = "General API error";
+                break;
+            case "-27":
+                $out = "Invalid scheduling parameter";
+                break;
+            case "-34":
+                $out = "Sender name not allowed";
+                break;
+            case "-99":
+                $out = "Error processing request";
+                break;
 
             case "NOT_SENT":
                 $out = 'Not Sent';
