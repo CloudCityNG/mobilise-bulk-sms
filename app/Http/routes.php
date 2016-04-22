@@ -36,7 +36,7 @@ Route::get('test/dlr', function(\App\Lib\Mailer\TransactionMailer $mailer){
         $new[] = $real_dlr;
     endforeach;
 
-    dd($real_dlr);
+    dd($new);
 });
 
 
