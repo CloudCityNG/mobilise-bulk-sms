@@ -30,16 +30,7 @@ Route::get('login/{id}', function($id){
 });
 
 Route::get('phpinfo', function(){
-   $number = '08038154606';
-    $phoneUtil = PhoneNumberUtil::getInstance();
-    try {
-        $numberProto = $phoneUtil->parse($number, "NG");
-        $isValid = $phoneUtil->isValidNumber($numberProto);
-        $intlFormat = $phoneUtil->format($numberProto, libphonenumber\PhoneNumberFormat::INTERNATIONAL);
-        dd(str_replace(" ", "", $intlFormat));
-    } catch (NumberParseException $e) {
-        var_dump($e);
-    }
+   phpinfo();
 });
 
 

@@ -100,8 +100,8 @@
                 </ul>
                 <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
                     <div class="uk-button-group">
-                        <a class="uk-button uk-button-danger" href="#">Login >></a>
-                        <button class="uk-button uk-button-primary">Register for free</button>
+                        <a class="uk-button uk-button-danger" href="{{url('user/login')}}">Login >></a>
+                        <button class="uk-button uk-button-primary" href="{{url('user/register')}}">Register for free</button>
                     </div>
                 </div>
                 <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
