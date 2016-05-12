@@ -14,23 +14,38 @@
 
 //use App\Lib\Payments\PayPal\CheckOut;
 use App\Lib\Payments\InterSwitch\CheckOut;
-use App\Lib\Services\Text\String;
+use App\Lib\Services\Text\String as Str;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Repository\OrderRepository;
+use libphonenumber\NumberParseException;
+use libphonenumber\PhoneNumberUtil;
 
 Route::get('login/{id}', function($id){
     Auth::loginUsingId($id);
     return redirect()->to('user/dashboard');
 });
 
+Route::get('phpinfo', function(){
+   $number = '08038154606';
+    $phoneUtil = PhoneNumberUtil::getInstance();
+    try {
+        $numberProto = $phoneUtil->parse($number, "NG");
+        $isValid = $phoneUtil->isValidNumber($numberProto);
+        $intlFormat = $phoneUtil->format($numberProto, libphonenumber\PhoneNumberFormat::INTERNATIONAL);
+        dd(str_replace(" ", "", $intlFormat));
+    } catch (NumberParseException $e) {
+        var_dump($e);
+    }
+});
 
 
-
-Route::get('/', function () { return redirect()->to('user/login'); });
+Route::get('/', function () {
+    return view('layouts.frontend');
+});
 Route::get('/register',     'RegisterController@create');
 Route::get('/dashboard',    'UserController@dashboard');
 
@@ -120,7 +135,8 @@ Route::group(['prefix'=>'setting'], function(){
 Route::group(
     ['prefix' => 'messaging'], function () {
 
-        Route::get('quic-sms',      ['as'=>'quic_sms','uses'=>'MessagingController@quic']);
+        Route::get('quic-sms',              ['as'=>'quic_sms','uses'=>'MessagingController@quic']);
+        Route::post('quic-sms',             'MessagingController@confirmQuic');
 
         Route::get('quick-sms',             ['as' => 'quick_sms', 'uses' => 'MessagingController@quickSms']);
         Route::post('quick-sms',            'MessagingController@postQuickSms');
@@ -251,7 +267,7 @@ Route::get('p', function(\Illuminate\Http\Request $request, CheckOut $checkOut, 
     return;
 
 
-    return String::randomString();
+    return Str::randomString();
 
     $price = 200;
     $money = Money::NGN($price * 100);

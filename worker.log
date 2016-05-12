@@ -1,0 +1,1076 @@
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0018     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0087     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0140     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0198     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2030    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0018     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0087     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0140     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0198     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2030    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0009     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0049     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0100     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0163     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2074    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0009     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0049     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0100     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0163     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2074    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0059     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0101     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0159     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2280    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0059     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0101     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0159     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2280    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0026     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0084     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0175     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0231     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2314    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0026     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0084     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0175     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0231     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2314    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0029     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0053     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0076     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2260    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0029     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0053     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0076     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2260    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0032     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0055     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0099     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2290    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0032     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0055     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0099     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2290    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0031     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0065     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0112     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2327    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0031     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0065     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0112     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2327    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0009     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0077     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0105     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0139     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2622    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0009     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0077     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0105     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0139     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2622    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0034     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0069     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0134     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1725    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0034     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0069     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0134     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1725    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0008     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0036     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0060     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0099     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1767    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0031     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0077     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0125     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0177     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1766    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0031     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0077     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0125     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0177     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1766    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0008     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0036     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0060     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0099     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1767    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0039     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0084     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0127     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0185     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1863    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0039     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0084     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0127     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0185     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1863    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0026     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0044     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0089     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2017    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0026     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0044     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0089     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2017    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0026     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0045     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0086     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2009    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0026     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0045     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0086     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2009    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0041     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0073     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0123     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2225    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0041     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0073     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0123     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2225    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0011     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0040     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0076     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0122     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2279    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0011     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0040     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0076     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0122     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2279    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0298     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0761     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0898     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0954     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7026    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0298     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0761     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0898     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0954     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7026    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0016     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0348     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0699     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0944     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7376    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0016     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0348     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0699     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0944     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7376    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0019     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0331     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0673     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0926     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7399    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0019     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0331     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0673     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0926     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7399    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0349     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0704     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0953     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7351    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0014     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0349     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0704     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0953     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.7351    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0110     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0162     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0199     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0222     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1955    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0110     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0162     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0199     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0222     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1955    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0112     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0148     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0172     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0203     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1982    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0112     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0148     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0172     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0203     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1982    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0112     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0146     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0169     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0199     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2329    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0112     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0146     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0169     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0199     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2329    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0110     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0139     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0162     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0190     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2312    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0110     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0139     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0162     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0190     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.2312    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0025     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0045     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0072     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1127    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0006     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0025     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0045     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0072     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1127    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0027     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0049     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0076     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1178    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0027     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0049     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0076     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1178    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0032     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0067     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0102     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1335    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0007     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0032     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0067     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0102     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1335    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Warning: require(/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0033     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0059     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0092     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1344    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Stack trace:
+PHP   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+PHP   2. require() /home/vagrant/projects/quicsms/artisan:16
+PHP   3. require() /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+PHP   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+PHP   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+Fatal error: require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/barryvdh/laravel-debugbar/src/helpers.php' (include_path='.:/usr/share/php') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+
+Call Stack:
+    0.0005     350104   1. {main}() /home/vagrant/projects/quicsms/artisan:0
+    0.0033     352256   2. require('/home/vagrant/projects/quicsms/bootstrap/autoload.php') /home/vagrant/projects/quicsms/artisan:16
+    0.0059     353840   3. require('/home/vagrant/projects/quicsms/vendor/autoload.php') /home/vagrant/projects/quicsms/bootstrap/autoload.php:17
+    0.0092     364224   4. ComposerAutoloaderInit0713be527fe82d59ad1885e8ff7bf4d4::getLoader() /home/vagrant/projects/quicsms/vendor/autoload.php:7
+    0.1344    2011128   5. composerRequire0713be527fe82d59ad1885e8ff7bf4d4() /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php:45
+
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Notice:  Use of undefined constant MCRYPT_RIJNDAEL_128 - assumed 'MCRYPT_RIJNDAEL_128' in /home/vagrant/projects/quicsms/config/app.php on line 85
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Warning:  require(/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php): failed to open stream: No such file or directory in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Fatal error:  require(): Failed opening required '/home/vagrant/projects/quicsms/vendor/danielstjules/stringy/src/Create.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/vagrant/projects/quicsms/vendor/composer/autoload_real.php on line 55
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738
+PHP Fatal error:  Uncaught exception 'ReflectionException' with message 'Class log does not exist' in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php:738
+Stack trace:
+#0 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(738): ReflectionClass->__construct('log')
+#1 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(633): Illuminate\Container\Container->build('log', Array)
+#2 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(697): Illuminate\Container\Container->make('log', Array)
+#3 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(853): Illuminate\Foundation\Application->make('Psr\Log\LoggerI...')
+#4 /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php(808): Illuminate\Container\Container->resolveClass(Object(ReflectionParameter))
+#5 /home/vagrant/projects/quic in /home/vagrant/projects/quicsms/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 738

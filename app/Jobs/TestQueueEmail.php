@@ -6,10 +6,9 @@ use App\Jobs\Job;
 use App\Lib\Mailer\LogEmail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TestQueueEmail extends Job implements SelfHandling, ShouldQueue
+class TestQueueEmail extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 

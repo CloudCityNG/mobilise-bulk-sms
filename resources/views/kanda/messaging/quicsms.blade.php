@@ -26,7 +26,18 @@ new Vue({
     data: {
         message: '',
         recipients: '',
-        sender: ''
+        sender: '',
+        counter2: 0,
+    },
+
+    methods: {
+        countCharacters: function(){
+            this.counter2 = this.message.length;
+        }
+    },
+
+    ready: function() {
+        //this.countCharacters
     }
 });
 </script>
@@ -118,7 +129,7 @@ $('button#send').click(function(){
 
         <div class="field">
             <label>Sender</label>
-            <input type="text" name="sender" id="sender" placeholder="Sender ID" value="{!! old('sender') !!}" v-model="sender">
+            <input type="text" name="sender" id="sender" placeholder="Sender ID" value="{!! old('sender') !!}" v-model="sender" maxlength="11">
         </div>
 
         <div class="field">
@@ -129,8 +140,9 @@ $('button#send').click(function(){
 
         <div class="field">
             <label>Message</label>
-            <textarea name="message" id="message" v-model="message">{!! old('message') !!}</textarea>
-            <span id="counter">0</span> Characters, <span id="pages">0</span>
+            <textarea name="message" id="message" v-model="message" v-on:keyup="countCharacters">{!! old('message') !!}</textarea>
+            {{--<span id="counter">0</span> Characters, <span id="pages">0</span>--}}
+            <br> <span>@{{ counter2 }} Characters</span>
         </div>
 
         <div class="field">

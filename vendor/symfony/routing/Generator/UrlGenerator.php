@@ -202,23 +202,10 @@ class UrlGenerator implements UrlGeneratorInterface, ConfigurableRequirementsInt
             $scheme = $this->context->getScheme();
 
             if ($requiredSchemes) {
-                $schemeMatched = false;
-                foreach ($requiredSchemes as $requiredScheme) {
-                    if ($scheme === $requiredScheme) {
-                        $schemeMatched = true;
-
-                        break;
-                    }
-                }
-
-                if (!$schemeMatched) {
+                if (!in_array($scheme, $requiredSchemes, true)) {
                     $referenceType = self::ABSOLUTE_URL;
                     $scheme = current($requiredSchemes);
                 }
-            } elseif (isset($requirements['_scheme']) && ($req = strtolower($requirements['_scheme'])) && $scheme !== $req) {
-                // We do this for BC; to be removed if _scheme is not supported anymore
-                $referenceType = self::ABSOLUTE_URL;
-                $scheme = $req;
             }
 
             if ($hostTokens) {

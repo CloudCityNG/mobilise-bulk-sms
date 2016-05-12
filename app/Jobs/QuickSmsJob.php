@@ -10,10 +10,9 @@ use App\Repository\SmsCreditRepository;
 use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class QuickSmsJob extends Job implements SelfHandling, ShouldQueue
+class QuickSmsJob extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
     /**

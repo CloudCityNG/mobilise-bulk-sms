@@ -20,7 +20,7 @@
         <div class="main-div uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
             <nav class="uk-navbar uk-margin-large-bottom">
-                <a class="uk-navbar-brand uk-hidden-small" href="layouts_frontpage.html">Brand</a>
+                <a class="uk-navbar-brand uk-hidden-small" href="#!">QuicSMS</a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
                         <a href="#">Home</a>
@@ -46,20 +46,20 @@
                         </div>
 
                     </li>
-                    <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">Solutions <i class="uk-icon-caret-down"></i></a>
-                        <div class="uk-dropdown uk-dropdown-navbar">
-                            <ul class="uk-nav uk-nav-navbar">
-                                <li><a href="#">ShortCodes</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">USSD Interaction</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">Number Context</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">Dedicated Platform Hosting</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    {{--<li class="uk-parent" data-uk-dropdown>--}}
+                        {{--<a href="#">Solutions <i class="uk-icon-caret-down"></i></a>--}}
+                        {{--<div class="uk-dropdown uk-dropdown-navbar">--}}
+                            {{--<ul class="uk-nav uk-nav-navbar">--}}
+                                {{--<li><a href="#">ShortCodes</a></li>--}}
+                                {{--<li class="uk-nav-divider"></li>--}}
+                                {{--<li><a href="#">USSD Interaction</a></li>--}}
+                                {{--<li class="uk-nav-divider"></li>--}}
+                                {{--<li><a href="#">Number Context</a></li>--}}
+                                {{--<li class="uk-nav-divider"></li>--}}
+                                {{--<li><a href="#">Dedicated Platform Hosting</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                     <li class="uk-parent" data-uk-dropdown>
                         <a href="#">Pricing & Coverage <i class="uk-icon-caret-down"></i></a>
                         <div class="uk-dropdown uk-dropdown-navbar">
@@ -87,16 +87,16 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="uk-parent" data-uk-dropdown>
-                        <a href="#">Downloads & Resources <i class="uk-icon-caret-down"></i></a>
-                        <div class="uk-dropdown uk-dropdown-navbar">
-                            <ul class="uk-nav uk-nav-navbar">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Product Help</a></li>
-                                <li><a href="#">Guides & FAQ</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    {{--<li class="uk-parent" data-uk-dropdown>--}}
+                        {{--<a href="#">Downloads & Resources <i class="uk-icon-caret-down"></i></a>--}}
+                        {{--<div class="uk-dropdown uk-dropdown-navbar">--}}
+                            {{--<ul class="uk-nav uk-nav-navbar">--}}
+                                {{--<li><a href="#">Blog</a></li>--}}
+                                {{--<li><a href="#">Product Help</a></li>--}}
+                                {{--<li><a href="#">Guides & FAQ</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                 </ul>
                 <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
                     <div class="uk-button-group">

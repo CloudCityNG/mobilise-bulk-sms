@@ -145,9 +145,14 @@ class SmsHistoryRepository {
 
 
 
-    public function sentSmsId($id)
+    public function sentSmsId($id, $withHistoryRecipient=true)
     {
-        return Auth::user()->smshistory()->where('id', $id)->with('smshistoryrecipient')->first();
+        $out = Auth::user()->smshistory()->where('id', $id);
+
+        if( $withHistoryRecipient )
+            return $out->with('smshistoryrecipient')->first();
+        else
+            return $out->first();
     }
 
 

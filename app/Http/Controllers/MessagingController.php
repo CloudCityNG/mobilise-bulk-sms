@@ -32,14 +32,26 @@ class MessagingController extends Controller
     function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('smscreditcheck', ['only' => ['postQuickSms', 'postQuickModalSms']]);
+        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms']]);
         $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
     }
 
 
+    /** Display Quic SMS Form
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function quic()
     {
         return view('kanda.messaging.quicsms');
+    }
+
+
+    public function confirmQuic(SendSmsRequest $request)
+    {
+        //create session and store data
+        $inputs = $request->all();
+        //dd($inputs);
+        return view('kanda.messaging.confirm-quicsms', ['data'=>$inputs]);
     }
 
 
@@ -61,7 +73,7 @@ class MessagingController extends Controller
      */
     public function postQuickSms(SendSmsRequest $request)
     {
-//        dd($request->all());
+        //retrieve data from session and dispatch
         $this->dispatchFrom('App\Jobs\QuickSmsJob', $request, ['user_id' => $request->user()->id]);
         flash()->overlay("Message Sent. Please check sent messages for delivery status", "Message Sent");
         return redirect()->back();
@@ -213,7 +225,7 @@ class MessagingController extends Controller
     public function sentSmsId($id = null, SmsHistoryRepository $repository)
     {
         $this->evaluateId($id);
-        $data = $repository->sentSmsId($id);
+        $data = $repository->sentSmsId($id, false);
         return view('kanda.messaging.sent-sms-id', compact('data'));
     }
 

@@ -36,17 +36,46 @@ class DlrHandler {
     public static function downloadDlr(Collection $data)
     {
         $contents = null;
+        $out = null;
+
+        $total = 0;
+        $delivered = 0;
+        $rejected = 0;
+        $expired = 0;
+        $not_delivered = 0;
+        $others = 0;
+
         //loop through the $data collection
         foreach($data as $row)
         {
+            $total++;
+            if ( (new self)->is_equalTo($row->status, 'delivered') )
+                $delivered++;
+            if ( (new self)->is_equalTo($row->status, 'rejected') )
+                $rejected++;
+            if ( (new self)->is_equalTo($row->status, 'expired') )
+                $expired++;
+            if ( (new self)->is_equalTo($row->status, 'not_delivered') )
+                $not_delivered++;
+
+
+
+
             $recipient = $row->destination;
             $status = (new self())->translate_status($row->status);
-            $contents .= "$recipient | self::translate($status)" . "\n";
+
+            $contents .= "$recipient | $status" . "\n";
         }
+
+        $out .= "Delivered: $delivered" . PHP_EOL;
+        $out .= "Rejected: $rejected" . PHP_EOL;
+        $out .= "Expired: $expired" . PHP_EOL;
+        $out .= "Not Delivered: $not_delivered" . PHP_EOL;
+        $out .= $contents;
 
         $filename = time() . ".txt";
         $file_path = storage_path("dlr/$filename");
-        $file = file_put_contents($file_path, $contents);
+        $file = file_put_contents($file_path, $out);
         return response()->download( $file_path );
     }
 
@@ -129,7 +158,10 @@ class DlrHandler {
         return $out;
     }
 
+    private function is_equalTo($status, $string)
+    {
+        return (bool) (strtolower($status) == $string);
+    }
 
 
-
-} 
+}

@@ -9,13 +9,12 @@ use App\Lib\Sms\CreditUnit;
 use App\Repository\SmsCreditRepository;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sms\SmsPurchase;
 use App\Repository\OrderRepository;
 
-class CreditAccountJob extends Job implements SelfHandling, ShouldQueue
+class CreditAccountJob extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
     /**

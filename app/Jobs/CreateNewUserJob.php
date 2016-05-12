@@ -6,10 +6,9 @@ use App\Jobs\Job;
 use App\Lib\Mailer\UserMailer;
 use App\Repository\SmsCreditRepository;
 use App\Repository\UserRepository;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Facades\Auth;
 
-class CreateNewUserJob extends Job implements SelfHandling
+class CreateNewUserJob extends Job
 {
     /**
      * @var

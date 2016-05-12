@@ -4,9 +4,8 @@ namespace App\Jobs;
 
 use App\Jobs\Job;
 use App\Repository\SmsDraftRepository;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class NewDraftSmsJob extends Job implements SelfHandling
+class NewDraftSmsJob extends Job
 {
     /**
      * @var

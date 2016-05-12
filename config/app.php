@@ -2,6 +2,8 @@
 
 return [
 
+	'env' => env('APP_ENV', 'production'),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
@@ -80,7 +82,7 @@ return [
 
 	'key' => env('APP_KEY', '9><J%169XybE($|J3+!k8HaQ589>'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'cipher' => 'AES-256-CBC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,12 +115,12 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+		//'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
+		//'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
 		'Illuminate\Encryption\EncryptionServiceProvider',
@@ -135,10 +137,10 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-        'Illuminate\Html\HtmlServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
         'Illuminate\Broadcasting\BroadcastServiceProvider',
         Barryvdh\Debugbar\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
 
 
@@ -146,7 +148,7 @@ return [
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
+		//'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
@@ -198,13 +200,11 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Form'      => 'Illuminate\Html\FormFacade',
-        'Html'      => 'Illuminate\Html\HtmlFacade',
-        'HTML'      => 'Illuminate\Html\HtmlFacade',
-//        'Flash'     => 'Laracasts\Flash\Flash',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
         'Gate'      => Illuminate\Support\Facades\Gate::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
 	],
 
