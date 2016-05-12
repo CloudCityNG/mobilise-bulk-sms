@@ -1,0 +1,20 @@
+{
+    "name": "zendframework/zendservice-api",
+    "description": "Micro framework for HTTP API client",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "api"
+    ],
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-0": {
+            "ZendService\\Api\\": "library/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-http": ">=2.1.4",
+        "zendframework/zendxml": "~1.0-dev"
+    }
+}

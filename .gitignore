@@ -3,7 +3,6 @@
 /.idea
 .env
 worker.log
-/vendor
 /storage/db_backups
 /storage/old
 /.settings
