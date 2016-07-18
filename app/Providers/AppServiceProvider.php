@@ -13,6 +13,9 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
+		Validator::extend('auth', 'App\Validation\ApiValidators@validateAuth');
+		Validator::extend('compare_time', 'App\Validation\ApiValidators@compareTime');
+
         Validator::resolver(function($translator, $data, $rules, $messages){
             return new ScheduleValidator($translator, $data, $rules, $messages);
         });

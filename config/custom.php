@@ -8,4 +8,9 @@ return [
     'weather_api' => 'http://api.worldweatheronline.com/free/v1/weather.ashx',
     'timezone_api' => 'http://api.worldweatheronline.com/free/v1/tz.ashx',
 
+    'service' => [
+        'name' => 'Mobilise Support',
+        'email' => 'support@mobiliseafrica.com',
+    ]
+
 ];

@@ -18,6 +18,7 @@ class VerifyCsrfToken extends BaseVerifier {
         'test',
         'messaging/bulk-sms/fileupload',
         'messaging/file2sms/fileupload',
+		'api/*'
     ];
 
 	/**

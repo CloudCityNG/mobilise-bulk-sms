@@ -1,143 +1,71 @@
-$(document).ready(function(){
+var upload = new Dropzone("div#contactsUpload", {url: "/a/contacts-upload"});
+var vm = new Vue({
+    el: '#app',
+    data: {
+        message: '',
+        recipients: '',
+        sender: '',
+        messageCounter: 0,
+        recipientCounter: 0,
+        displayMessage: '',
+    },
 
-window.Quic = window.Quic || {};
-
-    //show an element
-    Quic.showElement = function(el){
-        $(el).fadeIn('slow').show();
-    }
-
-    //hide an element
-    Quic.hideElement = function(el){
-        $(el).fadeOut('slow').hide();
-    }
-
-
-    window.UserDetails = window.UserDetails || {};
-//@TODO
-//send in this detail from the $currentUser->userdetails->phone
-    UserDetails.phone = "08038154606";
-
-    UserDetails.updateInputValue = function($el, $value)
-    {
-        return $($el).val($value);
-    }
-
-    UserDetails.clearInputValue = function($el)
-    {
-        return $($el).val('');
-    }
-
-
-
-
-    $('.ui.radio.checkbox.box2').checkbox({
-        onChecked: function(){
-            $('#sender').prop('maxlength', 11);
+    methods: {
+        countCharacters: function () {
+            var message = this.message
+            this.displayMessage = message.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+            this.messageCounter = this.message.length;
         },
-        onUnchecked: function(){}
-    });
+    },
 
-    $('.ui.radio.checkbox.box3').checkbox({
-        onChecked: function(){
-            $('#sender').prop('maxlength', 14);
-        },
-        onUnchecked: function(){}
-    });
+    ready: function () {
 
-    $('.ui.radio.checkbox.box2').trigger("click");
-    $('#sender_type2').trigger('click');
+        var form = $('form#quick-sms');
+
+        $('button#draft').click(function () {
+            form.prop('action', '/messaging/draft-sms');
+            form.submit();
+        });
+
+        $('button#send').click(function () {
+            form.prop('action', '/messaging/quick-sms');
+            form.submit();
+        });
 
 
-    /**
-     * RECIPIENTS
-     * @type {number}
-     */
-    var $contactMax = 1000;
-        //check recipients and limit to 50 comma separated values
-    $('#recipients').on('keyup blur keydown focus', function(e){
-
-        if ( true )
-        {
-            $(this).val ( $(this).val().replace(/[^\d(,)]/g,'') );
-            $val = $(this).val().trim();
-
-            //split textarea input with comma
-            $arrayNumbers = $val.split(',');
-            if ( $arrayNumbers.length > $contactMax ) {
-                $(this).val ( recipientsCopy );
-                return;
-            }
-
-            //internal length
-            $length = 0;
-            $.each($arrayNumbers, function(index, value){
-                if ( value ){
-                    $length++;
+        $('.ui.radio.checkbox.box2').checkbox({
+            onChecked: function () {
+                var $sender = $("#sender");
+                var $length = $sender.val().length;
+                $sender.prop('maxlength', 11);
+                //if value is greater than 11 chop it.
+                if ( $length > 11 ){
+//                    var $j = $sender.val().substring(0, 11);
+                    $sender.val( chop($sender.val(), 11) );
                 }
-            });
-            recipientsCopy = $(this).val();
-            $globalLength = $length;
-            $('#noOfRecipients').html($length + '/' + $contactMax);
-        }
-    });
-
-
-    /**
-     * MESSAGE
-     */
-    $('#message').simplyCountable({
-        counter: '#counter',
-        countType: 'characters',
-        maxCount: 320,
-        countDirection: 'up',
-        strictMax: true,
-        pageCountId: '#pages',
-        pageCount1: 160,
-        pageCount2: 320,
-        onCount: function(count, countable, counter){
-            if ( count == 0 ){
-                $('#pages').html('0');
+            },
+            onUnchecked: function () {
             }
-            else if ( count > 0 && count <= 160 ){
-                $('#pages').html('1 page');
-            } else if (count > 160 && count <= 320){
-                $('#pages').html('2 pages');
+        });
+
+        $('.ui.radio.checkbox.box3').checkbox({
+            onChecked: function () {
+                $('#sender').prop('maxlength', 14);
+            },
+            onUnchecked: function () {
             }
+        });
+
+        $('.ui.radio.checkbox.box2').trigger("click");
+        $('#sender_type2').trigger('click');
+
+        //initialize checkbox for flash message
+        $('.ui.checkbox.flash').checkbox();
+
+        $('.menu .item').tab();
+
+        function chop($val, $chopLength){
+            return $val.substring(0, $chopLength);
         }
-    });
-
-
-    /**
-     * SCHEDULE
-     */
-    $("#schedule").kendoDateTimePicker({
-        value: new Date(),
-        min: new Date(),
-        format: "yyyy-MM-dd HH:mm"
-    });
-
-    var datetimepicker = $("#schedule").data("kendoDateTimePicker");
-    Quic.hideElement('#schedule-div');
-    datetimepicker.enable(false);
-
-    $('.ui.checkbox.scheduleControl').checkbox({
-        onChecked: function(){
-                Quic.showElement('#schedule-div');
-                datetimepicker.enable(true);
-        },
-        onUnchecked: function(){
-            //disable kendoui datetime select
-            Quic.hideElement('#schedule-div');
-            datetimepicker.enable(false);
-        }
-    });
-
-    /**
-     * DRAFT
-     */
-    $('.ui.checkbox.flash').checkbox();
-
-
-
+    }
 });

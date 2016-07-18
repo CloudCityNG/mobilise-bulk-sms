@@ -2,7 +2,7 @@
 namespace App\Lib\Services\Text;
 
 
-class String {
+class String_ {
 
     /**
      * Create random unique strings

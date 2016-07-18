@@ -3,6 +3,8 @@ return [
 
     'logo_url' => env('LOGO_URL'),
 
+    'logo_url_big' => env('LOGO_URL_BIG'),
+
     'return_uri' => env('RETURN_URI'),
 
     'return_script' => env('RETURN_SCRIPT'),

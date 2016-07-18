@@ -252,7 +252,8 @@
                 "name": "Taylor Otwell",
                 "email": "taylorotwell@gmail.com"
             }
-        ]
+        ],
+        "abandoned": "laravelcollective/html"
     },
     {
         "name": "swiftmailer/swiftmailer",
@@ -4327,7 +4328,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://packages.zendframework.com/composer/zendframework-zendservice-api-dev-master-afb7a6.zip",
+            "url": "https://api.github.com/repos/zendframework/ZendService_Api/zipball/2891423d87b2d4010565b246dcc4528f7b83f672",
             "reference": "2891423d87b2d4010565b246dcc4528f7b83f672",
             "shasum": "49bef3123648682d83ae20e44e41ba974997a557"
         },
@@ -4408,5 +4409,53 @@
         ],
         "description": "HTML and Form Builders for the Laravel Framework",
         "homepage": "http://laravelcollective.com"
+    },
+    {
+        "name": "mledoze/countries",
+        "version": "1.7.7",
+        "version_normalized": "1.7.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mledoze/countries.git",
+            "reference": "a1707efb71285fdef819ba7940cd6b7fcab85ee5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/mledoze/countries/archive/master.zip",
+            "reference": "a1707efb71285fdef819ba7940cd6b7fcab85ee5",
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.4",
+            "symfony/console": "^2.7|^3.0",
+            "symfony/yaml": "^2.7|^3.0"
+        },
+        "time": "2016-01-28 16:06:28",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MLD\\": "src/MLD"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Open Database License"
+        ],
+        "authors": [
+            {
+                "name": "Mohammed Le Doze"
+            }
+        ],
+        "description": "World countries in JSON, CSV, XML and Yaml",
+        "homepage": "https://mledoze.github.io/countries/",
+        "keywords": [
+            "countries",
+            "csv",
+            "json",
+            "world",
+            "xml",
+            "yaml"
+        ]
     }
 ]

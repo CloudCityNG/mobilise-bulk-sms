@@ -105,4 +105,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     	return $this->hasMany('App\Models\Sms\SmsPurchase');
     }
 
+
+    public function scopeGetUser($query, $email)
+    {
+        return $query->where('email', $email);
+    }
+
 }

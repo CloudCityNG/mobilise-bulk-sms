@@ -207,3 +207,28 @@ div#quic-new-contact div.header {
 div#quic-new-contact div.content {
     padding: 10px 25px;
 }
+
+.center {
+    text-align: center;
+}
+
+div#dashboard h3.dashboard-title {
+    margin-top: 2px;
+}
+
+div#dashboard div.center {
+    cursor: pointer;
+}
+div#dashboard div.center:hover {
+    background: #e1e3fa;
+}
+
+.ui.inverted.menu {
+    /*border: 0 solid transparent;*/
+    background: #2185d0;
+    /*box-shadow: none;*/
+}
+
+.ui.steps .step {
+    padding: .1em;
+}

@@ -3,7 +3,7 @@ namespace App\Lib\Auth;
 
 
 use App\Lib\Mailer\UserMailer;
-use App\Lib\Services\Text\String;
+use App\Lib\Services\Text\String_;
 use App\Repository\SmsCreditRepository;
 use App\Repository\UserRepository;
 use App\User;
@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 
 
-class AuthenticateUser {
+class AuthenticateUser
+{
 
     const INVALID_PROVIDER = "You provided an invalid social provider. Please try again";
     const LOGIN_SUCCESSFUL = "You have been logged in successfully";
@@ -61,9 +62,9 @@ class AuthenticateUser {
             return redirect()->back();
         endif;
 
-        if ( ! $hasCode ) return $this->getAuthorizationFirst($provider);                   //1st time coming here. no ?$code but there is $provider
+        if (!$hasCode) return $this->getAuthorizationFirst($provider);                   //1st time coming here. no ?$code but there is $provider
 
-        if ( $hasCode && ! $provider ):                                                     //2nd time coming has $code but no provider
+        if ($hasCode && !$provider):                                                     //2nd time coming has $code but no provider
             $provider = $this->getProvider();
             $user = $this->socialite->driver($provider)->user();
             $isSocialUser = $this->user->getSocialUser($user->getEmail(), $provider);
@@ -74,15 +75,15 @@ class AuthenticateUser {
                 return redirect()->to('user/login');
             endif;
 
-            switch ( true ) {
-                case ( (bool) $isSocialUser->count() ):
+            switch (true) {
+                case ((bool)$isSocialUser->count()):
                     //social user
                     $this->auth->login($isSocialUser[0]);
                     $this->removeProvider($provider);
                     flash()->success(self::LOGIN_SUCCESSFUL);
                     return redirect()->intended('user/dashboard');
                     break;
-                case ( (bool) $getUserByEmail->count() ):
+                case ((bool)$getUserByEmail->count()):
                     //user already exist
                     $this->removeProvider($provider);
                     flash()->info(self::USER_EXISTS);
@@ -98,7 +99,7 @@ class AuthenticateUser {
                     $this->removeProvider($provider);
                     flash()->success(self::LOGIN_SUCCESSFUL);
                     return redirect()->intended('user/dashboard');
-                break;
+                    break;
             }
         endif;
     }
@@ -106,10 +107,11 @@ class AuthenticateUser {
 
     private function getAuthorizationFirst($provider)
     {
-        if ( in_array($provider, $this->providers) ):
+        if (in_array($provider, $this->providers)):
             $this->saveProvider($provider);
             return $this->socialite->driver($provider)->redirect();
         endif;
+
         flash()->error(self::INVALID_PROVIDER);
         return Redirect::to('user/login');
     }
@@ -138,17 +140,17 @@ class AuthenticateUser {
         $email = $user->getEmail();
         //for google business accounts, names are not present.
         //so check name first
-        if ( !empty($user->getName()) ) :
-            $username =  String::replaceChar($user->getName());
+        if (!empty($user->getName())) :
+            $username = String_::replaceChar($user->getName());
         else:
             $username = explode("@", $user->getEmail())[0];
         endif;
 
-        $password = bcrypt( String::randomString() );
+        $password = bcrypt(String_::randomString());
         $social_auth_type = $provider;
         $social_auth = 1;
 
-        $user = User::create( compact('email', 'username', 'password', 'social_auth', 'social_auth_type') );
+        $user = User::create(compact('email', 'username', 'password', 'social_auth', 'social_auth_type'));
         SmsCreditRepository::createNewAccount($user);
 
         return $user;
