@@ -20,6 +20,8 @@ abstract class Form
      */
     protected $rules = [];
 
+    protected $messages = [];
+
     /**
      * Form constructor.
      *
@@ -68,7 +70,7 @@ abstract class Form
      */
     protected function isValid()
     {
-        $this->validate($this->request, $this->rules);
+        $this->validate($this->request, $this->rules, $this->messages);
         return true;
     }
 

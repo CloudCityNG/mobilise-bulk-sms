@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Forms\DraftSmsForm;
+use App\Http\Forms\QuicSmsForm;
 use App\Jobs\BulkSmsCommand;
 use App\Jobs\NewDraftSmsJob;
 use App\Jobs\QuickSms;
@@ -32,9 +34,55 @@ class MessagingController extends Controller
     function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms']]);
-        $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
+//        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms']]);
+//        $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
     }
+
+
+
+
+
+
+
+
+    public function sendSms()
+    {
+        return view('adminlte.messaging.send-sms');
+    }
+
+
+    public function postSendSms(QuicSmsForm $form)
+    {
+        $data = $form->save();
+        return view('adminlte.messaging.send-sms-preview', compact('data'));
+
+    }
+
+
+    /**
+     * Create an SMS Draft from a POST request.
+     * @param DraftSmsRequest $draftSmsRequest
+     * @param ProcessDate $processDate
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postDraftSms(DraftSmsForm $form, Request $request)
+    {
+        $form->save();
+        flash()->success("Message saved as draft successfully");
+        return redirect()->to('user/dashboard');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /** Display Quic SMS Form
@@ -286,18 +334,7 @@ class MessagingController extends Controller
     }
 
 
-    /**
-     * Create an SMS Draft from a POST request.
-     * @param DraftSmsRequest $draftSmsRequest
-     * @param ProcessDate $processDate
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function postDraftSms(DraftSmsRequest $draftSmsRequest, ProcessDate $processDate)
-    {
-        $this->dispatchFrom(NewDraftSmsJob::class, $draftSmsRequest);
-        flash()->success("Message saved as draft successfully");
-        return redirect()->to('user/dashboard');
-    }
+
 
 
     /**

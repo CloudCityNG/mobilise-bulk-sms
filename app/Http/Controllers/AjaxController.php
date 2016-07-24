@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Forms\QuicSmsForm;
 use App\Jobs\NewContactCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\NewContact;
 use App\Http\Requests\NewGroup;
+use App\Lib\Services\PhoneNumber\PhoneUtil;
 use App\Repository\GroupRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,12 @@ class AjaxController extends Controller {
     {
         $this->middleware('auth');
     }
+
+    public function jobInfo(QuicSmsForm $form)
+    {
+        return $form->save();
+    }
+
 
 
     public function newContact(NewContact $request)

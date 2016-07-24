@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class SmsDraft extends Model {
 
 	protected $table = 'sms_draft';
-    protected $guarded = ['id'];
+    protected $fillable = ['sender','recipients','message','flash','schedule'];
 
 
     public function user()

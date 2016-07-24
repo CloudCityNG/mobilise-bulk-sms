@@ -18,6 +18,18 @@ Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
 //Register shortcut
 Route::get('/register', 'RegisterController@create');
 
+
+Route::group(
+    ['prefix' => 'messaging'], function () {
+    Route::get('send-sms', 'MessagingController@sendSms');
+    Route::post('send-sms', 'MessagingController@postSendSms');
+    //save draft SMS
+    Route::post('draft-sms', 'MessagingController@postDraftSms');
+});
+
+
+
+
 //All user links
 Route::group(
     ['prefix' => 'user'], function () {
@@ -67,7 +79,11 @@ Route::group(
 });
 
 //API testing routes
-Route::get('api-test', function () {
+Route::get('api-test', function (\App\Lib\Services\PhoneNumber\PhoneUtil $phoneUtil) {
+
+    echo $phoneUtil->number("+2347026353072")->carrier();
+    return;
+
 //    $now = new \Carbon\Carbon('now', 'UTC');//lower
 //    $carbon = (new \Carbon\Carbon('2016-07-08 17:00:00 +0000'));//supplied date | higher
 //    //echo $now->diffInHours($carbon);
@@ -77,11 +93,11 @@ Route::get('api-test', function () {
     $now = new \DateTime("now", new DateTimeZone('UTC'));
     $nowTimezone = $now->getTimestamp();
 
-    $sch = new \DateTime("2016-07-08 20:00:00 +0100");
+    $sch = new \DateTime("2016-07-20 02:00 PM +0100");
     $schTimezone = $sch->getTimeStamp();
     //convert to UTC timezone
     $sch->setTimezone(new DateTimeZone('UTC'));
-    echo $sch->format('Y-m-d H:i:sP') . "\n";
+    echo $sch->format('Y-m-d H:i:s P') . "\n";
 
     $date = new \DateTime("2016-07-08", new DateTimeZone('Africa/Lagos'));
     //echo $date->format('Y-m-d H:i:sP') . "\n";

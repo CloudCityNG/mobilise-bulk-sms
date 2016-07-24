@@ -56,7 +56,7 @@ class PhoneUtil
      */
     public function getTimeZone()
     {
-        return $this->timeZone;
+        return $this->timeZone[0];
     }
 
 
@@ -97,7 +97,7 @@ class PhoneUtil
     {
         if (strtolower($this->country) == strtolower($this->region))
             return $this->country;
-        elseif ( trim($this->region) == "" )
+        elseif (trim($this->region) == "")
             return $this->country;
         else
             return $this->region . ' / ' . $this->country;
@@ -175,10 +175,47 @@ class PhoneUtil
     }
 
 
-    private function unitChargeByDIalingCode($dialingCode, $originatingCountry)
+    public function getChargeByDialingCode($currency = 'units')
     {
-        $charges = [
+        $dialingCode = $this->getCountryCode();
 
+        if ($currency == 'unit' || $currency == 'units'):
+            if (array_key_exists($dialingCode, $this->unitChargeByDialingCode())):
+                return $this->unitChargeByDialingCode()[$dialingCode];
+            endif;
+            return false;
+        elseif ($currency == 'price' || $currency == 'kobo'):
+            if (array_key_exists($dialingCode, $this->priceChargeByDialingCode())):
+                return $this->priceChargeByDialingCode()[$dialingCode];
+            endif;
+            return false;
+        endif;
+
+    }
+
+
+    private function unitChargeByDialingCode()
+    {
+        //prices in units
+        return [
+            "93" => 5,
+            "355" => 5,
+            "213" => 5,
+            "234" => 1.5,
+            "1" => 2,
+        ];
+    }
+
+
+    private function priceChargeByDialingCode()
+    {
+        //price in kobo
+        return [
+            "93" => 500,
+            "355" => 500,
+            "213" => 500,
+            "234" => 200,
+            "1" => 250,
         ];
     }
 }

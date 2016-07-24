@@ -6,6 +6,20 @@ use App\Lib\Services\Text\String as Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('lte', function(){
+    return view('adminlte.messaging.quicsms');
+});
+
+//All AJAX rules
+Route::group(
+    ['prefix'=>'a'], function(){
+
+    Route::post('confirm-job', 'AjaxController@jobInfo');
+});
+
+
+
+
 Route::get('login/{id}', function ($id) {
     Auth::loginUsingId($id);
     return redirect()->to('user/dashboard');
@@ -102,7 +116,7 @@ Route::group(
      */
     Route::get('saved-sms', 'MessagingController@savedSms');           //View a Saved SMS
     Route::get('draft-sms', 'MessagingController@savedSms');           //View a Draft SMS
-    Route::post('draft-sms', 'MessagingController@postDraftSms');       //Save a draft SMS
+
     Route::get('draft-sms/{id}/del', 'MessagingController@delDraftSMS');        //delete a draft SMS (ajax)
     Route::get('draft-sms/{id}/get', 'MessagingController@getDraftSMS');        //get draft SMS details (ajax)
 
