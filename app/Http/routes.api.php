@@ -5,6 +5,8 @@ use Carbon\Carbon;
 
 //Homepage
 Route::get('/', function () {
+    return redirect()->to('user/login');
+    return view('layouts.landing.landing');
     return view('layouts.frontend');
 });
 
@@ -21,7 +23,7 @@ Route::get('/register', 'RegisterController@create');
 
 Route::group(
     ['prefix' => 'messaging'], function () {
-    Route::get('send-sms', 'MessagingController@sendSms');
+    Route::get('send-sms', ['as'=>'send_sms','uses' => 'MessagingController@sendSms']);
     Route::post('send-sms', 'MessagingController@postSendSms');
     //save draft SMS
     Route::post('draft-sms', 'MessagingController@postDraftSms');
@@ -79,31 +81,18 @@ Route::group(
 });
 
 //API testing routes
-Route::get('api-test', function (\App\Lib\Services\PhoneNumber\PhoneUtil $phoneUtil) {
+Route::get('api-test', function (\App\Lib\Sms\PenSmsApi $api, \App\Lib\Sms\SmsPen $pen) {
 
-    echo $phoneUtil->number("+2347026353072")->carrier();
+
+
     return;
 
-//    $now = new \Carbon\Carbon('now', 'UTC');//lower
-//    $carbon = (new \Carbon\Carbon('2016-07-08 17:00:00 +0000'));//supplied date | higher
-//    //echo $now->diffInHours($carbon);
-//    $hour = $carbon->diffInHours($now);
-//    $min = $carbon->diffInMinutes($now);
-//    $sec = $carbon->diffInSeconds($now);
-    $now = new \DateTime("now", new DateTimeZone('UTC'));
-    $nowTimezone = $now->getTimestamp();
-
-    $sch = new \DateTime("2016-07-20 02:00 PM +0100");
-    $schTimezone = $sch->getTimeStamp();
-    //convert to UTC timezone
-    $sch->setTimezone(new DateTimeZone('UTC'));
-    echo $sch->format('Y-m-d H:i:s P') . "\n";
-
-    $date = new \DateTime("2016-07-08", new DateTimeZone('Africa/Lagos'));
-    //echo $date->format('Y-m-d H:i:sP') . "\n";
-
-    //echo $sch > $now;
-
-    //dd(new \DateTime("2016-07-08 17:00:00 +0000echo ($sch > $now);
+    $result = $api->setSender('Mobiliseafr')
+        ->setRecipients('08099450165')
+        ->setMessage('Message is via pensms')
+        ->send()
+        ;
+    //dd($result);
+    echo $result;
 
 });

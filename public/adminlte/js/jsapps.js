@@ -20,7 +20,6 @@ var upload = new Dropzone("div#contactsUpload", {url: "/a/contacts-upload"});
 var vm = new Vue({
     el: '#app',
     data: {
-        sender: '',
         recipients: '',
         message: '',
         schedule: '',

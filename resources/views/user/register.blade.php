@@ -28,7 +28,7 @@
         <div class="uk-vertical-align uk-text-center uk-height-1-1">
             <div class="uk-vertical-align-middle" style="width: 450px;">
 
-                <img class="uk-margin-bottom" width="140" height="120" src="/images/logos/quic-sms.png" alt="">
+                <img class="uk-margin-bottom" width="280" src="{{config('quic.logo_url_big')}}" alt="">
                 @include('layouts.frontend.partials.errors')
 
                 <div class="uk-vertical-align-middle" style="width:350px;">

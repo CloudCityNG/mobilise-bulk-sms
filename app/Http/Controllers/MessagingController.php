@@ -45,13 +45,13 @@ class MessagingController extends Controller
 
 
 
-    public function sendSms()
+    public function sendSms($back=null)
     {
         return view('adminlte.messaging.send-sms');
     }
 
 
-    public function postSendSms(QuicSmsForm $form)
+    public function postSendSms(QuicSmsForm $form, Request $request)
     {
         $data = $form->save();
         return view('adminlte.messaging.send-sms-preview', compact('data'));

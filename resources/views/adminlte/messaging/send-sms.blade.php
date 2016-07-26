@@ -1,3 +1,7 @@
+@if (!$errors->any())
+    @inject('session', 'Illuminate\Session\Store')
+@endif
+
 @extends('layouts.adminlte.master')
 @section('title')
     Send SMS
@@ -50,13 +54,15 @@
 
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title active-step">1, Start</h3> | <span class="inactive-step">2, Preview SMS</span> | <span class="inactive-step">3, Preview SMS</span>
+                <h3 class="box-title active-step">1, Start</h3> | <span class="inactive-step">2, Preview SMS</span> |
+                <span class="inactive-step">3, Preview SMS</span>
             </div>
             <div class="box-body">
 
                 <div class="col-lg-8">
+
                     @include('layouts.adminlte.partials.errors')
-                    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'ui form', 'id'=>'quick-sms', 'autocomplete'=>'off', 'role'=>'form']) !!}
+                    {!! Form::open(['url'=>'messaging/quick-sms', 'class'=>'ui form', 'id'=>'quick-sms', 'autocomplete'=>'on', 'role'=>'form']) !!}
                     <div class="box-body">
 
                         <div class="form-group">
@@ -64,7 +70,7 @@
                             <!-- SENDER -->
                             <input name="sender" type="text" class="form-control" id="sender"
                                    v-model="sender" placeholder="Sender ID" maxlength="11"
-                                   value="{!! old('sender') !!}">
+                                   value="{!! ($session->get('send-sms-fields')['sender'])? : old('sender') !!}">
                         </div>
 
                         <hr>
@@ -88,7 +94,8 @@
                                         <!-- RECIPIENTS -->
                                             <textarea name="recipients" id="recipients" class="form-control" rows="5"
                                                       v-model="recipients" v-on:keyup="countRecipients"
-                                                      placeholder="Enter Recipients...">{!! old('recipients') !!}</textarea>
+                                                      placeholder="Enter Recipients...">{!! ($session->get('send-sms-fields')['recipients'])? : old('recipients') !!}</textarea>
+
                                         <p class="help-block">@{{ recipientsCounter }}</p>
                                     </div>
 
@@ -116,7 +123,7 @@
                                     <!-- MESSAGE -->
                                         <textarea name="message" id="message" class="form-control col-lg-7" rows="4"
                                                   v-model="message" v-on:keyup="countMessageCharacters"
-                                                  placeholder="Enter Message...">{!! old('message') !!}</textarea>
+                                                  placeholder="Enter Message...">{!! ($session->get('send-sms-fields')['message'])? : old('message') !!}</textarea>
                                 </div>
                                 <div class="col-lg-5">
                                         <span style="font-weight:bold;">
@@ -131,7 +138,7 @@
                         <div class="checkbox">
                             <label>
                                 <!-- SCHEDULE -->
-                                <input type="checkbox" name="schedule" id="schedule" value="1" v-model="schedule">
+                                <input type="checkbox" name="schedule" id="schedule" value="1" v-model="schedule" {{ ($session->get('send-sms-fields')['schedule']) ? 'checked' : ''  }}>
                                 <b>Schedule Message</b>
                             </label>
                         </div>
@@ -141,7 +148,7 @@
                             <div class="input-group date col-md-4 col-xs-6">
                                 <!-- DATE -->
                                 <input name="date" id="date" type="text" v-show="schedule"
-                                       class="form-control datepicker" value="{!! old('date') !!}"
+                                       class="form-control datepicker" value="{!! ($session->get('send-sms-fields')['date'])? : old('date') !!}"
                                        id="date">
 
                                 <div class="input-group-addon">
@@ -158,7 +165,7 @@
                                         <div class="input-group">
                                             <!-- TIME -->
                                             <input name="time" id="time" v-show="schedule" type="text"
-                                                   class="form-control timepicker" value="{!! old('time') !!}">
+                                                   class="form-control timepicker" value="{!! ($session->get('send-sms-fields')['time'])? : old('time') !!}">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -185,9 +192,14 @@
 
                     <!-- Buttons -->
                     <div class="box-footer">
-                        <button type="button" class="btn btn-primary" id="send" v-show="sender && recipients && message">Preview before send</button>
-                        <button type="button" class="btn btn-primary" id="preview" v-show="sender && recipients && message">Preview</button>
-                        <button type="button" class="btn btn-info" id="draft" v-show="sender && message">Save draft</button>
+                        <button type="button" class="btn btn-primary" id="send"
+                                v-show="sender && recipients && message">Preview before send
+                        </button>
+                        <button type="button" class="btn btn-primary" id="preview"
+                                v-show="sender && recipients && message">Preview
+                        </button>
+                        <button type="button" class="btn btn-info" id="draft" v-show="sender && message">Save draft
+                        </button>
                         <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
                     </div>
                     {!! Form::close() !!}

@@ -80,7 +80,7 @@
                         @endforeach
                     </table>
                     <div class="row">
-                        <button class="btn btn-default pull-left">Back</button>
+                        <a href="{{route('send_sms')}}" class="btn btn-default pull-left">Back</a>
                         <button class="btn btn-default pull-right">Send</button>
                     </div>
                     @include('layouts.adminlte.partials.errors')
@@ -93,47 +93,47 @@
             </div>
         </div>
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Bulk SMS Confirmation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table">
-                            <tr>
-                                <th class="bold">Number of Messages</th>
-                                <th class="bold">Total SMS</th>
-                                <th class="bold">Total Units</th>
-                            </tr>
-                            <tr>
-                                <td>@{{ numberOfMessages }}</td>
-                                <td>@{{ totalSms }}</td>
-                                <td>@{{ totalUnits }}</td>
-                            </tr>
-                        </table>
-                        <table class="table">
-                            <tr>
-                                <th>Country</th>
-                                <th>Carrier</th>
-                                <th>Total Recipients</th>
-                                <th>Unit per SMS</th>
-                                <th>SMS Count</th>
-                            </tr>
-                            <tbody id="update">
-                            </tbody>
+        {{--<div class="modal fade" tabindex="-1" role="dialog" id="myModal">--}}
+            {{--<div class="modal-dialog modal-lg">--}}
+                {{--<div class="modal-content">--}}
+                    {{--<div class="modal-header">--}}
+                        {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}}
+                                    {{--aria-hidden="true">&times;</span></button>--}}
+                        {{--<h4 class="modal-title">Bulk SMS Confirmation</h4>--}}
+                    {{--</div>--}}
+                    {{--<div class="modal-body">--}}
+                        {{--<table class="table">--}}
+                            {{--<tr>--}}
+                                {{--<th class="bold">Number of Messages</th>--}}
+                                {{--<th class="bold">Total SMS</th>--}}
+                                {{--<th class="bold">Total Units</th>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                                {{--<td>@{{ numberOfMessages }}</td>--}}
+                                {{--<td>@{{ totalSms }}</td>--}}
+                                {{--<td>@{{ totalUnits }}</td>--}}
+                            {{--</tr>--}}
+                        {{--</table>--}}
+                        {{--<table class="table">--}}
+                            {{--<tr>--}}
+                                {{--<th>Country</th>--}}
+                                {{--<th>Carrier</th>--}}
+                                {{--<th>Total Recipients</th>--}}
+                                {{--<th>Unit per SMS</th>--}}
+                                {{--<th>SMS Count</th>--}}
+                            {{--</tr>--}}
+                            {{--<tbody id="update">--}}
+                            {{--</tbody>--}}
 
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="modal-send">Send SMS</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                        {{--</table>--}}
+                    {{--</div>--}}
+                    {{--<div class="modal-footer">--}}
+                        {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                        {{--<button type="button" class="btn btn-primary" id="modal-send">Send SMS</button>--}}
+                    {{--</div>--}}
+                {{--</div><!-- /.modal-content -->--}}
+            {{--</div><!-- /.modal-dialog -->--}}
+        {{--</div><!-- /.modal -->--}}
     </section>
 
 

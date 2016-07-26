@@ -5,19 +5,19 @@ namespace App\Lib\Sms;
 use App\Lib\Services\Text\CharacterCounter;
 use Carbon\Carbon;
 
-class SmsInfobip extends Sms {
+class SmsPen extends Sms {
 
-    const api_url = 'http://api.infobip.com/api/v3/sendsms/json';
+    const api_url = 'http://107.20.199.106/api/v3/sendsms/json';
     const username = 'mobiliseafrica';
-    const password = '124!Nigeria';
+    const password = 'mobilise';
 
-    private $sender;
-    private $recipients;
-    private $message;
-    private $schedule;
-    private $flash;
+    protected $sender;
+    protected $recipients;
+    protected $message;
+    protected $schedule;
+    protected $flash;
 
-    private $error = [];
+    protected $error = [];
 
     public function __construct()
     {
