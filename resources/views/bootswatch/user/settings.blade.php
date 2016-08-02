@@ -21,14 +21,23 @@
                                 </div>
 
                                 <div class="input-group col-lg-6 col-md-6" style="margin-top:10px;">
-                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                    <input type="text" class="form-control" id="exampleInputAmount"
+                                           placeholder="Amount">
+
                                     <div class="input-group-addon">Units</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            
+                            <div class="col-sm-offset-1 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Send me failed job alert
+                                    </label>
+                                </div>
+
+                            </div>
                         </div>
 
 

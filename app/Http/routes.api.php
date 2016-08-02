@@ -67,7 +67,7 @@ Route::group(
 
 
     Route::get('credit-purchase/start', 'PurchaseController@start');
-    Route::post('credit-purchase', 'PurchaseController@postCreditPurchase');
+    Route::post('credit-purchase', ['as'=>'purchase_path','PurchaseController@postCreditPurchase']);
     Route::get('credit-purchase', 'PurchaseController@creditPurchase');
     Route::get('credit-purchase/approve/{order_id}/txid/{txid}/poid/{poid}/quantity/{quantity}/unitprice/{unit_price}/price/{price}/item/{item}', 'PurchaseController@approve');
 

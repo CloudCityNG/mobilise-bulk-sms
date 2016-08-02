@@ -28,6 +28,13 @@
             -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
         }
+        #buy-units{
+            color:white;
+            font-weight:bold;
+        }
+        #buy-units:hover, #buy-units:active, #buy-units:focus{
+            background: #03acc0;
+        }
 
     </style>
 </head>
@@ -55,7 +62,6 @@
                         <li class="divider"></li>
                         <li><a href="#">Schedule SMS</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -80,7 +86,8 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#!" style="background-color:aliceblue;">{{$currentUser->smscredit->available_credit}} Units</a></li>
+                <li><a href="#!" style="background-color:aliceblue;font-weight:bold;">{{$currentUser->smscredit->available_credit}} Units</a></li>
+                <li><a href="{{route('purchase_path')}}" id="buy-units" class="btn btn-primary btn-xs" style="">Buy Units</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$currentUser->username}}
                         <span class="caret"></span></a>
