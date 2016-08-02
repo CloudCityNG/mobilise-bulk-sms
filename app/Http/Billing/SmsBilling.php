@@ -5,6 +5,8 @@ namespace App\Http\Billing;
 
 use App\Lib\Services\PhoneNumber\PhoneUtil;
 use App\Lib\Services\Text\CharacterCounter;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SmsBilling
 {
@@ -31,7 +33,7 @@ class SmsBilling
     }
 
 
-    public function getSmsBill($recipients, $message)
+    public function getSmsUnitBill($recipients, $message)
     {
         //set delimiters
         $delimiters = "/(,)+/";
@@ -50,6 +52,7 @@ class SmsBilling
         $numbers = preg_replace($pattern, "234$2$3", array_unique($numbers));
 
         $sms_pages = CharacterCounter::countPage($message)->pages;
+
         $total_units = 0.00;
 
         foreach ( $numbers as $number ):
@@ -59,9 +62,29 @@ class SmsBilling
             endif;
         endforeach;
 
-        return $total_units;
+        return $total_units * $sms_pages;
+    }
 
 
+    public function billUserUnits($units, $user_id)
+    {
+        return DB::table('sms_credit')
+            ->where('user_id', $user_id)
+            ->decrement('available_credit', $units,[
+                'updated_at' => Carbon::now(),
+            ]);
+    }
+
+
+    public function logBillUnits($units, $user_id, $smsHistoryId=null)
+    {
+        return DB::table('sms_credit_usage_history')
+            ->insert([
+                'user_id' => $user_id,
+                'sms_history_id' => $smsHistoryId,
+                'used_units' => $units,
+                'comment' => 'User Sms Debit'
+            ]);
     }
 
 }

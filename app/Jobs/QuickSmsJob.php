@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Billing\SmsBilling;
 use App\Jobs\Job;
 use App\Lib\Sms\SmsInfobip;
 use App\Models\Sms\SmsHistory;
@@ -71,13 +72,14 @@ class QuickSmsJob extends Job implements ShouldQueue
      * @param SmsHistoryRecipient $historyRecipient
      * @return void
      */
-    public function handle(SmsCreditRepository $smsCreditRepository, SmsInfobip $infobip, SmsHistory $history, SmsHistoryRecipient $historyRecipient)
+    public function handle(SmsCreditRepository $smsCreditRepository, SmsInfobip $infobip, SmsHistory $history, SmsHistoryRecipient $historyRecipient, SmsBilling $billing)
     {
-        //calculate total bill for user
-        $total_units = $smsCreditRepository->getSmsBill($this->recipients, $this->message);
 
-        //deduct bill from user account
-        $smsCreditRepository->billUser($total_units, $this->user_id);
+        //calculate bill
+        $bill_units = $billing->getSmsUnitBill($this->recipients, $this->message);
+
+        //charge bill
+        $billing->billUserUnits($bill_units, $this->user_id);
 
         //now send sms
         $s = $infobip->setSender($this->sender)
@@ -90,19 +92,21 @@ class QuickSmsJob extends Job implements ShouldQueue
         //save the SMS
         $user = User::find($this->user_id);
         $sms_history = $history->store($this->sender, $this->message, $this->schedule, $total_units, $this->flash);
-        $sms_history_row = $user->smshistory()->save( $sms_history );
+        $sms_history_row = $user->smshistory()->save($sms_history);
 
         //process the response and save to DB
         $s = json_decode($s, true);
         $recipients = [];
 
         //update the recipient table with the recipients
-        foreach ( $s['results'] as $result )
-        {
-            $recipients[] = $historyRecipient->store($result['status'], $result['messageid'], $result['destination']);
-        }
+        foreach ($s['results'] as $result):
+            if (!empty($result['status']))
+                $recipients[] = $historyRecipient->store($result['status'], $result['messageid'], $result['destination']);
+        endforeach;
 
-        $s = $history->find($sms_history_row->id);
-        $s->smsHistoryRecipient()->saveMany($recipients);
+        if (count($recipients) > 0):
+            $s = $history->find($sms_history_row->id);
+            $s->smsHistoryRecipient()->saveMany($recipients);
+        endif;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 
+use App\Http\Billing\SmsBilling;
 use App\Repository\SmsCreditRepository;
 use Closure;
 
@@ -9,6 +10,19 @@ class SendSmsMiddleware
 
     const NO_CREDIT = 0;
     const NO_CREDIT_TEXT = 'You do not have enough credits to send SMS. Please buy more.';
+    /**
+     * @var
+     */
+    private $billing;
+
+    /**
+     * SendSmsMiddleware constructor.
+     */
+    public function __construct(SmsBilling $billing)
+    {
+        $this->billing = $billing;
+    }
+
 
     /**
      * Handle an incoming request.
@@ -35,7 +49,7 @@ class SendSmsMiddleware
         //calculate TOTAL CREDIT from no of recipients & sms pages.
         $message = $request->get('message');
         $recipients = $request->get('recipients');
-        $total_units = SmsCreditRepository::getSmsBill($recipients, $message);
+        $total_units = $this->billing->getSmsUnitBill($recipients, $message);
 
         /**
          * Return low credit error if request is normal or AJAX

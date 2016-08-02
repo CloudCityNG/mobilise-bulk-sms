@@ -8,18 +8,17 @@ use App\Models\Sms\SmsHistoryRecipient;
 use App\Repository\SmsHistoryRepository;
 use Illuminate\Database\Eloquent\Collection;
 
-class DlrHandler {
+class DlrHandler
+{
 
     public function clean_table()
     {
         $zero_rows = SmsHistoryRecipient::where('status', 0)->get();
 
-        foreach( $zero_rows as $row )
-        {
+        foreach ($zero_rows as $row) {
             //fetch dlr
             $r = Dlr::where('messageid', $row->messageid)->first();
-            if ($r)
-            {
+            if ($r) {
                 $row->status = $r->status;
                 $row->sentdate = $r->sentdate;
                 $row->donedate = $r->donedate;
@@ -33,7 +32,7 @@ class DlrHandler {
     }
 
 
-    public static function downloadDlr(Collection $data)
+    public static function downloadDlr(Collection $data, $fileType = 'txt')
     {
         $contents = null;
         $out = null;
@@ -46,37 +45,47 @@ class DlrHandler {
         $others = 0;
 
         //loop through the $data collection
-        foreach($data as $row)
-        {
+        foreach ($data as $row) {
             $total++;
-            if ( (new self)->is_equalTo($row->status, 'delivered') )
+            if ((new self)->is_equalTo($row->status, 'delivered'))
                 $delivered++;
-            if ( (new self)->is_equalTo($row->status, 'rejected') )
+            if ((new self)->is_equalTo($row->status, 'rejected'))
                 $rejected++;
-            if ( (new self)->is_equalTo($row->status, 'expired') )
+            if ((new self)->is_equalTo($row->status, 'expired'))
                 $expired++;
-            if ( (new self)->is_equalTo($row->status, 'not_delivered') )
+            if ((new self)->is_equalTo($row->status, 'not_delivered'))
                 $not_delivered++;
-
-
 
 
             $recipient = $row->destination;
             $status = (new self())->translate_status($row->status);
 
-            $contents .= "$recipient | $status" . "\n";
+            if ($fileType == 'csv'):
+                $contents .= "$recipient , $status" . "\n";
+            elseif ($fileType == 'txt'):
+                $contents .= "$recipient | $status" . "\n";
+            endif;
         }
 
-        $out .= "Delivered: $delivered" . PHP_EOL;
-        $out .= "Rejected: $rejected" . PHP_EOL;
-        $out .= "Expired: $expired" . PHP_EOL;
-        $out .= "Not Delivered: $not_delivered" . PHP_EOL;
-        $out .= $contents;
+        if ($fileType == 'csv'):
+            $out .= "Delivered, $delivered" . PHP_EOL;
+            $out .= "Rejected, $rejected" . PHP_EOL;
+            $out .= "Expired, $expired" . PHP_EOL;
+            $out .= "Not Delivered, $not_delivered" . PHP_EOL;
+            $out .= $contents;
+            $filename = time() . ".xls";
+        elseif ($fileType == 'txt'):
+            $out .= "Delivered: $delivered" . PHP_EOL;
+            $out .= "Rejected: $rejected" . PHP_EOL;
+            $out .= "Expired: $expired" . PHP_EOL;
+            $out .= "Not Delivered: $not_delivered" . PHP_EOL;
+            $out .= $contents;
+            $filename = time() . ".txt";
+        endif;
 
-        $filename = time() . ".txt";
         $file_path = storage_path("dlr/$filename");
         $file = file_put_contents($file_path, $out);
-        return response()->download( $file_path );
+        return response()->download($file_path);
     }
 
 
@@ -84,10 +93,9 @@ class DlrHandler {
     {
         $out = null;
 
-        switch (trim($status))
-        {
+        switch (trim($status)) {
             case "0":
-                $out = 'No response.';
+                $out = 'Sent';
                 break;
             case "-1":
                 $out = "Error processing request";
@@ -160,7 +168,7 @@ class DlrHandler {
 
     private function is_equalTo($status, $string)
     {
-        return (bool) (strtolower($status) == $string);
+        return (bool)(strtolower($status) == $string);
     }
 
 

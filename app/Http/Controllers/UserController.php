@@ -69,26 +69,27 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('user.profile', ['page_title'=>'User Profile', 'userSidebar'=>true]);
+        //rodd(Auth::user()->userdetails()->count());
+        return view('bootswatch.user.profile');
     }
 
 
     public function profileGet(UserDetailRequest $request)
     {
-        if ($request->ajax()){
-            $out = ['firstname'=>'segun','lastname'=>'babs'];
-            return response()->json(['success'=>true, 'out'=>$out]);
+        if ($request->ajax()) {
+            $out = ['firstname' => 'segun', 'lastname' => 'babs'];
+            return response()->json(['success' => true, 'out' => $out]);
         }
     }
 
 
     public function profileEdit(UserDetailRequest $request, UserDetailRepository $userDetailRepository)
     {
-        if ( $request->ajax() ):
-            $inputs = $request->only('firstname','lastname','phone','dob');
+        if ($request->ajax()):
+            $inputs = $request->only('firstname', 'lastname', 'phone', 'dob');
             $userDetailRepository->save($inputs);
             $out = view('ajax.userdetails')->render();
-            return response()->json(['success'=>true,'out'=>$out]);
+            return response()->json(['success' => true, 'out' => $out]);
         endif;
         //validate
         //save to db
@@ -98,15 +99,20 @@ class UserController extends Controller
     }
 
 
-    public function security()
+    public function settings()
     {
-
+        return view('bootswatch.user.settings');
     }
 
 
-    public function notifications()
+    public function support()
     {
-
+        return view('bootswatch.user.support');
     }
 
+
+    public function faqs()
+    {
+        return view('bootswatch.user.faqs');
+    }
 }

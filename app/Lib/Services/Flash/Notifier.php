@@ -21,6 +21,13 @@ class Notifier {
     }
 
 
+    public function timer($message, $timer=2000)
+    {
+        $this->flash($message, 'Notification', 'info', $timer);
+        return $this;
+    }
+
+
     public function overlay($message, $header='Notification')
     {
         $this->info($message, $header);
@@ -55,11 +62,14 @@ class Notifier {
     }
 
 
-    public function flash($message, $header, $level = 'warning')
+    public function flash($message, $header, $level = 'warning', $timer=null)
     {
         $this->request->session()->flash('flash.message', $message);
         $this->request->session()->flash('flash.header', $header);
         $this->request->session()->flash('flash.level', $level);
+        if ( $timer )
+            $this->request->session()->flash('flash.timer', $timer);
+
     }
 
 } 

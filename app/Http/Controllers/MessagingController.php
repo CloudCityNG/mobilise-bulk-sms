@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Forms\DraftSmsForm;
+use App\Http\Forms\FileToSmsForm;
 use App\Http\Forms\QuicSmsForm;
 use App\Jobs\BulkSmsCommand;
 use App\Jobs\NewDraftSmsJob;
@@ -13,6 +14,7 @@ use App\Http\Requests\BulkSmsFileUploadRequest;
 use App\Http\Requests\BulkSmsRequest;
 use App\Http\Requests\DraftSmsRequest;
 use App\Http\Requests\SendSmsRequest;
+use App\Jobs\SendSmsJob;
 use App\Lib\Filesystem\CsvReader;
 use App\Lib\Services\Date\ProcessDate;
 use App\Lib\Sms\DlrHandler;
@@ -34,7 +36,7 @@ class MessagingController extends Controller
     function __construct()
     {
         $this->middleware('auth');
-//        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms']]);
+        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms','postSendSms']]);
 //        $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
     }
 
@@ -45,17 +47,36 @@ class MessagingController extends Controller
 
 
 
-    public function sendSms($back=null)
+    public function sendSms(Request $request)
     {
-        return view('adminlte.messaging.send-sms');
+        //$request->session()->forget('uploadedNumbersFromFile');
+        return view('bootswatch.messaging.send-sms');
     }
 
 
-    public function postSendSms(QuicSmsForm $form, Request $request)
+    public function postSendSms(QuicSmsForm $form)
     {
         $data = $form->save();
-        return view('adminlte.messaging.send-sms-preview', compact('data'));
+        $job = (new SendSmsJob($form->fields()))->onQueue('sms');
+        $this->dispatchNow( $job );
+        flash()->overlay("Please check delivery for massage status", "Message Queued for sending");
+        return redirect()->back();
+        //return view('adminlte.messaging.send-sms-preview', compact('data'));
 
+    }
+
+
+    public function fileToSms()
+    {
+        return view('bootswatch.messaging.file-to-sms');
+    }
+
+
+    public function postFileToSms(FileToSmsForm $form)
+    {
+        $data = $form->save();
+        flash()->timer($form->getNumberCount() .' Contacts Uploaded');
+        return view('bootswatch.messaging.file-to-sms-1', ['data'=>$data, 'count'=>$form->getNumberCount()]);
     }
 
 
@@ -73,7 +94,44 @@ class MessagingController extends Controller
     }
 
 
+    /**
+     * Sent SMS view
+     * @param SmsHistoryRepository $repository
+     * @return \Illuminate\View\View
+     */
+    public function sentSms(SmsHistoryRepository $repository)
+    {
+        $data = $repository->sentSms();
+        return view('bootswatch.messaging.sent-sms-list', ['data' => $data]);
+    }
 
+
+    /**
+     * Show a full sent SMS message
+     *
+     * @param null $id
+     * @param SmsHistoryRepository $repository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function sentSmsId($id = null, SmsHistoryRepository $repository)
+    {
+        $this->evaluateId($id);
+        $data = $repository->sentSmsId($id, false);
+        return view('bootswatch.messaging.sent-sms', compact('data'));
+    }
+
+
+    /** Download DLR
+     * @param null $id
+     * @param SmsHistoryRepository $repository
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function sentSmsIdDlr($id=null, SmsHistoryRepository $repository)
+    {
+        $this->evaluateId($id);
+        $data = $repository->sentSmsId($id);
+        return DlrHandler::downloadDlr($data->smshistoryrecipient);
+    }
 
 
 
@@ -177,11 +235,6 @@ class MessagingController extends Controller
     }
 
 
-    public function file2sms()
-    {
-        return view('messaging.file-to-sms');
-    }
-
 
     public function postFile2sms()
     {
@@ -208,16 +261,7 @@ class MessagingController extends Controller
     }
 
 
-    /**
-     * Sent SMS view
-     * @param SmsHistoryRepository $repository
-     * @return \Illuminate\View\View
-     */
-    public function sentSms(SmsHistoryRepository $repository)
-    {
-        $data = $repository->sentSms();
-        return view('kanda.messaging.sent-sms', ['data' => $data]);
-    }
+
 
 
     public function getSentSms($id, Request $request, SmsHistoryRepository $repository)
@@ -263,27 +307,10 @@ class MessagingController extends Controller
     }
 
 
-    /**
-     * Show a full sent SMS message
-     *
-     * @param null $id
-     * @param SmsHistoryRepository $repository
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
-     */
-    public function sentSmsId($id = null, SmsHistoryRepository $repository)
-    {
-        $this->evaluateId($id);
-        $data = $repository->sentSmsId($id, false);
-        return view('kanda.messaging.sent-sms-id', compact('data'));
-    }
 
 
-    public function sentSmsIdDlr($id=null, SmsHistoryRepository $repository)
-    {
-        $this->evaluateId($id);
-        $data = $repository->sentSmsId($id);
-        return DlrHandler::downloadDlr($data->smshistoryrecipient);
-    }
+
+
 
 
     public function sentSmsIdDlrView($id, SmsHistoryRepository $repository)

@@ -2,11 +2,15 @@
 namespace App\Models\Sms;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SmsHistory extends Model {
 
+    use softDeletes;
+
 	protected $table = "sms_history";
     protected $guarded = ['id'];
+    protected $dates = ['deleted_at'];
 
 
     public function user()

@@ -11,13 +11,13 @@ class SmsInfobip extends Sms {
     const username = 'mobiliseafrica';
     const password = '124!Nigeria';
 
-    private $sender;
-    private $recipients;
-    private $message;
-    private $schedule;
-    private $flash;
+    protected $sender;
+    protected $recipients;
+    protected $message;
+    protected $schedule;
+    protected $flash;
 
-    private $error = [];
+    protected $error = [];
 
     public function __construct()
     {

@@ -57,6 +57,7 @@ class PenSmsApi extends Sms
             return $this;
         $now = new \DateTime("now", new \DateTimeZone('UTC'));
         $schedule = new \DateTime($dateTime);
+        $schedule->setTimezone(new \DateTimeZone('UTC'));
         if ($schedule->getTimestamp() <= $now->getTimestamp()):
             return $this;
         elseif ($schedule->getTimestamp() > $now->getTimestamp()):
@@ -78,7 +79,7 @@ class PenSmsApi extends Sms
 
     public function setAuth()
     {
-        return ['username'=>static::username, 'password'=>static::password];
+        return ['username' => static::username, 'password' => static::password];
     }
 
 
@@ -93,16 +94,16 @@ class PenSmsApi extends Sms
         ];
 
         //if message is more than 160xters add longsms
-        if ( CharacterCounter::countPage($this->message)->pages > 1 )
-            $messages = array_merge($messages, ['type'=>'longSMS']);
+        if (CharacterCounter::countPage($this->message)->pages > 1)
+            $messages = array_merge($messages, ['type' => 'longSMS']);
 
         //if schedule add it
-        if ( $this->schedule )
-            $messages = array_merge([$messages, ['sendDateTime'=>$this->schedule]]);
+        if ($this->schedule)
+            $messages = array_merge([$messages, ['sendDateTime' => $this->schedule]]);
 
 
-        if ( $this->flash)
-            $messages = array_merge(['flash'=>1, $messages]);
+        if ($this->flash)
+            $messages = array_merge(['flash' => 1, $messages]);
 
         $authentication['messages'] = [
             $messages
@@ -110,5 +111,4 @@ class PenSmsApi extends Sms
 
         return json_encode($authentication);
     }
-
 }

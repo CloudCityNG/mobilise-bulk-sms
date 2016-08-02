@@ -29,10 +29,6 @@ class CharacterCounter
         return $this->$field;
     }
 
-    public function __set($field, $value)
-    {
-        $this->field = $value;
-    }
 
     public static function countXters($xters)
     {

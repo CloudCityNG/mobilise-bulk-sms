@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 class QuicSmsForm extends Form
 {
 
+    protected $rules = [
+        'sender' => 'required|min:3|max:11',
+        'recipients' => 'required',
+        'message' => 'required|min:1|max:480',
+        'schedule' => 'boolean',
+        'date' => 'date|after:yesterday|required_with:schedule',
+        'time' => 'required_with:date',
+        'timezone' => 'required_with:time',
+        'flash' => 'boolean',
+    ];
+
     /**
      * @var PhoneUtil
      */
@@ -20,24 +31,18 @@ class QuicSmsForm extends Form
         $this->phoneUtil = $phoneUtil;
     }
 
-    protected $rules = [
-        'sender' => 'required',
-        'recipients' => 'required',
-        'message' => 'required',
-        'schedule' => 'boolean',
-        'date' => 'date|after:yesterday|required_with:schedule',
-        'time' => 'required_with:date',
-        'timezone' => 'required_with:time',
-        'flash' => 'boolean',
-    ];
-
 
     public function save()
     {
         if ($this->isValid()) {
-            $this->request->session()->put('send-sms-fields', $this->fields());
-            return $this->persist();
-            //return true;
+
+            if ( $this->schedule == 1 )
+                $this->request->merge(['schedule' => "$this->date $this->time $this->timezone"]);
+            //add user_id to request
+            $this->request->merge(['user_id' => $this->request->user()->id]);
+            //$this->request->session()->put('send-sms-fields', $this->fields());
+            //return $this->persist();
+            return true;
         }
         return false;
     }

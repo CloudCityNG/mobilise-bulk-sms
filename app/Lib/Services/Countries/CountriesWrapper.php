@@ -23,8 +23,6 @@ class CountriesWrapper
         ob_start();
         include $file;
         $file = ob_get_clean();
-        ob_end_clean();
-
         $this->jsonToLoad = json_decode($file);
     }
 

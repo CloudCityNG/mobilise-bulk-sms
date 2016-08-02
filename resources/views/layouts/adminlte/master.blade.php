@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/pace.min.css">
     <link rel="stylesheet" href="/adminlte/css/_all-skins.min.css">
     <link rel="stylesheet" href="/adminlte/css/style.css">
+    <link rel="stylesheet" href="/css/sweetalert2.css">
     @yield('head')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,6 +41,11 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-weight:bold;">
+                            {{$currentUser->smscredit->available_credit}} UNITS
+                        </a>
+                    </li>
                     <!-- Messages: style can be found in dropdown.less-->
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -54,7 +60,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
-                                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <h4>
                                                 Support Team
@@ -125,16 +131,16 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{$currentUser->username}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    Segun Babs - Sales Manager
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -142,13 +148,13 @@
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
+                                        <a href="#">Orders</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
+                                        <a href="#">Payments</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
+                                        <a href="#">Purchases</a>
                                     </div>
                                 </div>
                             </li>
@@ -162,10 +168,6 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
-                    <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                     </li>
                 </ul>
             </div>
@@ -200,6 +202,8 @@
 <script src="/adminlte/js/jquery.slimscroll.min.js"></script>
 <script src="/adminlte/js/fastclick.js"></script>
 <script src="/adminlte/js/app.min.js"></script>
+<script src="/js/sweetalert2.min.js"></script>
+@include('layouts.adminlte.partials.flash')
 <script src="/js/pace.min.js"></script>
 @yield('foot')
 </body>

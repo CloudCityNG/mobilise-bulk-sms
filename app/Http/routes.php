@@ -6,7 +6,8 @@ use App\Lib\Services\Text\String as Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('lte', function(){
+Route::get('quick', function(){
+    return view('bootswatch.messaging.sent-sms');
     return view('adminlte.messaging.quicsms');
 });
 
@@ -103,7 +104,6 @@ Route::group(
     Route::post('file2sms/fileupload', 'MessagingController@postFileUpload2');
 
     Route::get('sent-sms', 'MessagingController@sentSms');
-    Route::get('sent-sms/{id}', 'MessagingController@sentSmsId');
     Route::get('sent-sms/{id}/get-dlr', 'MessagingController@sentSmsIdDlr');
     Route::get('sent-sms/{id}/get-dlr/view', 'MessagingController@sentSmsIdDlrView');
     Route::get('sent-sms/{id}/del', 'MessagingController@delSentSms');

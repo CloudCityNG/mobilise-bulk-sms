@@ -24,7 +24,7 @@ class BillingController extends Controller
     public function orders()
     {
         $data = Auth::user()->order()->paginate(5);
-        return view('kanda.settings.orders', ['userSidebar'=>true, 'data'=>$data]);
+        return view('bootswatch.billing.orders', ['userSidebar'=>true, 'data'=>$data]);
     }
 
 
@@ -38,6 +38,6 @@ class BillingController extends Controller
             ->paginate(5);
         //dd($data);
 
-        return view('kanda.settings.payment', ['userSidebar'=>true, 'data'=>$data]);
+        return view('bootswatch.billing.payments', ['userSidebar'=>true, 'data'=>$data]);
     }
 }

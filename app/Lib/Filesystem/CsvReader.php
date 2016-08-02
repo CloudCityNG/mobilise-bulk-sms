@@ -7,23 +7,48 @@ class CsvReader
 
 
     /**
-     * Read a csv|txt file with MSISDN on a separate file.
+     * Read a csv|txt file with MSISDN on a separate file and return comma separated numbers
      * @param $handle
      * @return array
      * @throws \Exception
      */
+    public static function readCsvFile($handle, $chop = 10)
+    {
+        if (!is_file($handle))
+            Throw new \Exception('File not valid');
+        $out = '';
+        $out2 = '';
+        $file = file($handle);
+        $counter = 0;
+        foreach ($file as $line):
+            $counter++;
+            $char = str_replace(["\r\n", ",", " "], "", $line);
+            if ( trim($char) == "" )
+                continue;
+
+            $out .= $char . ',';
+            if ($counter < $chop):
+                $out2 .= $char.',';
+            endif;
+        endforeach;
+
+        return ['return' => \rtrim($out, ","), 'count' => $counter, 'chop' => \rtrim($out2, ",")];
+    }
+
+
     public static function readCsvNewLine($handle)
     {
-        if ( !is_file($handle) )
+        if (!is_file($handle))
             Throw new \Exception('File not valid');
-        $out = [];
+        $out = '';
         $file = file($handle);
 
         foreach ($file as $line):
-            $out[] = str_replace(["\r\n", ",", " "], "", $line);
+            $char = str_replace(["\r\n", ",", " "], "", $line);
+            $out .= $char . ',';
         endforeach;
 
-        return $out;
+        return \rtrim($out, ",");
     }
 
 
@@ -52,7 +77,7 @@ class CsvReader
         if (!file_exists($filename) || !is_readable($filename))
             throw New \Exception("File not readable");;
 
-        $header = ['sender','recipients','message','schedule','flash'];
+        $header = ['sender', 'recipients', 'message', 'schedule', 'flash'];
         $data = array();
         if (($handle = fopen($filename, 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, null, $delimiter)) !== FALSE) {
