@@ -40,6 +40,10 @@
             methods:{
                 messageCharacterCounter: function(){
                     this.messageCharacterCount = this.message.length
+                },
+                restrictXters: function(){
+                    var $recipients = this.recipients;
+                    this.recipients = $recipients.replace(/[^\d(,+)]/g, '');
                 }
             }
         });
@@ -85,7 +89,7 @@
                                 <div id="recipientsTab" class="tab-content">
                                     <div class="tab-pane fade active in" id="paste">
                                         <textarea name="recipients" class="form-control" rows="4"
-                                                  id="recipients" v-model="recipients"
+                                                  id="recipients" v-model="recipients" v-on:keyup="restrictXters"
                                                   placeholder="Recipients">{{old('recipients')}}</textarea>
                                     </div>
                                     <div class="tab-pane fade" id="upload">

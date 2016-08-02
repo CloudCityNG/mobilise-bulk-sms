@@ -1,5 +1,7 @@
 <?php
 
+use App\Lib\Services\PhoneNumber\PhoneUtil;
+use App\Lib\Services\Text\CharacterCounter;
 use Carbon\Carbon;
 //cleaning useful routes here
 
@@ -53,6 +55,8 @@ Route::group(
     ['prefix' => 'user'], function () {
 
     Route::get('profile', ['as'=>'profile_path','uses'=>'UserController@profile']);
+    Route::get('profile-edit', ['as'=>'profile_edit_path','uses'=>'UserController@profileEdit']);
+    Route::post('profile-edit', ['as'=>'profile_edit_path','uses'=>'UserController@postProfileEdit']);
     Route::get('support', ['as'=>'support_path','uses'=>'UserController@support']);
     Route::get('faqs', ['as'=>'faqs_path','uses'=>'UserController@faqs']);
     Route::get('settings', ['as'=>'settings_path','uses'=>'UserController@settings']);
@@ -111,11 +115,52 @@ Route::get('client-registration', function(){
     return view('layouts.landing.client-registration');
 });
 //API testing routes
-Route::get('api-test', function (\App\Lib\Sms\PenSmsApi $api) {
+Route::get('api-test', function (PhoneUtil $phoneUtil, \App\Lib\Filesystem\CsvReader $reader) {
 
-    //$file = storage_path('uploads/blacklist.txt');
-    //$out = \App\Lib\Filesystem\CsvReader::readCsvFile($file);
-    //dd($out);
-    dd(session('uploadedFileToSms'));
+    function explodeRecipients($recipients)
+    {
+        //$recipients = str_replace(["\n","\n\r","\r"], ",", $recipients);
+        //$recipients = preg_replace('/\s+/', ",", $recipients);
+        $numbers = explode(",", $recipients);
+        $numbers = array_filter($numbers, function ($var) {
+            if ("" !== trim($var)) {
+                return true;
+            }
+        });
+        $numbers = array_map('trim', $numbers);
+        return $numbers;
+    }
+
+    $message = 'This is the message they talk about';
+    $recipients = ($reader->readCsvFile(storage_path('uploads/blacklist.txt'))['return']);
+
+        $sms_pages = CharacterCounter::countPage($message)->pages;
+        $numbers_array = explodeRecipients($recipients);
+        $numbers_unique = array_unique($numbers_array);
+        $duplicates = array_diff($numbers_array, $numbers_unique);
+        $data = [];
+
+        foreach ($numbers_unique as $number):
+            $phoneUtil->number($number);
+            if ($phoneUtil->isValid()):
+                $country = $phoneUtil->getRegion();
+                $carrier = $phoneUtil->carrier();
+
+                if (array_key_exists("$country|$carrier", $data)):
+                    $count = (int) $data["$country|$carrier"]['count'] + 1;
+                    $data["$country|$carrier"]['count'] = $count;
+                else:
+                    $data["$country|$carrier"] = ['count' => 1, 'price'=>$phoneUtil->getChargeByDialingCode()];
+                endif;
+            endif;
+        endforeach;
+
+    if (count($data) > 0):
+        foreach($data as $row => $value):
+            echo $row . " =================> " . $value['count'] . "<br>";
+        endforeach;
+    endif;
+
+
 
 });

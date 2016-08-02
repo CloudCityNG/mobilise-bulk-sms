@@ -36,7 +36,7 @@ class QuicSmsForm extends Form
     {
         if ($this->isValid()) {
 
-            if ( $this->schedule == 1 )
+            if ($this->schedule == 1)
                 $this->request->merge(['schedule' => "$this->date $this->time $this->timezone"]);
             //add user_id to request
             $this->request->merge(['user_id' => $this->request->user()->id]);
@@ -51,6 +51,33 @@ class QuicSmsForm extends Form
     public function persist()
     {
         return $this->prepare();
+    }
+
+
+    public function prepare_preview()
+    {
+        $sms_pages = CharacterCounter::countPage($this->message)->pages;
+        $numbers_array = $this->explodeRecipients($this->recipients);
+        $numbers_unique = array_unique($numbers_array);
+        $duplicates = array_diff($numbers_array, $numbers_unique);
+        $data = [];
+
+        foreach ($numbers_unique as $number):
+            $this->phoneUtil->number($number);
+            if ($this->phoneUtil->isValid()):
+                $country = $this->phoneUtil->getRegion();
+                $carrier = $this->phoneUtil->carrier();
+
+                if (array_key_exists("$country|$carrier", $data)):
+                    $count = $data["$country|$carrier"]['count']++;
+                    $data["$country|$carrier"] = ['count'=>$count];
+                else:
+                    $data["$country|$carrier"] = ['count' => 1, 'price'=>$this->phoneUtil->getChargeByDialingCode()];
+                endif;
+            endif;
+        endforeach;
+        dd($data);
+
     }
 
 
