@@ -1,7 +1,7 @@
 function ajaxindicatorstart(text)
 {
     if(jQuery("body").find('#resultLoading').attr('id') != 'resultLoading'){
-        jQuery("body").append('<div id="resultLoading" style="display:none"><div><img src="ajax-loader.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
+        jQuery("body").append('<div id="resultLoading" style="display:none"><div><img src="/img/Preloader_6.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
     }
 
     jQuery('#resultLoading').css({

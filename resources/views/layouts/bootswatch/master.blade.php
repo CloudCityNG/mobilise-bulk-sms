@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
     <link rel="stylesheet" href="/css/sweetalert2.css">
     <link rel="stylesheet" href="/bootswatch/css/style.css">
+
     @yield('head')
+
     <style type="text/css">
         #body {
             Padding-top: 80px;
@@ -39,6 +41,7 @@
     </style>
 </head>
 <body>
+<div class="se-pre-con"></div>
 <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -48,7 +51,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#first">
+            <a class="navbar-brand page-scroll" href="{{route('dashboard')}}">
                 <i class="fa fa-commenting-o" aria-hidden="true"></i> Quic-SMS</a>
         </div>
         <div class="navbar-collapse collapse" id="bs-navbar">
@@ -70,7 +73,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{route('sent_sms_list')}}">Sent Messages</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Draft Messages</a></li>
+                        <li><a href="{{route('draft_sms_list')}}">Draft Messages</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -119,6 +122,12 @@
 
 <!--scripts loaded here from cdn for performance -->
 <script src="/js/jquery/jquery-latest.js"></script>
+<script>
+    $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");;
+    });
+</script>
 <script src="/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/master.js"></script>
 <script src="/js/sweetalert2.min.js"></script>

@@ -18,6 +18,7 @@ class ContactsUploadForm extends Form
 
     protected $userMessage = '';
     protected $numberCount = 0;
+    protected $data;
 
 
     public function __construct(Request $request, CsvReader $reader)
@@ -46,13 +47,13 @@ class ContactsUploadForm extends Form
     {
         if ($this->isValid()) {
             //get the numbers
-            $data = $this->persist();
+            $this->data = $this->persist();
             //count the numbers
-            $this->numberCount($data);
+            //$this->numberCount($data);
             //store the numbers in session array
-            $this->storeSession($data);
+            //$this->storeSession($data);
             //return the numbers
-            return $data;
+            return $this->data;
         }
         return false;
     }
@@ -71,10 +72,10 @@ class ContactsUploadForm extends Form
     }
 
 
-    public function numberCount($numbers)
+    public function numberCount()
     {
-        $numbers = explode(",", $numbers);
-        $this->numberCount = count($numbers);
+        $numbers = explode(",", $this->data);
+        return count($numbers);
     }
 
 
@@ -82,10 +83,5 @@ class ContactsUploadForm extends Form
     public function getUserMessage()
     {
         return $this->userMessage;
-    }
-
-    public function getNumberCount()
-    {
-        return $this->numberCount;
     }
 };

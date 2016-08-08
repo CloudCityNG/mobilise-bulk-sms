@@ -21,6 +21,7 @@ class AjaxController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        //$this->middleware('smscreditcheck', ['only'=>['jobInfo']]);
     }
 
 
@@ -29,7 +30,7 @@ class AjaxController extends Controller
         $data = $form->save();
 
         if ($data !== false):
-            return response()->json(['success' => true, 'numberCount' => $form->getNumberCount()]);
+            return response()->json(['success' => true, 'data' => $data, 'numberCount'=>$form->numberCount()]);
         endif;
         return response()->json(['error' => true], 422);
     }
@@ -44,7 +45,9 @@ class AjaxController extends Controller
 
     public function jobInfo(QuicSmsForm $form)
     {
-        return $form->save();
+        $data = $form->save();
+        $html = view('bootswatch.ajax.send-sms-preview', ['data' => $data])->render();
+        return response()->json(['success'=>true, 'html'=>$html]);
     }
 
 

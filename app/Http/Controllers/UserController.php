@@ -41,6 +41,12 @@ class UserController extends Controller
     }
 
 
+    public function dashboard2()
+    {
+        return view('bootswatch.user.dashboard');
+    }
+
+
     public function changePassword()
     {
         $out = ['page_title' => 'Change Password', 'userSidebar' => true];

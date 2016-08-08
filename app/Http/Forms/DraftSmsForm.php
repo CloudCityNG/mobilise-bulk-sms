@@ -39,8 +39,7 @@ class DraftSmsForm extends Form
         );
         $datetime = $datetime->format('Y-m-d H:i:s');
 
-        if ( !is_null($this->schedule) )
-        {
+        if (!is_null($this->schedule)) {
             $this->request->merge([
                 'schedule' => $datetime,
             ]);

@@ -72,12 +72,12 @@ class CsvReader
     }
 
 
-    public function csv_to_array($filename = '', $delimiter = ',')
+    public static function csv_to_array($filename = '', $delimiter = ',')
     {
         if (!file_exists($filename) || !is_readable($filename))
             throw New \Exception("File not readable");;
 
-        $header = ['sender', 'recipients', 'message', 'schedule', 'flash'];
+        $header = '';//['sender', 'recipients', 'message', 'schedule', 'flash'];
         $data = array();
         if (($handle = fopen($filename, 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, null, $delimiter)) !== FALSE) {

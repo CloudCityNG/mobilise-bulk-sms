@@ -24,7 +24,7 @@ class SmsDraftRepository {
 
     public function get($id)
     {
-        return Auth::user()->draftsms()->where('id',$id);
+        return Auth::user()->draftsms()->where('id',$id)->first();
     }
 
 

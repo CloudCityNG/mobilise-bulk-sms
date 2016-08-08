@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Forms;
 
-
 use App\Lib\Services\PhoneNumber\PhoneUtil;
 use App\Lib\Services\Text\CharacterCounter;
 use Illuminate\Http\Request;
@@ -36,13 +35,13 @@ class QuicSmsForm extends Form
     {
         if ($this->isValid()) {
 
-            if ($this->schedule == 1)
+            if ($this->schedule)
                 $this->request->merge(['schedule' => "$this->date $this->time $this->timezone"]);
             //add user_id to request
             $this->request->merge(['user_id' => $this->request->user()->id]);
             //$this->request->session()->put('send-sms-fields', $this->fields());
             //return $this->persist();
-            return true;
+            return $this->prepare_preview();
         }
         return false;
     }
@@ -58,26 +57,36 @@ class QuicSmsForm extends Form
     {
         $sms_pages = CharacterCounter::countPage($this->message)->pages;
         $numbers_array = $this->explodeRecipients($this->recipients);
+        if ($this->request->session()->has('uploadedNumbersFromFile')):
+            $numbers_array = array_merge($numbers_array, array_collapse(session('uploadedNumbersFromFile')));
+        endif;
         $numbers_unique = array_unique($numbers_array);
-        $duplicates = array_diff($numbers_array, $numbers_unique);
+        $duplicates = array_diff_assoc($numbers_array, $numbers_unique);
         $data = [];
+        $invalid_numbers = [];
 
         foreach ($numbers_unique as $number):
             $this->phoneUtil->number($number);
             if ($this->phoneUtil->isValid()):
                 $country = $this->phoneUtil->getRegion();
                 $carrier = $this->phoneUtil->carrier();
-
                 if (array_key_exists("$country|$carrier", $data)):
-                    $count = $data["$country|$carrier"]['count']++;
-                    $data["$country|$carrier"] = ['count'=>$count];
+                    $count = (int)$data["$country|$carrier"]['total_recipients'] + 1;
+                    $data["$country|$carrier"]['total_recipients'] = $count;
                 else:
-                    $data["$country|$carrier"] = ['count' => 1, 'price'=>$this->phoneUtil->getChargeByDialingCode()];
+                    $data["$country|$carrier"] = ['total_recipients' => 1, 'price' => $this->phoneUtil->getChargeByDialingCode()];
                 endif;
+            else:
+                $invalid_numbers[] = $number;
             endif;
         endforeach;
-        dd($data);
-
+        return [
+            'data' => $data,
+            'duplicates' => $duplicates,
+            'invalid' => $invalid_numbers,
+            'valid' => $numbers_unique,
+        ];
+        //dd($data, $duplicates, $invalid_numbers);
     }
 
 
@@ -171,6 +180,4 @@ class QuicSmsForm extends Form
         $numbers = array_map('trim', $numbers);
         return $numbers;
     }
-
-
 }

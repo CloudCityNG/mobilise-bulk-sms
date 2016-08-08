@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 // Home & Dashboard shortcut/alias
 Route::get('/home', 'UserController@dashboard');
-Route::get('/dashboard', 'UserController@dashboard');
+Route::get('/dashboard', ['as'=>'dashboard','uses'=>'UserController@dashboard2']);
 
 //Social Login
 Route::get('Oauth/Authenticate/{provider?}', 'SessionsController@socialLogin');
@@ -26,6 +26,7 @@ Route::group(
     ['prefix'=>'a'], function(){
     Route::post('contacts-upload', 'AjaxController@contactsUpload');
     Route::post('contacts-file-upload', 'AjaxController@contactsFileUpload');
+    Route::post('send-sms-preview', 'AjaxController@jobInfo');
 
 });
 
@@ -37,7 +38,7 @@ Route::group(
     Route::get('file-to-sms', ['as'=>'file_to_sms','uses'=>'MessagingController@fileToSms']);
     Route::post('file-to-sms', ['as'=>'post_file_to_sms','uses'=>'MessagingController@postFileToSms']);
 
-    Route::post('draft-sms', 'MessagingController@postDraftSms');
+
 });
 
 Route::group(
@@ -46,6 +47,11 @@ Route::group(
     Route::get('sent-sms/{id}', ['as'=>'sent_sms','uses' => 'MessagingController@sentSmsId']);
     Route::get('sent-sms/{id}/get-dlr', 'MessagingController@sentSmsIdDlr');
     Route::get('sent-sms/{id}/get-dlr/view', 'MessagingController@sentSmsIdDlrView');
+
+    Route::get('draft-sms', ['as'=>'draft_sms_list','uses'=>'MessagingController@savedSms']);
+    Route::get('draft-sms/{id}', ['as'=>'draft_sms','uses'=>'MessagingController@getDraftSMS']);
+    Route::post('draft-sms', ['as'=>'post_draft_sms','uses'=>'MessagingController@postDraftSms']);
+    Route::get('draft-sms/{id}/del', ['as'=>'del_draft_sms','uses'=>'MessagingController@delDraftSMS']);
 });
 
 
@@ -117,50 +123,8 @@ Route::get('client-registration', function(){
 //API testing routes
 Route::get('api-test', function (PhoneUtil $phoneUtil, \App\Lib\Filesystem\CsvReader $reader) {
 
-    function explodeRecipients($recipients)
-    {
-        //$recipients = str_replace(["\n","\n\r","\r"], ",", $recipients);
-        //$recipients = preg_replace('/\s+/', ",", $recipients);
-        $numbers = explode(",", $recipients);
-        $numbers = array_filter($numbers, function ($var) {
-            if ("" !== trim($var)) {
-                return true;
-            }
-        });
-        $numbers = array_map('trim', $numbers);
-        return $numbers;
-    }
-
-    $message = 'This is the message they talk about';
-    $recipients = ($reader->readCsvFile(storage_path('uploads/blacklist.txt'))['return']);
-
-        $sms_pages = CharacterCounter::countPage($message)->pages;
-        $numbers_array = explodeRecipients($recipients);
-        $numbers_unique = array_unique($numbers_array);
-        $duplicates = array_diff($numbers_array, $numbers_unique);
-        $data = [];
-
-        foreach ($numbers_unique as $number):
-            $phoneUtil->number($number);
-            if ($phoneUtil->isValid()):
-                $country = $phoneUtil->getRegion();
-                $carrier = $phoneUtil->carrier();
-
-                if (array_key_exists("$country|$carrier", $data)):
-                    $count = (int) $data["$country|$carrier"]['count'] + 1;
-                    $data["$country|$carrier"]['count'] = $count;
-                else:
-                    $data["$country|$carrier"] = ['count' => 1, 'price'=>$phoneUtil->getChargeByDialingCode()];
-                endif;
-            endif;
-        endforeach;
-
-    if (count($data) > 0):
-        foreach($data as $row => $value):
-            echo $row . " =================> " . $value['count'] . "<br>";
-        endforeach;
-    endif;
-
+    dd(session('uploadedNumbersFromFile'));
+    return \App\Lib\Filesystem\CsvReader::readCsvNewLine(storage_path('uploads/blacklist.txt'));
 
 
 });

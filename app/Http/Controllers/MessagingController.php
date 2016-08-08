@@ -36,15 +36,9 @@ class MessagingController extends Controller
     function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms','postSendSms']]);
+        $this->middleware('smscreditcheck', ['only' => ['confirmQuic', 'postQuickSms', 'postQuickModalSms', 'postSendSms']]);
 //        $this->middleware('bulksms.checkcredit', ['only' => ['postBulkSms']]);
     }
-
-
-
-
-
-
 
 
     public function sendSms(Request $request)
@@ -58,7 +52,7 @@ class MessagingController extends Controller
     {
         $data = $form->save();
         $job = (new SendSmsJob($form->fields()))->onQueue('sms');
-        $this->dispatchNow( $job );
+        $this->dispatchNow($job);
         flash()->overlay("Please check delivery for massage status", "Message Queued for sending");
         return redirect()->back();
         //return view('adminlte.messaging.send-sms-preview', compact('data'));
@@ -75,8 +69,21 @@ class MessagingController extends Controller
     public function postFileToSms(FileToSmsForm $form)
     {
         $data = $form->save();
-        flash()->timer($form->getNumberCount() .' Contacts Uploaded');
-        return view('bootswatch.messaging.file-to-sms-1', ['data'=>$data, 'count'=>$form->getNumberCount()]);
+        flash()->timer($form->getNumberCount() . ' Contacts Uploaded');
+        return view('bootswatch.messaging.file-to-sms-1', ['data' => $data, 'count' => $form->getNumberCount()]);
+    }
+
+
+    /**
+     * Show/Paginate Draft SMS
+     * @param SmsDraftRepository $draftRepository
+     * @return \Illuminate\View\View
+     */
+    public function savedSms(SmsDraftRepository $draftRepository)
+    {
+        $data = $draftRepository->paginate();
+        return view('bootswatch.messaging.draft-sms-list', ['data' => $data]);
+        return view('kanda.messaging.draft-sms', ['data' => $data]);
     }
 
 
@@ -93,6 +100,34 @@ class MessagingController extends Controller
         return redirect()->to('user/dashboard');
     }
 
+
+    /**
+     * @param $id
+     * @param SmsDraftRepository $repository
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param Request $request
+     */
+    public function getDraftSMS($id,SmsDraftRepository $repository)
+    {
+        $this->evaluateId($id);
+        $data = $repository->get($id);
+        return view('bootswatch.messaging.draft-sms', compact('data'));
+    }
+
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @param SmsDraftRepository $repository
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delDraftSMS($id, Request $request, SmsDraftRepository $repository)
+    {
+        if ($repository->del($id)):
+            flash()->message("Draft message deleted");
+        endif;
+        return redirect()->route('draft_sms_list');
+    }
 
     /**
      * Sent SMS view
@@ -126,15 +161,12 @@ class MessagingController extends Controller
      * @param SmsHistoryRepository $repository
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function sentSmsIdDlr($id=null, SmsHistoryRepository $repository)
+    public function sentSmsIdDlr($id = null, SmsHistoryRepository $repository)
     {
         $this->evaluateId($id);
         $data = $repository->sentSmsId($id);
         return DlrHandler::downloadDlr($data->smshistoryrecipient);
     }
-
-
-
 
 
 
@@ -157,7 +189,7 @@ class MessagingController extends Controller
         //create session and store data
         $inputs = $request->all();
         //dd($inputs);
-        return view('kanda.messaging.confirm-quicsms', ['data'=>$inputs]);
+        return view('kanda.messaging.confirm-quicsms', ['data' => $inputs]);
     }
 
 
@@ -235,7 +267,6 @@ class MessagingController extends Controller
     }
 
 
-
     public function postFile2sms()
     {
 
@@ -246,22 +277,19 @@ class MessagingController extends Controller
     {
         //validate the file
         $files = $request->file('bulkSmsFile');
-        foreach ( $files as $file ):
-            if ( $file->isValid() ):
+        foreach ($files as $file):
+            if ($file->isValid()):
                 $out = $reader->csv_to_array($file);
 
                 unset($out[0]);
 
-                return response()->json(['success'=>true, 'out'=>$out]);
+                return response()->json(['success' => true, 'out' => $out]);
             endif;
         endforeach;
         //upload the file
         //read the file
         //send back contents of the file
     }
-
-
-
 
 
     public function getSentSms($id, Request $request, SmsHistoryRepository $repository)
@@ -294,9 +322,9 @@ class MessagingController extends Controller
     }
 
 
-    public function deleteSentSms($id=null, Request $request, SmsHistoryRepository $repository)
+    public function deleteSentSms($id = null, Request $request, SmsHistoryRepository $repository)
     {
-        if ( is_null($id) ) :
+        if (is_null($id)) :
             flash()->info("Unknown request, Please try again");
             return redirect()->back();
         else :
@@ -305,12 +333,6 @@ class MessagingController extends Controller
             return redirect()->to('messaging/sent-sms');
         endif;
     }
-
-
-
-
-
-
 
 
     public function sentSmsIdDlrView($id, SmsHistoryRepository $repository)
@@ -348,63 +370,12 @@ class MessagingController extends Controller
     }
 
 
-    /**
-     * Show/Paginate Draft SMS
-     * @param SmsDraftRepository $draftRepository
-     * @return \Illuminate\View\View
-     */
-    public function savedSms(SmsDraftRepository $draftRepository)
+
+
+
+    private function evaluateId($id, $redirectUrl = null)
     {
-        $data = $draftRepository->paginate();
-        return view('kanda.messaging.draft-sms', ['data' => $data]);
-        return view('messaging.saved-sms', ['data' => $data]);
-    }
-
-
-
-
-
-    /**
-     * Delete a draft SMS row by its id || Served over AJAX
-     * @param $id
-     * @param Request $request
-     * @param SmsDraftRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function delDraftSMS($id, Request $request, SmsDraftRepository $repository)
-    {
-        if ($request->ajax()) {
-            if ($repository->del($id))
-                return response()->json(['success' => true]);
-            else
-                return response()->json(['error' => true], 422);
-        }
-    }
-
-
-    /**
-     * Get a draft SMS row by ID. || Server over AJAX
-     * @param $id
-     * @param Request $request
-     * @param SmsDraftRepository $repository
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function getDraftSMS($id, Request $request, SmsDraftRepository $repository)
-    {
-        if ($request->ajax()) {
-            $out = $repository->get($id);
-            if ($out->count())
-                return response()->json(['success' => true, 'out' => $out->get()]);
-            else
-                return response()->json(['error' => true], 422);
-        }
-    }
-
-
-    private function evaluateId($id, $redirectUrl=null)
-    {
-        if ( is_null($id) )
-        {
+        if (is_null($id)) {
             flash()->error('An unexpected error has occurred.');
             return $redirectUrl ? redirect()->to($redirectUrl) : redirect()->back();
         }

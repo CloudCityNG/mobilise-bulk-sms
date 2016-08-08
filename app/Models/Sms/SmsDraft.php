@@ -6,6 +6,7 @@ class SmsDraft extends Model {
 
 	protected $table = 'sms_draft';
     protected $fillable = ['sender','recipients','message','flash','schedule'];
+    protected $dates = ['schedule'];
 
 
     public function user()
