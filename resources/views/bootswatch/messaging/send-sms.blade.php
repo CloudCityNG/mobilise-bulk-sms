@@ -71,14 +71,26 @@
                         }
                 }
             }
-        })
-            ;
+        });
 
-            $('#datetime').datetimepicker({
+            var $datetime = $('#datetime');
+            var $form = $('#send-sms-form');
+
+
+            $datetime.datetimepicker({
                 format:'Y/m/d H:i',
                 minDate: 0
             });
-            var $form = $('#send-sms-form');
+            $datetime.hide();
+            $('#schedule').change(function(){
+                if(this.checked){
+                    $datetime.fadeIn("slow").show();
+                } else {
+                    $datetime.fadeOut("slow").hide();
+                }
+            });
+
+
 
             $('button#preview').click(function (e) {
                 e.preventDefault();
@@ -219,7 +231,7 @@
                                     <label>
                                         <input type="checkbox" name="schedule" id="schedule" value="1"> Schedule to send later
                                     </label>
-                                </div><br>
+                                </div>
                                 <input type="text" id="datetime" name="datetime" class="form-control">
                             </div>
                         </div>

@@ -57,7 +57,7 @@ class SessionsController extends Controller {
 
         if ( Auth::attempt($login_data, $rememberMe) ) {
             flash()->overlay("You have been successfully logged in", "Welcome");
-            return redirect()->intended('user/dashboard');
+            return redirect()->intended('dashboard');
         }
 
         flash()->error('Email/Password invalid');

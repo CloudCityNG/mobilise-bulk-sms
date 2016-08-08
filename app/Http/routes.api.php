@@ -84,7 +84,7 @@ Route::group(
 
     Route::get('payment-return', 'PurchaseController@paymentReturn');
 
-    Route::get('dashboard', 'UserController@dashboard');
+    Route::get('dashboard', 'UserController@dashboard2');
     Route::get('change-password', 'UserController@changePassword');
     Route::post('change-password', 'UserController@postChangePassword');
     Route::get('account-setting', 'UserController@accountSetting');
