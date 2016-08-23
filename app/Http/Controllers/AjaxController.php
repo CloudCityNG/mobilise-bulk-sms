@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Forms\ContactsUploadForm;
 use App\Http\Forms\FileToSmsForm;
 use App\Http\Forms\QuicSmsForm;
+use App\Http\Forms\SendSmsPreview;
+use App\Http\Forms\SendSmsPreviewForm;
 use App\Jobs\NewContactCommand;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -43,7 +45,7 @@ class AjaxController extends Controller
     }
 
 
-    public function jobInfo(QuicSmsForm $form)
+    public function jobInfo(SendSmsPreviewForm $form)
     {
         $data = $form->save();
         $html = view('bootswatch.ajax.send-sms-preview', ['data' => $data])->render();

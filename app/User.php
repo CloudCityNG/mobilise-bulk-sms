@@ -41,7 +41,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function smshistory()
     {
-        return $this->hasMany('App\Models\Sms\SmsHistory', 'user_id', 'id');
+        return $this->hasMany('App\Models\Sms\SmsHistory');
     }
 
 

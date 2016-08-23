@@ -67,8 +67,8 @@
         div.box {
             width: 100%;
             height: 165px;
-            border: 1px solid #01579b;
-            background: #01579b;
+            border: 1px solid #0db7c4;
+            background: #0db7c4;
             border-radius: 5px;
             color: white;
             margin-top: 10px;
@@ -85,26 +85,29 @@
         }
 
         a:hover div.icon i {
-            font-size: 102px;
+            font-size: 80px;
         }
 
         div.icon {
-            height: 50%;
+            height: 65%;
             position: relative;
         }
 
         div.icon i {
             display: block;
-            font-size: 100px;
-            text-align: center;
+            font-size: 68px;
+            text-align: left;
+            padding-left: 25px;
+            padding-top: 20px;
         }
 
         div.text {
-            text-align: center;
+            text-align: left;
             display: block;
-            height: 50%;
-            font-size: 20px;
-            padding-top: 40px;
+            height: 35%;
+            font-size: 17px;
+            padding-top: 0px;
+            padding-left: 25px;
         }
     </style>
 @endsection

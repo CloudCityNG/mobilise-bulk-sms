@@ -52,16 +52,18 @@ class ApiValidators
 
     public function compareTime($attribute, $value, $parameters, $validator)
     {
-        //value should be low
+        //value should be lower
+        //time should be behind
         $now = new \DateTime("now", new \DateTimeZone('UTC'));
         $nowTimestamp = $now->getTimestamp();
 
-        //value should be high
+        //value should be high higher.
+        //this should be a later time
         $future = new \DateTime($value);
         $future = $future->setTimezone(new \DateTimeZone('UTC'));
         $futureTimestamp = $future->getTimestamp();
 
-        if ( (int) $futureTimestamp > (int) $nowTimestamp ):
+        if ( (int) $futureTimestamp > (int) $nowTimestamp + 60 ):
             return true;
         endif;
         return false;

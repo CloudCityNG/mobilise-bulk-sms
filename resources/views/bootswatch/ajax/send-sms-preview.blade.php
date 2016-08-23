@@ -23,13 +23,32 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php $total_recipients = $total_units = 0;?>
                 @foreach($data['data'] as $row => $value)
                     <tr class="text-center">
                         <td>{{$row}}</td>
                         <td>{{$value['price']}}</td>
                         <td>{{$value['total_recipients']}}</td>
+                        <?php
+                            $total_recipients += $value['total_recipients'];
+                            $total_units += ($value['price'] * $value['total_recipients']);
+                        ?>
                     </tr>
                 @endforeach
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="text-center">Total SMS</th>
+                    <th class="text-center">Total Units</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center">{{number_format($total_recipients * $data['sms_pages'])}}</td>
+                    <td class="text-center">{{number_format($data['sms_pages'] * $total_units)}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>

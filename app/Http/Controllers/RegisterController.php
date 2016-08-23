@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\NewUserRegistrationRequest;
+use App\Jobs\CreateNewUserJob;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller {
@@ -44,7 +45,8 @@ class RegisterController extends Controller {
      */
 	public function store(NewUserRegistrationRequest $request)
 	{
-        $this->dispatchFrom('App\Jobs\CreateNewUserJob', $request);
+        $job = new CreateNewUserJob($request->username, $request->email, $request->password);
+		$this->dispatchNow($job);
         flash()->overlay('User Account created.', 'New User Registration');
         return redirect()->to('user/dashboard');
 	}

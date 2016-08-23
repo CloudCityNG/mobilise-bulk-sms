@@ -41,21 +41,18 @@ class MessagingController extends Controller
     }
 
 
-    public function sendSms(Request $request)
+    public function sendSms()
     {
-        //$request->session()->forget('uploadedNumbersFromFile');
         return view('bootswatch.messaging.send-sms');
     }
 
 
     public function postSendSms(QuicSmsForm $form)
     {
-        $data = $form->save();
-        $job = (new SendSmsJob($form->fields()))->onQueue('sms');
-        $this->dispatchNow($job);
+        $form->save();
+        dd($form->fields());
         flash()->overlay("Please check delivery for massage status", "Message Queued for sending");
         return redirect()->back();
-        //return view('adminlte.messaging.send-sms-preview', compact('data'));
 
     }
 
@@ -107,7 +104,7 @@ class MessagingController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @internal param Request $request
      */
-    public function getDraftSMS($id,SmsDraftRepository $repository)
+    public function getDraftSMS($id, SmsDraftRepository $repository)
     {
         $this->evaluateId($id);
         $data = $repository->get($id);
@@ -167,12 +164,6 @@ class MessagingController extends Controller
         $data = $repository->sentSmsId($id);
         return DlrHandler::downloadDlr($data->smshistoryrecipient);
     }
-
-
-
-
-
-
 
 
     /** Display Quic SMS Form
@@ -368,9 +359,6 @@ class MessagingController extends Controller
             return response()->json(['success' => true, 'html' => $out]);
         }
     }
-
-
-
 
 
     private function evaluateId($id, $redirectUrl = null)

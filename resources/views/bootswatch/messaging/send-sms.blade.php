@@ -3,13 +3,16 @@
 @extends('layouts.bootswatch.master')
 @section('head')
     <link rel="stylesheet" href="/css/dropzone.min.css">
-    <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui-timepicker-addon.css">
 @endsection
 
 @section('foot')
     <script type="text/javascript" src="/js//dropzone.min.js"></script>
     <script src="/js/vue.js"></script>
-    <script src="/js/jquery.datetimepicker.full.min.js"></script>
+    <script src="/js/jquery/jquery-ui.min.js"></script>
+    <script src="/js/jquery-ui-timepicker-addon.js"></script>
+    @include('layouts.global.flash')
     <script>
         $(function () {
 
@@ -75,22 +78,21 @@
 
             var $datetime = $('#datetime');
             var $form = $('#send-sms-form');
-
-
             $datetime.datetimepicker({
-                format:'Y/m/d H:i',
-                minDate: 0
+                timeFormat: 'hh:mm tt z',
+                stepMinute: 5,
+                hourMin: 7,
+                hourMax: 19
             });
             $datetime.hide();
-            $('#schedule').change(function(){
-                if(this.checked){
-                    $datetime.fadeIn("slow").show();
-                } else {
-                    $datetime.fadeOut("slow").hide();
-                }
-            });
 
-
+//            $('#schedule').change(function(){
+//                if(this.checked){
+//                    $datetime.fadeIn("slow").show();
+//                } else {
+//                    $datetime.fadeOut("slow").hide();
+//                }
+//            });
 
             $('button#preview').click(function (e) {
                 e.preventDefault();
@@ -124,6 +126,9 @@
                     if (response.schedule) {
                         $('#ajax-error-container ul').append("<li>" + response.schedule[0] + "</li>");
                     }
+                    if (response.datetime) {
+                        $('#ajax-error-container ul').append("<li>" + response.datetime[0] + "</li>");
+                    }
 
                     $('#ajax-error-container').show();
                 })
@@ -134,6 +139,11 @@
                 e.preventDefault();
                 location.href = '/dashboard';
                 console.log(location);
+            });
+
+            $('button#send-button').click(function(e){
+                e.preventDefault();
+                $form.submit();
             });
 
         });
@@ -152,7 +162,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="send-button">Send Message</button>
                 </div>
             </div>
         </div>
@@ -219,7 +229,7 @@
                                           v-on:keyup="messageCharacterCounter"
                                           id="message" placeholder="Message">{{old('message')}}</textarea>
 
-                                <p class="help-block">@{{messageCharacterCount}} characters. @{{pageCount}}.</p>
+                                <p class="help-block">Characters: @{{messageCharacterCount}}. Messages: @{{pageCount}}.</p>
                             </div>
                         </div>
 
@@ -229,10 +239,10 @@
                             <div class="col-lg-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="schedule" id="schedule" value="1"> Schedule to send later
+                                        <input type="checkbox" name="schedule" id="schedule" value="1" {{old('schedule')?'checked':''}} v-model="schedule"> Schedule to send later
                                     </label>
                                 </div>
-                                <input type="text" id="datetime" name="datetime" class="form-control">
+                                <input type="text" id="datetime" name="datetime" class="form-control" value="{{old('datetime')}}" v-show="schedule">
                             </div>
                         </div>
 
@@ -242,7 +252,7 @@
                             <div class="col-lg-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="flash" id="flash" value="1"> Send as Flash Message
+                                        <input type="checkbox" name="flash" id="flash" value="1" {{ old('flash') ? 'checked' : '' }}> Send as Flash Message
                                     </label>
                                 </div>
                             </div>

@@ -65,10 +65,11 @@ class SendSmsMiddleware
         /**
          * Merge missing input into the request
          */
-        if(!$request->exists('schedule'))
-            $request->merge(['schedule'=>NULL]);
-        if(!$request->exists('flash'))
-            $request->merge(['flash'=>0]);
+        if (!$request->exists('schedule')):
+            $request->merge(['schedule' => NULL, 'datetime'=>null]);
+        endif;
+        if (!$request->exists('flash'))
+            $request->merge(['flash' => 0]);
 
         return $next($request);
     }

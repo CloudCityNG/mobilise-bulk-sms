@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\NewUserRegistered;
 use App\Jobs\Job;
 use App\Lib\Mailer\UserMailer;
 use App\Repository\SmsCreditRepository;
@@ -56,5 +57,9 @@ class CreateNewUserJob extends Job
         Auth::login($user);
         //send user welcome message
         $mailer->new_user_welcome_email(Auth::user());
+
+        /**EVENTS**/
+        event(new NewUserRegistered($user));
+        /**END EVENTS**/
     }
 }

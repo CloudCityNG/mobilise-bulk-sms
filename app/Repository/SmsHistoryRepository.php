@@ -14,19 +14,6 @@ class SmsHistoryRepository {
     const DEFAULT_PAGINATE_SIZE = 10;
 
 
-
-    function __construct()
-    {
-
-    }
-
-//    public function save(SentSmsHistory $smsHistory, $userId)
-//    {
-//        return User::findOrFail($userId)
-//            ->sentsms()->save($smsHistory);
-//    }
-
-
     /**
      * Paginate the sent sms record
      * @param $userId
@@ -122,7 +109,7 @@ class SmsHistoryRepository {
      */
     public function sentSms()
     {
-        return Auth::user()->smshistory()->with('smshistoryrecipient')->orderBy('created_at', 'descending')->paginate(self::DEFAULT_PAGINATE_SIZE);
+            return Auth::user()->smshistory()->with('smshistoryrecipient')->orderBy('created_at', 'descending')->paginate(self::DEFAULT_PAGINATE_SIZE);
     }
 
 
@@ -133,16 +120,14 @@ class SmsHistoryRepository {
      */
     public function getDlr($id)
     {
-        return Auth::User()->smshistory()->where('id',$id)->with('smshistoryrecipient')->get();
+        return Auth::user()->smshistory()->where('id',$id)->with('smshistoryrecipient')->get();
     }
 
 
     public function getSentSms($id)
     {
-        return Auth::User()->smshistory()->where('id',$id)->with('smshistoryrecipient');
+        return Auth::user()->smshistory()->where('id',$id)->with('smshistoryrecipient');
     }
-
-
 
 
     public function sentSmsId($id, $withHistoryRecipient=true)
@@ -154,7 +139,4 @@ class SmsHistoryRepository {
         else
             return $out->first();
     }
-
-
-
 } 
