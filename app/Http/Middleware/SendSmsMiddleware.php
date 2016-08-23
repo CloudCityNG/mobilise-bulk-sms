@@ -17,6 +17,7 @@ class SendSmsMiddleware
 
     /**
      * SendSmsMiddleware constructor.
+     * @param SmsBilling $billing
      */
     public function __construct(SmsBilling $billing)
     {

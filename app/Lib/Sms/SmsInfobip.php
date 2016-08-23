@@ -2,10 +2,12 @@
 namespace App\Lib\Sms;
 
 
+use App\Lib\Services\PhoneNumber\PhoneUtil;
 use App\Lib\Services\Text\CharacterCounter;
 use Carbon\Carbon;
 
-class SmsInfobip extends Sms {
+class SmsInfobip extends Sms
+{
 
     const api_url = 'http://api.infobip.com/api/v3/sendsms/json';
     const username = 'mobiliseafrica';
@@ -18,10 +20,14 @@ class SmsInfobip extends Sms {
     protected $flash;
 
     protected $error = [];
+    /**
+     * @var PhoneUtil
+     */
+    private $phoneUtil;
 
-    public function __construct()
+    public function __construct(PhoneUtil $phoneUtil)
     {
-        return $this;
+        $this->phoneUtil = $phoneUtil;
     }
 
     public function setSender($sender)
@@ -38,13 +44,24 @@ class SmsInfobip extends Sms {
         //split numbers according to set delimiters
         $to = preg_split($allowedDelimiters, $recipients, null, PREG_SPLIT_NO_EMPTY);
         //replace numbers dat start with 07/08/09 with 2347/2348/2349
-        if ( count($to) > 0 )
-        {
+        if (count($to) > 0) {
             $pattern = "/^(0)(7|8|9){1}([0-9]{9})/";
             $to = preg_replace($pattern, "234$2$3", array_unique($to));
         }
-        foreach ( $to as $numbers ) {
-            $this->recipients[]["gsm"] = $numbers;
+
+        /**
+         * Remove duplicates and invalid numbers
+         */
+        $to = array_unique($to);
+        foreach ($to as $number) {
+            try{
+                $this->phoneUtil->number($number);
+                if ($this->phoneUtil->isValid()):
+                    $this->recipients[]["gsm"] = $number;
+                endif;
+            } catch(\Exception $e) {
+                //continue
+            }
         }
         return $this;
     }
@@ -59,25 +76,42 @@ class SmsInfobip extends Sms {
 
     public function setSchedule($datetime)
     {
-        if ( empty($datetime) ){
+        if (empty($datetime)) {
             return $this;
         }
-        $now = (new \DateTime());
-        $schedule = (new \DateTime($datetime));
-        if ( $schedule->getTimestamp() <= $now->getTimestamp() )
+        $now = new \DateTime("now", new \DateTimeZone('UTC'));
+        $nowTimestamp = $now->getTimestamp();
+
+        //value should be high higher.
+        //this should be a later time
+        $future = new \DateTime($datetime);
+        $future = $future->setTimezone(new \DateTimeZone('UTC'));
+        $futureTimestamp = $future->getTimestamp();
+
+        if ((int)$futureTimestamp > (int)$nowTimestamp + 60):
+            $interval = $now->diff($future);
+            $this->schedule = $interval->format('%a' . 'd' . '%h' . 'h' . '%i' . 'm');
             return $this;
-        if ( $schedule->getTimestamp() > $now->getTimestamp() ){
-            $interval = $now->diff($schedule);
-            $this->schedule = $interval->format('%a'.'d'.'%h'.'h'.'%i'.'m');
-            return $this;
-        }
+        endif;
+
         return $this;
+
+//        $now = (new \DateTime());
+//        $schedule = (new \DateTime($datetime));
+//        if ($schedule->getTimestamp() <= $now->getTimestamp())
+//            return $this;
+//        if ($schedule->getTimestamp() > $now->getTimestamp()) {
+//            $interval = $now->diff($schedule);
+//            $this->schedule = $interval->format('%a' . 'd' . '%h' . 'h' . '%i' . 'm');
+//            return $this;
+//        }
+//        return $this;
     }
 
 
     public function flash($flash)
     {
-        if ( $flash )
+        if ($flash)
             $this->flash = true;
         return $this;
     }
@@ -85,7 +119,7 @@ class SmsInfobip extends Sms {
 
     private function setAuth()
     {
-        return ['username'=>self::username, 'password'=>self::password];
+        return ['username' => self::username, 'password' => self::password];
     }
 
     public function _prepare()
@@ -101,19 +135,19 @@ class SmsInfobip extends Sms {
         ];
 
         //if message is more than 160, then add longsms
-        if ( CharacterCounter::countPage($this->message)->pages > 1 ) {
-            $messages = array_merge($messages, ['type'=>'longSMS']);
+        if (CharacterCounter::countPage($this->message)->pages > 1) {
+            $messages = array_merge($messages, ['type' => 'longSMS']);
         }
 
         //if schedule exists add it
-        if ( $this->schedule ) {
-            $messages = array_merge($messages, ['sendDateTime'=>$this->schedule]);
+        if ($this->schedule) {
+            $messages = array_merge($messages, ['sendDateTime' => $this->schedule]);
         }
 
 
         //if flash add it
-        if ( $this->flash ) {
-            $messages = array_merge(['flash'=>1], $messages);
+        if ($this->flash) {
+            $messages = array_merge(['flash' => 1], $messages);
         }
 
         //compose all together.

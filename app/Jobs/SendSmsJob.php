@@ -4,9 +4,7 @@ namespace App\Jobs;
 
 use App\Http\Billing\SmsBilling;
 use App\Jobs\Job;
-use App\Lib\Sms\PenSmsApi;
 use App\Lib\Sms\SmsInfobip;
-use App\Lib\Sms\SmsResponseHandler;
 use App\Models\Sms\SmsHistory;
 use App\Models\Sms\SmsHistoryRecipient;
 use App\User;
@@ -28,14 +26,14 @@ class SendSmsJob extends Job implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param array $inputs
      */
     public function __construct(Array $inputs)
     {
         $this->sender = $inputs['sender'];
         $this->recipients = $inputs['recipients'];
         $this->message = $inputs['message'];
-        $this->schedule = $inputs['schedule'];
+        $this->schedule = $inputs['datetime'];
         $this->flash = $inputs['flash'];
         $this->user_id = $inputs['user_id'];
     }
@@ -43,7 +41,10 @@ class SendSmsJob extends Job implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @param SmsInfobip $api
+     * @param SmsBilling $billing
+     * @param SmsHistory $history
+     * @param SmsHistoryRecipient $historyRecipient
      */
     public function handle(SmsInfobip $api, SmsBilling $billing, SmsHistory $history, SmsHistoryRecipient $historyRecipient)
     {
@@ -81,6 +82,8 @@ class SendSmsJob extends Job implements ShouldQueue
 
             $s = $history->find($sms_history_row->id);
             $s->smsHistoryRecipient()->saveMany($recipients);
+
+            /** Call an event here */
         });
     }
 }

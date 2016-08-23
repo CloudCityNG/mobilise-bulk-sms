@@ -26,8 +26,8 @@ class QuicSmsForm extends Form
     public function persist()
     {
         $this->request->merge(['user_id' => $this->request->user()->id]);
-        //$job = (new SendSmsJob($this->fields()));
-        //$this->dispatch($job);
+        $job = (new SendSmsJob($this->fields()));
+        $this->dispatch($job);
     }
 
 }
