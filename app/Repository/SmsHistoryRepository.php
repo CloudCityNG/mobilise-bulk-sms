@@ -1,7 +1,6 @@
 <?php
 namespace App\Repository;
 
-
 use App\Models\Dlr;
 use App\Models\Sms\SmsHistory;
 use App\User;
@@ -83,8 +82,6 @@ class SmsHistoryRepository {
         $recipient_row = $recipient->get();
 
         if ( $recipient_row ) {
-
-
             //iterate over the recipients rows
             foreach ($recipient_row as $row) {
                 //if messageid exists
@@ -93,11 +90,9 @@ class SmsHistoryRepository {
                     Dlr::where('messageid', $row->messageid)->delete();
                 }
             }
-
             //delete row in sms_history_recipients
             $recipient->delete();
         }
-
         //delete sms_history row
         Auth::user()->smshistory->find($id)->delete();
     }

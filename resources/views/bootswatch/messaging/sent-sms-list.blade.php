@@ -1,5 +1,15 @@
 @extends('layouts.bootswatch.master')
 
+@section('foot')
+    @include('layouts.global.flash')
+    <script>
+        $(function(){
+            $('a.delete-icon').click(function(e){
+                return confirm("Are you sure you want to delete this record ?");
+            });
+        });
+    </script>
+@stop
 
 @section('content')
     <div class="row">
@@ -29,7 +39,7 @@
 
                                 <a href="#!" style="margin-left:10px"><i class="icon icon ion-forward"></i></a>
 
-                                <a href="#!" style="margin-left:10px;"><i class="icon icon ion-trash-a"></i></a>
+                                <a href="{{route('sent_sms_del', ['id'=>$sent->id])}}" style="margin-left:10px;" class="delete-icon"><i class="icon icon ion-trash-a"></i></a>
                             </td>
                         </tr>
                     @endforeach

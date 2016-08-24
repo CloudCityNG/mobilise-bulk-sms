@@ -8,6 +8,10 @@
                 event.preventDefault();
                 window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
             });
+
+            $('a.delete-icon').click(function(e){
+                return confirm("Are you sure you want to delete this record ?");
+            });
         });
     </script>
 @endsection
@@ -70,7 +74,7 @@
 
                         <hr>
                         <a href="#!" class="btn btn-primary btn-sm"><i class="icon icon ion-paper-airplane"></i> Forward</a>
-                        <a href="#!" class="btn btn-danger btn-sm"><i class="icon icon ion-eye"></i> Delete</a>
+                        <a href="{{route('sent_sms_del', ['id'=>$data->id])}}" class="btn btn-danger btn-sm delete-icon"><i class="icon icon ion-eye"></i> Delete</a>
 
                     </div>
                 </div>

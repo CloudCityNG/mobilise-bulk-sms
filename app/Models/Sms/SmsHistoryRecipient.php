@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SmsHistoryRecipient extends Model {
 
-    use softDeletes;
-
     protected $table = "sms_history_recipients";
     protected $guarded = ['id'];
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at','updated_at', 'created_at'];
 
 
     public function smshistory()

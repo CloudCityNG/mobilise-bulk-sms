@@ -47,6 +47,7 @@ Route::group(
     Route::get('sent-sms/{id}', ['as'=>'sent_sms','uses' => 'MessagingController@sentSmsId']);
     Route::get('sent-sms/{id}/get-dlr', 'MessagingController@sentSmsIdDlr');
     Route::get('sent-sms/{id}/get-dlr/view', 'MessagingController@sentSmsIdDlrView');
+    Route::get('sent-sms/{id}/del', ['as'=>'sent_sms_del','uses'=>'MessagingController@sentSmsDel']);
 
     Route::get('draft-sms', ['as'=>'draft_sms_list','uses'=>'MessagingController@savedSms']);
     Route::get('draft-sms/{id}', ['as'=>'draft_sms','uses'=>'MessagingController@getDraftSMS']);
