@@ -83,7 +83,9 @@ class SmsBilling
                 'user_id' => $user_id,
                 'sms_history_id' => $smsHistoryId,
                 'used_units' => $units,
-                'comment' => 'User Sms Debit'
+                'comment' => 'User Sms Debit',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
     }
 
